@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.local/
+.env*
+!.env.example
+.venv/
+__pycache__/
+playwright-report/
+test-results/
+*.log
+public/assets/audio/generated/
+

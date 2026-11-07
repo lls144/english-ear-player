@@ -1,0 +1,33 @@
+{
+  "name": "english-ear-player",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "node scripts/content.mjs validate && tsc --noEmit && vite build && node scripts/package-site.mjs && node scripts/audit.mjs",
+    "preview": "vite preview --host 0.0.0.0",
+    "content:extract": "node scripts/content.mjs extract",
+    "content:validate": "node scripts/content.mjs validate",
+    "release:check": "node scripts/audit.mjs --release",
+    "test": "node --test tests/*.test.mjs",
+    "release:hashes": "node scripts/release-hashes.mjs",
+    "typecheck": "tsc --noEmit",
+    "test:e2e": "node scripts/run-e2e.mjs",
+    "test:e2e:production": "node scripts/run-e2e.mjs --production",
+    "test:native": "node scripts/native-speech-check.mjs",
+    "test:audio": "node scripts/check-audio.mjs",
+    "test:content": "node scripts/content.mjs validate",
+    "sync:notes": "node scripts/sync-notes.mjs",
+    "audio:update": "node scripts/run-audio.mjs",
+    "scan:public": "node scripts/scan-public.mjs",
+    "test:pwa": "playwright test --config playwright.pwa.config.ts",
+    "release:content": "node scripts/release-content.mjs",
+    "rollback": "node scripts/release-content.mjs --rollback-to"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.65.0",
+    "typescript": "7.0.2",
+    "vite": "8.3.6"
+  }
+}

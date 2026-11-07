@@ -1,0 +1,57 @@
+[
+  {
+    "id": "picture",
+    "engine": "sapi",
+    "voice": "Microsoft Zira Desktop",
+    "textSha256": "497e2e4d774acb0e72fac256ed4d3daba63525b026d5248cc1833321b1f2c9f3",
+    "mp3Sha256": "3b7b4cb51eb784c6b41cf2b4d80e5bd7b4a032c3d3fcd52b629348003dba8400",
+    "bytes": 411629,
+    "durationSeconds": 34.228,
+    "rmsDb": -21.1,
+    "peak": 0.7089
+  },
+  {
+    "id": "theme-trends",
+    "engine": "sapi",
+    "voice": "Microsoft Zira Desktop",
+    "textSha256": "790b8a7814407bd50c77a35dbfa0002a3441dd11c98998f5ba1cad52ce43ddf2",
+    "mp3Sha256": "d76b260a7d725fcb2ec1433a954201de3e0c3fdc7ec3663744c1f923525e349b",
+    "bytes": 982143,
+    "durationSeconds": 81.788,
+    "rmsDb": -20.15,
+    "peak": 0.7005
+  },
+  {
+    "id": "reasons",
+    "engine": "sapi",
+    "voice": "Microsoft Zira Desktop",
+    "textSha256": "8d72f5e3a01654a1fef282538d2582b4af00c543bb0dc0f55c9f344f2ad8291f",
+    "mp3Sha256": "2363c9493cd162e89073abdae8055da5b9fcac37590f306de73195a9d65a2e3f",
+    "bytes": 363982,
+    "durationSeconds": 30.264,
+    "rmsDb": -20.27,
+    "peak": 0.7202
+  },
+  {
+    "id": "connectors",
+    "engine": "sapi",
+    "voice": "Microsoft Zira Desktop",
+    "textSha256": "1e3e38ba8a2d275455e172d2d666859d5b7600af7574ba8e624956c46303170f",
+    "mp3Sha256": "2881183ab9b1e5c17c99eeb6d679680b5a11c66ef388ddadae52ea9712487417",
+    "bytes": 1478365,
+    "durationSeconds": 123.135,
+    "rmsDb": -21.36,
+    "peak": 0.7356
+  },
+  {
+    "id": "conclusion",
+    "engine": "sapi",
+    "voice": "Microsoft Zira Desktop",
+    "textSha256": "935dc5c06fc2ada3772365a8e9afce1788cb8d1c77f965537ecfc1d42a4fb910",
+    "mp3Sha256": "3d0243585a352f384a4535278296ca2a3e1494bcc97298e77d72111525d6c18b",
+    "bytes": 87502,
+    "durationSeconds": 7.213,
+    "rmsDb": -20.35,
+    "peak": 0.6249
+  }
+]

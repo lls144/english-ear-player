@@ -1,0 +1,7 @@
+{
+  "approved": false,
+  "materialsSha256": "",
+  "audioManifestSha256": "",
+  "note": "发布前审核 materials.json 中的模板补全与原笔记示例，以及每个音频文件；审核后填入哈希。当前没有任何发布授权。"
+}
+

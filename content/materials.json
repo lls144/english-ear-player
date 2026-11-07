@@ -1,0 +1,524 @@
+{
+  "schemaVersion": 1,
+  "editorialPolicy": "模板补全均为练习用示范，不是原文，也不是适用于所有考题的事实陈述。原笔记漫画示例单独标注。中文提示、未完成替换结构和错误替换建议不进入朗读文本。",
+  "chapters": [
+    {
+      "id": "picture",
+      "title": "首段描图",
+      "subtitle": "Describe the scene",
+      "segments": [
+        {
+          "id": "picture-opening",
+          "text": "Portrayed in the above drawing is a thought-provoking scene: two students hold different views about attending a lecture. A student, deeply concerned about the issue, listens carefully. Another student, with a smile on her face, takes a positive view. The girl, who seems indifferent to the lecture, dismisses it as useless.",
+          "kind": "adapted-template",
+          "sourceLines": [
+            [
+              3,
+              3
+            ],
+            [
+              11,
+              15
+            ],
+            [
+              23,
+              23
+            ]
+          ],
+          "change": "补全冒号后的描述，内容参考本笔记第23行的漫画示例；新增部分不是原文。 本轮补入第13至15行的插入语完整练习句，避免遗漏三个可背短语；补写部分仍明确为练习。",
+          "sourceIds": [
+            "note-004adf7c61c0fd06",
+            "note-5a45da9557220332",
+            "note-149ffeb59de16691",
+            "note-77eb4b01fa3c6835",
+            "note-5603a7d98c09203d",
+            "note-7c6a6fa46f158d10",
+            "note-06d54ec3d2326141"
+          ]
+        },
+        {
+          "id": "picture-example",
+          "text": "The girl on the left, seemingly indifferent to the lecture, dismisses it as useless, while the girl on the right, taking a more positive view, points out that attending it can be beneficial.",
+          "kind": "source-example",
+          "sourceLines": [
+            [
+              23,
+              23
+            ]
+          ],
+          "change": "仅去除 Markdown；第21行的示例标签不朗读。此段是原笔记标注的2022漫画示例，不是通用模板。",
+          "sourceIds": [
+            "note-06d54ec3d2326141"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "theme-trends",
+      "title": "主题句与社会趋势",
+      "subtitle": "Find the bigger picture",
+      "segments": [
+        {
+          "id": "theme-message",
+          "text": "Behind the drawing lies a profound message about lifelong learning, which merits further discussion.",
+          "kind": "adapted-template",
+          "sourceLines": [
+            [
+              29,
+              29
+            ]
+          ],
+          "change": "drawing/picture 二选一；主题词补为 lifelong learning。",
+          "sourceIds": [
+            "note-a234094687c74673"
+          ]
+        },
+        {
+          "id": "trend-era",
+          "text": "Modern society having entered an era marked by intensifying competition and rapid technological advances, the significance of lifelong learning has come into sharper focus.",
+          "kind": "adapted-template",
+          "sourceLines": [
+            [
+              34,
+              34
+            ],
+            [
+              42,
+              44
+            ]
+          ],
+          "change": "趋势A、B和主题词用笔记已有趋势与编辑选定主题补全。",
+          "sourceIds": [
+            "note-21cf083941c2f436",
+            "note-18cfd9ba248faac9",
+            "note-9c10148886163f48"
+          ]
+        },
+        {
+          "id": "trend-pace",
+          "text": "The accelerating pace of modern life makes time management increasingly important.",
+          "kind": "adapted-template",
+          "sourceLines": [
+            [
+              43,
+              43
+            ]
+          ],
+          "change": "保留趋势短语，新增谓语构成可朗读的完整练习句。",
+          "sourceIds": [
+            "note-18cfd9ba248faac9"
+          ]
+        },
+        {
+          "id": "trend-information",
+          "text": "The overwhelming flow of information calls for independent thinking and sound judgment.",
+          "kind": "adapted-template",
+          "sourceLines": [
+            [
+              45,
+              45
+            ]
+          ],
+          "change": "保留趋势短语；谓语和搭配由编辑补写。",
+          "sourceIds": [
+            "note-733f2228b2b40bc9"
+          ]
+        },
+        {
+          "id": "trend-skills",
+          "text": "The growing demand for diverse skills encourages people to keep learning.",
+          "kind": "adapted-template",
+          "sourceLines": [
+            [
+              46,
+              46
+            ],
+            [
+              64,
+              64
+            ]
+          ],
+          "change": "保留趋势短语；谓语为编辑补写。",
+          "sourceIds": [
+            "note-d75622a572137b32",
+            "note-faf8158ccff702d0"
+          ]
+        },
+        {
+          "id": "trend-growth",
+          "text": "The increasing emphasis on personal growth highlights the value of lifelong learning. The growing importance of lifelong learning deserves our attention. The increasing pressure on students makes time management essential. The increasing reliance on technology makes independent thinking important. The growing awareness of environmental issues encourages responsible action.",
+          "kind": "adapted-template",
+          "sourceLines": [
+            [
+              47,
+              47
+            ],
+            [
+              62,
+              66
+            ]
+          ],
+          "change": "保留趋势短语；谓语为编辑补写。 本轮将原笔记省略号替换结构补全成完整编辑练习句；growing demand由trend-skills覆盖。",
+          "sourceIds": [
+            "note-64bdcc4634d0fb5e",
+            "note-858c53d92f66f075",
+            "note-8a9b167ffde22d3e",
+            "note-faf8158ccff702d0",
+            "note-002b71a89fada9d5",
+            "note-0ed6232363dd10c4"
+          ]
+        },
+        {
+          "id": "trend-fields",
+          "text": "Growing connections between different fields create opportunities for cooperation.",
+          "kind": "adapted-template",
+          "sourceLines": [
+            [
+              53,
+              53
+            ]
+          ],
+          "change": "保留趋势短语；谓语为编辑补写。",
+          "sourceIds": [
+            "note-5880db781c180439"
+          ]
+        },
+        {
+          "id": "trend-social",
+          "text": "The growing influence of social media changes the way people communicate.",
+          "kind": "adapted-template",
+          "sourceLines": [
+            [
+              54,
+              54
+            ]
+          ],
+          "change": "保留趋势短语；谓语为编辑补写。",
+          "sourceIds": [
+            "note-2c8b26b00f6651be"
+          ]
+        },
+        {
+          "id": "trend-face",
+          "text": "The decline in face-to-face communication deserves our attention.",
+          "kind": "adapted-template",
+          "sourceLines": [
+            [
+              55,
+              55
+            ]
+          ],
+          "change": "保留趋势短语；谓语为编辑补写。",
+          "sourceIds": [
+            "note-ce224b262d15d784"
+          ]
+        },
+        {
+          "id": "trend-culture",
+          "text": "Increasing cultural exchanges help people understand one another.",
+          "kind": "adapted-template",
+          "sourceLines": [
+            [
+              56,
+              56
+            ]
+          ],
+          "change": "保留趋势短语；谓语为编辑补写。",
+          "sourceIds": [
+            "note-ed86399b9e118a70"
+          ]
+        },
+        {
+          "id": "trend-values",
+          "text": "Shifting social values influence people's choices.",
+          "kind": "adapted-template",
+          "sourceLines": [
+            [
+              57,
+              57
+            ]
+          ],
+          "change": "保留趋势短语；谓语为编辑补写。",
+          "sourceIds": [
+            "note-105f12f90fb4fded"
+          ]
+        },
+        {
+          "id": "trend-environment",
+          "text": "Growing environmental awareness encourages people to protect nature.",
+          "kind": "adapted-template",
+          "sourceLines": [
+            [
+              58,
+              58
+            ]
+          ],
+          "change": "保留趋势短语；谓语为编辑补写。",
+          "sourceIds": [
+            "note-4a171b0f78fcdccd"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reasons",
+      "title": "原因分析",
+      "subtitle": "Explain what lies behind",
+      "segments": [
+        {
+          "id": "reason-strain",
+          "text": "The strain of modern life has opened a Pandora's box of problems, as people become increasingly profit-oriented and thus tend to disregard personal growth.",
+          "kind": "adapted-template",
+          "sourceLines": [
+            [
+              72,
+              72
+            ]
+          ],
+          "change": "主题词补为 personal growth；弯引号规范化，删除高亮标记。",
+          "sourceIds": [
+            "note-87bff8abda52d2d6"
+          ]
+        },
+        {
+          "id": "reason-media",
+          "text": "Folks are absorbed into a culture of lifelong learning which values personal growth, driven by the mass media that offer numerous reports and interviews. Therefore, unsurprisingly, people choose to keep learning.",
+          "kind": "adapted-template",
+          "sourceLines": [
+            [
+              75,
+              75
+            ]
+          ],
+          "change": "两个××分别补为 lifelong learning 和 personal growth；do sth 补为 keep learning。",
+          "sourceIds": [
+            "note-a9193af2d568dbad"
+          ]
+        },
+        {
+          "id": "reason-benefits",
+          "text": "Lifelong learning will bring numerous benefits, improving efficiency both in personal life and work.",
+          "kind": "adapted-template",
+          "sourceLines": [
+            [
+              79,
+              79
+            ]
+          ],
+          "change": "××补为 lifelong learning；只选 efficiency 分支，删除斜杠备选分支和高亮。",
+          "sourceIds": [
+            "note-0e7186ba2b4925af"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "connectors",
+      "title": "逻辑连接词",
+      "subtitle": "Give your ideas a flow",
+      "segments": [
+        {
+          "id": "connect-opening",
+          "text": "Firstly, we should identify the problem. First of all, we need to understand its causes. To begin with, let us consider the facts.",
+          "kind": "editorial-practice",
+          "sourceLines": [
+            [
+              84,
+              84
+            ]
+          ],
+          "change": "取开篇连接词，后接编辑编写的完整练习句；不是原文句子。",
+          "sourceIds": [
+            "note-1879494d43755ef1"
+          ]
+        },
+        {
+          "id": "connect-emphasis",
+          "text": "Primarily, education helps people develop their abilities. Above all, we should value honesty. First and foremost, we must take responsibility.",
+          "kind": "editorial-practice",
+          "sourceLines": [
+            [
+              84,
+              84
+            ]
+          ],
+          "change": "取进阶连接词，后接编辑练习句。",
+          "sourceIds": [
+            "note-1879494d43755ef1"
+          ]
+        },
+        {
+          "id": "connect-essence",
+          "text": "Fundamentally, progress depends on effort. Essentially, learning is a lifelong process. In essence, small actions can make a difference.",
+          "kind": "editorial-practice",
+          "sourceLines": [
+            [
+              84,
+              84
+            ]
+          ],
+          "change": "取进阶连接词，后接编辑练习句。",
+          "sourceIds": [
+            "note-1879494d43755ef1"
+          ]
+        },
+        {
+          "id": "connect-addition",
+          "text": "Secondly, practice builds confidence. Besides, it helps us gain experience. Moreover, it prepares us for future challenges.",
+          "kind": "editorial-practice",
+          "sourceLines": [
+            [
+              85,
+              85
+            ]
+          ],
+          "change": "取并列递进词，后接编辑练习句。",
+          "sourceIds": [
+            "note-3525ffc4a34b7bc9"
+          ]
+        },
+        {
+          "id": "connect-further",
+          "text": "Furthermore, cooperation improves efficiency. Additionally, it brings people closer together. In addition, it allows us to learn from one another.",
+          "kind": "editorial-practice",
+          "sourceLines": [
+            [
+              85,
+              85
+            ]
+          ],
+          "change": "取并列递进词，后接编辑练习句。",
+          "sourceIds": [
+            "note-3525ffc4a34b7bc9"
+          ]
+        },
+        {
+          "id": "connect-more",
+          "text": "What is more, reading broadens our horizons. Equally importantly, it encourages independent thinking. Reading not only enriches our knowledge but also stimulates our imagination. Meanwhile, discussion helps us explore different views.",
+          "kind": "editorial-practice",
+          "sourceLines": [
+            [
+              85,
+              85
+            ]
+          ],
+          "change": "取剩余进阶连接结构，后接编辑练习句；补全 Not only...but also... 结构。",
+          "sourceIds": [
+            "note-3525ffc4a34b7bc9"
+          ]
+        },
+        {
+          "id": "connect-sequence",
+          "text": "Next, we should make a plan. Then, we can put it into practice. After that, we should review our progress. Subsequently, we can adjust our approach. Thereupon, we can begin the next stage.",
+          "kind": "editorial-practice",
+          "sourceLines": [
+            [
+              86,
+              86
+            ]
+          ],
+          "change": "取顺承词，后接编辑练习句；去除中文注释。",
+          "sourceIds": [
+            "note-92edd8550094c7cb"
+          ]
+        },
+        {
+          "id": "connect-ending",
+          "text": "Finally, we should turn our ideas into action. Eventually, steady effort will produce results. Ultimately, success depends on what we do.",
+          "kind": "editorial-practice",
+          "sourceLines": [
+            [
+              87,
+              87
+            ]
+          ],
+          "change": "取收尾词，后接编辑练习句。",
+          "sourceIds": [
+            "note-1822dade8b3815b3"
+          ]
+        },
+        {
+          "id": "connect-results",
+          "text": "Cooperation allows people to share their knowledge. Consequently, they can solve problems more effectively. Thus, they can achieve more together. As a result, everyone can benefit.",
+          "kind": "editorial-practice",
+          "sourceLines": [
+            [
+              87,
+              87
+            ]
+          ],
+          "change": "取因果连接词，增加前因和后果构成完整练习句。",
+          "sourceIds": [
+            "note-1822dade8b3815b3"
+          ]
+        },
+        {
+          "id": "connect-summary",
+          "text": "In the long run, lifelong learning benefits both individuals and society. Altogether, these reasons show why learning matters.",
+          "kind": "editorial-practice",
+          "sourceLines": [
+            [
+              87,
+              87
+            ]
+          ],
+          "change": "取总结连接词，后接编辑练习句。",
+          "sourceIds": [
+            "note-1822dade8b3815b3"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "conclusion",
+      "title": "第三段结尾",
+      "subtitle": "End with a clear message",
+      "segments": [
+        {
+          "id": "conclusion-belief",
+          "text": "Great care must be exercised to instill the belief that lifelong learning serves as a cornerstone of success in all endeavors.",
+          "kind": "adapted-template",
+          "sourceLines": [
+            [
+              92,
+              92
+            ]
+          ],
+          "change": "主题词补为 lifelong learning；去除中文注释和高亮。",
+          "sourceIds": [
+            "note-271bb6ec7228b5ed"
+          ]
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "sourceLines": [
+        [
+          6,
+          19
+        ]
+      ],
+      "reason": "语法教学中文提示不朗读；五种人物插入语已在picture-opening编辑练习和第23行原笔记示例中覆盖。"
+    },
+    {
+      "sourceLines": [
+        [
+          26,
+          26
+        ]
+      ],
+      "reason": "图加表只给了冒号前模板，没有对应图表和数据；不编造数据或将其误作完整原文。"
+    },
+    {
+      "sourceLines": [
+        [
+          88,
+          88
+        ]
+      ],
+      "reason": "unfortunately 与 however 并非通用同义替换，不照录该建议。"
+    }
+  ]
+}

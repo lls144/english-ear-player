@@ -1,0 +1,188 @@
+{
+  "version": "1.0.0",
+  "contentVersion": "e717975f29b23984d5351ddd",
+  "chapters": [
+    {
+      "id": "picture",
+      "title": "首段描图",
+      "subtitle": "Describe the scene",
+      "segments": [
+        {
+          "id": "picture-opening",
+          "text": "Portrayed in the above drawing is a thought-provoking scene: two students hold different views about attending a lecture. A student, deeply concerned about the issue, listens carefully. Another student, with a smile on her face, takes a positive view. The girl, who seems indifferent to the lecture, dismisses it as useless.",
+          "kind": "adapted-template"
+        },
+        {
+          "id": "picture-example",
+          "text": "The girl on the left, seemingly indifferent to the lecture, dismisses it as useless, while the girl on the right, taking a more positive view, points out that attending it can be beneficial.",
+          "kind": "source-example"
+        }
+      ]
+    },
+    {
+      "id": "theme-trends",
+      "title": "主题句与社会趋势",
+      "subtitle": "Find the bigger picture",
+      "segments": [
+        {
+          "id": "theme-message",
+          "text": "Behind the drawing lies a profound message about lifelong learning, which merits further discussion.",
+          "kind": "adapted-template"
+        },
+        {
+          "id": "trend-era",
+          "text": "Modern society having entered an era marked by intensifying competition and rapid technological advances, the significance of lifelong learning has come into sharper focus.",
+          "kind": "adapted-template"
+        },
+        {
+          "id": "trend-pace",
+          "text": "The accelerating pace of modern life makes time management increasingly important.",
+          "kind": "adapted-template"
+        },
+        {
+          "id": "trend-information",
+          "text": "The overwhelming flow of information calls for independent thinking and sound judgment.",
+          "kind": "adapted-template"
+        },
+        {
+          "id": "trend-skills",
+          "text": "The growing demand for diverse skills encourages people to keep learning.",
+          "kind": "adapted-template"
+        },
+        {
+          "id": "trend-growth",
+          "text": "The increasing emphasis on personal growth highlights the value of lifelong learning. The growing importance of lifelong learning deserves our attention. The increasing pressure on students makes time management essential. The increasing reliance on technology makes independent thinking important. The growing awareness of environmental issues encourages responsible action.",
+          "kind": "adapted-template"
+        },
+        {
+          "id": "trend-fields",
+          "text": "Growing connections between different fields create opportunities for cooperation.",
+          "kind": "adapted-template"
+        },
+        {
+          "id": "trend-social",
+          "text": "The growing influence of social media changes the way people communicate.",
+          "kind": "adapted-template"
+        },
+        {
+          "id": "trend-face",
+          "text": "The decline in face-to-face communication deserves our attention.",
+          "kind": "adapted-template"
+        },
+        {
+          "id": "trend-culture",
+          "text": "Increasing cultural exchanges help people understand one another.",
+          "kind": "adapted-template"
+        },
+        {
+          "id": "trend-values",
+          "text": "Shifting social values influence people's choices.",
+          "kind": "adapted-template"
+        },
+        {
+          "id": "trend-environment",
+          "text": "Growing environmental awareness encourages people to protect nature.",
+          "kind": "adapted-template"
+        }
+      ]
+    },
+    {
+      "id": "reasons",
+      "title": "原因分析",
+      "subtitle": "Explain what lies behind",
+      "segments": [
+        {
+          "id": "reason-strain",
+          "text": "The strain of modern life has opened a Pandora's box of problems, as people become increasingly profit-oriented and thus tend to disregard personal growth.",
+          "kind": "adapted-template"
+        },
+        {
+          "id": "reason-media",
+          "text": "Folks are absorbed into a culture of lifelong learning which values personal growth, driven by the mass media that offer numerous reports and interviews. Therefore, unsurprisingly, people choose to keep learning.",
+          "kind": "adapted-template"
+        },
+        {
+          "id": "reason-benefits",
+          "text": "Lifelong learning will bring numerous benefits, improving efficiency both in personal life and work.",
+          "kind": "adapted-template"
+        }
+      ]
+    },
+    {
+      "id": "connectors",
+      "title": "逻辑连接词",
+      "subtitle": "Give your ideas a flow",
+      "segments": [
+        {
+          "id": "connect-opening",
+          "text": "Firstly, we should identify the problem. First of all, we need to understand its causes. To begin with, let us consider the facts.",
+          "kind": "editorial-practice"
+        },
+        {
+          "id": "connect-emphasis",
+          "text": "Primarily, education helps people develop their abilities. Above all, we should value honesty. First and foremost, we must take responsibility.",
+          "kind": "editorial-practice"
+        },
+        {
+          "id": "connect-essence",
+          "text": "Fundamentally, progress depends on effort. Essentially, learning is a lifelong process. In essence, small actions can make a difference.",
+          "kind": "editorial-practice"
+        },
+        {
+          "id": "connect-addition",
+          "text": "Secondly, practice builds confidence. Besides, it helps us gain experience. Moreover, it prepares us for future challenges.",
+          "kind": "editorial-practice"
+        },
+        {
+          "id": "connect-further",
+          "text": "Furthermore, cooperation improves efficiency. Additionally, it brings people closer together. In addition, it allows us to learn from one another.",
+          "kind": "editorial-practice"
+        },
+        {
+          "id": "connect-more",
+          "text": "What is more, reading broadens our horizons. Equally importantly, it encourages independent thinking. Reading not only enriches our knowledge but also stimulates our imagination. Meanwhile, discussion helps us explore different views.",
+          "kind": "editorial-practice"
+        },
+        {
+          "id": "connect-sequence",
+          "text": "Next, we should make a plan. Then, we can put it into practice. After that, we should review our progress. Subsequently, we can adjust our approach. Thereupon, we can begin the next stage.",
+          "kind": "editorial-practice"
+        },
+        {
+          "id": "connect-ending",
+          "text": "Finally, we should turn our ideas into action. Eventually, steady effort will produce results. Ultimately, success depends on what we do.",
+          "kind": "editorial-practice"
+        },
+        {
+          "id": "connect-results",
+          "text": "Cooperation allows people to share their knowledge. Consequently, they can solve problems more effectively. Thus, they can achieve more together. As a result, everyone can benefit.",
+          "kind": "editorial-practice"
+        },
+        {
+          "id": "connect-summary",
+          "text": "In the long run, lifelong learning benefits both individuals and society. Altogether, these reasons show why learning matters.",
+          "kind": "editorial-practice"
+        }
+      ]
+    },
+    {
+      "id": "conclusion",
+      "title": "第三段结尾",
+      "subtitle": "End with a clear message",
+      "segments": [
+        {
+          "id": "conclusion-belief",
+          "text": "Great care must be exercised to instill the belief that lifelong learning serves as a cornerstone of success in all endeavors.",
+          "kind": "adapted-template"
+        }
+      ]
+    }
+  ],
+  "audio": {
+    "picture": "assets/audio/generated/picture.3b7b4cb51eb784c6.mp3",
+    "theme-trends": "assets/audio/generated/theme-trends.d76b260a7d725fcb.mp3",
+    "reasons": "assets/audio/generated/reasons.2363c9493cd162e8.mp3",
+    "connectors": "assets/audio/generated/connectors.2881183ab9b1e5c1.mp3",
+    "conclusion": "assets/audio/generated/conclusion.3d0243585a352f38.mp3"
+  }
+}

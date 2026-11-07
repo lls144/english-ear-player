@@ -1,0 +1,6 @@
+# Optional Windows audio output/session verification; no ASR model or paid service.
+imageio-ffmpeg==0.8.1
+soundcard==0.4.6
+numpy==2.5.4
+pycaw==20260927
+
