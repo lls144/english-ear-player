@@ -28,6 +28,12 @@ source=source.replace("import library from './library.generated.json';",'const l
  .replace('import.meta.env.BASE_URL',"'./'");
 const {Player,storageKey}=await import('data:text/javascript;base64,'+Buffer.from(stripTypeScriptTypes(source)).toString('base64'));
 beforeEach(()=>{spoken=[];store.clear();actions={};synth.getVoices=()=>[{lang:'en-US',voiceURI:'local-english',localService:true}];});
+
+test('a removed English voice is rechecked before speaking instead of using a stale cached voice',async()=>{
+ const p=new Player(()=>{});p.setMode('speech');assert.equal(p.voices.length,1);
+ synth.getVoices=()=>[{lang:'zh-CN',voiceURI:'chinese',localService:true}];await p.play();
+ assert.equal(spoken.length,0);assert.equal(p.playing,false);assert.match(p.status,/未找到英语语音/);
+});
 test('single audio instance survives end-of-chapter and list wrap',async()=>{
  const p=new Player(()=>{});p.setMode('audio');const audio=p.audio;
  p.select(library.chapters.at(-1).id,false,true);await p.play();audio.dispatchEvent(new Event('ended'));

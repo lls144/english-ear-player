@@ -2,6 +2,8 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import {execFileSync,spawnSync} from 'node:child_process';
 import {root,readJson,sha} from './content.mjs';
+import {releaseVersion} from './release-planning.mjs';
+import {verifyCheckpoint} from './release-checkpoint.mjs';
 const argv=process.argv.slice(2),has=n=>argv.includes(n),value=n=>{const i=argv.indexOf(n);return i<0?null:argv[i+1];};
 const branch=value('--branch')??'main',dry=has('--dry-run'),initial=has('--initial'),rollback=value('--rollback-to'),fixture=value('--source-file');
 if(has('--rollback-to')&&!rollback)throw Error('A trusted version tag is required for rollback');
@@ -32,7 +34,7 @@ try{
  if(remotes.includes('origin')){
   const remote=git(root,'remote','get-url','origin');
   if(!/github\.com[:/]lls144\/english-ear-player(?:\.git)?$/.test(remote))throw Error('Unexpected origin; publication refused');
-  git(root,'fetch','origin');
+  git(root,'fetch','origin','--tags');
   try{const upstream=git(root,'rev-parse','origin/main');if(git(root,'merge-base',upstream,originalHead)!==upstream)throw Error('Local main is behind/diverged; review before release');}catch(e){if(!initial)throw e;}
  }
  let base=originalHead;
@@ -50,8 +52,19 @@ try{
  let audioSummary={changed:[],reused:[],deleted:[],generated:[]};
  if(rollback){
   const prior=JSON.parse(await fs.readFile(path.join(stage,'content/audio-provenance.json'),'utf8'));
-  git(stage,'restore','--source='+rollback,'--staged','--worktree','--','.');
+  // Restore published content, not the current maintenance/security tooling.
+  git(stage,'restore','--source='+rollback,'--staged','--worktree','--','content','public/assets/audio','src/library.generated.json');
+  const restoredVersion=JSON.parse(git(stage,'show',rollback+':package.json')).version;
+  for(const name of ['package.json','package-lock.json']){
+   const p=JSON.parse(await fs.readFile(path.join(stage,name),'utf8'));p.version=restoredVersion;if(p.packages?.[''])p.packages[''].version=restoredVersion;
+   await fs.writeFile(path.join(stage,name),JSON.stringify(p,null,2)+'\n');
+  }
   const restored=JSON.parse(await fs.readFile(path.join(stage,'content/audio-provenance.json'),'utf8'));
+  const checkpoint=path.join(root,'.local/release-checkpoints',rollback),checkpointMeta=JSON.parse(await fs.readFile(path.join(checkpoint,'release.json'),'utf8'));
+  if(checkpointMeta.commit!==git(stage,'rev-parse',rollback+'^{}'))throw Error('Private checkpoint is for a different release');
+  const restoredState=JSON.parse(await fs.readFile(path.join(checkpoint,'sync-state.json'),'utf8')),restoredSource=await fs.readFile(path.join(checkpoint,'source-current.md'),'utf8');
+  verifyCheckpoint(JSON.parse(await fs.readFile(path.join(stage,'content/materials.json'),'utf8')),restoredState,restoredSource);
+  for(const name of ['sync-state.json','source-current.md'])await fs.copyFile(path.join(checkpoint,name),path.join(stage,'.local',name));
   audioSummary.changed=restored.filter(r=>prior.find(p=>p.id===r.id)?.mp3Sha256!==r.mp3Sha256).map(r=>r.id);
   audioSummary.reused=restored.filter(r=>!audioSummary.changed.includes(r.id)).map(r=>r.id);
   audioSummary.deleted=prior.filter(r=>!restored.some(p=>p.id===r.id)).map(r=>r.id);
@@ -63,14 +76,13 @@ try{
  }
  const contentChanged=Boolean(git(stage,'diff','--name-only','HEAD','--','content','public'));
  if(!contentChanged&&!initial&&!rollback){
-  for(const name of ['sync-state.json','source-current.md'])try{await fs.copyFile(path.join(stage,'.local',name),path.join(root,'.local',name));}catch{}
+  if(branch==='main')for(const name of ['sync-state.json','source-current.md'])try{await fs.copyFile(path.join(stage,'.local',name),path.join(root,'.local',name));}catch{}
   console.log('No material/audio changes: no commit, no push, no deployment.');
   await fs.writeFile(path.join(root,'.local/last-release.json'),JSON.stringify({noChanges:true,stage},null,2));process.exitCode=0;
  }else{
   const pkg=JSON.parse(await fs.readFile(path.join(stage,'package.json'),'utf8'));
   if(!initial&&!rollback){
-   pkg.version=value('--version')??pkg.version.replace(/(\d+)$/,n=>String(Number(n)+1));
-   if(!/^\d+\.\d+\.\d+(?:-[a-z0-9.-]+)?$/.test(pkg.version))throw Error('Invalid release version');
+   pkg.version=releaseVersion(pkg.version,git(stage,'tag','--list').split('\n'),value('--version'));
    await fs.writeFile(path.join(stage,'package.json'),JSON.stringify(pkg,null,2)+'\n');
    const pl=JSON.parse(await fs.readFile(path.join(stage,'package-lock.json'),'utf8'));pl.version=pkg.version;pl.packages[''].version=pkg.version;await fs.writeFile(path.join(stage,'package-lock.json'),JSON.stringify(pl,null,2)+'\n');
   }
@@ -97,6 +109,7 @@ try{
    }else{git(stage,'push','origin',commit+':refs/heads/'+branch);}
    await fs.writeFile(path.join(root,'.local/last-release.json'),JSON.stringify({...summary,commit,stage},null,2)+'\n');
    run(root,[process.execPath,'scripts/watch-release.mjs','--commit',commit,'--branch',branch]);
+   if(branch==='main'&&!rollback)run(root,[process.execPath,'scripts/tag-release.mjs','--commit',commit,'--version',pkg.version]);
   }
  }
 }finally{await lock.close();await fs.unlink(path.join(root,'.local/release.lock'));}

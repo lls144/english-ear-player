@@ -159,7 +159,8 @@ test('background and foreground tab transition preserves playback across boundar
  await page.bringToFront();await expect.poll(async()=>(await state(page)).time).toBeGreaterThan(.1);expect((await state(page)).paused).toBe(false);await other.close();
 });
 test('no English voice gives honest feedback with working MP3',async({page})=>{
- await page.addInitScript(()=>{if('speechSynthesis' in window)Object.defineProperty(speechSynthesis,'getVoices',{value:()=>[]});});await page.reload();
+ await page.addInitScript(()=>{if('speechSynthesis' in window)Object.defineProperty(Object.getPrototypeOf(window.speechSynthesis),'getVoices',{configurable:true,value:()=>[]});});await page.reload();
+ expect(await page.evaluate(()=>!('speechSynthesis' in window)||window.speechSynthesis.getVoices().length===0)).toBe(true);
  await page.locator('[data-mode=speech]').click();await page.locator('#play').click();await expect(page.locator('#status')).toContainText(/英语语音|不支持/);
  await expect(page.locator('#play')).toHaveAttribute('aria-label','播放');await page.locator('[data-mode=audio]').click();await start(page);
 });

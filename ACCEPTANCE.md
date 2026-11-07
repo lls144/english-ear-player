@@ -1,4 +1,4 @@
-# V1.0.0 验收与证据范围
+# V1.0.1 验收与证据范围
 
 正式资源由 GitHub Pages 提供，发布状态和每次自动验收结果以 Actions 的 validation-results / online-validation artifacts 为准。站点：https://lls144.github.io/english-ear-player/ 。
 

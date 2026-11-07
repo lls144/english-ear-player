@@ -137,7 +137,8 @@ export class Player {
     this.wantedPlayback=true;
     if(this.settings.mode==='speech') {
       if(!this.synth) { this.status='此浏览器不支持朗读，请使用 MP3 模式。'; this.changed(); return; }
-      if(!this.voices.length) { this.refreshVoices(); if(!this.voices.length) {this.status='未找到英语语音。请在系统中安装英语语音后重试，或使用 MP3。'; this.changed(); return;} }
+      this.refreshVoices();
+      if(!this.voices.length) {this.wantedPlayback=false;this.status='未找到英语语音。请在系统中安装英语语音后重试，或使用 MP3。'; this.changed(); return;}
       if(this.speechOffset>=this.text.length) this.speechOffset=0;
       this.busy=true; this.speak(); return;
     }
