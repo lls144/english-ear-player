@@ -10,6 +10,8 @@ PWA 回归实际构造 A/B 版本：旧页面继续播放旧音频，新开取�
 
 本机原生英语 TTS 已以英语 voice、真实语音边界、Windows 进程音频峰值及 WASAPI 回环非静音 PCM 检验。暂停后音频输出归零，快速切换最多一个请求；内置 MP3 也产生实际进程输出。浏览器 TTS 不作为锁屏承诺或 MP3 生成器。
 
+本机另有 5 项真实故障注入：分别改变音色、模型、处理版本、生成语速和停顿，禁用模型，确认旧 MP3 不会被错误复用且失败后所有原音频/登记字节不变。PWA 回归还验证非默认轨道按需下载校验后缓存、正确返回 Range 字节。
+
 限制：没有物理 iPhone/Android 连接，真实锁屏、来电、系统挂起和硬件媒体键尚未验收；移动模拟与桌面标签切换不能代替真机。Windows WebKit 的有效 blob/data MP3 被原生后端拒绝，验证失败提示与内置音频恢复；不能宣称真实 Safari 导入通过。Windows WebKit 没有 Media Session 的场景明确记录，其他支持平台验证了元数据和系统动作。
 
 测试证据、原文、A/B WAV、完整转写和隔离更新演练保存在忽略的 .local。公开 Actions 的 validation-results / online-validation artifact 是每次运行的结果证据；不上传原笔记或模型。完成状态以对应提交成功的 Actions 与正式 HTTPS 验收为准。

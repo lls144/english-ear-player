@@ -73,6 +73,7 @@ try{
  }
  else{
   run(stage,[process.execPath,'scripts/sync-notes.mjs',...(fixture?['--source-file',path.resolve(fixture)]:[])]);
+  npmRun(stage,'test:audio-cache',env);
   npmRun(stage,'audio:update',env);
   npmRun(stage,'audio:quality',env);
   audioSummary=JSON.parse(await fs.readFile(path.join(stage,'.local/generated/last-update.json'),'utf8'));
