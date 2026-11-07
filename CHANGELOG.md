@@ -1,3 +1,7 @@
+## 1.0.0 · rollback v1.0.0
+
+Chapters 5 → 5; segments 29 → 28; generated MP3: none.
+
 ## 1.0.2-rehearsal.1
 
 Chapters 5 → 5; segments 28 → 29; generated MP3: reasons.

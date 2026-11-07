@@ -1,6 +1,6 @@
 {
-  "version": "1.0.2-rehearsal.1",
-  "contentVersion": "97335b9fa76d966b1f3bb82d",
+  "version": "1.0.0",
+  "contentVersion": "e717975f29b23984d5351ddd",
   "chapters": [
     {
       "id": "picture",
@@ -97,11 +97,6 @@
           "kind": "adapted-template"
         },
         {
-          "id": "source-66bd1c11df2743b3",
-          "text": "Consistent practice helps students make steady progress.",
-          "kind": "source-text"
-        },
-        {
           "id": "reason-media",
           "text": "Folks are absorbed into a culture of lifelong learning which values personal growth, driven by the mass media that offer numerous reports and interviews. Therefore, unsurprisingly, people choose to keep learning.",
           "kind": "adapted-template"
@@ -186,7 +181,7 @@
   "audio": {
     "picture": "assets/audio/generated/picture.3b7b4cb51eb784c6.mp3",
     "theme-trends": "assets/audio/generated/theme-trends.d76b260a7d725fcb.mp3",
-    "reasons": "assets/audio/generated/reasons.f44743767975e45d.mp3",
+    "reasons": "assets/audio/generated/reasons.2363c9493cd162e8.mp3",
     "connectors": "assets/audio/generated/connectors.2881183ab9b1e5c1.mp3",
     "conclusion": "assets/audio/generated/conclusion.3d0243585a352f38.mp3"
   }
