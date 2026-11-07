@@ -83,7 +83,9 @@ export class Player {
     this.audio.addEventListener('loadedmetadata', () => {
       if(this.audio.currentSrc !== this.audioSource) return;
       this.audioReady = true;
-      if (Number.isFinite(this.audio.duration) && this.audio.duration > 0) {
+      // load() already starts at zero. Seeking to zero again as metadata arrives
+      // can stall WebKit's media pipeline just after a user starts playback.
+      if (this.restoredAt>0 && Number.isFinite(this.audio.duration) && this.audio.duration > 0) {
         this.audio.currentTime = Math.min(this.restoredAt, Math.max(0,this.audio.duration - 0.05));
       }
       this.restoredAt = 0; this.audio.playbackRate = this.mediaRate; this.changed();
@@ -207,6 +209,7 @@ export class Player {
   }
   select(id: string, autoplay = this.playing || this.busy, restart = false) {
     if(!chapters.some(c=>c.id===id)) return;
+    if(id===this.current.id&&!restart){if(autoplay&&!this.playing&&!this.busy)void this.play();return;}
     this.pause(); this.settings.chapter=id;
     if(restart) { this.settings.audioPositions[this.positionKeyFor(id)]=0; this.settings.speechPositions[id]=0; }
     this.speechOffset=this.settings.speechPositions[id] ?? 0;

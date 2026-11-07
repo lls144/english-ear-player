@@ -21,6 +21,10 @@ test('verified PWA update preserves playing old assets, then serves new bytes on
  const nextJs='index-'+sha(Buffer.from(script)).slice(0,12)+'.js';
  await fs.writeFile(path.join(b,'assets',nextJs),script);await fs.unlink(path.join(b,'assets',js));
  const html=(await fs.readFile(path.join(b,'index.html'),'utf8')).split(js).join(nextJs);await fs.writeFile(path.join(b,'index.html'),html);
+ delete meta.assets['assets/'+js];meta.assets['assets/'+nextJs]=sha(Buffer.from(script));meta.assets['index.html']=sha(Buffer.from(html));
+ meta.assets=Object.fromEntries(Object.entries(meta.assets).sort(([a],[b])=>a.localeCompare(b)));
+ meta.buildVersion=sha(Buffer.from(JSON.stringify({version:meta.version,contentVersion:meta.contentVersion,assets:meta.assets,workerPolicySha256:meta.workerPolicySha256}))).slice(0,24);
+ await fs.writeFile(path.join(b,'version.json'),JSON.stringify(meta,null,2)+'\n');
  await fs.writeFile(path.join(b,'sw.js'),await workerFor(b));
  let active=a;
  const server=http.createServer(async(req,res)=>{
@@ -86,5 +90,9 @@ test('service worker waits for complete verified assets and never uses skipWaiti
  expect(worker).not.toContain('skipWaiting(');expect(worker).toContain('crypto.subtle.digest');expect(worker).toContain('caches.delete(CACHE)');expect(worker).toContain("cache:'no-store'");
  const m=JSON.parse(await fs.readFile('dist/manifest.webmanifest','utf8'));expect(m.display).toBe('standalone');
  for(const icon of m.icons)expect((await fs.stat(path.join('dist',icon.src))).size).toBeGreaterThan(100);
+ const release=JSON.parse(await fs.readFile('dist/version.json','utf8'));
+ expect(Object.keys(release.assets).some(f=>f.endsWith('.js'))).toBe(true);expect(Object.keys(release.assets).some(f=>f.endsWith('.css'))).toBe(true);
+ for(const [file,digest]of Object.entries(release.assets))expect(sha(await fs.readFile(path.join('dist',file)))).toBe(digest);
+ expect(release.buildVersion).toBe(sha(Buffer.from(JSON.stringify({version:release.version,contentVersion:release.contentVersion,assets:release.assets,workerPolicySha256:release.workerPolicySha256}))).slice(0,24));
 });
 
