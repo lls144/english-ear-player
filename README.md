@@ -47,3 +47,5 @@ main 推送触发官方 GitHub Pages Actions：先验证再部署 dist，随后�
 JS、CSS、全部 MP3 使用内容哈希；正文与全部音频引用在同一 JS 快照。Service Worker 验证核心资源及默认慢速五轨后原子安装；其他十轨按需校验并缓存，首次切换需要网络。不调用 skipWaiting，不刷新正在播放的页面。新打开或返回前台且暂停时检测新版；导航网络优先，离线只使用完整版本。旧会话保留旧资源，MP3 Range 请求可读缓存；失败安装删除不完整缓存，避免新旧材料混用。
 
 检查入口：typecheck、test、test:content、test:audio、test:e2e:production、test:pwa、test:native。测试自行启动服务。真实 iPhone/安卓锁屏、来电和系统挂起仍需物理设备，桌面移动模拟不等于真机验收。Windows Playwright WebKit 的 blob MP3 后端限制单独记录，不冒称 Safari 本地导入已通过。浏览器 speechSynthesis 只使用英语 voice，不能承诺稳定锁屏，也不生成 MP3。
+
+本机 test:audio-cache 还会隔离注入音色、模型、处理器、语速、停顿五种变更，故意禁用模型后确认旧音频不会错误复用、失败不会修改原文件。此项使用本机 AI 环境，不在公开 Actions 中合成。

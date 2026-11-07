@@ -143,7 +143,7 @@ test('wrong extension empty corrupt MP3 fail safely and valid import recovers',a
   await imports(page);await page.getByRole('button',{name:'移除首段描图本地音频',exact:true}).click();await close(page);await start(page);
  }else{await page.locator('#file-input').setInputFiles(path.resolve('public/assets/audio/picture.mp3'));await start(page);}
 });
-test('long text settings touch scrolling and dock fit viewport',async({page})=>{
+test('long text settings touch scrolling and dock fit viewport',async({page,browserName})=>{
  await page.locator('[data-chapter=connectors]').click();
  await expect(page.locator('#more-settings')).not.toBeVisible();
  await expect(page.locator('#source-info')).not.toHaveAttribute('open');
@@ -152,6 +152,16 @@ test('long text settings touch scrolling and dock fit viewport',async({page})=>{
  const w=await page.evaluate(()=>({doc:document.documentElement.scrollWidth,client:document.documentElement.clientWidth}));expect(w.doc).toBeLessThanOrEqual(w.client);
  const dock=(await page.locator('.player-dock').boundingBox())!,last=(await page.locator('#transcript .passage').last().boundingBox())!;
  expect(dock.height).toBeLessThanOrEqual(110);expect(last.y+last.height).toBeLessThan(dock.y);
+ if(browserName==='chromium'){
+  const original=page.viewportSize()!,cdp=await page.context().newCDPSession(page);
+  await page.setViewportSize({width:844,height:390});
+  await cdp.send('Emulation.setSafeAreaInsetsOverride',{insets:{top:0,left:44,right:44,bottom:21}});
+  await expect.poll(()=>page.locator('.player-dock').evaluate(e=>e.getBoundingClientRect().height)).toBe(118);
+  expect(await page.locator('body').evaluate(e=>getComputedStyle(e).paddingLeft)).toBe('44px');
+  const controls=await page.locator('.dock-inner').boundingBox();expect(controls!.x).toBeGreaterThanOrEqual(44);expect(controls!.x+controls!.width).toBeLessThanOrEqual(800);
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(844);
+  await cdp.send('Emulation.setSafeAreaInsetsOverride',{insets:{}});await page.setViewportSize(original);await cdp.detach();
+ }
  await settings(page);await expect(page.locator('#voice')).toBeVisible();await close(page);
  await page.locator('#next').click();await expect(page.locator('#now-title')).toHaveText(titles[4]);
 });
@@ -195,8 +205,6 @@ test('three native listening presets play every chapter and real cues highlight 
    await page.locator('[data-chapter="'+c.id+'"]').click();if((await state(page)).paused)await start(page);
    await expect.poll(async()=>(await state(page)).src).toContain(published.audioModes[preset][c.id]);
    const cue=published.timings[preset][c.id][Math.min(1,c.segments.length-1)];
-   await audio(page).evaluate((a:HTMLAudioElement)=>{a.currentTime=1;});
-   await audio(page).evaluate((a:HTMLAudioElement)=>{a.currentTime=0;});
    await audio(page).evaluate((a:HTMLAudioElement,t:number)=>{a.currentTime=t;},cue.start+.15);
    await expect(page.locator('.passage.speaking')).toHaveAttribute('data-segment',cue.segmentId);
    await expect.poll(async()=>(await state(page)).paused).toBe(false);
