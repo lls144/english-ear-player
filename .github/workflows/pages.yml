@@ -36,9 +36,12 @@ jobs:
       - run: npm run test:e2e:production
       - run: npm run test:pwa
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: validation-results
-          path: .local/qa/*.json
+          path: |
+            .local/qa/*.json
+            .local/playwright-results/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

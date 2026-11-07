@@ -58,8 +58,17 @@ test('0.75 0.9 1 1.25 1.5 speeds affect real media clock and survive chapters',a
  await start(page);
  for(const v of ['0.75','0.9','1','1.25','1.5']){
   await rate(page,v);expect((await state(page)).rate).toBe(Number(v));
-  const a=(await state(page)).time;await page.waitForTimeout(500);const delta=(await state(page)).time-a;
-  expect(delta).toBeGreaterThan(Number(v)*.15);expect(delta).toBeLessThan(Number(v)*1.6);
+  // Native WebKit may rebuffer when changing its media pipeline rate.
+  // Measure an advancing media clock, not a fixed delay during that transition.
+  const settling=(await state(page)).time;
+  await expect.poll(async()=>{const s=await state(page);return !s.paused&&s.ready>=2&&s.time>settling+.03;}).toBe(true);
+  const sample=await audio(page).evaluate(async(a:HTMLAudioElement)=>{
+   const initial=a.currentTime,clock=performance.now();await new Promise(r=>setTimeout(r,1250));
+   return {delta:a.currentTime-initial,seconds:(performance.now()-clock)/1000,paused:a.paused,rate:a.playbackRate};
+  });
+  await test.info().attach('actual-rate-'+v,{body:JSON.stringify(sample),contentType:'application/json'});
+  expect(sample.paused).toBe(false);expect(sample.rate).toBe(Number(v));
+  const ratio=sample.delta/sample.seconds;expect(ratio).toBeGreaterThan(Number(v)*.65);expect(ratio).toBeLessThan(Number(v)*1.35);
  }
  await page.locator('#next').click();await expect.poll(async()=>(await state(page)).rate).toBe(1.5);
 });

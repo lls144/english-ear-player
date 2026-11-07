@@ -16,7 +16,7 @@ for(const [id,file]of Object.entries(meta.audio)){
  console.log('Verifying formal HTTPS MP3: '+id);
  let response,data;
  for(let attempt=0;attempt<2;attempt++){
-  try{response=await fetch(new URL(file,url),{cache:'no-store',signal:AbortSignal.timeout(45000)});data=Buffer.from(await response.arrayBuffer());break;}
+  try{response=await fetch(new URL(file,url),{cache:'no-store',signal:AbortSignal.timeout(90000)});data=Buffer.from(await response.arrayBuffer());break;}
   catch(error){if(attempt)throw error;console.log('Retrying transient HTTPS download: '+id);await wait(2000);}
  }
  if(!response?.ok)throw Error('HTTPS audio missing: '+id);
