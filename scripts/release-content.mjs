@@ -48,9 +48,11 @@ try{
  try{await fs.cp(path.join(root,'.local/audio-cache'),path.join(stage,'.local/audio-cache'),{recursive:true});}catch(e){if(e.code!=='ENOENT')throw e;}
  await fs.symlink(path.join(root,'node_modules'),path.join(stage,'node_modules'),process.platform==='win32'?'junction':'dir');
  const before=JSON.parse(await fs.readFile(path.join(stage,'content/materials.json'),'utf8'));
- const python=path.join(root,process.platform==='win32'?'.venv/Scripts/python.exe':'.venv/bin/python'),env={EAR_PYTHON:python};
+ const python=path.join(root,process.platform==='win32'?'.venv/Scripts/python.exe':'.venv/bin/python'),env={EAR_PYTHON:python,EAR_AI_PYTHON:path.join(root,process.platform==='win32'?'.local/ai-venv/Scripts/python.exe':'.local/ai-venv/bin/python'),EAR_TTS_MODEL_DIR:path.join(root,'.local/models/kokoro'),EAR_ASR_MODEL_DIR:path.join(root,'.local/models/whisper-base-en')};
  let audioSummary={changed:[],reused:[],deleted:[],generated:[]};
  if(rollback){
+  const candidate=JSON.parse(git(stage,'show',rollback+':content/materials.json'));
+  if(candidate.schemaVersion!==2||candidate.policy!=='verbatim-source-only')throw Error('Legacy edited material is not a valid source-only rollback target');
   const prior=JSON.parse(await fs.readFile(path.join(stage,'content/audio-provenance.json'),'utf8'));
   // Restore published content, not the current maintenance/security tooling.
   git(stage,'restore','--source='+rollback,'--staged','--worktree','--','content','public/assets/audio','src/library.generated.json');
@@ -72,10 +74,11 @@ try{
  else{
   run(stage,[process.execPath,'scripts/sync-notes.mjs',...(fixture?['--source-file',path.resolve(fixture)]:[])]);
   npmRun(stage,'audio:update',env);
+  npmRun(stage,'audio:quality',env);
   audioSummary=JSON.parse(await fs.readFile(path.join(stage,'.local/generated/last-update.json'),'utf8'));
  }
  const contentChanged=Boolean(git(stage,'diff','--name-only','HEAD','--','content','public'));
- if(!contentChanged&&!initial&&!rollback){
+ if(!contentChanged&&!initial){
   if(branch==='main')for(const name of ['sync-state.json','source-current.md'])try{await fs.copyFile(path.join(stage,'.local',name),path.join(root,'.local',name));}catch{}
   console.log('No material/audio changes: no commit, no push, no deployment.');
   await fs.writeFile(path.join(root,'.local/last-release.json'),JSON.stringify({noChanges:true,stage},null,2));process.exitCode=0;

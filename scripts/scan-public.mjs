@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import {execFileSync} from 'node:child_process';
 const cwd=process.cwd(),git=(...args)=>execFileSync('git',args,{cwd,encoding:'utf8',windowsHide:true,maxBuffer:32*1024*1024}).trim();
-const denied=/(^|\/)(?:\.local|\.venv|node_modules|dist|test-results|playwright-report)(\/|$)|(^|\/)\.env(?:\.|$)|\.(?:pem|key)$/;
+const denied=/(^|\/)(?:\.local|\.venv|node_modules|dist|test-results|playwright-report)(\/|$)|(^|\/)\.env(?:\.|$)|\.(?:pem|key|onnx|safetensors|pt|pth|bin|npy|npz)$/;
 const patterns=[['credential',/gh[pousr]_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{30,}|-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/],['personal-absolute-path',/[CD]:[\\/](?:Users|Codex_project|IDE|Application)[\\/]/i]];
 try{
  const c=JSON.parse(await fs.readFile(path.join(cwd,'.local/sync-config.json'),'utf8'));

@@ -1,13 +1,23 @@
 {
   "approved": true,
-  "materialsSha256": "521291fdb77e4055efbbe6f8c1c898677417dfafbf484569e34704dc2f59d3f0",
-  "audioManifestSha256": "ec8a1b3ddaecfe5d213d8979f7e45befd3a2ed23abe7cd161d533c3913549abb",
+  "materialsSha256": "bf547e4f66b2bf08aef840704b1b79efb4fe2dfbb8604a56cbf15faf47bc2b1e",
+  "audioManifestSha256": "744a324ad84dc5677961729e076fab6a2acd72a0ea6103f7d7caca4b7f3045eb",
   "audioFilesSha256": {
-    "assets/audio/picture.mp3": "3b7b4cb51eb784c6b41cf2b4d80e5bd7b4a032c3d3fcd52b629348003dba8400",
-    "assets/audio/theme-trends.mp3": "d76b260a7d725fcb2ec1433a954201de3e0c3fdc7ec3663744c1f923525e349b",
-    "assets/audio/reasons.mp3": "2363c9493cd162e89073abdae8055da5b9fcac37590f306de73195a9d65a2e3f",
-    "assets/audio/connectors.mp3": "2881183ab9b1e5c17c99eeb6d679680b5a11c66ef388ddadae52ea9712487417",
-    "assets/audio/conclusion.mp3": "3d0243585a352f384a4535278296ca2a3e1494bcc97298e77d72111525d6c18b"
+    "assets/audio/picture.mp3": "d46c67c21c59d8cdd73efb5fef67d4057fbe4f125a35b1dde54e49b2c9b05970",
+    "assets/audio/picture-slow.mp3": "5b6ae0e8158b83afde882ecb900a0692be42adf1b894ea4e5d67ddfa2e7857a8",
+    "assets/audio/picture-recite.mp3": "4fb77f1a79874d85179c68fc6bed0dd916de4fcdae11baa1133c508c0f37846e",
+    "assets/audio/theme-trends.mp3": "2338bc41fa9b5f6b33a6d5fe577ca1fb1291a197a1674050fd489a8b272aa228",
+    "assets/audio/theme-trends-slow.mp3": "920129d90cd727ad15ea060bb3d9b751fb4fc9e534b0e92cdb77dc241ed0629e",
+    "assets/audio/theme-trends-recite.mp3": "8bec6dd2b60eb220e8a387993f72226dd86d51f81f4ac6db29b14634db9ff5f7",
+    "assets/audio/reasons.mp3": "f48ac205b44088a25fd7eec48323e8ca82b70eba7a2ed29a42867f240dcfa24b",
+    "assets/audio/reasons-slow.mp3": "267482a77d09b91ded6a96239d0c1e9f12645491794c44936b1a5815debf224b",
+    "assets/audio/reasons-recite.mp3": "c76361b84747c04c1fd6ea606d0a32244b5f513d0e9daabaa066eed6dd55db10",
+    "assets/audio/connectors.mp3": "475e4fef6e276c7f98774c0f456bee736fe7a3a81d29469c43b9a1bc78cc9731",
+    "assets/audio/connectors-slow.mp3": "0492085c93836a68a56f2e82e98daa83e0471102852474c454d4173928ec3a31",
+    "assets/audio/connectors-recite.mp3": "95974a6cab122b7e7240785fa3168e5ecd96cc9de83948d46dce1b6df0db9cc0",
+    "assets/audio/conclusion.mp3": "4a013dbf803d0ecdf5958a35737ebaf4183ba5c385eb2d82b28bc484e6087910",
+    "assets/audio/conclusion-slow.mp3": "b995c4ccb5b24dcb5ffcfb7f6c63fbdd24f2a2321dba92a71b8f089733c3e741",
+    "assets/audio/conclusion-recite.mp3": "a836dbaf97c3713cfc3790a979c309c6b2a067cb59529142ad8689c70af0724a"
   },
-  "authorization": "Owner authorized this independent reader and confirmed-source content updates."
+  "authorization": "Owner explicitly authorized independent reader V1.1 source-only English and locally generated AI audio publication."
 }

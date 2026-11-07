@@ -41,7 +41,7 @@ test('formal HTTPS ignores an old HTML metadata and MP3 cache after reopening',a
   const r=await fetch(new URL(file,document.baseURI)),data=await r.arrayBuffer();
   return [...new Uint8Array(await crypto.subtle.digest('SHA-256',data))].map(v=>v.toString(16).padStart(2,'0')).join('');
  },library.audio[chapter.id]);
- expect(digest).toBe(receipts.find((r:any)=>r.id===chapter.id).mp3Sha256);
+ expect(digest).toBe(receipts.find((r:any)=>r.id===chapter.id+'-slow').mp3Sha256);
  expect(obsoleteRequests).toEqual([]);expect(errors).toEqual([]);
  await page.evaluate(()=>caches.delete('english-ear-regression-old-version'));
 });

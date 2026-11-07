@@ -34,12 +34,12 @@ try{
   speechSynthesis.cancel=()=>{nativeSpeechLog.push({event:'cancel'});speechActive.clear();cancel();};
  });
  await page.goto('http://127.0.0.1:5173/');
- await page.locator('[data-mode=speech]').click();
+ await page.locator('#more-open').click();await page.locator('[data-mode=speech]').click();
  await page.waitForFunction(()=>speechSynthesis.getVoices().some(v=>/^en-/i.test(v.lang)));
- await page.locator('details.settings > summary').click();
+
  const options=await page.locator('#voice option').evaluateAll(os=>os.map(o=>({value:o.value,text:o.textContent})));
  const english=options.find(o=>/Zira/.test(o.text));assert.ok(english);assert.equal(options.length,2);
- await page.locator('#voice').selectOption(english.value);results.push('real English voice selectable; Chinese voices excluded');
+ await page.locator('#voice').selectOption(english.value);results.push('real English voice selectable; Chinese voices excluded');await page.locator('#more-close').click();
  const baseline=record(2);await baseline.ready;const base=await baseline.done;assert.ok(base.peak<.001);results.push('quiet process audio-session baseline measured');
  const speech=record(6),deviceCapture=record(6,'loopback');await Promise.all([speech.ready,deviceCapture.ready]);await page.locator('#play').click();
  await page.waitForFunction(()=>nativeSpeechLog.some(e=>e.event==='boundary'));
@@ -51,19 +51,19 @@ try{
  const silence=record(2);await silence.ready;const paused=await silence.done;assert.ok(paused.peak<.001);results.push('pause stops measured process audio output');
  await page.locator('#play').click();await page.waitForTimeout(400);
  assert.ok(Number(await page.locator('#progress').inputValue())>=Number(offset));
- await page.locator('#rate').selectOption('1.25');await page.waitForTimeout(250);
+ await page.locator('#rate').selectOption('0.9');await page.waitForTimeout(250);
  for(let i=0;i<12;i++)await page.locator('#play').click();
  if(await page.locator('#play').getAttribute('aria-label')!=='暂停')await page.locator('#play').click();
  await page.waitForFunction(()=>document.querySelector('#play').getAttribute('aria-label')==='暂停');
  await page.locator('[data-chapter=reasons]').click();await page.waitForTimeout(500);
  let log=await page.evaluate(()=>({events:nativeSpeechLog,maxActive:maxSpeechActive}));
  await fs.writeFile('.local/qa/native-speech-debug.json',JSON.stringify({baseline:base,speech:audible,paused,log},null,2));
- assert.ok(log.events.some(e=>e.event==='request'&&e.rate===1.25));
+ assert.ok(log.events.some(e=>e.event==='request'&&Math.abs(e.rate-.9*.88)<.001));
  assert.ok(log.events.filter(e=>e.event==='request').every(e=>/^en-/i.test(e.voiceLang)&&/^en-/i.test(e.lang)));
  assert.ok(log.events.some(e=>e.event==='request'&&e.text.startsWith('The strain')));
  assert.ok(log.maxActive<=1);results.push('resume rate changes rapid toggles and chapter cancellation keep one native English utterance active');
  if(await page.locator('#play').getAttribute('aria-label')==='暂停')await page.locator('#play').click();
- await page.locator('[data-mode=audio]').click();
+ await page.locator('#more-open').click();await page.locator('[data-mode=audio]').click();await page.locator('#more-close').click();
  const mp3=record(3);await mp3.ready;await page.locator('#play').click();const output=await mp3.done;
  assert.ok(output.peak>.02);results.push('real MP3 produces nonzero Windows audio-session peaks');
  await page.locator('#play').click();assert.deepEqual(errors,[]);results.push('no page errors during native audio and speech checks');

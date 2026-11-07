@@ -1,0 +1,28 @@
+// Explicit, backed-up V1 -> verbatim V2 migration. Never called by ordinary sync.
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import {execFileSync} from 'node:child_process';
+import {root,readJson,validate} from './content.mjs';
+import {bootstrap,sourceIndex} from './source-only.mjs';
+const config=await readJson('.local/sync-config.json');
+const endpoint='repos/'+config.repository+'/contents/'+config.path.split('/').map(encodeURIComponent).join('/')+'?ref=master';
+const remote=JSON.parse(execFileSync('gh',['api',endpoint],{encoding:'utf8',windowsHide:true,maxBuffer:4*1024*1024}));
+const source=Buffer.from(remote.content,'base64').toString('utf8'),old=await readJson('content/materials.json'),oldState=await readJson('.local/sync-state.json');
+if(old.schemaVersion!==1)throw Error('This migration is only for the reviewed V1 baseline');
+const folder=path.join(root,'.local/backups','source-only-'+Date.now());await fs.mkdir(folder,{recursive:true});
+for(const file of ['content/materials.json','.local/sync-state.json','.local/source-current.md'])await fs.copyFile(path.join(root,file),path.join(folder,path.basename(file)));
+const result=bootstrap(source,null,config.chapterRules??[]);validate(result.materials);
+result.state.blobSha=remote.sha;
+result.state.legacyV1=old.chapters.flatMap(c=>c.segments.map(s=>({id:s.id,sourceIds:s.sourceIds,newSourceIds:result.state.blocks.filter(b=>s.sourceLines.some(([a,z])=>b.line>=a&&b.line<=z)).map(b=>b.id)})));
+const removed=old.chapters.flatMap(c=>c.segments.filter(s=>!['source-example','source-text'].includes(s.kind))),removedSentences=removed.reduce((n,s)=>n+s.text.split(/(?<=[.!?])\s+/).filter(Boolean).length,0);
+const templates=result.materials.chapters.flatMap(c=>c.segments.filter(s=>s.kind==='source-template').map(s=>({chapter:c.title,text:s.text})));
+const audit={removedEntries:removed.length,removedSentences,retainedExactExamples:old.chapters.flatMap(c=>c.segments).filter(s=>s.kind==='source-example').map(s=>s.text),chapters:result.materials.chapters.map(c=>({id:c.id,segments:c.segments.length})),templates,oldItems:old.chapters.flatMap(c=>c.segments),sourceMap:result.state.legacyV1};
+await fs.writeFile(path.join(root,'.local/v1.1/content-diff.json'),JSON.stringify(audit,null,2)+'\n');
+await fs.mkdir(path.join(root,'docs'),{recursive:true});
+await fs.writeFile(path.join(root,'docs/CONTENT_DIFF_V1_1.md'),'# V1.1 原文纠偏\n\n删除 '+removed.length+' 条旧编辑材料中的 '+removedSentences+' 句无完整原文依据的扩写/主题填入句；不再作为正式朗读材料。唯一完整漫画例句逐字保留。\n\n新基线为 5 章、'+result.materials.chapters.reduce((n,c)=>n+c.segments.length,0)+' 条原文模板、短语和例句。连接词按原笔记的开篇、并列递进、逻辑顺承、收尾总结及原注辨析分别保留；每个表达独立朗读，不再配写例句。重复的 taking a positive view 合并来源。\n\n## 保留的原始模板\n\n'+templates.map(t=>'- '+t.chapter+'：'+t.text).join('\n')+'\n\n占位符、斜线备选、未完成结构仅以留白或分段处理，不填入 lifelong learning 等主题。中文括注与 Markdown 排版不进入朗读。人物插入语表格的五个英文例子保留；中文语法说明及 V-ing/V-ed 语法符号不作为英文句子合成。\n\n## 以后同步的约束\n\n仅允许 source-template / source-phrase / source-example。同步工具只做原文提取与有证据的差异匹配；构建校验来源索引和实际朗读片段。修改本地 JSON 来添加不在笔记中的英文会阻止同步或发布。旧版补全/编辑句不再有自动恢复路径；V1.0 材料不能通过 V1.1 的发布校验。原文完整位置、旧映射和迁移备份保留在本机，不公开完整笔记。\n');
+await fs.writeFile(path.join(root,'docs/SOURCE_REVIEW_V1_1.md'),'# 原文语言校验（不改写原文）\n\n- 2022 漫画例句保留全部人物插入语、while 对照结构和 attending it can be beneficial；未发现需要强制改写的明显语法错误。\n- Modern society having entered ... 为独立主格结构；两个趋势与主题空位原样保留，不替用户填词。\n- Folks are absorbed into a culture of ...：若原意是“沉浸于”，可另行考虑 absorbed in；into 更容易表示进入/融入一种文化。此处保留原句，不替换。\n- the refreshing air：若意为“新鲜空气”，可选 fresh air；refreshing 强调令人清爽。保留原文，未改动音频用词。\n- unfortunately 与 however 的语义不同，不能普遍互换。两个词都按原笔记保存于“原注辨析”，这条校验不冒充用户原注。\n- Eventually、Consequently、In the long run 等表达的语义用途各异，保留原分类，不将其统称为可随意互换的高级结尾词。\n- 斜线是原笔记的备选写法，MP3 使用短间隔分开其已有英文；模板是未完成结构，因此出现语法片段属于原文状态，不用新增句子掩盖。\n');
+await fs.writeFile(path.join(root,'content/materials.json'),JSON.stringify(result.materials,null,2)+'\n');
+await fs.writeFile(path.join(root,'content/source-index.json'),JSON.stringify(sourceIndex(result.materials),null,2)+'\n');
+await fs.writeFile(path.join(root,'.local/sync-state.json'),JSON.stringify(result.state,null,2)+'\n');
+await fs.writeFile(path.join(root,'.local/source-current.md'),source);
+console.log(JSON.stringify({removedEntries:removed.length,removedSentences,templates:templates.length,chapters:audit.chapters}));

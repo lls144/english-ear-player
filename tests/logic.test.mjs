@@ -20,12 +20,12 @@ test('untrusted stored settings cannot produce NaN or out of range playback',()=
   assert.equal(safeNumber(99,1,.5,2),2);
   assert.equal(safeNumber(-1,1,.5,2),.5);
 });
-test('source examples remain distinct and placeholder text fails validation',async()=>{
+test('source examples remain distinct and placeholders remain silent templates',async()=>{
   const m=await readJson('content/materials.json');
   validate(m);
   assert.ok(m.chapters.length>=5);
   assert.equal(m.chapters.flatMap(c=>c.segments).filter(s=>s.kind==='source-example').length,1);
   m.chapters[0].segments[0].text='A message about [主题词].';
-  assert.throws(()=>validate(m),/Incomplete/);
+  assert.throws(()=>validate(m),/Spoken text differs/);
 });
 

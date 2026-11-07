@@ -8,12 +8,12 @@ const sha=(b:Buffer)=>createHash('sha256').update(b).digest('hex');
 test('verified PWA update preserves playing old assets, then serves new bytes on reopen',async({browser})=>{
  const fixture=await fs.mkdtemp(path.resolve('.local/qa/pwa-'));
  const a=path.join(fixture,'a'),b=path.join(fixture,'b');await fs.cp('dist',a,{recursive:true});await fs.cp('dist',b,{recursive:true});
- const meta=JSON.parse(await fs.readFile(path.join(b,'version.json'),'utf8')),old=meta.audio.picture;
+ const meta=JSON.parse(await fs.readFile(path.join(b,'version.json'),'utf8')),old=meta.defaultAudio.picture;
  const original=await fs.readFile(path.join(b,old));
  // A valid ID3v1 metadata-only change keeps the same spoken text but changes MP3 bytes.
  const id3=Buffer.alloc(128);id3.write('TAG');id3.write('PWA update regression',3);const updated=Buffer.concat([original,id3]);
  const next='assets/audio/generated/picture.'+sha(updated).slice(0,16)+'.mp3';
- await fs.writeFile(path.join(b,next),updated);await fs.unlink(path.join(b,old));meta.audio.picture=next;
+ await fs.writeFile(path.join(b,next),updated);await fs.unlink(path.join(b,old));meta.audio['picture-slow']=next;meta.defaultAudio.picture=next;
  const priorVersion=meta.contentVersion;meta.contentVersion='pwa-regression-'+sha(updated).slice(0,8);
  await fs.writeFile(path.join(b,'version.json'),JSON.stringify(meta,null,2)+'\n');
  const js=(await fs.readdir(path.join(b,'assets'))).find(n=>/^index-.*\.js$/.test(n))!;

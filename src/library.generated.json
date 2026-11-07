@@ -1,188 +1,2398 @@
 {
-  "version": "1.0.1",
-  "contentVersion": "e717975f29b23984d5351ddd",
+  "version": "1.1.0",
+  "contentVersion": "51b9aefb14dcb49e721afee2",
   "chapters": [
     {
       "id": "picture",
       "title": "首段描图",
-      "subtitle": "Describe the scene",
+      "subtitle": "首段描图",
+      "inMainLoop": true,
       "segments": [
         {
-          "id": "picture-opening",
-          "text": "Portrayed in the above drawing is a thought-provoking scene: two students hold different views about attending a lecture. A student, deeply concerned about the issue, listens carefully. Another student, with a smile on her face, takes a positive view. The girl, who seems indifferent to the lecture, dismisses it as useless.",
-          "kind": "adapted-template"
+          "id": "source-a40b38ad9494459e",
+          "text": "Portrayed in the above drawing is a thought-provoking scene: [完整句子].",
+          "kind": "source-template",
+          "parts": [
+            {
+              "text": "Portrayed in the above drawing is a thought-provoking scene"
+            },
+            {
+              "pauseMs": 1400
+            }
+          ],
+          "category": "描图"
         },
         {
-          "id": "picture-example",
+          "id": "source-314b88970023ea7c",
+          "text": "seemingly indifferent to the lecture",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "seemingly indifferent to the lecture"
+            }
+          ],
+          "category": "人物插入语"
+        },
+        {
+          "id": "source-5141ab4f3bcf4c10",
+          "text": "taking a positive view",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "taking a positive view"
+            }
+          ],
+          "category": "人物插入语"
+        },
+        {
+          "id": "source-aac688a38e9875b9",
+          "text": "deeply concerned about the issue",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "deeply concerned about the issue"
+            }
+          ],
+          "category": "人物插入语"
+        },
+        {
+          "id": "source-b332c1df3bfe5672",
+          "text": "with a smile on her face",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "with a smile on her face"
+            }
+          ],
+          "category": "人物插入语"
+        },
+        {
+          "id": "source-98465588330f8d17",
+          "text": "who seems indifferent to the lecture",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "who seems indifferent to the lecture"
+            }
+          ],
+          "category": "人物插入语"
+        },
+        {
+          "id": "source-db2b29abe006b6c8",
+          "text": "seemingly indifferent to ...",
+          "kind": "source-template",
+          "parts": [
+            {
+              "text": "seemingly indifferent to"
+            },
+            {
+              "pauseMs": 1400
+            }
+          ],
+          "category": "人物插入语"
+        },
+        {
+          "id": "source-b4a0968651b9ed96",
           "text": "The girl on the left, seemingly indifferent to the lecture, dismisses it as useless, while the girl on the right, taking a more positive view, points out that attending it can be beneficial.",
-          "kind": "source-example"
+          "kind": "source-example",
+          "parts": [
+            {
+              "text": "The girl on the left, seemingly indifferent to the lecture, dismisses it as useless, while the girl on the right, taking a more positive view, points out that attending it can be beneficial."
+            }
+          ],
+          "category": "描人物插入语写法"
+        },
+        {
+          "id": "source-250066e1232e9d59",
+          "text": "An extraordinary drawing and a chart unfold before our eyes: [句子].",
+          "kind": "source-template",
+          "parts": [
+            {
+              "text": "An extraordinary drawing and a chart unfold before our eyes"
+            },
+            {
+              "pauseMs": 1400
+            }
+          ],
+          "category": "图加表"
         }
       ]
     },
     {
       "id": "theme-trends",
       "title": "主题句与社会趋势",
-      "subtitle": "Find the bigger picture",
+      "subtitle": "主题句与社会趋势",
+      "inMainLoop": true,
       "segments": [
         {
-          "id": "theme-message",
-          "text": "Behind the drawing lies a profound message about lifelong learning, which merits further discussion.",
-          "kind": "adapted-template"
+          "id": "source-8bb1fa8285570ad2",
+          "text": "Behind the drawing/picture lies a profound message about [主题词], which merits further discussion.",
+          "kind": "source-template",
+          "parts": [
+            {
+              "text": "Behind the drawing"
+            },
+            {
+              "pauseMs": 650
+            },
+            {
+              "text": "picture lies a profound message about"
+            },
+            {
+              "pauseMs": 1400
+            },
+            {
+              "text": "which merits further discussion."
+            }
+          ],
+          "category": "主题句"
         },
         {
-          "id": "trend-era",
-          "text": "Modern society having entered an era marked by intensifying competition and rapid technological advances, the significance of lifelong learning has come into sharper focus.",
-          "kind": "adapted-template"
+          "id": "source-52b65c3aa95b9e9e",
+          "text": "Modern society having entered an era marked by [趋势 A] and [趋势 B], the significance of [主题词] has come into sharper focus.",
+          "kind": "source-template",
+          "parts": [
+            {
+              "text": "Modern society having entered an era marked by"
+            },
+            {
+              "pauseMs": 1400
+            },
+            {
+              "text": "and"
+            },
+            {
+              "pauseMs": 1400
+            },
+            {
+              "text": "the significance of"
+            },
+            {
+              "pauseMs": 1400
+            },
+            {
+              "text": "has come into sharper focus."
+            }
+          ],
+          "category": "社会进入新纪元"
         },
         {
-          "id": "trend-pace",
-          "text": "The accelerating pace of modern life makes time management increasingly important.",
-          "kind": "adapted-template"
+          "id": "source-00fc153e670b5ee6",
+          "text": "intensifying competition",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "intensifying competition"
+            }
+          ],
+          "category": "高频趋势"
         },
         {
-          "id": "trend-information",
-          "text": "The overwhelming flow of information calls for independent thinking and sound judgment.",
-          "kind": "adapted-template"
+          "id": "source-989722bad00e08ea",
+          "text": "the accelerating pace of modern life",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "the accelerating pace of modern life"
+            }
+          ],
+          "category": "高频趋势"
         },
         {
-          "id": "trend-skills",
-          "text": "The growing demand for diverse skills encourages people to keep learning.",
-          "kind": "adapted-template"
+          "id": "source-cd2ab2dd6e991c2c",
+          "text": "rapid technological advances",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "rapid technological advances"
+            }
+          ],
+          "category": "高频趋势"
         },
         {
-          "id": "trend-growth",
-          "text": "The increasing emphasis on personal growth highlights the value of lifelong learning. The growing importance of lifelong learning deserves our attention. The increasing pressure on students makes time management essential. The increasing reliance on technology makes independent thinking important. The growing awareness of environmental issues encourages responsible action.",
-          "kind": "adapted-template"
+          "id": "source-2349f33cbbf1b3af",
+          "text": "the overwhelming flow of information",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "the overwhelming flow of information"
+            }
+          ],
+          "category": "高频趋势"
         },
         {
-          "id": "trend-fields",
-          "text": "Growing connections between different fields create opportunities for cooperation.",
-          "kind": "adapted-template"
+          "id": "source-400556cc9a4f78ec",
+          "text": "the growing demand for diverse skills",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "the growing demand for diverse skills"
+            }
+          ],
+          "category": "高频趋势"
         },
         {
-          "id": "trend-social",
-          "text": "The growing influence of social media changes the way people communicate.",
-          "kind": "adapted-template"
+          "id": "source-2492142cc3f57878",
+          "text": "the increasing emphasis on personal growth",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "the increasing emphasis on personal growth"
+            }
+          ],
+          "category": "高频趋势"
         },
         {
-          "id": "trend-face",
-          "text": "The decline in face-to-face communication deserves our attention.",
-          "kind": "adapted-template"
+          "id": "source-09a7b66c81b21112",
+          "text": "growing connections between different fields",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "growing connections between different fields"
+            }
+          ],
+          "category": "主题补充"
         },
         {
-          "id": "trend-culture",
-          "text": "Increasing cultural exchanges help people understand one another.",
-          "kind": "adapted-template"
+          "id": "source-d9bbac2b32916ac9",
+          "text": "the growing influence of social media",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "the growing influence of social media"
+            }
+          ],
+          "category": "主题补充"
         },
         {
-          "id": "trend-values",
-          "text": "Shifting social values influence people's choices.",
-          "kind": "adapted-template"
+          "id": "source-f3ee84c550f70184",
+          "text": "the decline in face-to-face communication",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "the decline in face-to-face communication"
+            }
+          ],
+          "category": "主题补充"
         },
         {
-          "id": "trend-environment",
-          "text": "Growing environmental awareness encourages people to protect nature.",
-          "kind": "adapted-template"
+          "id": "source-4d61c2a9871121e6",
+          "text": "increasing cultural exchanges",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "increasing cultural exchanges"
+            }
+          ],
+          "category": "主题补充"
+        },
+        {
+          "id": "source-bda882971282deca",
+          "text": "shifting social values",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "shifting social values"
+            }
+          ],
+          "category": "主题补充"
+        },
+        {
+          "id": "source-2efdbf41957ab125",
+          "text": "growing environmental awareness",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "growing environmental awareness"
+            }
+          ],
+          "category": "主题补充"
+        },
+        {
+          "id": "source-00d2169fce4e76d5",
+          "text": "the growing importance of ...",
+          "kind": "source-template",
+          "parts": [
+            {
+              "text": "the growing importance of"
+            },
+            {
+              "pauseMs": 1400
+            }
+          ],
+          "category": "替换结构"
+        },
+        {
+          "id": "source-3056e2b038b60177",
+          "text": "the increasing pressure on ...",
+          "kind": "source-template",
+          "parts": [
+            {
+              "text": "the increasing pressure on"
+            },
+            {
+              "pauseMs": 1400
+            }
+          ],
+          "category": "替换结构"
+        },
+        {
+          "id": "source-c1bb50acbbe10202",
+          "text": "the growing demand for ...",
+          "kind": "source-template",
+          "parts": [
+            {
+              "text": "the growing demand for"
+            },
+            {
+              "pauseMs": 1400
+            }
+          ],
+          "category": "替换结构"
+        },
+        {
+          "id": "source-e7b1bdbe0b97b567",
+          "text": "the increasing reliance on ...",
+          "kind": "source-template",
+          "parts": [
+            {
+              "text": "the increasing reliance on"
+            },
+            {
+              "pauseMs": 1400
+            }
+          ],
+          "category": "替换结构"
+        },
+        {
+          "id": "source-1d952d59ce7e23ad",
+          "text": "the growing awareness of ...",
+          "kind": "source-template",
+          "parts": [
+            {
+              "text": "the growing awareness of"
+            },
+            {
+              "pauseMs": 1400
+            }
+          ],
+          "category": "替换结构"
         }
       ]
     },
     {
       "id": "reasons",
       "title": "原因分析",
-      "subtitle": "Explain what lies behind",
+      "subtitle": "原因分析",
+      "inMainLoop": true,
       "segments": [
         {
-          "id": "reason-strain",
-          "text": "The strain of modern life has opened a Pandora's box of problems, as people become increasingly profit-oriented and thus tend to disregard personal growth.",
-          "kind": "adapted-template"
+          "id": "source-ddf227447b28dbdd",
+          "text": "The strain of modern life has opened a Pandora’s box of problems, as people become increasingly profit-oriented and thus tend to disregard [主题词].",
+          "kind": "source-template",
+          "parts": [
+            {
+              "text": "The strain of modern life has opened a Pandora’s box of problems, as people become increasingly profit-oriented and thus tend to disregard"
+            },
+            {
+              "pauseMs": 1400
+            }
+          ],
+          "category": "不好现象"
         },
         {
-          "id": "reason-media",
-          "text": "Folks are absorbed into a culture of lifelong learning which values personal growth, driven by the mass media that offer numerous reports and interviews. Therefore, unsurprisingly, people choose to keep learning.",
-          "kind": "adapted-template"
+          "id": "source-2b1811aba4f2613c",
+          "text": "Folks are absorbed into a culture of ×× which values ××, driven by the mass media that offer numerous reports and interviews. Therefore, unsurprisingly, people choose to do sth.",
+          "kind": "source-template",
+          "parts": [
+            {
+              "text": "Folks are absorbed into a culture of"
+            },
+            {
+              "pauseMs": 1400
+            },
+            {
+              "text": "which values"
+            },
+            {
+              "pauseMs": 1400
+            },
+            {
+              "text": "driven by the mass media that offer numerous reports and interviews. Therefore, unsurprisingly, people choose to"
+            },
+            {
+              "pauseMs": 1400
+            }
+          ],
+          "category": "媒体倡导"
         },
         {
-          "id": "reason-benefits",
-          "text": "Lifelong learning will bring numerous benefits, improving efficiency both in personal life and work.",
-          "kind": "adapted-template"
+          "id": "source-ed0f29a22871938c",
+          "text": "×× will bring numerous benefits—improving competitive advantage/efficiency both in personal life and work//bringing about a safe community/the refreshing air.",
+          "kind": "source-template",
+          "parts": [
+            {
+              "pauseMs": 1400
+            },
+            {
+              "text": "will bring numerous benefits—improving competitive advantage"
+            },
+            {
+              "pauseMs": 650
+            },
+            {
+              "text": "efficiency both in personal life and work"
+            },
+            {
+              "pauseMs": 1200
+            },
+            {
+              "text": "bringing about a safe community"
+            },
+            {
+              "pauseMs": 650
+            },
+            {
+              "text": "the refreshing air."
+            }
+          ],
+          "category": "带来好处"
         }
       ]
     },
     {
       "id": "connectors",
       "title": "逻辑连接词",
-      "subtitle": "Give your ideas a flow",
+      "subtitle": "逻辑连接词",
+      "inMainLoop": false,
       "segments": [
         {
-          "id": "connect-opening",
-          "text": "Firstly, we should identify the problem. First of all, we need to understand its causes. To begin with, let us consider the facts.",
-          "kind": "editorial-practice"
+          "id": "source-223c1b1bf3355d73",
+          "text": "Firstly",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "Firstly"
+            }
+          ],
+          "category": "开篇",
+          "tier": "基础"
         },
         {
-          "id": "connect-emphasis",
-          "text": "Primarily, education helps people develop their abilities. Above all, we should value honesty. First and foremost, we must take responsibility.",
-          "kind": "editorial-practice"
+          "id": "source-db6917b5679ec1d7",
+          "text": "First of all",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "First of all"
+            }
+          ],
+          "category": "开篇",
+          "tier": "基础"
         },
         {
-          "id": "connect-essence",
-          "text": "Fundamentally, progress depends on effort. Essentially, learning is a lifelong process. In essence, small actions can make a difference.",
-          "kind": "editorial-practice"
+          "id": "source-2303b271a66af62d",
+          "text": "To begin with",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "To begin with"
+            }
+          ],
+          "category": "开篇",
+          "tier": "基础"
         },
         {
-          "id": "connect-addition",
-          "text": "Secondly, practice builds confidence. Besides, it helps us gain experience. Moreover, it prepares us for future challenges.",
-          "kind": "editorial-practice"
+          "id": "source-95f06b3449bf2981",
+          "text": "Primarily",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "Primarily"
+            }
+          ],
+          "category": "开篇",
+          "tier": "进阶"
         },
         {
-          "id": "connect-further",
-          "text": "Furthermore, cooperation improves efficiency. Additionally, it brings people closer together. In addition, it allows us to learn from one another.",
-          "kind": "editorial-practice"
+          "id": "source-cfaac67921b337a9",
+          "text": "Above all",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "Above all"
+            }
+          ],
+          "category": "开篇",
+          "tier": "进阶"
         },
         {
-          "id": "connect-more",
-          "text": "What is more, reading broadens our horizons. Equally importantly, it encourages independent thinking. Reading not only enriches our knowledge but also stimulates our imagination. Meanwhile, discussion helps us explore different views.",
-          "kind": "editorial-practice"
+          "id": "source-ce7a7beccef88809",
+          "text": "First and foremost",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "First and foremost"
+            }
+          ],
+          "category": "开篇",
+          "tier": "进阶"
         },
         {
-          "id": "connect-sequence",
-          "text": "Next, we should make a plan. Then, we can put it into practice. After that, we should review our progress. Subsequently, we can adjust our approach. Thereupon, we can begin the next stage.",
-          "kind": "editorial-practice"
+          "id": "source-2ab567456ed5e776",
+          "text": "Fundamentally",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "Fundamentally"
+            }
+          ],
+          "category": "开篇",
+          "tier": "进阶"
         },
         {
-          "id": "connect-ending",
-          "text": "Finally, we should turn our ideas into action. Eventually, steady effort will produce results. Ultimately, success depends on what we do.",
-          "kind": "editorial-practice"
+          "id": "source-1f827e7a576723e7",
+          "text": "Essentially",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "Essentially"
+            }
+          ],
+          "category": "开篇",
+          "tier": "进阶"
         },
         {
-          "id": "connect-results",
-          "text": "Cooperation allows people to share their knowledge. Consequently, they can solve problems more effectively. Thus, they can achieve more together. As a result, everyone can benefit.",
-          "kind": "editorial-practice"
+          "id": "source-b83c06dc964f912d",
+          "text": "In essence",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "In essence"
+            }
+          ],
+          "category": "开篇",
+          "tier": "进阶"
         },
         {
-          "id": "connect-summary",
-          "text": "In the long run, lifelong learning benefits both individuals and society. Altogether, these reasons show why learning matters.",
-          "kind": "editorial-practice"
+          "id": "source-3c9559c8a9bc9f26",
+          "text": "Secondly",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "Secondly"
+            }
+          ],
+          "category": "并列递进",
+          "tier": "基础"
+        },
+        {
+          "id": "source-512edcbb4ca89642",
+          "text": "Besides",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "Besides"
+            }
+          ],
+          "category": "并列递进",
+          "tier": "基础"
+        },
+        {
+          "id": "source-348867d8778ea067",
+          "text": "Moreover",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "Moreover"
+            }
+          ],
+          "category": "并列递进",
+          "tier": "基础"
+        },
+        {
+          "id": "source-dbfd83f543640990",
+          "text": "Furthermore",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "Furthermore"
+            }
+          ],
+          "category": "并列递进",
+          "tier": "进阶"
+        },
+        {
+          "id": "source-b75c32775ce3d713",
+          "text": "Additionally",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "Additionally"
+            }
+          ],
+          "category": "并列递进",
+          "tier": "进阶"
+        },
+        {
+          "id": "source-a69fef3aa9a15f3c",
+          "text": "In addition",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "In addition"
+            }
+          ],
+          "category": "并列递进",
+          "tier": "进阶"
+        },
+        {
+          "id": "source-871e6bcd1cc9321d",
+          "text": "What is more",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "What is more"
+            }
+          ],
+          "category": "并列递进",
+          "tier": "进阶"
+        },
+        {
+          "id": "source-b8f5a19d94e32ba7",
+          "text": "Equally importantly",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "Equally importantly"
+            }
+          ],
+          "category": "并列递进",
+          "tier": "进阶"
+        },
+        {
+          "id": "source-1ac8c60f4db4d7c5",
+          "text": "Not only...but also...",
+          "kind": "source-template",
+          "parts": [
+            {
+              "text": "Not only"
+            },
+            {
+              "pauseMs": 1400
+            },
+            {
+              "text": "but also"
+            },
+            {
+              "pauseMs": 1400
+            }
+          ],
+          "category": "并列递进",
+          "tier": "进阶"
+        },
+        {
+          "id": "source-547c63e577ac964c",
+          "text": "Meanwhile",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "Meanwhile"
+            }
+          ],
+          "category": "并列递进",
+          "tier": "进阶"
+        },
+        {
+          "id": "source-c32daf6be151e0cb",
+          "text": "Next",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "Next"
+            }
+          ],
+          "category": "逻辑顺承",
+          "tier": "基础"
+        },
+        {
+          "id": "source-8ed0a74554c8bef1",
+          "text": "Then",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "Then"
+            }
+          ],
+          "category": "逻辑顺承",
+          "tier": "基础"
+        },
+        {
+          "id": "source-d946d6de89329b5c",
+          "text": "After that",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "After that"
+            }
+          ],
+          "category": "逻辑顺承",
+          "tier": "基础"
+        },
+        {
+          "id": "source-039c9ebc3bedddbc",
+          "text": "Subsequently",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "Subsequently"
+            }
+          ],
+          "category": "逻辑顺承",
+          "tier": "进阶"
+        },
+        {
+          "id": "source-cf1cc9dd720f81fd",
+          "text": "Thereupon",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "Thereupon"
+            }
+          ],
+          "category": "逻辑顺承",
+          "tier": "进阶"
+        },
+        {
+          "id": "source-c868c44a44eb6c5d",
+          "text": "Finally",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "Finally"
+            }
+          ],
+          "category": "收尾总结",
+          "tier": "基础"
+        },
+        {
+          "id": "source-379e0f3500672a93",
+          "text": "Eventually",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "Eventually"
+            }
+          ],
+          "category": "收尾总结",
+          "tier": "基础"
+        },
+        {
+          "id": "source-ec9463e1182b45ce",
+          "text": "Ultimately",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "Ultimately"
+            }
+          ],
+          "category": "收尾总结",
+          "tier": "进阶"
+        },
+        {
+          "id": "source-cf1cfecec640ab8e",
+          "text": "Consequently",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "Consequently"
+            }
+          ],
+          "category": "收尾总结",
+          "tier": "进阶"
+        },
+        {
+          "id": "source-fdc17899e263456e",
+          "text": "Thus",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "Thus"
+            }
+          ],
+          "category": "收尾总结",
+          "tier": "进阶"
+        },
+        {
+          "id": "source-d14f3c9e1d736e9e",
+          "text": "As a result",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "As a result"
+            }
+          ],
+          "category": "收尾总结",
+          "tier": "进阶"
+        },
+        {
+          "id": "source-72878cb5b5ee5e93",
+          "text": "In the long run",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "In the long run"
+            }
+          ],
+          "category": "收尾总结",
+          "tier": "进阶"
+        },
+        {
+          "id": "source-7de601ca9a1f42dc",
+          "text": "Altogether",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "Altogether"
+            }
+          ],
+          "category": "收尾总结",
+          "tier": "进阶"
+        },
+        {
+          "id": "source-06441d45007f87ae",
+          "text": "unfortunately",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "unfortunately"
+            }
+          ],
+          "category": "原注辨析"
+        },
+        {
+          "id": "source-a537f530ef21a88c",
+          "text": "however",
+          "kind": "source-phrase",
+          "parts": [
+            {
+              "text": "however"
+            }
+          ],
+          "category": "原注辨析"
         }
       ]
     },
     {
       "id": "conclusion",
       "title": "第三段结尾",
-      "subtitle": "End with a clear message",
+      "subtitle": "第三段结尾",
+      "inMainLoop": true,
       "segments": [
         {
-          "id": "conclusion-belief",
-          "text": "Great care must be exercised to instill the belief that lifelong learning serves as a cornerstone of success in all endeavors.",
-          "kind": "adapted-template"
+          "id": "source-d652934491d09866",
+          "text": "Great care must be exercised to instill the belief that [主题词] serves as a cornerstone of success in all endeavors.",
+          "kind": "source-template",
+          "parts": [
+            {
+              "text": "Great care must be exercised to instill the belief that"
+            },
+            {
+              "pauseMs": 1400
+            },
+            {
+              "text": "serves as a cornerstone of success in all endeavors."
+            }
+          ],
+          "category": "要培养主题词，主题是各项事业的基石"
         }
       ]
     }
   ],
   "audio": {
-    "picture": "assets/audio/generated/picture.3b7b4cb51eb784c6.mp3",
-    "theme-trends": "assets/audio/generated/theme-trends.d76b260a7d725fcb.mp3",
-    "reasons": "assets/audio/generated/reasons.2363c9493cd162e8.mp3",
-    "connectors": "assets/audio/generated/connectors.2881183ab9b1e5c1.mp3",
-    "conclusion": "assets/audio/generated/conclusion.3d0243585a352f38.mp3"
-  }
+    "picture": "assets/audio/generated/picture-slow.5b6ae0e8158b83af.mp3",
+    "theme-trends": "assets/audio/generated/theme-trends-slow.920129d90cd727ad.mp3",
+    "reasons": "assets/audio/generated/reasons-slow.267482a77d09b91d.mp3",
+    "connectors": "assets/audio/generated/connectors-slow.0492085c93836a68.mp3",
+    "conclusion": "assets/audio/generated/conclusion-slow.b995c4ccb5b24dcb.mp3"
+  },
+  "audioModes": {
+    "continuous": {
+      "picture": "assets/audio/generated/picture.d46c67c21c59d8cd.mp3",
+      "theme-trends": "assets/audio/generated/theme-trends.2338bc41fa9b5f6b.mp3",
+      "reasons": "assets/audio/generated/reasons.f48ac205b44088a2.mp3",
+      "connectors": "assets/audio/generated/connectors.475e4fef6e276c7f.mp3",
+      "conclusion": "assets/audio/generated/conclusion.4a013dbf803d0ecd.mp3"
+    },
+    "slow": {
+      "picture": "assets/audio/generated/picture-slow.5b6ae0e8158b83af.mp3",
+      "theme-trends": "assets/audio/generated/theme-trends-slow.920129d90cd727ad.mp3",
+      "reasons": "assets/audio/generated/reasons-slow.267482a77d09b91d.mp3",
+      "connectors": "assets/audio/generated/connectors-slow.0492085c93836a68.mp3",
+      "conclusion": "assets/audio/generated/conclusion-slow.b995c4ccb5b24dcb.mp3"
+    },
+    "recite": {
+      "picture": "assets/audio/generated/picture-recite.4fb77f1a79874d85.mp3",
+      "theme-trends": "assets/audio/generated/theme-trends-recite.8bec6dd2b60eb220.mp3",
+      "reasons": "assets/audio/generated/reasons-recite.c76361b84747c04c.mp3",
+      "connectors": "assets/audio/generated/connectors-recite.95974a6cab122b7e.mp3",
+      "conclusion": "assets/audio/generated/conclusion-recite.a836dbaf97c3713c.mp3"
+    }
+  },
+  "timings": {
+    "continuous": {
+      "picture": [
+        {
+          "segmentId": "source-a40b38ad9494459e",
+          "start": 0,
+          "speechEnd": 4.8079,
+          "end": 6.8579,
+          "gapSeconds": 0.65
+        },
+        {
+          "segmentId": "source-314b88970023ea7c",
+          "start": 6.8579,
+          "speechEnd": 9.9379,
+          "end": 10.7879,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-5141ab4f3bcf4c10",
+          "start": 10.7879,
+          "speechEnd": 13.0679,
+          "end": 13.9179,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-aac688a38e9875b9",
+          "start": 13.9179,
+          "speechEnd": 16.8854,
+          "end": 17.7354,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-b332c1df3bfe5672",
+          "start": 17.7354,
+          "speechEnd": 20.0779,
+          "end": 20.9279,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-98465588330f8d17",
+          "start": 20.9279,
+          "speechEnd": 23.9954,
+          "end": 24.8454,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-db2b29abe006b6c8",
+          "start": 24.8454,
+          "speechEnd": 26.7129,
+          "end": 28.7629,
+          "gapSeconds": 0.65
+        },
+        {
+          "segmentId": "source-b4a0968651b9ed96",
+          "start": 28.7629,
+          "speechEnd": 44.3005,
+          "end": 44.9505,
+          "gapSeconds": 0.65
+        },
+        {
+          "segmentId": "source-250066e1232e9d59",
+          "start": 44.9505,
+          "speechEnd": 50.3286,
+          "end": 52.3786,
+          "gapSeconds": 0.65
+        }
+      ],
+      "theme-trends": [
+        {
+          "segmentId": "source-8bb1fa8285570ad2",
+          "start": 0,
+          "speechEnd": 9.0887,
+          "end": 9.7387,
+          "gapSeconds": 0.65
+        },
+        {
+          "segmentId": "source-52b65c3aa95b9e9e",
+          "start": 9.7387,
+          "speechEnd": 22.8783,
+          "end": 23.5283,
+          "gapSeconds": 0.65
+        },
+        {
+          "segmentId": "source-00fc153e670b5ee6",
+          "start": 23.5283,
+          "speechEnd": 25.7708,
+          "end": 26.6208,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-989722bad00e08ea",
+          "start": 26.6208,
+          "speechEnd": 30.2383,
+          "end": 31.0883,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-cd2ab2dd6e991c2c",
+          "start": 31.0883,
+          "speechEnd": 33.7433,
+          "end": 34.5933,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-2349f33cbbf1b3af",
+          "start": 34.5933,
+          "speechEnd": 37.6184,
+          "end": 38.4684,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-400556cc9a4f78ec",
+          "start": 38.4684,
+          "speechEnd": 41.5125,
+          "end": 42.3625,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-2492142cc3f57878",
+          "start": 42.3625,
+          "speechEnd": 46.455,
+          "end": 47.305,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-09a7b66c81b21112",
+          "start": 47.305,
+          "speechEnd": 51.0975,
+          "end": 51.9475,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-d9bbac2b32916ac9",
+          "start": 51.9475,
+          "speechEnd": 55.0059,
+          "end": 55.8559,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-f3ee84c550f70184",
+          "start": 55.8559,
+          "speechEnd": 59.612,
+          "end": 60.462,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-4d61c2a9871121e6",
+          "start": 60.462,
+          "speechEnd": 62.9795,
+          "end": 63.8295,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-bda882971282deca",
+          "start": 63.8295,
+          "speechEnd": 65.6845,
+          "end": 66.5345,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-2efdbf41957ab125",
+          "start": 66.5345,
+          "speechEnd": 68.6341,
+          "end": 69.4841,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-00d2169fce4e76d5",
+          "start": 69.4841,
+          "speechEnd": 71.6766,
+          "end": 73.7266,
+          "gapSeconds": 0.65
+        },
+        {
+          "segmentId": "source-3056e2b038b60177",
+          "start": 73.7266,
+          "speechEnd": 76.0941,
+          "end": 78.1441,
+          "gapSeconds": 0.65
+        },
+        {
+          "segmentId": "source-c1bb50acbbe10202",
+          "start": 78.1441,
+          "speechEnd": 80.2116,
+          "end": 82.2616,
+          "gapSeconds": 0.65
+        },
+        {
+          "segmentId": "source-e7b1bdbe0b97b567",
+          "start": 82.2616,
+          "speechEnd": 84.8791,
+          "end": 86.9291,
+          "gapSeconds": 0.65
+        },
+        {
+          "segmentId": "source-1d952d59ce7e23ad",
+          "start": 86.9291,
+          "speechEnd": 88.8972,
+          "end": 90.9472,
+          "gapSeconds": 0.65
+        }
+      ],
+      "reasons": [
+        {
+          "segmentId": "source-ddf227447b28dbdd",
+          "start": 0,
+          "speechEnd": 13.1892,
+          "end": 15.2392,
+          "gapSeconds": 0.65
+        },
+        {
+          "segmentId": "source-2b1811aba4f2613c",
+          "start": 15.2392,
+          "speechEnd": 32.426,
+          "end": 34.476,
+          "gapSeconds": 0.65
+        },
+        {
+          "segmentId": "source-ed0f29a22871938c",
+          "start": 34.476,
+          "speechEnd": 51.4047,
+          "end": 52.0547,
+          "gapSeconds": 0.65
+        }
+      ],
+      "connectors": [
+        {
+          "segmentId": "source-223c1b1bf3355d73",
+          "start": 0,
+          "speechEnd": 0.8125,
+          "end": 1.6625,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-db6917b5679ec1d7",
+          "start": 1.6625,
+          "speechEnd": 2.7375,
+          "end": 3.5875,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-2303b271a66af62d",
+          "start": 3.5875,
+          "speechEnd": 4.5,
+          "end": 5.35,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-95f06b3449bf2981",
+          "start": 5.35,
+          "speechEnd": 6.1103,
+          "end": 6.9603,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-cfaac67921b337a9",
+          "start": 6.9603,
+          "speechEnd": 7.7603,
+          "end": 8.6103,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-ce7a7beccef88809",
+          "start": 8.6103,
+          "speechEnd": 9.9403,
+          "end": 10.7903,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-2ab567456ed5e776",
+          "start": 10.7903,
+          "speechEnd": 11.8328,
+          "end": 12.6828,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-1f827e7a576723e7",
+          "start": 12.6828,
+          "speechEnd": 13.5453,
+          "end": 14.3953,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-b83c06dc964f912d",
+          "start": 14.3953,
+          "speechEnd": 15.3578,
+          "end": 16.2078,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-3c9559c8a9bc9f26",
+          "start": 16.2078,
+          "speechEnd": 17.1328,
+          "end": 17.9828,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-512edcbb4ca89642",
+          "start": 17.9828,
+          "speechEnd": 18.7203,
+          "end": 19.5703,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-348867d8778ea067",
+          "start": 19.5703,
+          "speechEnd": 20.2953,
+          "end": 21.1453,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-dbfd83f543640990",
+          "start": 21.1453,
+          "speechEnd": 22.0453,
+          "end": 22.8953,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-b75c32775ce3d713",
+          "start": 22.8953,
+          "speechEnd": 23.7878,
+          "end": 24.6378,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-a69fef3aa9a15f3c",
+          "start": 24.6378,
+          "speechEnd": 25.6253,
+          "end": 26.4753,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-871e6bcd1cc9321d",
+          "start": 26.4753,
+          "speechEnd": 27.3503,
+          "end": 28.2003,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-b8f5a19d94e32ba7",
+          "start": 28.2003,
+          "speechEnd": 29.7678,
+          "end": 30.6178,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-1ac8c60f4db4d7c5",
+          "start": 30.6178,
+          "speechEnd": 33.6258,
+          "end": 35.6758,
+          "gapSeconds": 0.65
+        },
+        {
+          "segmentId": "source-547c63e577ac964c",
+          "start": 35.6758,
+          "speechEnd": 36.3508,
+          "end": 37.2008,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-c32daf6be151e0cb",
+          "start": 37.2008,
+          "speechEnd": 37.6633,
+          "end": 38.5133,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-8ed0a74554c8bef1",
+          "start": 38.5133,
+          "speechEnd": 39.0133,
+          "end": 39.8633,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-d946d6de89329b5c",
+          "start": 39.8633,
+          "speechEnd": 40.6508,
+          "end": 41.5008,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-039c9ebc3bedddbc",
+          "start": 41.5008,
+          "speechEnd": 42.5183,
+          "end": 43.3683,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-cf1cc9dd720f81fd",
+          "start": 43.3683,
+          "speechEnd": 44.1558,
+          "end": 45.0058,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-c868c44a44eb6c5d",
+          "start": 45.0058,
+          "speechEnd": 45.7683,
+          "end": 46.6183,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-379e0f3500672a93",
+          "start": 46.6183,
+          "speechEnd": 47.5358,
+          "end": 48.3858,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-ec9463e1182b45ce",
+          "start": 48.3858,
+          "speechEnd": 49.2533,
+          "end": 50.1033,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-cf1cfecec640ab8e",
+          "start": 50.1033,
+          "speechEnd": 51.1958,
+          "end": 52.0458,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-fdc17899e263456e",
+          "start": 52.0458,
+          "speechEnd": 52.5708,
+          "end": 53.4208,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-d14f3c9e1d736e9e",
+          "start": 53.4208,
+          "speechEnd": 54.4458,
+          "end": 55.2958,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-72878cb5b5ee5e93",
+          "start": 55.2958,
+          "speechEnd": 56.8083,
+          "end": 57.6583,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-7de601ca9a1f42dc",
+          "start": 57.6583,
+          "speechEnd": 58.5333,
+          "end": 59.3833,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-06441d45007f87ae",
+          "start": 59.3833,
+          "speechEnd": 60.5133,
+          "end": 61.3633,
+          "gapSeconds": 0.85
+        },
+        {
+          "segmentId": "source-a537f530ef21a88c",
+          "start": 61.3633,
+          "speechEnd": 61.8133,
+          "end": 62.6633,
+          "gapSeconds": 0.85
+        }
+      ],
+      "conclusion": [
+        {
+          "segmentId": "source-d652934491d09866",
+          "start": 0,
+          "speechEnd": 10.4997,
+          "end": 11.1497,
+          "gapSeconds": 0.65
+        }
+      ]
+    },
+    "slow": {
+      "picture": [
+        {
+          "segmentId": "source-a40b38ad9494459e",
+          "start": 0,
+          "speechEnd": 5.379,
+          "end": 8.399,
+          "gapSeconds": 1.2
+        },
+        {
+          "segmentId": "source-314b88970023ea7c",
+          "start": 8.399,
+          "speechEnd": 11.959,
+          "end": 13.359,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-5141ab4f3bcf4c10",
+          "start": 13.359,
+          "speechEnd": 15.864,
+          "end": 17.264,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-aac688a38e9875b9",
+          "start": 17.264,
+          "speechEnd": 20.6065,
+          "end": 22.0065,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-b332c1df3bfe5672",
+          "start": 22.0065,
+          "speechEnd": 24.724,
+          "end": 26.124,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-98465588330f8d17",
+          "start": 26.124,
+          "speechEnd": 29.679,
+          "end": 31.079,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-db2b29abe006b6c8",
+          "start": 31.079,
+          "speechEnd": 32.9465,
+          "end": 35.9665,
+          "gapSeconds": 1.2
+        },
+        {
+          "segmentId": "source-b4a0968651b9ed96",
+          "start": 35.9665,
+          "speechEnd": 53.6772,
+          "end": 54.8772,
+          "gapSeconds": 1.2
+        },
+        {
+          "segmentId": "source-250066e1232e9d59",
+          "start": 54.8772,
+          "speechEnd": 61.2915,
+          "end": 64.3115,
+          "gapSeconds": 1.2
+        }
+      ],
+      "theme-trends": [
+        {
+          "segmentId": "source-8bb1fa8285570ad2",
+          "start": 0,
+          "speechEnd": 10.5135,
+          "end": 11.7135,
+          "gapSeconds": 1.2
+        },
+        {
+          "segmentId": "source-52b65c3aa95b9e9e",
+          "start": 11.7135,
+          "speechEnd": 27.3033,
+          "end": 28.5033,
+          "gapSeconds": 1.2
+        },
+        {
+          "segmentId": "source-00fc153e670b5ee6",
+          "start": 28.5033,
+          "speechEnd": 30.7458,
+          "end": 32.1458,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-989722bad00e08ea",
+          "start": 32.1458,
+          "speechEnd": 36.1883,
+          "end": 37.5883,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-cd2ab2dd6e991c2c",
+          "start": 37.5883,
+          "speechEnd": 40.2433,
+          "end": 41.6433,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-2349f33cbbf1b3af",
+          "start": 41.6433,
+          "speechEnd": 45.5733,
+          "end": 46.9733,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-400556cc9a4f78ec",
+          "start": 46.9733,
+          "speechEnd": 50.9033,
+          "end": 52.3033,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-2492142cc3f57878",
+          "start": 52.3033,
+          "speechEnd": 56.8833,
+          "end": 58.2833,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-09a7b66c81b21112",
+          "start": 58.2833,
+          "speechEnd": 62.5633,
+          "end": 63.9633,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-d9bbac2b32916ac9",
+          "start": 63.9633,
+          "speechEnd": 68.0183,
+          "end": 69.4183,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-f3ee84c550f70184",
+          "start": 69.4183,
+          "speechEnd": 73.6686,
+          "end": 75.0686,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-4d61c2a9871121e6",
+          "start": 75.0686,
+          "speechEnd": 77.5861,
+          "end": 78.9861,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-bda882971282deca",
+          "start": 78.9861,
+          "speechEnd": 80.8411,
+          "end": 82.2411,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-2efdbf41957ab125",
+          "start": 82.2411,
+          "speechEnd": 84.3407,
+          "end": 85.7407,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-00d2169fce4e76d5",
+          "start": 85.7407,
+          "speechEnd": 88.2832,
+          "end": 91.3032,
+          "gapSeconds": 1.2
+        },
+        {
+          "segmentId": "source-3056e2b038b60177",
+          "start": 91.3032,
+          "speechEnd": 93.9957,
+          "end": 97.0157,
+          "gapSeconds": 1.2
+        },
+        {
+          "segmentId": "source-c1bb50acbbe10202",
+          "start": 97.0157,
+          "speechEnd": 99.3082,
+          "end": 102.3282,
+          "gapSeconds": 1.2
+        },
+        {
+          "segmentId": "source-e7b1bdbe0b97b567",
+          "start": 102.3282,
+          "speechEnd": 105.2457,
+          "end": 108.2657,
+          "gapSeconds": 1.2
+        },
+        {
+          "segmentId": "source-1d952d59ce7e23ad",
+          "start": 108.2657,
+          "speechEnd": 110.6832,
+          "end": 113.7032,
+          "gapSeconds": 1.2
+        }
+      ],
+      "reasons": [
+        {
+          "segmentId": "source-ddf227447b28dbdd",
+          "start": 0,
+          "speechEnd": 15.0718,
+          "end": 18.0918,
+          "gapSeconds": 1.2
+        },
+        {
+          "segmentId": "source-2b1811aba4f2613c",
+          "start": 18.0918,
+          "speechEnd": 38.2891,
+          "end": 41.3091,
+          "gapSeconds": 1.2
+        },
+        {
+          "segmentId": "source-ed0f29a22871938c",
+          "start": 41.3091,
+          "speechEnd": 61.1615,
+          "end": 62.3615,
+          "gapSeconds": 1.2
+        }
+      ],
+      "connectors": [
+        {
+          "segmentId": "source-223c1b1bf3355d73",
+          "start": 0,
+          "speechEnd": 0.8125,
+          "end": 2.2125,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-db6917b5679ec1d7",
+          "start": 2.2125,
+          "speechEnd": 3.2875,
+          "end": 4.6875,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-2303b271a66af62d",
+          "start": 4.6875,
+          "speechEnd": 5.6,
+          "end": 7,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-95f06b3449bf2981",
+          "start": 7,
+          "speechEnd": 7.7603,
+          "end": 9.1603,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-cfaac67921b337a9",
+          "start": 9.1603,
+          "speechEnd": 9.9603,
+          "end": 11.3603,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-ce7a7beccef88809",
+          "start": 11.3603,
+          "speechEnd": 12.6903,
+          "end": 14.0903,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-2ab567456ed5e776",
+          "start": 14.0903,
+          "speechEnd": 15.1328,
+          "end": 16.5328,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-1f827e7a576723e7",
+          "start": 16.5328,
+          "speechEnd": 17.3953,
+          "end": 18.7953,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-b83c06dc964f912d",
+          "start": 18.7953,
+          "speechEnd": 19.7578,
+          "end": 21.1578,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-3c9559c8a9bc9f26",
+          "start": 21.1578,
+          "speechEnd": 22.0828,
+          "end": 23.4828,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-512edcbb4ca89642",
+          "start": 23.4828,
+          "speechEnd": 24.2203,
+          "end": 25.6203,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-348867d8778ea067",
+          "start": 25.6203,
+          "speechEnd": 26.3453,
+          "end": 27.7453,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-dbfd83f543640990",
+          "start": 27.7453,
+          "speechEnd": 28.6453,
+          "end": 30.0453,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-b75c32775ce3d713",
+          "start": 30.0453,
+          "speechEnd": 30.9378,
+          "end": 32.3378,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-a69fef3aa9a15f3c",
+          "start": 32.3378,
+          "speechEnd": 33.3253,
+          "end": 34.7253,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-871e6bcd1cc9321d",
+          "start": 34.7253,
+          "speechEnd": 35.6003,
+          "end": 37.0003,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-b8f5a19d94e32ba7",
+          "start": 37.0003,
+          "speechEnd": 38.5678,
+          "end": 39.9678,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-1ac8c60f4db4d7c5",
+          "start": 39.9678,
+          "speechEnd": 43.3958,
+          "end": 46.4158,
+          "gapSeconds": 1.2
+        },
+        {
+          "segmentId": "source-547c63e577ac964c",
+          "start": 46.4158,
+          "speechEnd": 47.0908,
+          "end": 48.4908,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-c32daf6be151e0cb",
+          "start": 48.4908,
+          "speechEnd": 48.9533,
+          "end": 50.3533,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-8ed0a74554c8bef1",
+          "start": 50.3533,
+          "speechEnd": 50.8533,
+          "end": 52.2533,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-d946d6de89329b5c",
+          "start": 52.2533,
+          "speechEnd": 53.0408,
+          "end": 54.4408,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-039c9ebc3bedddbc",
+          "start": 54.4408,
+          "speechEnd": 55.4583,
+          "end": 56.8583,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-cf1cc9dd720f81fd",
+          "start": 56.8583,
+          "speechEnd": 57.6458,
+          "end": 59.0458,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-c868c44a44eb6c5d",
+          "start": 59.0458,
+          "speechEnd": 59.8083,
+          "end": 61.2083,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-379e0f3500672a93",
+          "start": 61.2083,
+          "speechEnd": 62.1258,
+          "end": 63.5258,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-ec9463e1182b45ce",
+          "start": 63.5258,
+          "speechEnd": 64.3933,
+          "end": 65.7933,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-cf1cfecec640ab8e",
+          "start": 65.7933,
+          "speechEnd": 66.8858,
+          "end": 68.2858,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-fdc17899e263456e",
+          "start": 68.2858,
+          "speechEnd": 68.8108,
+          "end": 70.2108,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-d14f3c9e1d736e9e",
+          "start": 70.2108,
+          "speechEnd": 71.2358,
+          "end": 72.6358,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-72878cb5b5ee5e93",
+          "start": 72.6358,
+          "speechEnd": 74.3908,
+          "end": 75.7908,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-7de601ca9a1f42dc",
+          "start": 75.7908,
+          "speechEnd": 76.6658,
+          "end": 78.0658,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-06441d45007f87ae",
+          "start": 78.0658,
+          "speechEnd": 79.1958,
+          "end": 80.5958,
+          "gapSeconds": 1.4
+        },
+        {
+          "segmentId": "source-a537f530ef21a88c",
+          "start": 80.5958,
+          "speechEnd": 81.0458,
+          "end": 82.4458,
+          "gapSeconds": 1.4
+        }
+      ],
+      "conclusion": [
+        {
+          "segmentId": "source-d652934491d09866",
+          "start": 0,
+          "speechEnd": 12.4537,
+          "end": 13.6537,
+          "gapSeconds": 1.2
+        }
+      ]
+    },
+    "recite": {
+      "picture": [
+        {
+          "segmentId": "source-a40b38ad9494459e",
+          "start": 0,
+          "speechEnd": 5.0767,
+          "end": 11.4919,
+          "gapSeconds": 4.3152
+        },
+        {
+          "segmentId": "source-314b88970023ea7c",
+          "start": 11.4919,
+          "speechEnd": 14.9269,
+          "end": 17.8467,
+          "gapSeconds": 2.9198
+        },
+        {
+          "segmentId": "source-5141ab4f3bcf4c10",
+          "start": 17.8467,
+          "speechEnd": 20.2017,
+          "end": 22.6017,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-aac688a38e9875b9",
+          "start": 22.6017,
+          "speechEnd": 25.8442,
+          "end": 28.6003,
+          "gapSeconds": 2.7561
+        },
+        {
+          "segmentId": "source-b332c1df3bfe5672",
+          "start": 28.6003,
+          "speechEnd": 31.1928,
+          "end": 33.5928,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-98465588330f8d17",
+          "start": 33.5928,
+          "speechEnd": 37.0853,
+          "end": 40.0539,
+          "gapSeconds": 2.9686
+        },
+        {
+          "segmentId": "source-db2b29abe006b6c8",
+          "start": 40.0539,
+          "speechEnd": 41.9214,
+          "end": 46.4214,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-b4a0968651b9ed96",
+          "start": 46.4214,
+          "speechEnd": 63.3571,
+          "end": 75.3571,
+          "gapSeconds": 12
+        },
+        {
+          "segmentId": "source-250066e1232e9d59",
+          "start": 75.3571,
+          "speechEnd": 81.3963,
+          "end": 88.6297,
+          "gapSeconds": 5.1333
+        }
+      ],
+      "theme-trends": [
+        {
+          "segmentId": "source-8bb1fa8285570ad2",
+          "start": 0,
+          "speechEnd": 10.6155,
+          "end": 17.025,
+          "gapSeconds": 6.4095
+        },
+        {
+          "segmentId": "source-52b65c3aa95b9e9e",
+          "start": 17.025,
+          "speechEnd": 32.9181,
+          "end": 41.0722,
+          "gapSeconds": 8.1541
+        },
+        {
+          "segmentId": "source-00fc153e670b5ee6",
+          "start": 41.0722,
+          "speechEnd": 43.3147,
+          "end": 45.7147,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-989722bad00e08ea",
+          "start": 45.7147,
+          "speechEnd": 49.6072,
+          "end": 52.9158,
+          "gapSeconds": 3.3086
+        },
+        {
+          "segmentId": "source-cd2ab2dd6e991c2c",
+          "start": 52.9158,
+          "speechEnd": 55.5708,
+          "end": 57.9708,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-2349f33cbbf1b3af",
+          "start": 57.9708,
+          "speechEnd": 61.1992,
+          "end": 63.9434,
+          "gapSeconds": 2.7442
+        },
+        {
+          "segmentId": "source-400556cc9a4f78ec",
+          "start": 63.9434,
+          "speechEnd": 67.7109,
+          "end": 70.9133,
+          "gapSeconds": 3.2024
+        },
+        {
+          "segmentId": "source-2492142cc3f57878",
+          "start": 70.9133,
+          "speechEnd": 75.2308,
+          "end": 78.9007,
+          "gapSeconds": 3.6699
+        },
+        {
+          "segmentId": "source-09a7b66c81b21112",
+          "start": 78.9007,
+          "speechEnd": 83.0432,
+          "end": 86.5643,
+          "gapSeconds": 3.5211
+        },
+        {
+          "segmentId": "source-d9bbac2b32916ac9",
+          "start": 86.5643,
+          "speechEnd": 90.4443,
+          "end": 93.7423,
+          "gapSeconds": 3.298
+        },
+        {
+          "segmentId": "source-f3ee84c550f70184",
+          "start": 93.7423,
+          "speechEnd": 97.7809,
+          "end": 101.2137,
+          "gapSeconds": 3.4328
+        },
+        {
+          "segmentId": "source-4d61c2a9871121e6",
+          "start": 101.2137,
+          "speechEnd": 103.7312,
+          "end": 106.1312,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-bda882971282deca",
+          "start": 106.1312,
+          "speechEnd": 107.9862,
+          "end": 110.3862,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-2efdbf41957ab125",
+          "start": 110.3862,
+          "speechEnd": 112.4858,
+          "end": 114.8858,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-00d2169fce4e76d5",
+          "start": 114.8858,
+          "speechEnd": 117.3283,
+          "end": 121.8283,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-3056e2b038b60177",
+          "start": 121.8283,
+          "speechEnd": 124.3708,
+          "end": 128.8708,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-c1bb50acbbe10202",
+          "start": 128.8708,
+          "speechEnd": 131.1133,
+          "end": 135.6133,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-e7b1bdbe0b97b567",
+          "start": 135.6133,
+          "speechEnd": 138.4308,
+          "end": 142.9308,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-1d952d59ce7e23ad",
+          "start": 142.9308,
+          "speechEnd": 144.9547,
+          "end": 149.4547,
+          "gapSeconds": 2.4
+        }
+      ],
+      "reasons": [
+        {
+          "segmentId": "source-ddf227447b28dbdd",
+          "start": 0,
+          "speechEnd": 14.2393,
+          "end": 28.3393,
+          "gapSeconds": 12
+        },
+        {
+          "segmentId": "source-2b1811aba4f2613c",
+          "start": 28.3393,
+          "speechEnd": 48.1565,
+          "end": 62.2565,
+          "gapSeconds": 12
+        },
+        {
+          "segmentId": "source-ed0f29a22871938c",
+          "start": 62.2565,
+          "speechEnd": 82.2565,
+          "end": 94.2565,
+          "gapSeconds": 12
+        }
+      ],
+      "connectors": [
+        {
+          "segmentId": "source-223c1b1bf3355d73",
+          "start": 0,
+          "speechEnd": 0.8125,
+          "end": 3.2125,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-db6917b5679ec1d7",
+          "start": 3.2125,
+          "speechEnd": 4.2875,
+          "end": 6.6875,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-2303b271a66af62d",
+          "start": 6.6875,
+          "speechEnd": 7.6,
+          "end": 10,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-95f06b3449bf2981",
+          "start": 10,
+          "speechEnd": 10.7603,
+          "end": 13.1603,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-cfaac67921b337a9",
+          "start": 13.1603,
+          "speechEnd": 13.9603,
+          "end": 16.3603,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-ce7a7beccef88809",
+          "start": 16.3603,
+          "speechEnd": 17.6903,
+          "end": 20.0903,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-2ab567456ed5e776",
+          "start": 20.0903,
+          "speechEnd": 21.1328,
+          "end": 23.5328,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-1f827e7a576723e7",
+          "start": 23.5328,
+          "speechEnd": 24.3953,
+          "end": 26.7953,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-b83c06dc964f912d",
+          "start": 26.7953,
+          "speechEnd": 27.7578,
+          "end": 30.1578,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-3c9559c8a9bc9f26",
+          "start": 30.1578,
+          "speechEnd": 31.0828,
+          "end": 33.4828,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-512edcbb4ca89642",
+          "start": 33.4828,
+          "speechEnd": 34.2203,
+          "end": 36.6203,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-348867d8778ea067",
+          "start": 36.6203,
+          "speechEnd": 37.3453,
+          "end": 39.7453,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-dbfd83f543640990",
+          "start": 39.7453,
+          "speechEnd": 40.6453,
+          "end": 43.0453,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-b75c32775ce3d713",
+          "start": 43.0453,
+          "speechEnd": 43.9378,
+          "end": 46.3378,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-a69fef3aa9a15f3c",
+          "start": 46.3378,
+          "speechEnd": 47.3253,
+          "end": 49.7253,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-871e6bcd1cc9321d",
+          "start": 49.7253,
+          "speechEnd": 50.6003,
+          "end": 53.0003,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-b8f5a19d94e32ba7",
+          "start": 53.0003,
+          "speechEnd": 54.5678,
+          "end": 56.9678,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-1ac8c60f4db4d7c5",
+          "start": 56.9678,
+          "speechEnd": 60.6758,
+          "end": 65.1758,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-547c63e577ac964c",
+          "start": 65.1758,
+          "speechEnd": 65.8508,
+          "end": 68.2508,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-c32daf6be151e0cb",
+          "start": 68.2508,
+          "speechEnd": 68.7133,
+          "end": 71.1133,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-8ed0a74554c8bef1",
+          "start": 71.1133,
+          "speechEnd": 71.6133,
+          "end": 74.0133,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-d946d6de89329b5c",
+          "start": 74.0133,
+          "speechEnd": 74.8008,
+          "end": 77.2008,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-039c9ebc3bedddbc",
+          "start": 77.2008,
+          "speechEnd": 78.2183,
+          "end": 80.6183,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-cf1cc9dd720f81fd",
+          "start": 80.6183,
+          "speechEnd": 81.4058,
+          "end": 83.8058,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-c868c44a44eb6c5d",
+          "start": 83.8058,
+          "speechEnd": 84.5683,
+          "end": 86.9683,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-379e0f3500672a93",
+          "start": 86.9683,
+          "speechEnd": 87.8858,
+          "end": 90.2858,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-ec9463e1182b45ce",
+          "start": 90.2858,
+          "speechEnd": 91.1533,
+          "end": 93.5533,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-cf1cfecec640ab8e",
+          "start": 93.5533,
+          "speechEnd": 94.6458,
+          "end": 97.0458,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-fdc17899e263456e",
+          "start": 97.0458,
+          "speechEnd": 97.5708,
+          "end": 99.9708,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-d14f3c9e1d736e9e",
+          "start": 99.9708,
+          "speechEnd": 100.9958,
+          "end": 103.3958,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-72878cb5b5ee5e93",
+          "start": 103.3958,
+          "speechEnd": 105.0458,
+          "end": 107.4458,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-7de601ca9a1f42dc",
+          "start": 107.4458,
+          "speechEnd": 108.3208,
+          "end": 110.7208,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-06441d45007f87ae",
+          "start": 110.7208,
+          "speechEnd": 111.8508,
+          "end": 114.2508,
+          "gapSeconds": 2.4
+        },
+        {
+          "segmentId": "source-a537f530ef21a88c",
+          "start": 114.2508,
+          "speechEnd": 114.7008,
+          "end": 117.1008,
+          "gapSeconds": 2.4
+        }
+      ],
+      "conclusion": [
+        {
+          "segmentId": "source-d652934491d09866",
+          "start": 0,
+          "speechEnd": 12.0512,
+          "end": 20.5097,
+          "gapSeconds": 8.4585
+        }
+      ]
+    }
+  },
+  "presets": [
+    {
+      "id": "continuous",
+      "label": "连续听",
+      "modelSpeed": 0.7,
+      "sentenceGapMs": 650,
+      "phraseGapMs": 850,
+      "slotFactor": 1,
+      "recallFactor": 0
+    },
+    {
+      "id": "slow",
+      "label": "慢速听",
+      "modelSpeed": 0.6,
+      "sentenceGapMs": 1200,
+      "phraseGapMs": 1400,
+      "slotFactor": 1.3,
+      "recallFactor": 0
+    },
+    {
+      "id": "recite",
+      "label": "跟背听",
+      "modelSpeed": 0.65,
+      "sentenceGapMs": 2400,
+      "phraseGapMs": 2400,
+      "slotFactor": 1.5,
+      "recallFactor": 0.85
+    }
+  ],
+  "defaultRate": 0.7,
+  "defaultPreset": "slow",
+  "referenceRate": 0.7
 }

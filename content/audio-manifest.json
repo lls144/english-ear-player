@@ -1,7 +1,17 @@
 {
   "picture": "assets/audio/picture.mp3",
+  "picture-slow": "assets/audio/picture-slow.mp3",
+  "picture-recite": "assets/audio/picture-recite.mp3",
   "theme-trends": "assets/audio/theme-trends.mp3",
+  "theme-trends-slow": "assets/audio/theme-trends-slow.mp3",
+  "theme-trends-recite": "assets/audio/theme-trends-recite.mp3",
   "reasons": "assets/audio/reasons.mp3",
+  "reasons-slow": "assets/audio/reasons-slow.mp3",
+  "reasons-recite": "assets/audio/reasons-recite.mp3",
   "connectors": "assets/audio/connectors.mp3",
-  "conclusion": "assets/audio/conclusion.mp3"
+  "connectors-slow": "assets/audio/connectors-slow.mp3",
+  "connectors-recite": "assets/audio/connectors-recite.mp3",
+  "conclusion": "assets/audio/conclusion.mp3",
+  "conclusion-slow": "assets/audio/conclusion-slow.mp3",
+  "conclusion-recite": "assets/audio/conclusion-recite.mp3"
 }

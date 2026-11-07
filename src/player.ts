@@ -1,11 +1,18 @@
-import library from './library.generated.json';
+import rawLibrary from './library.generated.json';
 import { nextIndex, safeNumber, speechChunk, type LoopMode } from './logic';
+export type Preset = 'continuous'|'slow'|'recite';
+type Part={text?:string;pauseMs?:number};
+type Cue={segmentId:string;start:number;speechEnd:number;end:number};
+type SourceChapter={id:string;title:string;subtitle:string;inMainLoop:boolean;segments:{id:string;text:string;kind:string;category:string;tier?:string;parts:Part[]}[]};
+type Profile={id:Preset;label:string;modelSpeed:number;sentenceGapMs:number;phraseGapMs:number;slotFactor:number;recallFactor:number};
+export const library=rawLibrary as unknown as {version:string;contentVersion:string;chapters:SourceChapter[];audio:Record<string,string>;audioModes:Record<Preset,Record<string,string>>;timings:Record<Preset,Record<string,Cue[]>>;presets:Profile[];defaultRate:number;defaultPreset:Preset;referenceRate:number};
 export const chapters = library.chapters;
 export type Chapter = typeof chapters[number];
 export type Mode = 'speech' | 'audio';
-type Settings = { chapter: string; mode: Mode; loop: LoopMode; rate: number; voice: string; audioPositions: Record<string, number>; speechPositions: Record<string, number> };
-export const storageKey = 'english-ear-player:v1';
-const defaults: Settings = {chapter: chapters[0].id, mode: Object.keys(library.audio).length ? 'audio' : 'speech', loop: 'all', rate: 1, voice: '', audioPositions: {}, speechPositions: {}};
+type Settings = { schemaVersion:number;chapter: string; mode: Mode; preset:Preset;loop: LoopMode; rate: number; voice: string; audioPositions: Record<string, number>; speechPositions: Record<string, number> };
+export const storageKey = 'english-ear-player:v1.1';
+export const rates=[.55,.60,.65,.70,.75,.80,.85,.90,1];
+const defaults: Settings = {schemaVersion:2,chapter: chapters[0].id, mode:'audio',preset:'slow',loop: 'all', rate:.7, voice: '', audioPositions: {}, speechPositions: {}};
 export class Player {
   readonly audio = new Audio();
   settings: Settings = structuredClone(defaults);
@@ -24,27 +31,31 @@ export class Player {
   private wantedPlayback = false;
   private loopRestartAllowed = false;
   private audioFailed = false;
+  private speechTimer?:ReturnType<typeof setTimeout>;
+  private speechActiveIndex=0;
+  private audioTimer?:ReturnType<typeof setTimeout>;
   private notify: () => void;
   private synth = this.speechSupported ? window.speechSynthesis : undefined;
   constructor(notify: () => void) {
     this.notify = notify;
     try {
-      const raw = JSON.parse(localStorage.getItem(storageKey) ?? 'null');
+      const raw = JSON.parse(localStorage.getItem(storageKey) ?? localStorage.getItem('english-ear-player:v1') ?? 'null');
       if (raw && typeof raw === 'object') {
         this.settings.chapter = chapters.some(c => c.id === raw.chapter) ? raw.chapter : defaults.chapter;
-        this.settings.mode = raw.mode === 'audio' ? 'audio' : 'speech';
+        this.settings.mode = raw.schemaVersion===2&&raw.mode==='speech' ? 'speech' : 'audio';
+        this.settings.preset = ['continuous','slow','recite'].includes(raw.preset)?raw.preset:'slow';
         this.settings.loop = ['all','one','off'].includes(raw.loop) ? raw.loop : 'all';
-        this.settings.rate = safeNumber(raw.rate, 1, 0.5, 2);
+        this.settings.rate = raw.schemaVersion===2&&rates.includes(raw.rate)?raw.rate:.7;
         this.settings.voice = typeof raw.voice === 'string' ? raw.voice : '';
-        for (const c of chapters) {
-          this.settings.audioPositions[c.id] = safeNumber(raw.audioPositions?.[c.id],0,0,86400);
-          this.settings.speechPositions[c.id] = safeNumber(raw.speechPositions?.[c.id],0,0,this.textFor(c).length);
-        }
+        if(raw.schemaVersion===2)for(const [key,value]of Object.entries(raw.audioPositions??{}))this.settings.audioPositions[key]=safeNumber(value,0,0,86400);
+        if(raw.schemaVersion===2)for (const c of chapters)this.settings.speechPositions[c.id] = safeNumber(raw.speechPositions?.[c.id],0,0,this.textFor(c).length);
       }
     } catch { this.status = '无法读取本机记录；仍可正常播放。'; }
     if (!this.speechSupported && this.settings.mode === 'speech') this.settings.mode = 'audio';
     this.speechOffset = this.settings.speechPositions[this.current.id] ?? 0;
     this.audio.preload = 'metadata';
+    this.audio.preservesPitch=true;
+    (this.audio as HTMLAudioElement&{webkitPreservesPitch?:boolean}).webkitPreservesPitch=true;
     this.audio.controls = true;
     this.audio.setAttribute('aria-label', '系统 MP3 播放器');
     this.audio.addEventListener('play', () => {
@@ -67,7 +78,7 @@ export class Player {
     this.audio.addEventListener('seeking',observePosition);
     this.audio.addEventListener('timeupdate', () => { if(this.settings.mode === 'audio') { observePosition(); this.save(false); this.changed(); } });
     this.audio.addEventListener('ratechange', () => {
-      if (this.settings.mode === 'audio') { this.settings.rate = safeNumber(this.audio.playbackRate,1,0.5,2); this.save(); this.changed(); }
+      if (this.settings.mode === 'audio') { const requested=this.audio.playbackRate*(this.imported.has(this.current.id)?1:library.referenceRate);this.settings.rate=rates.reduce((a,b)=>Math.abs(b-requested)<Math.abs(a-requested)?b:a);if(Math.abs(this.audio.playbackRate-this.mediaRate)>.0001)this.audio.playbackRate=this.mediaRate;this.save(); this.changed(); }
     });
     this.audio.addEventListener('loadedmetadata', () => {
       if(this.audio.currentSrc !== this.audioSource) return;
@@ -75,7 +86,7 @@ export class Player {
       if (Number.isFinite(this.audio.duration) && this.audio.duration > 0) {
         this.audio.currentTime = Math.min(this.restoredAt, Math.max(0,this.audio.duration - 0.05));
       }
-      this.restoredAt = 0; this.audio.playbackRate = this.settings.rate; this.changed();
+      this.restoredAt = 0; this.audio.playbackRate = this.mediaRate; this.changed();
     });
     this.audio.addEventListener('ended', () => { if (this.settings.mode === 'audio') this.finished(); });
     this.audio.addEventListener('error', () => {
@@ -96,22 +107,27 @@ export class Player {
   }
   get current() { return chapters.find(c => c.id === this.settings.chapter)!; }
   get index() { return chapters.indexOf(this.current); }
-  textFor(c: Chapter) { return c.segments.map(s => s.text).join('\n\n'); }
+  textFor(c: Chapter) { return c.segments.map(s => s.parts.filter(p=>p.text).map(p=>p.text).join('\n\n')).join('\n\n'); }
+  get profile(){return library.presets.find(p=>p.id===this.settings.preset)!;}
+  get mediaRate(){return this.settings.rate/(this.imported.has(this.current.id)?1:library.referenceRate);}
+  positionKeyFor(id:string){return this.settings.preset+':'+id+':'+(this.imported.get(id)?.name??this.builtinSource(id));}
+  get positionKey(){return this.positionKeyFor(this.current.id);}
   get text() { return this.textFor(this.current); }
   get audioSource(): string | undefined {
     return this.imported.get(this.current.id)?.url ?? this.builtinSource(this.current.id);
   }
   builtinSource(id: string): string | undefined {
-    const file = (library.audio as Record<string,string>)[id];
+    const file = library.audioModes[this.settings.preset][id];
     return file ? new URL(file, document.baseURI).href : undefined;
   }
   get position() { return this.settings.mode === 'audio' ? this.audio.currentTime : this.speechOffset; }
   get duration() { return this.settings.mode === 'audio' ? (this.audioReady && Number.isFinite(this.audio.duration) ? this.audio.duration : 0) : this.text.length; }
   get progress() { return this.duration > 0 ? Math.min(1,this.position/this.duration) : 0; }
   get activeSegment() {
-    if (this.settings.mode === 'audio') return -1; // MP3 files have no invented word/sentence timestamps.
-    let offset = 0;
-    return this.current.segments.findIndex(s => { const end=offset+s.text.length+2; const found=this.speechOffset < end; offset=end; return found; });
+    if (this.settings.mode === 'speech')return this.speechActiveIndex;
+    if(this.imported.has(this.current.id)||this.audio.currentSrc!==this.builtinSource(this.current.id))return -1;
+    const cues=library.timings[this.settings.preset][this.current.id]??[];
+    return cues.findIndex(t=>this.audio.currentTime>=t.start&&this.audio.currentTime<t.end);
   }
   refreshVoices = () => {
     this.voices = this.synth?.getVoices().filter(v => /^en(?:-|_)/i.test(v.lang) || v.lang.toLowerCase()==='en') ?? [];
@@ -122,11 +138,13 @@ export class Player {
     const now = Date.now();
     if (!force && now-this.savedAt<1000) return;
     this.savedAt = now;
-    if(this.settings.mode==='audio' && this.audioReady && this.audio.currentSrc===this.audioSource) this.settings.audioPositions[this.current.id]=this.audio.currentTime;
+    if(this.settings.mode==='audio' && this.audioReady && this.audio.currentSrc===this.audioSource) this.settings.audioPositions[this.positionKey]=this.audio.currentTime;
     if(this.settings.mode==='speech') this.settings.speechPositions[this.current.id]=this.speechOffset;
     try { localStorage.setItem(storageKey, JSON.stringify(this.settings)); } catch { /* Storage can be disabled. Playback stays available. */ }
   }
   pause() {
+    if(this.speechTimer)clearTimeout(this.speechTimer);
+    if(this.audioTimer)clearTimeout(this.audioTimer);
     this.wantedPlayback=false; this.loopRestartAllowed=false;
     this.token++; this.busy = false; this.playing = false;
     this.synth?.cancel(); this.utterance = undefined;
@@ -134,6 +152,7 @@ export class Player {
   }
   async play() {
     if(this.busy || this.playing) return;
+    if(this.audioTimer)clearTimeout(this.audioTimer);
     this.wantedPlayback=true;
     if(this.settings.mode==='speech') {
       if(!this.synth) { this.status='此浏览器不支持朗读，请使用 MP3 模式。'; this.changed(); return; }
@@ -148,38 +167,48 @@ export class Player {
     this.busy=true; this.status='正在打开音频…'; this.changed();
     const expected = ++this.token;
     const startedAt=this.audio.currentTime;
-    setTimeout(()=>{
+    this.audioTimer=setTimeout(()=>{
       if(expected!==this.token || this.settings.mode!=='audio' || !this.wantedPlayback)return;
       if(this.audio.readyState<2 || (!this.audio.paused && this.audio.currentTime<=startedAt+.02)){
         this.token++;this.audioFailed=true;this.wantedPlayback=false;this.audio.pause();
         this.playing=false;this.busy=false;this.status='音频加载失败或长时间无响应。请检查文件或网络后重试。';this.changed();
       }
-    },5000);
+    },15000);
     try { await this.audio.play(); }
     catch (e) {
       if(expected!==this.token) return;
-      this.busy=false; this.playing=false;
+      this.busy=false; this.playing=false;this.wantedPlayback=false;
       this.status=e instanceof DOMException && e.name==='NotAllowedError' ? '浏览器阻止了自动播放。请轻点播放继续。' : '播放失败，请确认文件是可播放的 MP3 后重试。'; this.changed();
     }
   }
   private speak() {
     if(!this.synth) return;
-    const start=this.speechOffset, chunk=speechChunk(this.text,start), expected=++this.token;
+    this.refreshVoices();
+    if(!this.voices.length){this.wantedPlayback=false;this.playing=false;this.busy=false;this.status='未找到英语语音，请使用内置 MP3。';this.changed();return;}
+    let at=0;
+    const units:{text:string;start:number;end:number;segment:number;pause:number}[]=[];
+    this.current.segments.forEach((s,segment)=>{
+      for(const p of s.parts){if(p.text){units.push({text:p.text,start:at,end:at+p.text.length,segment,pause:0});at+=p.text.length+2;}else if(units.length)units.at(-1)!.pause+=(p.pauseMs??0)*this.profile.slotFactor;}
+      if(units.length)units.at(-1)!.pause+=s.kind==='source-phrase'?this.profile.phraseGapMs:this.profile.sentenceGapMs;
+    });
+    const unit=units.find(u=>this.speechOffset<u.end);
+    if(!unit){this.finished();return;}
+    const start=Math.max(this.speechOffset,unit.start),chunk=unit.text.slice(start-unit.start),expected=++this.token;
     if(!chunk.trim()) { this.finished(); return; }
     const utterance=new SpeechSynthesisUtterance(chunk);
-    this.utterance=utterance; utterance.lang='en-US'; utterance.rate=this.settings.rate;
+    this.utterance=utterance; utterance.lang='en-US'; utterance.rate=this.settings.rate*(this.settings.preset==='continuous'?1:.88);
     utterance.voice=this.voices.find(v=>v.voiceURI===this.settings.voice) ?? this.voices.find(v=>v.localService) ?? this.voices[0];
     utterance.lang=utterance.voice?.lang ?? 'en-US';
-    utterance.onstart=()=>{ if(expected!==this.token)return; this.playing=true; this.busy=false; this.status='英语朗读中 · 适合前台聆听'; this.changed(); };
+    utterance.onstart=()=>{ if(expected!==this.token)return; this.speechActiveIndex=unit.segment;this.playing=true; this.busy=false; this.status='英语朗读中'; this.changed(); };
     utterance.onboundary=e=>{ if(expected!==this.token)return; this.speechOffset=start+e.charIndex; this.save(false); this.changed(); };
-    utterance.onend=()=>{ if(expected!==this.token)return; this.speechOffset=start+chunk.length; this.save(); if(this.speechOffset>=this.text.length)this.finished(); else this.speak(); };
+    utterance.onend=()=>{ if(expected!==this.token)return; this.speechOffset=unit.end+2; this.save();const recall=this.profile.recallFactor?Math.max(2400,chunk.split(/\s+/).length*420*this.profile.recallFactor):0;this.speechTimer=setTimeout(()=>{if(expected!==this.token)return;if(this.speechOffset>=this.text.length)this.finished();else this.speak();},Math.max(unit.pause,recall)); };
     utterance.onerror=e=>{ if(expected!==this.token)return; this.playing=false; this.busy=false; this.status='朗读中断（'+e.error+'）。请轻点播放重试，或切换英语语音。'; this.changed(); };
     this.synth.speak(utterance); this.changed();
   }
   select(id: string, autoplay = this.playing || this.busy, restart = false) {
     if(!chapters.some(c=>c.id===id)) return;
     this.pause(); this.settings.chapter=id;
-    if(restart) { this.settings.audioPositions[id]=0; this.settings.speechPositions[id]=0; }
+    if(restart) { this.settings.audioPositions[this.positionKeyFor(id)]=0; this.settings.speechPositions[id]=0; }
     this.speechOffset=this.settings.speechPositions[id] ?? 0;
     if(this.settings.mode==='audio') this.loadAudio();
     this.status='已选择：'+this.current.title; this.save(); this.changed();
@@ -196,7 +225,7 @@ export class Player {
   setRate(rate: number) {
     const resume=this.playing||this.busy;
     if(this.settings.mode==='speech')this.pause();
-    this.settings.rate=safeNumber(rate,1,0.5,2); this.audio.playbackRate=this.settings.rate; this.save(); this.changed();
+    const requested=safeNumber(rate,.7,.55,1);this.settings.rate=rates.reduce((a,b)=>Math.abs(b-requested)<Math.abs(a-requested)?b:a); this.audio.playbackRate=this.mediaRate; this.save(); this.changed();
     if(resume && this.settings.mode==='speech')void this.play();
   }
   setVoice(uri: string) {
@@ -204,6 +233,13 @@ export class Player {
     this.pause(); this.settings.voice=uri; this.save(); this.changed(); if(resume)void this.play();
   }
   setLoop(loop: LoopMode) { this.settings.loop=loop; this.audio.loop=loop==='one'; this.save(); this.changed(); }
+  setPreset(preset:Preset){
+    if(!['continuous','slow','recite'].includes(preset)||preset===this.settings.preset)return;
+    const resume=this.playing||this.busy,segment=this.activeSegment;
+    this.pause();this.settings.preset=preset;
+    if(this.settings.audioPositions[this.positionKey]===undefined&&segment>=0)this.settings.audioPositions[this.positionKey]=library.timings[preset][this.current.id]?.[segment]?.start??0;
+    if(this.settings.mode==='audio')this.loadAudio();this.save();this.changed();if(resume)void this.play();
+  }
   seek(ratio: number) {
     ratio=safeNumber(ratio,0,0,1);
     if(this.settings.mode==='audio') {
@@ -222,17 +258,22 @@ export class Player {
     this.loopRestartAllowed=false;
     this.audioFailed=false;
     const source=this.audioSource;
-    this.audio.pause(); this.audio.loop=this.settings.loop==='one'; this.audio.playbackRate=this.settings.rate;
-    this.restoredAt=this.settings.audioPositions[this.current.id] ?? 0;
+    this.audio.pause(); this.audio.loop=this.settings.loop==='one'; this.audio.playbackRate=this.mediaRate;
+    this.restoredAt=this.settings.audioPositions[this.positionKey] ?? 0;
     if(source) this.audio.src=source; else this.audio.removeAttribute('src');
     this.audio.load();
   }
   private finished() {
     const completed=this.current.id;
-    const next=nextIndex(this.index,chapters.length,this.settings.loop);
+    const completedKey=this.positionKey;
+    const preferred=chapters.filter(c=>c.inMainLoop),list=preferred.length?preferred:chapters,index=list.findIndex(c=>c.id===completed);
+    let next: number|null;
+    if(this.settings.loop==='one')next=this.index;
+    else if(index>=0){const target=nextIndex(index,list.length,this.settings.loop);next=target===null?null:chapters.indexOf(list[target]);}
+    else {const after=chapters.findIndex((c,i)=>i>this.index&&c.inMainLoop);next=this.settings.loop==='off'?null:after>=0?after:chapters.indexOf(list[0]);}
     if(next===null) { this.playing=false; this.busy=false; this.status='本列表已播放完毕'; this.changed(); this.save(); return; }
     this.select(chapters[next].id,true,true);
-    this.settings.audioPositions[completed]=0; this.settings.speechPositions[completed]=0;
+    this.settings.audioPositions[completedKey]=0;this.settings.speechPositions[completed]=0;
     this.save();
   }
   importFile(id: string, file: File) {
@@ -241,7 +282,7 @@ export class Player {
     if(current && this.settings.mode==='audio')this.pause();
     const url=URL.createObjectURL(file);
     this.imported.set(id,{url,name:file.name});
-    if(current && this.settings.mode==='audio') { this.settings.audioPositions[id]=0; this.loadAudio(); }
+    if(current && this.settings.mode==='audio') { this.settings.audioPositions[this.positionKey]=0; this.loadAudio(); }
     if(previous)URL.revokeObjectURL(previous.url);
     this.status='已在本机关联：'+file.name+'。刷新后需要重新导入。'; this.changed();
     if(resume)void this.play();
@@ -250,7 +291,7 @@ export class Player {
     const previous=this.imported.get(id); if(!previous)return;
     if(id===this.current.id && this.settings.mode==='audio')this.pause();
     this.imported.delete(id);
-    if(id===this.current.id && this.settings.mode==='audio') { this.settings.audioPositions[id]=0; this.loadAudio(); }
+    if(id===this.current.id && this.settings.mode==='audio') { this.settings.audioPositions[this.positionKey]=0; this.loadAudio(); }
     URL.revokeObjectURL(previous.url); this.status='已移除本地关联'; this.changed();
   }
   private configureMediaSession() {
@@ -273,7 +314,7 @@ export class Player {
       }
       if(typeof MediaMetadata!=='undefined' && navigator.mediaSession.metadata?.title!==this.current.title) navigator.mediaSession.metadata=new MediaMetadata({title:this.current.title,artist:'听一遍',album:'考研英语作文磨耳朵'});
       navigator.mediaSession.playbackState=this.playing?'playing':'paused';
-      if(this.duration>0)navigator.mediaSession.setPositionState?.({duration:this.duration,playbackRate:this.settings.rate,position:Math.min(this.duration,this.position)});
+      if(this.duration>0)navigator.mediaSession.setPositionState?.({duration:this.duration,playbackRate:this.audio.playbackRate,position:Math.min(this.duration,this.position)});
       else navigator.mediaSession.setPositionState?.();
     } catch {/* Unsupported Media Session features must never stop playback. */}
   }

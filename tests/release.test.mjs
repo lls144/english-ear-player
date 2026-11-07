@@ -25,7 +25,7 @@ test('a transient Windows directory lock preserves a complete recoverable checkp
 test('rollback checkpoints must match both private source bytes and public English',()=>{
  const source='## 一段\nEducation matters in modern society.';
  const m={chapters:[{id:'picture',segments:[{id:'one',kind:'source-text',text:'Education matters in modern society.',sourceLines:[[2,2]]}]}]};
- const b=bootstrap(source,m);assert.doesNotThrow(()=>verifyCheckpoint(b.materials,b.state,source));
+ const b=bootstrap(source);assert.doesNotThrow(()=>verifyCheckpoint(b.materials,b.state,source));
  assert.throws(()=>verifyCheckpoint(b.materials,b.state,source+' Another sentence.'),/source hash/);
  const edited=structuredClone(b.materials);edited.chapters[0].segments[0].text='Different English.';
  assert.throws(()=>verifyCheckpoint(edited,b.state,source),/published material/);

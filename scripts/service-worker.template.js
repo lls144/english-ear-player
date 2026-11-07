@@ -4,7 +4,7 @@ const BASE=new URL('./',self.location.href);
 self.addEventListener('install',event=>event.waitUntil((async()=>{
  const cache=await caches.open(CACHE);
  try{
-  for(const item of ENTRIES){
+  for(const item of ENTRIES.filter(item=>item.precache!==false)){
    const url=new URL(item.url,BASE),response=await fetch(url,{cache:'reload'});
    if(!response.ok)throw Error('Incomplete release asset');
    const bytes=await response.clone().arrayBuffer();
@@ -36,7 +36,20 @@ self.addEventListener('fetch',event=>{
  event.respondWith((async()=>{
   const cached=await caches.match(request.url,{ignoreSearch:false});
   if(cached)return request.headers.has('range')?ranged(cached,request.headers.get('range')):cached;
-  return fetch(request);
+  const response=await fetch(request);
+  const item=ENTRIES.find(item=>new URL(item.url,BASE).href===request.url);
+  const range=response.headers.get('Content-Range');
+  const fullRange=range&&/^bytes 0-(\d+)\/(\d+)$/.exec(range);
+  if(item&&response.ok&&(response.status===200||(fullRange&&Number(fullRange[1])+1===Number(fullRange[2])))){
+   event.waitUntil((async()=>{
+    const bytes=await response.clone().arrayBuffer();
+    const digest=[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(n=>n.toString(16).padStart(2,'0')).join('');
+    if(digest!==item.sha256)return;
+    const cache=await caches.open(CACHE),headers=new Headers(response.headers);headers.delete('Content-Range');headers.delete('Content-Encoding');headers.set('Content-Length',String(bytes.byteLength));
+    await cache.put(request.url,new Response(bytes,{status:200,headers}));
+   })().catch(()=>{}));
+  }
+  return response;
  })());
 });
 

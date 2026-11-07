@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "engine": "kokoro-onnx",
+  "engineVersion": "0.6.1",
+  "model": "Kokoro-82M-v1.0",
+  "modelSha256": "39f1c1e8426fe6b67844485d0b3b0d54d175b5b2cb1218fa4a8387b9dc6413ed",
+  "voicesSha256": "a42962a5fdce4be50065303b60bfb33c1f0a2a1e891135d3ef81c2bf7411a76f",
+  "voice": "af_heart",
+  "language": "en-us",
+  "license": "Apache-2.0",
+  "processor": "source-only-context-guard-v1.1.0",
+  "shortPhraseMinSpeed": 0.85,
+  "sampleRate": 24000,
+  "referenceRate": 0.7,
+  "bitrate": "96k",
+  "presets": {
+    "continuous": {
+      "label": "连续听",
+      "modelSpeed": 0.7,
+      "sentenceGapMs": 650,
+      "phraseGapMs": 850,
+      "slotFactor": 1,
+      "recallFactor": 0
+    },
+    "slow": {
+      "label": "慢速听",
+      "modelSpeed": 0.6,
+      "sentenceGapMs": 1200,
+      "phraseGapMs": 1400,
+      "slotFactor": 1.3,
+      "recallFactor": 0
+    },
+    "recite": {
+      "label": "跟背听",
+      "modelSpeed": 0.65,
+      "sentenceGapMs": 2400,
+      "phraseGapMs": 2400,
+      "slotFactor": 1.5,
+      "recallFactor": 0.85
+    }
+  },
+  "upstreamModelSha256": "8fbea51ea711f2af382e88c833d9e288c6dc82ce5e98421ea61c058ce21a34cb"
+}
