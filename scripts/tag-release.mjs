@@ -1,7 +1,7 @@
 import {execFileSync} from 'node:child_process';
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import {verifyCheckpoint} from './release-checkpoint.mjs';
+import {verifyCheckpoint,retainCheckpoint} from './release-checkpoint.mjs';
 const value=n=>process.argv[process.argv.indexOf(n)+1],commit=value('--commit'),version=value('--version');
 if(!/^[a-f0-9]{40}$/.test(commit)||!/^\d+\.\d+\.\d+$/.test(version))throw Error('A verified production commit and stable version are required');
 const git=(...a)=>execFileSync('git',a,{encoding:'utf8',windowsHide:true}).trim();
@@ -30,6 +30,7 @@ else{
  await fs.writeFile(path.join(pending,'sync-state.json'),JSON.stringify(state,null,2)+'\n');
  await fs.writeFile(path.join(pending,'source-current.md'),source);
  await fs.writeFile(path.join(pending,'release.json'),JSON.stringify({tag,commit},null,2)+'\n');
- await fs.rename(pending,target);
+ if(!target.startsWith(checkpoints+path.sep)||!pending.startsWith(checkpoints+path.sep))throw Error('Checkpoint path escapes local storage');
+ await retainCheckpoint(pending,target);
 }
 console.log('Verified private source checkpoint retained locally.');
