@@ -48,7 +48,14 @@ try{
  const before=JSON.parse(await fs.readFile(path.join(stage,'content/materials.json'),'utf8'));
  const python=path.join(root,process.platform==='win32'?'.venv/Scripts/python.exe':'.venv/bin/python'),env={EAR_PYTHON:python};
  let audioSummary={changed:[],reused:[],deleted:[],generated:[]};
- if(rollback){git(stage,'restore','--source='+rollback,'--staged','--worktree','--','.');}
+ if(rollback){
+  const prior=JSON.parse(await fs.readFile(path.join(stage,'content/audio-provenance.json'),'utf8'));
+  git(stage,'restore','--source='+rollback,'--staged','--worktree','--','.');
+  const restored=JSON.parse(await fs.readFile(path.join(stage,'content/audio-provenance.json'),'utf8'));
+  audioSummary.changed=restored.filter(r=>prior.find(p=>p.id===r.id)?.mp3Sha256!==r.mp3Sha256).map(r=>r.id);
+  audioSummary.reused=restored.filter(r=>!audioSummary.changed.includes(r.id)).map(r=>r.id);
+  audioSummary.deleted=prior.filter(r=>!restored.some(p=>p.id===r.id)).map(r=>r.id);
+ }
  else{
   run(stage,[process.execPath,'scripts/sync-notes.mjs',...(fixture?['--source-file',path.resolve(fixture)]:[])]);
   npmRun(stage,'audio:update',env);

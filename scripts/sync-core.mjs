@@ -79,7 +79,7 @@ export function synchronize(state,source,materials,resolutions={}){
   }
   if(!users.length){changes.push({type:'unselected-source-'+change.type,sourceId:id});continue;}
   for(const {chapter,segment:s}of users){
-   if(resolutions[id]?.action==='keep-adaptation'&&resolutions[id].reason){changes.push({type:'reviewed-preserved',id:s.id,sourceId:id});continue;}
+   if(!['source-text','source-example'].includes(s.kind)&&resolutions[id]?.action==='keep-adaptation'&&resolutions[id].reason){changes.push({type:'reviewed-preserved',id:s.id,sourceId:id});continue;}
    if(!['source-text','source-example'].includes(s.kind)||s.sourceIds.length!==1){conflicts.push({type:'edited-material-source-changed',id:s.id,sourceId:id,change});continue;}
    if(state.rendered[s.id]!==hash(s.text)){conflicts.push({type:'local-edit-conflict',id:s.id,change});continue;}
    if(change.type==='deleted'){chapter.segments.splice(chapter.segments.indexOf(s),1);changes.push({type:'deleted',id:s.id,chapter:chapter.id});continue;}

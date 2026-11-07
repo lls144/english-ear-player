@@ -10,6 +10,7 @@ try{
  patterns.push(['private-source-location',new RegExp([c.repository,c.path].map(escape).join('|'))]);
 }catch(error){if(error.code!=='ENOENT')throw error;}
 const issues=[];let checked=0;
+patterns.push(['common-api-secret',/sk-(?:proj-|svcacct-)?[A-Za-z0-9_-]{32,}|AKIA[A-Z0-9]{16}|AIza[A-Za-z0-9_-]{35}|xox[baprs]-[A-Za-z0-9-]{20,}|npm_[A-Za-z0-9]{32,}/]);
 function inspect(name,bytes){
  if(denied.test(name))issues.push({file:name,rule:'forbidden-path'});
  if(/\.(?:mp3|png|jpg|zip)$/.test(name))return;

@@ -52,4 +52,10 @@ test('wrapped complete English is a single paragraph',()=>{
  const f=fixture(),r=synchronize(f.state,source.replace('## 连接词','Consistent practice helps students\nmake steady progress.\n## 连接词'),f.materials);
  assert.equal(r.conflicts.length,0);assert.equal(r.materials.chapters[2].segments.at(-1).text,'Consistent practice helps students make steady progress.');
 });
+test('reviewing a shared adaptation does not suppress updates to its raw-source example',()=>{
+ const f=fixture(),raw=f.materials.chapters[2].segments[0],adapt=f.materials.chapters[0].segments[0];
+ adapt.sourceIds.push(...raw.sourceIds);
+ const r=synchronize(f.state,source.replace('Practice helps us improve steadily.','Regular practice helps us improve steadily.'),f.materials,{[raw.sourceIds[0]]:{action:'keep-adaptation',reason:'Reviewed: the independent scene adaptation remains correct.'}});
+ assert.equal(r.conflicts.length,0);assert.equal(r.materials.chapters[0].segments[0].text,adapt.text);assert.match(r.materials.chapters[2].segments[0].text,/^Regular practice/);
+});
 
