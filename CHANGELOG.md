@@ -1,3 +1,7 @@
+## 1.1.1-rehearsal
+
+Chapters 5 → 5; segments 66 → 66; generated MP3: picture, picture-slow, picture-recite.
+
 ## 1.1.0
 
 Strict source-only rebuild: removed 27 edited entries containing 58 invented/completed sentences; retained the real cartoon example, all original templates and connector categories. Now 5 chapters / 66 source items, with slots spoken as silence. Source-only synchronization and publication gates prevent reintroduction.

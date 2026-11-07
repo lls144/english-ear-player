@@ -5,20 +5,20 @@
   "entries": [
     {
       "id": "picture",
-      "mp3Sha256": "d46c67c21c59d8cdd73efb5fef67d4057fbe4f125a35b1dde54e49b2c9b05970",
-      "readingPlanSha256": "d9f52a906c1003550d2b9831c2762f0732e291a85b7fb4b369c2835eb59f6d93",
+      "mp3Sha256": "3f3b140b267f3d2dc7ca90d6cd21390e5ec88abb6640707023b40a5270147f6f",
+      "readingPlanSha256": "9ebf82b25ff694be45419fdb25d0a5def1cd0865214c643ac61b2aad9be6a510",
       "settingsSha256": "7104d77d0272b7a8bec5d0838b569ae6ed092ba065ec6e1f2dee4123f3d7eb62",
       "referenceWords": 82,
-      "rawWordErrorRate": 0.0,
-      "normalizedWordErrorRate": 0.0,
+      "rawWordErrorRate": 0.0122,
+      "normalizedWordErrorRate": 0.0122,
       "fullTrackWordErrorRate": 0.0122,
       "passed": true,
       "audit": "faster-whisper-base.en-cpu-int8-no-prompt-cue-bounded-v2"
     },
     {
       "id": "picture-slow",
-      "mp3Sha256": "5b6ae0e8158b83afde882ecb900a0692be42adf1b894ea4e5d67ddfa2e7857a8",
-      "readingPlanSha256": "d9f52a906c1003550d2b9831c2762f0732e291a85b7fb4b369c2835eb59f6d93",
+      "mp3Sha256": "1cb8002251f964081d93bb5dd45d7c5467e4bd8f19ad34cb4f7383ebcaf547d4",
+      "readingPlanSha256": "9ebf82b25ff694be45419fdb25d0a5def1cd0865214c643ac61b2aad9be6a510",
       "settingsSha256": "2af90e18bed4bfea53da02ed27dfc7c4a0058ff6bc1b89e1b3b5008e8ebcff83",
       "referenceWords": 82,
       "rawWordErrorRate": 0.0732,
@@ -29,12 +29,12 @@
     },
     {
       "id": "picture-recite",
-      "mp3Sha256": "4fb77f1a79874d85179c68fc6bed0dd916de4fcdae11baa1133c508c0f37846e",
-      "readingPlanSha256": "d9f52a906c1003550d2b9831c2762f0732e291a85b7fb4b369c2835eb59f6d93",
+      "mp3Sha256": "431b26c76059b93b94528f6ea82cd5c439bf86ac9a72c8fc21204d01100bae24",
+      "readingPlanSha256": "9ebf82b25ff694be45419fdb25d0a5def1cd0865214c643ac61b2aad9be6a510",
       "settingsSha256": "5ac3097a1cc73c5c1e990ef062648327b87f65a73c5f10b69a0ad31f4661eef3",
       "referenceWords": 82,
-      "rawWordErrorRate": 0.0122,
-      "normalizedWordErrorRate": 0.0122,
+      "rawWordErrorRate": 0.0,
+      "normalizedWordErrorRate": 0.0,
       "fullTrackWordErrorRate": 0.0122,
       "passed": true,
       "audit": "faster-whisper-base.en-cpu-int8-no-prompt-cue-bounded-v2"
