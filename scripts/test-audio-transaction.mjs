@@ -5,6 +5,7 @@ import assert from 'node:assert/strict';
 import {spawnSync} from 'node:child_process';
 import {root,sha} from './content.mjs';
 const python=process.env.EAR_AI_PYTHON??path.join(root,process.platform==='win32'?'.local/ai-venv/Scripts/python.exe':'.local/ai-venv/bin/python');
+await fs.mkdir(path.join(root,'.local/qa'),{recursive:true});
 const folder=await fs.mkdtemp(path.join(root,'.local/qa/audio-transaction-'));
 await fs.mkdir(path.join(folder,'scripts'));await fs.copyFile(path.join(root,'scripts/kokoro_audio.py'),path.join(folder,'scripts/kokoro_audio.py'));
 await fs.cp(path.join(root,'content'),path.join(folder,'content'),{recursive:true});
