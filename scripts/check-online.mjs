@@ -7,14 +7,20 @@ if(!url.startsWith('https://'))throw Error('Formal online acceptance requires HT
 const expected=await readJson('src/library.generated.json'),receipts=await readJson('content/audio-provenance.json');
 let meta;
 for(let n=0;n<24;n++){
- try{const r=await fetch(new URL('version.json?verify='+Date.now(),url),{cache:'no-store'});if(r.ok){const m=await r.json();if(m.contentVersion===expected.contentVersion&&m.version===expected.version){meta=m;break;}}}catch{}
+ try{const r=await fetch(new URL('version.json?verify='+Date.now(),url),{cache:'no-store',signal:AbortSignal.timeout(10000)});if(r.ok){const m=await r.json();if(m.contentVersion===expected.contentVersion&&m.version===expected.version){meta=m;break;}}}catch{}
  if(n%4===0)console.log('Waiting for HTTPS release metadata/CDN propagation…');await wait(5000);
 }
 if(!meta)throw Error('Production metadata did not match the validated release');
 const audio=[];
 for(const [id,file]of Object.entries(meta.audio)){
- const response=await fetch(new URL(file,url),{cache:'no-store'});if(!response.ok)throw Error('HTTPS audio missing: '+id);
- const data=Buffer.from(await response.arrayBuffer()),receipt=receipts.find(r=>r.id===id);
+ console.log('Verifying formal HTTPS MP3: '+id);
+ let response,data;
+ for(let attempt=0;attempt<2;attempt++){
+  try{response=await fetch(new URL(file,url),{cache:'no-store',signal:AbortSignal.timeout(45000)});data=Buffer.from(await response.arrayBuffer());break;}
+  catch(error){if(attempt)throw error;console.log('Retrying transient HTTPS download: '+id);await wait(2000);}
+ }
+ if(!response?.ok)throw Error('HTTPS audio missing: '+id);
+ const receipt=receipts.find(r=>r.id===id);
  if(!receipt||sha(data)!==receipt.mp3Sha256)throw Error('Production MP3 hash mismatch: '+id);
  audio.push({id,url:new URL(file,url).href,bytes:data.length,sha256:sha(data),status:response.status});
 }
