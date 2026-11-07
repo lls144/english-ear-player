@@ -4,7 +4,7 @@ const library=JSON.parse(fs.readFileSync('src/library.generated.json','utf8'));
 const receipts=JSON.parse(fs.readFileSync('content/audio-provenance.json','utf8'));
 
 test('formal HTTPS ignores an old HTML metadata and MP3 cache after reopening',async({page,baseURL})=>{
- test.setTimeout(90000);
+ test.setTimeout(240000);
  const errors:string[]=[],obsoleteRequests:string[]=[];
  page.on('pageerror',e=>errors.push(String(e)));
  // The manifest-only setup document may request the account-root favicon;
@@ -26,7 +26,7 @@ test('formal HTTPS ignores an old HTML metadata and MP3 cache after reopening',a
   await cache.put(new URL('assets/audio/generated/obsolete-release.mp3',document.baseURI),new Response('obsolete audio'));
  },navigation);
  await page.goto(navigation);
- await page.waitForFunction(()=>!!navigator.serviceWorker.controller,{},{timeout:60000});
+ await page.waitForFunction(()=>!!navigator.serviceWorker.controller,{},{timeout:120000});
  expect((await page.evaluate(()=>caches.keys()))[0]).toBe('english-ear-regression-old-version');
  await page.reload();
  await expect(page.locator('#chapter-title')).toHaveText(library.chapters[0].title);

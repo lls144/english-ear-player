@@ -175,7 +175,7 @@ export class Player {
         this.token++;this.audioFailed=true;this.wantedPlayback=false;this.audio.pause();
         this.playing=false;this.busy=false;this.status='音频加载失败或长时间无响应。请检查文件或网络后重试。';this.changed();
       }
-    },15000);
+    },60000);
     try { await this.audio.play(); }
     catch (e) {
       if(expected!==this.token) return;
