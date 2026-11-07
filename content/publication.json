@@ -1,7 +1,13 @@
 {
-  "approved": false,
-  "materialsSha256": "",
-  "audioManifestSha256": "",
-  "note": "发布前审核 materials.json 中的模板补全与原笔记示例，以及每个音频文件；审核后填入哈希。当前没有任何发布授权。"
+  "approved": true,
+  "materialsSha256": "521291fdb77e4055efbbe6f8c1c898677417dfafbf484569e34704dc2f59d3f0",
+  "audioManifestSha256": "ec8a1b3ddaecfe5d213d8979f7e45befd3a2ed23abe7cd161d533c3913549abb",
+  "audioFilesSha256": {
+    "assets/audio/picture.mp3": "3b7b4cb51eb784c6b41cf2b4d80e5bd7b4a032c3d3fcd52b629348003dba8400",
+    "assets/audio/theme-trends.mp3": "d76b260a7d725fcb2ec1433a954201de3e0c3fdc7ec3663744c1f923525e349b",
+    "assets/audio/reasons.mp3": "2363c9493cd162e89073abdae8055da5b9fcac37590f306de73195a9d65a2e3f",
+    "assets/audio/connectors.mp3": "2881183ab9b1e5c17c99eeb6d679680b5a11c66ef388ddadae52ea9712487417",
+    "assets/audio/conclusion.mp3": "3d0243585a352f384a4535278296ca2a3e1494bcc97298e77d72111525d6c18b"
+  },
+  "authorization": "Owner authorized this independent reader and confirmed-source content updates."
 }
-
