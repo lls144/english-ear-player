@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import {stripTypeScriptTypes} from 'node:module';
 class AudioStub extends EventTarget{
- attributes={};currentTime=0;duration=100;readyState=4;playbackRate=1;loop=false;paused=true;ended=false;
+ attributes={};currentTime=0;duration=100;readyState=4;networkState=1;seeking=false;playbackRate=1;loop=false;paused=true;ended=false;
+ get buffered(){return {length:1,start:()=>0,end:()=>this.duration};}
  setAttribute(k,v){this.attributes[k]=v;}getAttribute(k){return this.attributes[k]??null;}removeAttribute(k){delete this.attributes[k];}
  set src(v){this.attributes.src=v;}get src(){return this.attributes.src??'';}get currentSrc(){return this.src;}
  dispatchEvent(e){if(e.type==='ended')this.ended=true;return super.dispatchEvent(e);}
@@ -19,7 +20,7 @@ const library={contentVersion:'test-v1.2',sentenceAudio:{},chapters:m.chapters,r
 for(const mode of ['continuous','slow','recite']){library.sentenceAudio[mode]=Object.fromEntries(m.chapters.flatMap(c=>c.segments.flatMap(s=>s.sentences.map(u=>[u.id,'assets/audio/sentence-'+u.id+'-'+mode+'.mp3']))));library.audioModes[mode]=Object.fromEntries(m.chapters.map(c=>[c.id,'assets/audio/'+c.id+'-'+mode+'.mp3']));library.timings[mode]=Object.fromEntries(m.chapters.map(c=>[c.id,c.segments.map((s,i)=>({segmentId:s.id,sentenceId:s.sentences[0].id,start:i*(mode==='recite'?9:5),speechEnd:i*(mode==='recite'?9:5)+2,end:(i+1)*(mode==='recite'?9:5)}))]));}library.audio=library.audioModes.slow;
 let source=await fs.readFile(new URL('../src/player.ts',import.meta.url),'utf8');source=source.replace("import rawLibrary from './library.generated.json';",'const rawLibrary='+JSON.stringify(library)+';').replace("from './logic'","from '"+new URL('../src/logic.ts',import.meta.url).href+"'");
 const {Player,storageKey}=await import('data:text/javascript;base64,'+Buffer.from(stripTypeScriptTypes(source)).toString('base64'));
-const make=()=>{const p=new Player(()=>{});players.push(p);return p;};const metadata=p=>p.audio.dispatchEvent(new Event('loadedmetadata'));
+const make=()=>{const p=new Player(()=>{});players.push(p);return p;};const metadata=p=>{p.audio.dispatchEvent(new Event('loadedmetadata'));if(!p.audio.paused)p.audio.dispatchEvent(new Event('playing'));};
 beforeEach(()=>{spoken=[];store.clear();actions={};players=[];synth.getVoices=()=>[{lang:'en-US',voiceURI:'english',localService:true}];});afterEach(()=>players.forEach(p=>p.pause()));
 test('first visit uses native slow MP3 with the 0.70 UI setting and no time stretch',()=>{const p=make();assert.equal(p.settings.mode,'audio');assert.equal(p.settings.preset,'slow');assert.equal(p.settings.rate,.7);assert.equal(p.audio.playbackRate,1);assert.equal(p.audio.preservesPitch,true);});
 test('all nine speed settings change actual playback by the calibrated ratio',()=>{const p=make();for(const rate of [.55,.6,.65,.7,.75,.8,.85,.9,1]){p.setRate(rate);assert.ok(Math.abs(p.audio.playbackRate-rate/.7)<1e-8);}p.setRate(2);assert.equal(p.settings.rate,1);});
@@ -61,4 +62,19 @@ test('refresh remembers a stable sentence ID, source, preset, and single-sentenc
 
 test('single loop chapter changes persist an explicit default target even while paused',()=>{const p=make();p.setLoop('sentence');p.select('reasons',false,true);const id=p.sentences[0].id;assert.equal(p.settings.selectedSentences.reasons,id);assert.equal(p.settings.manualSentences.reasons,undefined);const q=make();assert.equal(q.settings.selectedSentences.reasons,id);assert.equal(q.selectedSentence.id,id);assert.equal(q.audio.paused,true);});
 
+test('new sentence loads restart whole while pause resume retains the actual current position',async()=>{const p=make();p.setLoop('sentence');metadata(p);await p.play();p.audio.currentTime=2;p.pause();await p.play();assert.equal(p.audio.currentTime,2);p.setPreset('recite');metadata(p);p.audio.currentTime=3;p.setPreset('slow');metadata(p);assert.equal(p.audio.currentTime,0);assert.equal(p.settings.audioPositions[p.positionKey],0);p.audio.currentTime=2;p.save();const q=make();metadata(q);assert.equal(q.selectedSentence.id,p.selectedSentence.id);assert.equal(q.audio.currentTime,0);});
+
 test('stale ended or error events cannot interrupt a new sentence source',async()=>{const p=make();p.setLoop('sentence');await p.play();p.selectSentence(p.sentences[2].id);const source=p.audio.src;EventTarget.prototype.dispatchEvent.call(p.audio,new Event('ended'));EventTarget.prototype.dispatchEvent.call(p.audio,new Event('error'));assert.equal(p.audio.src,source);assert.equal(p.playing,true);assert.equal(p.selectedSentence.id,p.sentences[2].id);});
+
+const waitUntil=async(fn,ms=4500)=>{const start=Date.now();while(!fn()&&Date.now()-start<ms)await new Promise(r=>setTimeout(r,40));assert.ok(fn(),'Timed out awaiting the startup recovery');};
+test('buffered startup stalls retry once on the same element and require real clock movement',async()=>{
+ const p=make(),q=make();p.setLoop('sentence');q.setLoop('sentence');metadata(p);metadata(q);let pl=0,ql=0;const pa=p.audio,qa=q.audio,pLoad=pa.load.bind(pa),qLoad=qa.load.bind(qa);pa.load=()=>{pl++;pLoad();};qa.load=()=>{ql++;qLoad();};await p.play();await q.play();await waitUntil(()=>pl===1&&ql===1);const ticker=setInterval(()=>{pa.currentTime+=.1;},80);try{await waitUntil(()=>!q.playing);assert.equal(pl,1);assert.equal(ql,1);assert.equal(p.audio,pa);assert.equal(q.audio,qa);assert.equal(p.playing,true);assert.equal(q.audio.paused,true);assert.match(q.status,/失败/);p.pause();assert.equal(pa.paused,true);}finally{clearInterval(ticker);}
+});
+test('partial data is never blindly reloaded and user pause cancels startup recovery',async()=>{
+ const p=make();let loads=0;const load=p.audio.load.bind(p.audio);p.audio.load=()=>{loads++;load();};p.audio.readyState=2;await p.play();await new Promise(r=>setTimeout(r,1500));assert.equal(loads,0);p.pause();p.audio.readyState=4;await new Promise(r=>setTimeout(r,1500));assert.equal(loads,0);assert.equal(p.audio.paused,true);assert.equal(p.playing,false);
+});
+test('a queued stale play event cannot undo an explicit pause',async()=>{const p=make();await p.play();p.pause();p.audio.dispatchEvent(new Event('play'));assert.equal(p.playing,false);assert.equal(p.audio.paused,true);});
+
+test('a queued ended event cannot restart a sentence after explicit pause',async()=>{const p=make();p.setLoop('sentence');await p.play();p.pause();p.audio.dispatchEvent(new Event('ended'));assert.equal(p.playing,false);assert.equal(p.audio.paused,true);});
+
+test('queued native loop restarts cannot undo pause but new API or native control gestures can play',async()=>{const p=make();p.setLoop('sentence');metadata(p);await p.play();p.pause();await p.audio.play();p.audio.dispatchEvent(new Event('playing'));assert.equal(p.audio.paused,true);assert.equal(p.playing,false);await p.play();assert.equal(p.audio.paused,false);assert.equal(p.audio.loop,true);p.pause();p.audio.dispatchEvent(new Event('pointerdown'));await p.audio.play();assert.equal(p.audio.paused,false);assert.equal(p.audio.loop,true);});

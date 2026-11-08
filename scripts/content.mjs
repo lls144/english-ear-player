@@ -6,6 +6,7 @@ import {speechParts,sourceIndex} from './source-only.mjs';
 import {decorateSegment,audioSettingsFor} from './reading.mjs';
 export const root = fileURLToPath(new URL('../', import.meta.url));
 export const sha = b => createHash('sha256').update(b).digest('hex');
+export const contentRevision=(chapters,provenance,clientInputs=[])=>sha(JSON.stringify(chapters)+JSON.stringify(provenance)+sha(clientInputs.map(s=>s.replace(/\r\n/g,'\n')).join('\0'))).slice(0,24);
 export const readJson = async p => JSON.parse(await readFile(path.join(root,p),'utf8'));
 export function validate(materials) {
   if (materials.schemaVersion !== 2 || materials.policy!=='verbatim-source-only' || !Array.isArray(materials.chapters) || !materials.chapters.length) throw Error('Only verbatim source-only V2 material may be published');
@@ -51,7 +52,8 @@ export async function compile() {
   }
   if(m.chapters.some(c=>Object.values(audioModes).some(mode=>!mode[c.id])||c.segments.some(s=>s.sentences.some(u=>Object.values(sentenceAudio).some(mode=>!mode[u.id])))))throw Error('Every sentence and chapter/preset needs a verified MP3');
   const pkg=await readJson('package.json');
-  const published={version:pkg.version,contentVersion:sha(JSON.stringify(m.chapters)+JSON.stringify(provenance)).slice(0,24),chapters:m.chapters.map(c=>({id:c.id,title:c.title,subtitle:c.title,inMainLoop:c.inMainLoop!==false,segments:c.segments.map(({id,text,displayText,speechText,sentences,kind,parts,category,tier})=>({id,text,displayText,speechText,sentences,kind,parts,category,tier}))})),audio:publicAudio,audioModes,sentenceAudio,files,timings,presets:Object.entries(settings.presets).map(([id,p])=>({id,...p})),defaultRate:.7,defaultPreset:'slow',referenceRate:settings.referenceRate};
+  const clientInputs=await Promise.all(['src/main.ts','src/player.ts','src/logic.ts','src/pwa.ts','src/style.css','index.html','scripts/content.mjs','vite.config.ts'].map(f=>readFile(path.join(root,f),'utf8')));
+  const published={version:pkg.version,contentVersion:contentRevision(m.chapters,provenance,clientInputs),chapters:m.chapters.map(c=>({id:c.id,title:c.title,subtitle:c.title,inMainLoop:c.inMainLoop!==false,segments:c.segments.map(({id,text,displayText,speechText,sentences,kind,parts,category,tier})=>({id,text,displayText,speechText,sentences,kind,parts,category,tier}))})),audio:publicAudio,audioModes,sentenceAudio,files,timings,presets:Object.entries(settings.presets).map(([id,p])=>({id,...p})),defaultRate:.7,defaultPreset:'slow',referenceRate:settings.referenceRate};
   await mkdir(path.join(root,'src'),{recursive:true});
   await writeFile(path.join(root,'src/library.generated.json'),JSON.stringify(published,null,2)+'\n');
   return m;

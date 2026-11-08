@@ -29,6 +29,9 @@ export class Player {
   private savedAt = 0;
   private restoredAt = 0;
   private audioReady = false;
+  private restorePending = false;
+  private stopStartup?:()=>void;
+  private pauseGuard?:ReturnType<typeof setTimeout>;
   private wantedPlayback = false;
   private loopRestartAllowed = false;
   private audioFailed = false;
@@ -61,13 +64,19 @@ export class Player {
     (this.audio as HTMLAudioElement&{webkitPreservesPitch?:boolean}).webkitPreservesPitch=true;
     this.audio.controls = true;
     this.audio.setAttribute('aria-label', '系统 MP3 播放器');
+    const nativeInteraction=()=>{if(this.pauseGuard)clearTimeout(this.pauseGuard);this.pauseGuard=undefined;};
+    for(const event of ['pointerdown','touchstart','keydown'])this.audio.addEventListener(event,nativeInteraction);
     this.audio.addEventListener('play', () => {
       if(this.settings.mode !== 'audio' || this.audio.error) { this.audio.pause(); return; }
+      if(this.pauseGuard){this.audio.pause();return;}
+      if(this.audio.paused)return;
+      this.audio.loop=this.settings.loop==='one'||this.settings.loop==='sentence';
       this.wantedPlayback = true;
       this.playing = true; this.busy = false; this.status = 'MP3 播放中'; this.changed();
     });
     this.audio.addEventListener('pause', () => {
       if(this.settings.mode !== 'audio' || !this.audio.paused) return;
+      if(this.audio.ended)return; // The ended handler owns natural completion.
       // Some WebKit media backends pause after the native loop seek to zero.
       // Only resume a proven loop boundary, never a user/system pause elsewhere.
       if(this.wantedPlayback && this.audio.loop && this.loopRestartAllowed && this.audio.currentTime < .2 && !this.audio.error) {
@@ -88,12 +97,10 @@ export class Player {
       this.audioReady = true;
       // load() already starts at zero. Seeking to zero again as metadata arrives
       // can stall WebKit's media pipeline just after a user starts playback.
-      if (this.restoredAt>0 && Number.isFinite(this.audio.duration) && this.audio.duration > 0) {
-        this.audio.currentTime = Math.min(this.restoredAt, Math.max(0,this.audio.duration - 0.05));
-      }
-      this.restoredAt = 0; this.audio.playbackRate = this.mediaRate; this.changed();
+      if(this.audio.paused)this.restorePosition(false,true);
+      this.audio.playbackRate = this.mediaRate; this.changed();
     });
-    this.audio.addEventListener('ended', () => { if (this.settings.mode === 'audio'&&this.audio.ended&&this.audio.currentSrc===this.audioSource) this.finished(); });
+    this.audio.addEventListener('ended', () => { if (this.settings.mode === 'audio'&&this.wantedPlayback&&this.audio.ended&&this.audio.currentSrc===this.audioSource) this.finished(); });
     this.audio.addEventListener('error', () => {
       if(this.settings.mode !== 'audio' || !this.audio.getAttribute('src')||!this.audio.error) return;
       this.busy = false; this.playing = false;
@@ -102,7 +109,7 @@ export class Player {
       this.status = '音频无法读取或格式不受支持。请重新导入真实 MP3，或检查内置文件。'; this.changed();
     });
     this.audio.addEventListener('waiting', () => { if(this.settings.mode === 'audio') { this.status = '正在缓冲音频…'; this.changed(); } });
-    this.audio.addEventListener('playing', () => { if(this.settings.mode === 'audio' && !this.audio.error) { this.status = 'MP3 播放中'; this.changed(); } });
+    this.audio.addEventListener('playing', () => { if(this.pauseGuard){this.audio.pause();return;}if(this.settings.mode === 'audio' && !this.audio.error&&this.audio.currentSrc===this.audioSource&&!this.audio.paused) { this.restorePosition(true);this.playing=true;this.busy=false;this.status = 'MP3 播放中'; this.changed(); } });
     this.refreshVoices();
     this.synth?.addEventListener('voiceschanged', this.refreshVoices);
     window.addEventListener('pagehide', () => this.save());
@@ -148,15 +155,20 @@ export class Player {
     try { localStorage.setItem(storageKey, JSON.stringify(this.settings)); } catch { /* Storage can be disabled. Playback stays available. */ }
   }
   pause() {
+    this.stopStartup?.();
+    if(this.pauseGuard)clearTimeout(this.pauseGuard);
+    this.pauseGuard=this.settings.mode==='audio'?setTimeout(()=>{this.pauseGuard=undefined;},250):undefined;
     if(this.speechTimer)clearTimeout(this.speechTimer);
     if(this.audioTimer)clearTimeout(this.audioTimer);
     this.wantedPlayback=false; this.loopRestartAllowed=false;
     this.token++; this.busy = false; this.playing = false;
     this.synth?.cancel(); this.utterance = undefined;
-    this.audio.pause(); this.status = '已暂停'; this.save(); this.changed();
+    this.audio.loop=false;this.audio.pause(); this.status = '已暂停'; this.save(); this.changed();
   }
-  async play() {
+  async play(retrying=false) {
     if(this.busy || this.playing) return;
+    if(this.pauseGuard)clearTimeout(this.pauseGuard);this.pauseGuard=undefined;
+    this.stopStartup?.();
     if(this.audioTimer)clearTimeout(this.audioTimer);
     this.wantedPlayback=true;
     if(this.settings.mode==='speech') {
@@ -169,22 +181,58 @@ export class Player {
     if(!this.audioSource) { this.status='本章还没有 MP3。请导入音频，或先使用浏览器朗读。'; this.changed(); return; }
     if(this.audio.getAttribute('src') !== this.audioSource || this.audio.error || this.audioFailed) this.loadAudio();
     if(this.audio.ended) this.audio.currentTime=0;
+    this.audio.loop=this.settings.loop==='one'||this.settings.loop==='sentence';
     this.busy=true; this.status='正在打开音频…'; this.changed();
     const expected = ++this.token;
-    const startedAt=this.audio.currentTime;
     this.audioTimer=setTimeout(()=>{
       if(expected!==this.token || this.settings.mode!=='audio' || !this.wantedPlayback)return;
-      if(this.audio.readyState<2 || (!this.audio.paused && this.audio.currentTime<=startedAt+.02)){
-        this.token++;this.audioFailed=true;this.wantedPlayback=false;this.audio.pause();
-        this.playing=false;this.busy=false;this.status='音频加载失败或长时间无响应。请检查文件或网络后重试。';this.changed();
-      }
+      // Cleared only after observed clock progress, not merely a play event or seek.
+      this.stopStartup?.();
+      this.token++;this.audioFailed=true;this.wantedPlayback=false;this.audio.pause();
+      this.playing=false;this.busy=false;this.status='音频加载失败或长时间无响应。请检查文件或网络后重试。';this.changed();
     },60000);
-    try { await this.audio.play(); }
+    try { await this.audio.play();if(expected===this.token&&this.settings.mode==='audio'&&this.wantedPlayback)this.observeStartup(expected,retrying); }
     catch (e) {
       if(expected!==this.token) return;
+      if(this.audioTimer)clearTimeout(this.audioTimer);
       this.busy=false; this.playing=false;this.wantedPlayback=false;
       this.status=e instanceof DOMException && e.name==='NotAllowedError' ? '浏览器阻止了自动播放。请轻点播放继续。' : '播放失败，请确认文件是可播放的 MP3 后重试。'; this.changed();
     }
+  }
+  private hasBufferedPosition(at:number){
+    if(this.audio.readyState<3||!Number.isFinite(this.audio.duration))return false;
+    const ranges=this.audio.buffered;if(!ranges)return false;
+    for(let i=0;i<ranges.length;i++)if(ranges.start(i)<=at&&ranges.end(i)>=Math.min(this.audio.duration,at+.2))return true;
+    return false;
+  }
+  private restorePosition(final:boolean,metadata=false){
+    if(!this.restorePending||!this.audioReady||(!metadata&&this.audio.readyState<3))return;
+    const at=Math.min(this.restoredAt,Math.max(0,this.audio.duration-.05));
+    if(final)this.restorePending=false;
+    if(Math.abs(this.audio.currentTime-at)>.03)this.audio.currentTime=at;
+  }
+  private observeStartup(expected:number,retrying:boolean){
+    let previous:number|undefined,stalledSince=0;const began=performance.now();
+    const seeking=()=>{previous=undefined;stalledSince=0;};
+    const cleanup=()=>{clearInterval(timer);this.audio.removeEventListener('seeking',seeking);if(this.stopStartup===cleanup)this.stopStartup=undefined;};
+    const timer=setInterval(()=>{
+      if(expected!==this.token||!this.wantedPlayback||this.settings.mode!=='audio'){cleanup();return;}
+      const now=performance.now(),at=this.audio.currentTime;
+      if(!this.audio.paused&&!this.audio.seeking&&this.audio.readyState>=2){
+        if(previous!==undefined&&Math.abs(at-previous)>.03){if(this.audioTimer)clearTimeout(this.audioTimer);this.audioTimer=undefined;this.restoredAt=0;cleanup();return;}
+        previous=at;
+      }else previous=undefined;
+      const full=this.audio.networkState===1&&!this.audio.paused&&!this.audio.seeking&&this.hasBufferedPosition(Math.max(at,this.restoredAt));
+      if(!full)stalledSince=0;
+      else if(!stalledSince)stalledSince=now;
+      else if(now-stalledSince>=1000){
+        cleanup();
+        if(retrying){if(this.audioTimer)clearTimeout(this.audioTimer);this.audioFailed=true;this.wantedPlayback=false;this.token++;this.audio.pause();this.playing=false;this.busy=false;this.status='音频播放失败，请轻点重试。';this.changed();return;}
+        const resume=Math.max(at,this.restoredAt);this.pause();this.settings.audioPositions[this.positionKey]=resume;this.loadAudio();void this.play(true);return;
+      }
+      if(now-began>6000)cleanup();
+    },250);
+    this.audio.addEventListener('seeking',seeking);this.stopStartup=cleanup;
   }
   private speak() {
     if(!this.synth) return;
@@ -267,6 +315,7 @@ export class Player {
     ratio=safeNumber(ratio,0,0,1);
     if(this.settings.mode==='audio') {
       if(this.duration>0) this.audio.currentTime=ratio*this.duration;
+      this.restorePending=false;this.restoredAt=this.audio.currentTime;
     } else {
       const resume=this.playing||this.busy; this.pause();
       const at=Math.floor(ratio*this.text.length);
@@ -282,7 +331,12 @@ export class Player {
     this.audioFailed=false;
     const source=this.audioSource;
     this.audio.pause(); this.audio.loop=(this.settings.loop==='one'||this.settings.loop==='sentence'); this.audio.playbackRate=this.mediaRate;
+    // Every newly loaded sentence starts whole. Seeking a saved per-preset
+    // offset during remote metadata loading can strand WebKit on partial data.
+    // Pause/resume and explicit seeking keep the existing media element/position.
+    if(this.settings.loop==='sentence')this.settings.audioPositions[this.positionKey]=0;
     this.restoredAt=this.settings.audioPositions[this.positionKey] ?? 0;
+    this.restorePending=this.restoredAt>0;
     if(source) this.audio.src=source; else this.audio.removeAttribute('src');
     this.audio.load();
   }
@@ -295,7 +349,7 @@ export class Player {
     if(this.settings.loop==='one')next=this.index;
     else if(index>=0){const target=nextIndex(index,list.length,this.settings.loop);next=target===null?null:chapters.indexOf(list[target]);}
     else {const after=chapters.findIndex((c,i)=>i>this.index&&c.inMainLoop);next=this.settings.loop==='off'?null:after>=0?after:chapters.indexOf(list[0]);}
-    if(next===null) { this.playing=false; this.busy=false; this.status='本列表已播放完毕'; this.changed(); this.save(); return; }
+    if(next===null) { this.wantedPlayback=false;this.playing=false; this.busy=false; this.status='本列表已播放完毕'; this.changed(); this.save(); return; }
     this.select(chapters[next].id,true,true);
     this.settings.audioPositions[completedKey]=0;this.settings.speechPositions[completed]=0;
     this.save();

@@ -1,7 +1,9 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { nextIndex, speechChunk, safeNumber } from '../src/logic.ts';
-import { validate, readJson } from '../scripts/content.mjs';
+import { validate, readJson,contentRevision } from '../scripts/content.mjs';
+
+test('UI-only fixes invalidate the PWA revision with consistent Windows and Linux newlines',()=>{const m=[{text:'Original material.'}],p=[{mp3:'unchanged'}];assert.notEqual(contentRevision(m,p,['old player']),contentRevision(m,p,['fixed player']));assert.equal(contentRevision(m,p,['a\r\nb']),contentRevision(m,p,['a\nb']));});
 test('end-of-list behavior and single-chapter repeat',()=>{
   assert.equal(nextIndex(4,5,'all'),0);
   assert.equal(nextIndex(4,5,'off'),null);

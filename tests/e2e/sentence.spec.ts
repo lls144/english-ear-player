@@ -31,8 +31,8 @@ test('manual lock resists follow highlighting and survives seek pause refresh an
  await loop(page,'sentence');await expect.poll(async()=>(await state(page)).src).toContain(lib.sentenceAudio.slow[u.id]);
  await expect.poll(async()=>(await state(page)).time).toBeGreaterThan(.1);await page.locator('#play').click();const at=(await state(page)).time;await page.waitForTimeout(200);expect(Math.abs((await state(page)).time-at)).toBeLessThan(.15);
  await page.locator('#rate').selectOption('0.55');await page.locator('#progress').fill('500');await page.locator('#progress').dispatchEvent('input');await expect.poll(async()=>(await state(page)).time/(await state(page)).duration).toBeGreaterThan(.45);
- await page.reload();await expect(page.locator('#loop-label')).toHaveText('单句');await expect(page.locator('[data-sentence="'+u.id+'"]')).toHaveAttribute('aria-pressed','true');expect((await state(page)).paused).toBe(true);
- await loop(page,'all');await expect.poll(async()=>(await state(page)).src).toContain(lib.audio[c.id]);expect((await state(page)).loop).toBe(false);
+ await page.reload();await expect(page.locator('#loop-label')).toHaveText('单句');await expect(page.locator('[data-sentence="'+u.id+'"]')).toHaveAttribute('aria-pressed','true');expect((await state(page)).paused).toBe(true);expect((await state(page)).time).toBeLessThan(.1);
+ await loop(page,'all');await expect.poll(async()=>(await state(page)).src).toContain(lib.audio[c.id]);expect((await state(page)).loop).toBe(false);await page.locator('#play').click();const cue=lib.timings.slow[c.id].find((t:any)=>t.sentenceId===u.id);await expect.poll(async()=>(await state(page)).time).toBeGreaterThan(cue.start+.1);
 });
 test('rapid locked sentence changes discard old sources and keep the latest selected ID',async({page})=>{
  const all=units(lib.chapters[0]);await page.route('**/'+lib.sentenceAudio.slow[all[3].id],async route=>{await new Promise(r=>setTimeout(r,750));await route.continue().catch(()=>{});});await loop(page,'sentence');await page.locator('#play').click();
@@ -80,5 +80,5 @@ test('native single-sentence loops complete twenty rounds without entering any o
  }
  await info.attach('real-native-loop-rounds',{body:JSON.stringify(reports),contentType:'application/json'});
  expect(reports.reduce((n,r)=>n+r.wraps,0)).toBeGreaterThanOrEqual(20);
- await page.locator('#play').click();const pausedAt=(await state(page)).time;await page.waitForTimeout(350);expect((await state(page)).paused).toBe(true);expect(Math.abs((await state(page)).time-pausedAt)).toBeLessThan(.05);
+ await expect(page.locator('#play')).toHaveAttribute('aria-label','暂停');await page.locator('#play').click();const pausedAt=(await state(page)).time;await page.waitForTimeout(350);expect((await state(page)).paused).toBe(true);expect(Math.abs((await state(page)).time-pausedAt)).toBeLessThan(.05);
 });
