@@ -54,6 +54,7 @@ export class Player {
       }
     } catch { this.status = '无法读取本机记录；仍可正常播放。'; }
     if (!this.speechSupported && this.settings.mode === 'speech') this.settings.mode = 'audio';
+    if(this.settings.loop==='sentence')this.settings.selectedSentences[this.current.id]??=this.sentences[0].id;
     this.speechOffset = this.settings.speechPositions[this.current.id] ?? 0;
     this.audio.preload = 'metadata';
     this.audio.preservesPitch=true;
@@ -211,6 +212,7 @@ export class Player {
     if(!chapters.some(c=>c.id===id)) return;
     if(id===this.current.id&&!restart){if(autoplay&&!this.playing&&!this.busy)void this.play();return;}
     this.pause(); this.settings.chapter=id;
+    if(this.settings.loop==='sentence')this.settings.selectedSentences[id]??=this.sentences[0].id;
     if(restart) { this.settings.audioPositions[this.positionKeyFor(id)]=0; this.settings.speechPositions[id]=0; }
     this.speechOffset=this.settings.speechPositions[id] ?? 0;
     if(this.settings.mode==='audio') this.loadAudio();
