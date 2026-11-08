@@ -57,12 +57,28 @@ test('native single-sentence loops complete twenty rounds without entering any o
   await page.locator('#preset').selectOption(preset);if(await page.locator('#play').getAttribute('aria-label')==='播放')await page.locator('#play').click();
   await expect.poll(async()=>(await state(page)).src).toContain(lib.sentenceAudio[preset][u.id]);await expect.poll(async()=>(await state(page)).time).toBeGreaterThan(.1);
   const result=await audio(page).evaluate(async(a:HTMLAudioElement,n:number)=>{
-   const source=a.currentSrc,duration=a.duration;let wraps=0,last=a.currentTime;const started=performance.now(),seen=new Set<string>();
-   return await new Promise<{wraps:number;source:string;duration:number;seconds:number;seen:string[]}>((resolve,reject)=>{
-    const timer=setInterval(()=>{seen.add(a.currentSrc);if(a.currentTime<last-.3&&last>duration-.7)wraps++;last=a.currentTime;if(a.error||a.paused||a.currentSrc!==source){clearInterval(timer);reject(Error('Native loop stopped or changed source'));}else if(wraps>=n){clearInterval(timer);resolve({wraps,source,duration,seconds:(performance.now()-started)/1000,seen:[...seen]});}else if(performance.now()-started>120000){clearInterval(timer);reject(Error('Native loops did not advance'));}},20);
+   const source=a.currentSrc,duration=a.duration;let wraps=0,last=a.currentTime,lastBoundary=-Infinity,pauseSince:number|null=null,recoveries=0,maxRecoveryMs=0;const started=performance.now(),seen=new Set<string>();
+   return await new Promise<{wraps:number;source:string;duration:number;seconds:number;seen:string[];recoveries:number;maxRecoveryMs:number}>((resolve,reject)=>{
+    const timer=setInterval(()=>{
+     const now=performance.now(),at=a.currentTime;seen.add(a.currentSrc);
+     if(at<last-.3&&last>duration-.7){wraps++;lastBoundary=now;}
+     let failure='';
+     if(a.error||a.currentSrc!==source)failure='Native loop errored or changed source';
+     if(a.paused){
+      const boundary=(at<.2||at>duration-.1)&&(now-lastBoundary<300||last>duration-.7);
+      if(!boundary)failure='Playback paused away from the loop boundary';
+      if(pauseSince===null){pauseSince=now;recoveries++;}
+      if(now-pauseSince>250)failure='Native boundary did not resume within 250ms';
+     }else if(pauseSince!==null){maxRecoveryMs=Math.max(maxRecoveryMs,now-pauseSince);pauseSince=null;}
+     last=at;
+     if(failure){clearInterval(timer);reject(Error(failure));}
+     else if(wraps>=n&&!a.paused&&at>.1){clearInterval(timer);resolve({wraps,source,duration,seconds:(now-started)/1000,seen:[...seen],recoveries,maxRecoveryMs});}
+     else if(now-started>120000){clearInterval(timer);reject(Error('Native loops did not advance'));}
+    },20);
    });
-  },rounds[i]);expect(result.wraps).toBe(rounds[i]);expect(result.seen).toEqual([result.source]);reports.push({preset,...result});
+  },rounds[i]);expect(result.wraps).toBe(rounds[i]);expect(result.seen).toEqual([result.source]);expect(result.maxRecoveryMs).toBeLessThanOrEqual(250);reports.push({preset,...result});
  }
  await info.attach('real-native-loop-rounds',{body:JSON.stringify(reports),contentType:'application/json'});
  expect(reports.reduce((n,r)=>n+r.wraps,0)).toBeGreaterThanOrEqual(20);
+ await page.locator('#play').click();const pausedAt=(await state(page)).time;await page.waitForTimeout(350);expect((await state(page)).paused).toBe(true);expect(Math.abs((await state(page)).time-pausedAt)).toBeLessThan(.05);
 });
