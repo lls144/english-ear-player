@@ -43,7 +43,7 @@ test('verified PWA update preserves playing old assets, then serves new bytes on
   const oldCaches=await p.evaluate(()=>caches.keys());expect(oldCaches.length).toBe(1);
   // Optional profiles are not precached. A real full fetch verifies and stores
   // their exact bytes; subsequent media Range requests use that same file.
-  const optional=meta.audio.picture;
+ for(const optional of [meta.audio.picture,Object.entries(meta.audio).find(([id])=>id.startsWith('sentence-'))![1] as string]){
   expect(await p.evaluate(async file=>!!await caches.match(new URL(file,document.baseURI)),optional)).toBe(false);
   const optionalBytes=await fs.readFile(path.join(a,optional));
   const downloaded=Buffer.from(await p.evaluate(async file=>[...new Uint8Array(await(await fetch(file)).arrayBuffer())],optional));
@@ -51,6 +51,7 @@ test('verified PWA update preserves playing old assets, then serves new bytes on
   await expect.poll(()=>p.evaluate(async file=>!!await caches.match(new URL(file,document.baseURI)),optional)).toBe(true);
   const optionalRange=await p.evaluate(async file=>{const r=await fetch(file,{headers:{Range:'bytes=0-127'}});return {status:r.status,bytes:[...new Uint8Array(await r.arrayBuffer())]};},optional);
   expect(optionalRange.status).toBe(206);expect(Buffer.from(optionalRange.bytes)).toEqual(optionalBytes.subarray(0,128));
+ }
   await p.locator('#play').click();await expect.poll(()=>p.locator('audio').evaluate((x:HTMLAudioElement)=>x.currentTime)).toBeGreaterThan(.1);
   const element=await p.locator('audio').elementHandle();active=b;
   await p.evaluate(async()=>{const r=await navigator.serviceWorker.getRegistration();await r!.update();});

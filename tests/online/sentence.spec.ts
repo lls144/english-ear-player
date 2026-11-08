@@ -1,5 +1,7 @@
 import {test,expect,type Page} from '@playwright/test';
 import fs from 'node:fs';
+// Actual worker updates are tested separately; avoid first-install prefetch competition here.
+test.use({serviceWorkers:'block'});
 const lib=JSON.parse(fs.readFileSync('src/library.generated.json','utf8'));
 const units=(c:any)=>c.segments.flatMap((s:any)=>s.sentences);
 const audio=(p:Page)=>p.locator('audio');
