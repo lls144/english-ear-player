@@ -1,3 +1,7 @@
+## 1.2.0
+
+Preserve original display templates while reading whole neutral sentences. Add stable, clickable sentence targets and native loops through 207 independent MP3s across three presets. Regenerate all chapter audio with untrimmed waveforms, quiet padding/ramped seams, bounded gain and sample-derived cues. Add actual G2P, waveform faults, 20-round loops and HTTPS/PWA regressions. Latest selected source adds two original conclusion entries; no editorial sentence is restored.
+
 ## 1.1.0
 
 Strict source-only rebuild: removed 27 edited entries containing 58 invented/completed sentences; retained the real cartoon example, all original templates and connector categories. Now 5 chapters / 66 source items, with slots spoken as silence. Source-only synchronization and publication gates prevent reintroduction.

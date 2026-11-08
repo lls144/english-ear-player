@@ -1,1418 +1,3758 @@
 {
   "picture": [
     {
+      "sentenceId": "source-a40b38ad9494459e-s-a370485394ea",
       "segmentId": "source-a40b38ad9494459e",
       "start": 0.0,
-      "speechEnd": 4.8079,
-      "end": 6.8579,
+      "speechEnd": 6.175,
+      "end": 6.825,
       "gapSeconds": 0.65
     },
     {
+      "sentenceId": "source-314b88970023ea7c-s-be5005ded8f9",
       "segmentId": "source-314b88970023ea7c",
-      "start": 6.8579,
-      "speechEnd": 9.9379,
-      "end": 10.7879,
+      "start": 6.825,
+      "speechEnd": 10.9,
+      "end": 11.75,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-5141ab4f3bcf4c10-s-a469b837cab7",
       "segmentId": "source-5141ab4f3bcf4c10",
-      "start": 10.7879,
-      "speechEnd": 13.0679,
-      "end": 13.9179,
+      "start": 11.75,
+      "speechEnd": 15.3,
+      "end": 16.15,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-aac688a38e9875b9-s-b3aa9b37d308",
       "segmentId": "source-aac688a38e9875b9",
-      "start": 13.9179,
-      "speechEnd": 16.8854,
-      "end": 17.7354,
+      "start": 16.15,
+      "speechEnd": 20.125,
+      "end": 20.975,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-b332c1df3bfe5672-s-7463fe619c10",
       "segmentId": "source-b332c1df3bfe5672",
-      "start": 17.7354,
-      "speechEnd": 20.0779,
-      "end": 20.9279,
+      "start": 20.975,
+      "speechEnd": 24.4,
+      "end": 25.25,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-98465588330f8d17-s-b901287274c3",
       "segmentId": "source-98465588330f8d17",
-      "start": 20.9279,
-      "speechEnd": 23.9954,
-      "end": 24.8454,
+      "start": 25.25,
+      "speechEnd": 29.3,
+      "end": 30.15,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-db2b29abe006b6c8-s-d97dc8b7b32c",
       "segmentId": "source-db2b29abe006b6c8",
-      "start": 24.8454,
-      "speechEnd": 26.7129,
-      "end": 28.7629,
+      "start": 30.15,
+      "speechEnd": 34.175,
+      "end": 34.825,
       "gapSeconds": 0.65
     },
     {
+      "sentenceId": "source-b4a0968651b9ed96-s-4d6abd79b71b",
       "segmentId": "source-b4a0968651b9ed96",
-      "start": 28.7629,
-      "speechEnd": 44.3005,
-      "end": 44.9505,
+      "start": 34.825,
+      "speechEnd": 51.775,
+      "end": 52.425,
       "gapSeconds": 0.65
     },
     {
+      "sentenceId": "source-250066e1232e9d59-s-c8194e1672b1",
       "segmentId": "source-250066e1232e9d59",
-      "start": 44.9505,
-      "speechEnd": 50.3286,
-      "end": 52.3786,
+      "start": 52.425,
+      "speechEnd": 59.175,
+      "end": 59.825,
       "gapSeconds": 0.65
     }
   ],
   "picture-slow": [
     {
+      "sentenceId": "source-a40b38ad9494459e-s-a370485394ea",
       "segmentId": "source-a40b38ad9494459e",
       "start": 0.0,
-      "speechEnd": 5.379,
-      "end": 8.399,
+      "speechEnd": 6.875,
+      "end": 8.075,
       "gapSeconds": 1.2
     },
     {
+      "sentenceId": "source-314b88970023ea7c-s-be5005ded8f9",
       "segmentId": "source-314b88970023ea7c",
-      "start": 8.399,
-      "speechEnd": 11.959,
-      "end": 13.359,
+      "start": 8.075,
+      "speechEnd": 12.825,
+      "end": 14.225,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-5141ab4f3bcf4c10-s-a469b837cab7",
       "segmentId": "source-5141ab4f3bcf4c10",
-      "start": 13.359,
-      "speechEnd": 15.864,
-      "end": 17.264,
+      "start": 14.225,
+      "speechEnd": 18.125,
+      "end": 19.525,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-aac688a38e9875b9-s-b3aa9b37d308",
       "segmentId": "source-aac688a38e9875b9",
-      "start": 17.264,
-      "speechEnd": 20.6065,
-      "end": 22.0065,
+      "start": 19.525,
+      "speechEnd": 24.025,
+      "end": 25.425,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-b332c1df3bfe5672-s-7463fe619c10",
       "segmentId": "source-b332c1df3bfe5672",
-      "start": 22.0065,
-      "speechEnd": 24.724,
-      "end": 26.124,
+      "start": 25.425,
+      "speechEnd": 29.4,
+      "end": 30.8,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-98465588330f8d17-s-b901287274c3",
       "segmentId": "source-98465588330f8d17",
-      "start": 26.124,
-      "speechEnd": 29.679,
-      "end": 31.079,
+      "start": 30.8,
+      "speechEnd": 35.525,
+      "end": 36.925,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-db2b29abe006b6c8-s-d97dc8b7b32c",
       "segmentId": "source-db2b29abe006b6c8",
-      "start": 31.079,
-      "speechEnd": 32.9465,
-      "end": 35.9665,
+      "start": 36.925,
+      "speechEnd": 40.575,
+      "end": 41.775,
       "gapSeconds": 1.2
     },
     {
+      "sentenceId": "source-b4a0968651b9ed96-s-4d6abd79b71b",
       "segmentId": "source-b4a0968651b9ed96",
-      "start": 35.9665,
-      "speechEnd": 53.6772,
-      "end": 54.8772,
+      "start": 41.775,
+      "speechEnd": 61.0,
+      "end": 62.2,
       "gapSeconds": 1.2
     },
     {
+      "sentenceId": "source-250066e1232e9d59-s-c8194e1672b1",
       "segmentId": "source-250066e1232e9d59",
-      "start": 54.8772,
-      "speechEnd": 61.2915,
-      "end": 64.3115,
+      "start": 62.2,
+      "speechEnd": 70.1,
+      "end": 71.3,
       "gapSeconds": 1.2
     }
   ],
   "picture-recite": [
     {
+      "sentenceId": "source-a40b38ad9494459e-s-a370485394ea",
       "segmentId": "source-a40b38ad9494459e",
       "start": 0.0,
-      "speechEnd": 5.0767,
-      "end": 11.4919,
-      "gapSeconds": 4.3152
+      "speechEnd": 6.525,
+      "end": 12.0712,
+      "gapSeconds": 5.5463
     },
     {
+      "sentenceId": "source-314b88970023ea7c-s-be5005ded8f9",
       "segmentId": "source-314b88970023ea7c",
-      "start": 11.4919,
-      "speechEnd": 14.9269,
-      "end": 17.8467,
-      "gapSeconds": 2.9198
+      "start": 12.0712,
+      "speechEnd": 16.5963,
+      "end": 20.4425,
+      "gapSeconds": 3.8463
     },
     {
+      "sentenceId": "source-5141ab4f3bcf4c10-s-a469b837cab7",
       "segmentId": "source-5141ab4f3bcf4c10",
-      "start": 17.8467,
-      "speechEnd": 20.2017,
-      "end": 22.6017,
-      "gapSeconds": 2.4
+      "start": 20.4425,
+      "speechEnd": 24.1425,
+      "end": 27.2875,
+      "gapSeconds": 3.145
     },
     {
+      "sentenceId": "source-aac688a38e9875b9-s-b3aa9b37d308",
       "segmentId": "source-aac688a38e9875b9",
-      "start": 22.6017,
-      "speechEnd": 25.8442,
-      "end": 28.6003,
-      "gapSeconds": 2.7561
+      "start": 27.2875,
+      "speechEnd": 31.5875,
+      "end": 35.2425,
+      "gapSeconds": 3.655
     },
     {
+      "sentenceId": "source-b332c1df3bfe5672-s-7463fe619c10",
       "segmentId": "source-b332c1df3bfe5672",
-      "start": 28.6003,
-      "speechEnd": 31.1928,
-      "end": 33.5928,
-      "gapSeconds": 2.4
+      "start": 35.2425,
+      "speechEnd": 38.9925,
+      "end": 42.18,
+      "gapSeconds": 3.1875
     },
     {
+      "sentenceId": "source-98465588330f8d17-s-b901287274c3",
       "segmentId": "source-98465588330f8d17",
-      "start": 33.5928,
-      "speechEnd": 37.0853,
-      "end": 40.0539,
-      "gapSeconds": 2.9686
+      "start": 42.18,
+      "speechEnd": 46.73,
+      "end": 50.5975,
+      "gapSeconds": 3.8675
     },
     {
+      "sentenceId": "source-db2b29abe006b6c8-s-d97dc8b7b32c",
       "segmentId": "source-db2b29abe006b6c8",
-      "start": 40.0539,
-      "speechEnd": 41.9214,
-      "end": 46.4214,
-      "gapSeconds": 2.4
+      "start": 50.5975,
+      "speechEnd": 54.2475,
+      "end": 57.35,
+      "gapSeconds": 3.1025
     },
     {
+      "sentenceId": "source-b4a0968651b9ed96-s-4d6abd79b71b",
       "segmentId": "source-b4a0968651b9ed96",
-      "start": 46.4214,
-      "speechEnd": 63.3571,
-      "end": 75.3571,
+      "start": 57.35,
+      "speechEnd": 75.775,
+      "end": 87.775,
       "gapSeconds": 12
     },
     {
+      "sentenceId": "source-250066e1232e9d59-s-c8194e1672b1",
       "segmentId": "source-250066e1232e9d59",
-      "start": 75.3571,
-      "speechEnd": 81.3963,
-      "end": 88.6297,
-      "gapSeconds": 5.1333
+      "start": 87.775,
+      "speechEnd": 95.25,
+      "end": 101.6038,
+      "gapSeconds": 6.3537
+    }
+  ],
+  "sentence-source-a40b38ad9494459e-s-a370485394ea": [
+    {
+      "sentenceId": "source-a40b38ad9494459e-s-a370485394ea",
+      "segmentId": "source-a40b38ad9494459e",
+      "start": 0.0,
+      "speechEnd": 6.175,
+      "end": 7.175,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-a40b38ad9494459e-s-a370485394ea-slow": [
+    {
+      "sentenceId": "source-a40b38ad9494459e-s-a370485394ea",
+      "segmentId": "source-a40b38ad9494459e",
+      "start": 0.0,
+      "speechEnd": 6.875,
+      "end": 8.375,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-a40b38ad9494459e-s-a370485394ea-recite": [
+    {
+      "sentenceId": "source-a40b38ad9494459e-s-a370485394ea",
+      "segmentId": "source-a40b38ad9494459e",
+      "start": 0.0,
+      "speechEnd": 6.525,
+      "end": 12.0712,
+      "gapSeconds": 5.5463
+    }
+  ],
+  "sentence-source-314b88970023ea7c-s-be5005ded8f9": [
+    {
+      "sentenceId": "source-314b88970023ea7c-s-be5005ded8f9",
+      "segmentId": "source-314b88970023ea7c",
+      "start": 0.0,
+      "speechEnd": 4.075,
+      "end": 5.075,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-314b88970023ea7c-s-be5005ded8f9-slow": [
+    {
+      "sentenceId": "source-314b88970023ea7c-s-be5005ded8f9",
+      "segmentId": "source-314b88970023ea7c",
+      "start": 0.0,
+      "speechEnd": 4.75,
+      "end": 6.25,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-314b88970023ea7c-s-be5005ded8f9-recite": [
+    {
+      "sentenceId": "source-314b88970023ea7c-s-be5005ded8f9",
+      "segmentId": "source-314b88970023ea7c",
+      "start": 0.0,
+      "speechEnd": 4.525,
+      "end": 8.3712,
+      "gapSeconds": 3.8463
+    }
+  ],
+  "sentence-source-5141ab4f3bcf4c10-s-a469b837cab7": [
+    {
+      "sentenceId": "source-5141ab4f3bcf4c10-s-a469b837cab7",
+      "segmentId": "source-5141ab4f3bcf4c10",
+      "start": 0.0,
+      "speechEnd": 3.55,
+      "end": 4.55,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-5141ab4f3bcf4c10-s-a469b837cab7-slow": [
+    {
+      "sentenceId": "source-5141ab4f3bcf4c10-s-a469b837cab7",
+      "segmentId": "source-5141ab4f3bcf4c10",
+      "start": 0.0,
+      "speechEnd": 3.9,
+      "end": 5.4,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-5141ab4f3bcf4c10-s-a469b837cab7-recite": [
+    {
+      "sentenceId": "source-5141ab4f3bcf4c10-s-a469b837cab7",
+      "segmentId": "source-5141ab4f3bcf4c10",
+      "start": 0.0,
+      "speechEnd": 3.7,
+      "end": 6.845,
+      "gapSeconds": 3.145
+    }
+  ],
+  "sentence-source-aac688a38e9875b9-s-b3aa9b37d308": [
+    {
+      "sentenceId": "source-aac688a38e9875b9-s-b3aa9b37d308",
+      "segmentId": "source-aac688a38e9875b9",
+      "start": 0.0,
+      "speechEnd": 3.975,
+      "end": 4.975,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-aac688a38e9875b9-s-b3aa9b37d308-slow": [
+    {
+      "sentenceId": "source-aac688a38e9875b9-s-b3aa9b37d308",
+      "segmentId": "source-aac688a38e9875b9",
+      "start": 0.0,
+      "speechEnd": 4.5,
+      "end": 6.0,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-aac688a38e9875b9-s-b3aa9b37d308-recite": [
+    {
+      "sentenceId": "source-aac688a38e9875b9-s-b3aa9b37d308",
+      "segmentId": "source-aac688a38e9875b9",
+      "start": 0.0,
+      "speechEnd": 4.3,
+      "end": 7.955,
+      "gapSeconds": 3.655
+    }
+  ],
+  "sentence-source-b332c1df3bfe5672-s-7463fe619c10": [
+    {
+      "sentenceId": "source-b332c1df3bfe5672-s-7463fe619c10",
+      "segmentId": "source-b332c1df3bfe5672",
+      "start": 0.0,
+      "speechEnd": 3.425,
+      "end": 4.425,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-b332c1df3bfe5672-s-7463fe619c10-slow": [
+    {
+      "sentenceId": "source-b332c1df3bfe5672-s-7463fe619c10",
+      "segmentId": "source-b332c1df3bfe5672",
+      "start": 0.0,
+      "speechEnd": 3.975,
+      "end": 5.475,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-b332c1df3bfe5672-s-7463fe619c10-recite": [
+    {
+      "sentenceId": "source-b332c1df3bfe5672-s-7463fe619c10",
+      "segmentId": "source-b332c1df3bfe5672",
+      "start": 0.0,
+      "speechEnd": 3.75,
+      "end": 6.9375,
+      "gapSeconds": 3.1875
+    }
+  ],
+  "sentence-source-98465588330f8d17-s-b901287274c3": [
+    {
+      "sentenceId": "source-98465588330f8d17-s-b901287274c3",
+      "segmentId": "source-98465588330f8d17",
+      "start": 0.0,
+      "speechEnd": 4.05,
+      "end": 5.05,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-98465588330f8d17-s-b901287274c3-slow": [
+    {
+      "sentenceId": "source-98465588330f8d17-s-b901287274c3",
+      "segmentId": "source-98465588330f8d17",
+      "start": 0.0,
+      "speechEnd": 4.725,
+      "end": 6.225,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-98465588330f8d17-s-b901287274c3-recite": [
+    {
+      "sentenceId": "source-98465588330f8d17-s-b901287274c3",
+      "segmentId": "source-98465588330f8d17",
+      "start": 0.0,
+      "speechEnd": 4.55,
+      "end": 8.4175,
+      "gapSeconds": 3.8675
+    }
+  ],
+  "sentence-source-db2b29abe006b6c8-s-d97dc8b7b32c": [
+    {
+      "sentenceId": "source-db2b29abe006b6c8-s-d97dc8b7b32c",
+      "segmentId": "source-db2b29abe006b6c8",
+      "start": 0.0,
+      "speechEnd": 4.025,
+      "end": 5.025,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-db2b29abe006b6c8-s-d97dc8b7b32c-slow": [
+    {
+      "sentenceId": "source-db2b29abe006b6c8-s-d97dc8b7b32c",
+      "segmentId": "source-db2b29abe006b6c8",
+      "start": 0.0,
+      "speechEnd": 3.65,
+      "end": 5.15,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-db2b29abe006b6c8-s-d97dc8b7b32c-recite": [
+    {
+      "sentenceId": "source-db2b29abe006b6c8-s-d97dc8b7b32c",
+      "segmentId": "source-db2b29abe006b6c8",
+      "start": 0.0,
+      "speechEnd": 3.65,
+      "end": 6.7525,
+      "gapSeconds": 3.1025
+    }
+  ],
+  "sentence-source-b4a0968651b9ed96-s-4d6abd79b71b": [
+    {
+      "sentenceId": "source-b4a0968651b9ed96-s-4d6abd79b71b",
+      "segmentId": "source-b4a0968651b9ed96",
+      "start": 0.0,
+      "speechEnd": 16.95,
+      "end": 17.95,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-b4a0968651b9ed96-s-4d6abd79b71b-slow": [
+    {
+      "sentenceId": "source-b4a0968651b9ed96-s-4d6abd79b71b",
+      "segmentId": "source-b4a0968651b9ed96",
+      "start": 0.0,
+      "speechEnd": 19.225,
+      "end": 20.725,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-b4a0968651b9ed96-s-4d6abd79b71b-recite": [
+    {
+      "sentenceId": "source-b4a0968651b9ed96-s-4d6abd79b71b",
+      "segmentId": "source-b4a0968651b9ed96",
+      "start": 0.0,
+      "speechEnd": 18.425,
+      "end": 30.425,
+      "gapSeconds": 12
+    }
+  ],
+  "sentence-source-250066e1232e9d59-s-c8194e1672b1": [
+    {
+      "sentenceId": "source-250066e1232e9d59-s-c8194e1672b1",
+      "segmentId": "source-250066e1232e9d59",
+      "start": 0.0,
+      "speechEnd": 6.75,
+      "end": 7.75,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-250066e1232e9d59-s-c8194e1672b1-slow": [
+    {
+      "sentenceId": "source-250066e1232e9d59-s-c8194e1672b1",
+      "segmentId": "source-250066e1232e9d59",
+      "start": 0.0,
+      "speechEnd": 7.9,
+      "end": 9.4,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-250066e1232e9d59-s-c8194e1672b1-recite": [
+    {
+      "sentenceId": "source-250066e1232e9d59-s-c8194e1672b1",
+      "segmentId": "source-250066e1232e9d59",
+      "start": 0.0,
+      "speechEnd": 7.475,
+      "end": 13.8287,
+      "gapSeconds": 6.3537
     }
   ],
   "theme-trends": [
     {
+      "sentenceId": "source-8bb1fa8285570ad2-s-c708417cc9a9",
       "segmentId": "source-8bb1fa8285570ad2",
       "start": 0.0,
-      "speechEnd": 9.0887,
-      "end": 9.7387,
+      "speechEnd": 8.95,
+      "end": 9.6,
       "gapSeconds": 0.65
     },
     {
+      "sentenceId": "source-52b65c3aa95b9e9e-s-15dd40e24d54",
       "segmentId": "source-52b65c3aa95b9e9e",
-      "start": 9.7387,
-      "speechEnd": 22.8783,
-      "end": 23.5283,
+      "start": 9.6,
+      "speechEnd": 22.7,
+      "end": 23.35,
       "gapSeconds": 0.65
     },
     {
+      "sentenceId": "source-00fc153e670b5ee6-s-072a4b39ab4a",
       "segmentId": "source-00fc153e670b5ee6",
-      "start": 23.5283,
-      "speechEnd": 25.7708,
-      "end": 26.6208,
+      "start": 23.35,
+      "speechEnd": 26.475,
+      "end": 27.325,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-989722bad00e08ea-s-eb8ff99f9d31",
       "segmentId": "source-989722bad00e08ea",
-      "start": 26.6208,
-      "speechEnd": 30.2383,
-      "end": 31.0883,
+      "start": 27.325,
+      "speechEnd": 31.9,
+      "end": 32.75,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-cd2ab2dd6e991c2c-s-d3a489756120",
       "segmentId": "source-cd2ab2dd6e991c2c",
-      "start": 31.0883,
-      "speechEnd": 33.7433,
-      "end": 34.5933,
+      "start": 32.75,
+      "speechEnd": 36.175,
+      "end": 37.025,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-2349f33cbbf1b3af-s-2b93ad3cae84",
       "segmentId": "source-2349f33cbbf1b3af",
-      "start": 34.5933,
-      "speechEnd": 37.6184,
-      "end": 38.4684,
+      "start": 37.025,
+      "speechEnd": 41.425,
+      "end": 42.275,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-400556cc9a4f78ec-s-dbbeb945df69",
       "segmentId": "source-400556cc9a4f78ec",
-      "start": 38.4684,
-      "speechEnd": 41.5125,
-      "end": 42.3625,
+      "start": 42.275,
+      "speechEnd": 46.65,
+      "end": 47.5,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-2492142cc3f57878-s-3f052bbef738",
       "segmentId": "source-2492142cc3f57878",
-      "start": 42.3625,
-      "speechEnd": 46.455,
-      "end": 47.305,
+      "start": 47.5,
+      "speechEnd": 52.575,
+      "end": 53.425,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-09a7b66c81b21112-s-8e12cad9fd6d",
       "segmentId": "source-09a7b66c81b21112",
-      "start": 47.305,
-      "speechEnd": 51.0975,
-      "end": 51.9475,
+      "start": 53.425,
+      "speechEnd": 58.075,
+      "end": 58.925,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-d9bbac2b32916ac9-s-7fac7472cb8c",
       "segmentId": "source-d9bbac2b32916ac9",
-      "start": 51.9475,
-      "speechEnd": 55.0059,
-      "end": 55.8559,
+      "start": 58.925,
+      "speechEnd": 63.45,
+      "end": 64.3,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-f3ee84c550f70184-s-a94bd59a5823",
       "segmentId": "source-f3ee84c550f70184",
-      "start": 55.8559,
-      "speechEnd": 59.612,
-      "end": 60.462,
+      "start": 64.3,
+      "speechEnd": 69.475,
+      "end": 70.325,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-4d61c2a9871121e6-s-8464fc39ca55",
       "segmentId": "source-4d61c2a9871121e6",
-      "start": 60.462,
-      "speechEnd": 62.9795,
-      "end": 63.8295,
+      "start": 70.325,
+      "speechEnd": 73.675,
+      "end": 74.525,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-bda882971282deca-s-23e98420acaa",
       "segmentId": "source-bda882971282deca",
-      "start": 63.8295,
-      "speechEnd": 65.6845,
-      "end": 66.5345,
+      "start": 74.525,
+      "speechEnd": 77.3,
+      "end": 78.15,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-2efdbf41957ab125-s-422d8befbf5c",
       "segmentId": "source-2efdbf41957ab125",
-      "start": 66.5345,
-      "speechEnd": 68.6341,
-      "end": 69.4841,
+      "start": 78.15,
+      "speechEnd": 81.475,
+      "end": 82.325,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-00d2169fce4e76d5-s-163ffd7c144d",
       "segmentId": "source-00d2169fce4e76d5",
-      "start": 69.4841,
-      "speechEnd": 71.6766,
-      "end": 73.7266,
+      "start": 82.325,
+      "speechEnd": 86.375,
+      "end": 87.025,
       "gapSeconds": 0.65
     },
     {
+      "sentenceId": "source-3056e2b038b60177-s-a19dae57a2e8",
       "segmentId": "source-3056e2b038b60177",
-      "start": 73.7266,
-      "speechEnd": 76.0941,
-      "end": 78.1441,
+      "start": 87.025,
+      "speechEnd": 91.175,
+      "end": 91.825,
       "gapSeconds": 0.65
     },
     {
+      "sentenceId": "source-c1bb50acbbe10202-s-680d8c4cf281",
       "segmentId": "source-c1bb50acbbe10202",
-      "start": 78.1441,
-      "speechEnd": 80.2116,
-      "end": 82.2616,
+      "start": 91.825,
+      "speechEnd": 95.6,
+      "end": 96.25,
       "gapSeconds": 0.65
     },
     {
+      "sentenceId": "source-e7b1bdbe0b97b567-s-0d3d5c1327ea",
       "segmentId": "source-e7b1bdbe0b97b567",
-      "start": 82.2616,
-      "speechEnd": 84.8791,
-      "end": 86.9291,
+      "start": 96.25,
+      "speechEnd": 100.625,
+      "end": 101.275,
       "gapSeconds": 0.65
     },
     {
+      "sentenceId": "source-1d952d59ce7e23ad-s-0ddf14f22323",
       "segmentId": "source-1d952d59ce7e23ad",
-      "start": 86.9291,
-      "speechEnd": 88.8972,
-      "end": 90.9472,
+      "start": 101.275,
+      "speechEnd": 105.175,
+      "end": 105.825,
       "gapSeconds": 0.65
     }
   ],
   "theme-trends-slow": [
     {
+      "sentenceId": "source-8bb1fa8285570ad2-s-c708417cc9a9",
       "segmentId": "source-8bb1fa8285570ad2",
       "start": 0.0,
-      "speechEnd": 10.5135,
-      "end": 11.7135,
+      "speechEnd": 10.125,
+      "end": 11.325,
       "gapSeconds": 1.2
     },
     {
+      "sentenceId": "source-52b65c3aa95b9e9e-s-15dd40e24d54",
       "segmentId": "source-52b65c3aa95b9e9e",
-      "start": 11.7135,
-      "speechEnd": 27.3033,
-      "end": 28.5033,
+      "start": 11.325,
+      "speechEnd": 26.2,
+      "end": 27.4,
       "gapSeconds": 1.2
     },
     {
+      "sentenceId": "source-00fc153e670b5ee6-s-072a4b39ab4a",
       "segmentId": "source-00fc153e670b5ee6",
-      "start": 28.5033,
-      "speechEnd": 30.7458,
-      "end": 32.1458,
+      "start": 27.4,
+      "speechEnd": 30.525,
+      "end": 31.925,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-989722bad00e08ea-s-eb8ff99f9d31",
       "segmentId": "source-989722bad00e08ea",
-      "start": 32.1458,
-      "speechEnd": 36.1883,
-      "end": 37.5883,
+      "start": 31.925,
+      "speechEnd": 36.975,
+      "end": 38.375,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-cd2ab2dd6e991c2c-s-d3a489756120",
       "segmentId": "source-cd2ab2dd6e991c2c",
-      "start": 37.5883,
-      "speechEnd": 40.2433,
-      "end": 41.6433,
+      "start": 38.375,
+      "speechEnd": 41.8,
+      "end": 43.2,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-2349f33cbbf1b3af-s-2b93ad3cae84",
       "segmentId": "source-2349f33cbbf1b3af",
-      "start": 41.6433,
-      "speechEnd": 45.5733,
-      "end": 46.9733,
+      "start": 43.2,
+      "speechEnd": 48.175,
+      "end": 49.575,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-400556cc9a4f78ec-s-dbbeb945df69",
       "segmentId": "source-400556cc9a4f78ec",
-      "start": 46.9733,
-      "speechEnd": 50.9033,
-      "end": 52.3033,
+      "start": 49.575,
+      "speechEnd": 54.425,
+      "end": 55.825,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-2492142cc3f57878-s-3f052bbef738",
       "segmentId": "source-2492142cc3f57878",
-      "start": 52.3033,
-      "speechEnd": 56.8833,
-      "end": 58.2833,
+      "start": 55.825,
+      "speechEnd": 61.475,
+      "end": 62.875,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-09a7b66c81b21112-s-8e12cad9fd6d",
       "segmentId": "source-09a7b66c81b21112",
-      "start": 58.2833,
-      "speechEnd": 62.5633,
-      "end": 63.9633,
+      "start": 62.875,
+      "speechEnd": 68.175,
+      "end": 69.575,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-d9bbac2b32916ac9-s-7fac7472cb8c",
       "segmentId": "source-d9bbac2b32916ac9",
-      "start": 63.9633,
-      "speechEnd": 68.0183,
-      "end": 69.4183,
+      "start": 69.575,
+      "speechEnd": 74.75,
+      "end": 76.15,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-f3ee84c550f70184-s-a94bd59a5823",
       "segmentId": "source-f3ee84c550f70184",
-      "start": 69.4183,
-      "speechEnd": 73.6686,
-      "end": 75.0686,
+      "start": 76.15,
+      "speechEnd": 81.925,
+      "end": 83.325,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-4d61c2a9871121e6-s-8464fc39ca55",
       "segmentId": "source-4d61c2a9871121e6",
-      "start": 75.0686,
-      "speechEnd": 77.5861,
-      "end": 78.9861,
+      "start": 83.325,
+      "speechEnd": 86.675,
+      "end": 88.075,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-bda882971282deca-s-23e98420acaa",
       "segmentId": "source-bda882971282deca",
-      "start": 78.9861,
-      "speechEnd": 80.8411,
-      "end": 82.2411,
+      "start": 88.075,
+      "speechEnd": 90.85,
+      "end": 92.25,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-2efdbf41957ab125-s-422d8befbf5c",
       "segmentId": "source-2efdbf41957ab125",
-      "start": 82.2411,
-      "speechEnd": 84.3407,
-      "end": 85.7407,
+      "start": 92.25,
+      "speechEnd": 95.575,
+      "end": 96.975,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-00d2169fce4e76d5-s-163ffd7c144d",
       "segmentId": "source-00d2169fce4e76d5",
-      "start": 85.7407,
-      "speechEnd": 88.2832,
-      "end": 91.3032,
+      "start": 96.975,
+      "speechEnd": 101.525,
+      "end": 102.725,
       "gapSeconds": 1.2
     },
     {
+      "sentenceId": "source-3056e2b038b60177-s-a19dae57a2e8",
       "segmentId": "source-3056e2b038b60177",
-      "start": 91.3032,
-      "speechEnd": 93.9957,
-      "end": 97.0157,
+      "start": 102.725,
+      "speechEnd": 107.325,
+      "end": 108.525,
       "gapSeconds": 1.2
     },
     {
+      "sentenceId": "source-c1bb50acbbe10202-s-680d8c4cf281",
       "segmentId": "source-c1bb50acbbe10202",
-      "start": 97.0157,
-      "speechEnd": 99.3082,
-      "end": 102.3282,
+      "start": 108.525,
+      "speechEnd": 112.875,
+      "end": 114.075,
       "gapSeconds": 1.2
     },
     {
+      "sentenceId": "source-e7b1bdbe0b97b567-s-0d3d5c1327ea",
       "segmentId": "source-e7b1bdbe0b97b567",
-      "start": 102.3282,
-      "speechEnd": 105.2457,
-      "end": 108.2657,
+      "start": 114.075,
+      "speechEnd": 118.925,
+      "end": 120.125,
       "gapSeconds": 1.2
     },
     {
+      "sentenceId": "source-1d952d59ce7e23ad-s-0ddf14f22323",
       "segmentId": "source-1d952d59ce7e23ad",
-      "start": 108.2657,
-      "speechEnd": 110.6832,
-      "end": 113.7032,
+      "start": 120.125,
+      "speechEnd": 124.475,
+      "end": 125.675,
       "gapSeconds": 1.2
     }
   ],
   "theme-trends-recite": [
     {
+      "sentenceId": "source-8bb1fa8285570ad2-s-c708417cc9a9",
       "segmentId": "source-8bb1fa8285570ad2",
       "start": 0.0,
-      "speechEnd": 10.6155,
-      "end": 17.025,
-      "gapSeconds": 6.4095
+      "speechEnd": 9.75,
+      "end": 18.0375,
+      "gapSeconds": 8.2875
     },
     {
+      "sentenceId": "source-52b65c3aa95b9e9e-s-15dd40e24d54",
       "segmentId": "source-52b65c3aa95b9e9e",
-      "start": 17.025,
-      "speechEnd": 32.9181,
-      "end": 41.0722,
-      "gapSeconds": 8.1541
+      "start": 18.0375,
+      "speechEnd": 32.0875,
+      "end": 44.03,
+      "gapSeconds": 11.9425
     },
     {
+      "sentenceId": "source-00fc153e670b5ee6-s-072a4b39ab4a",
       "segmentId": "source-00fc153e670b5ee6",
-      "start": 41.0722,
-      "speechEnd": 43.3147,
-      "end": 45.7147,
-      "gapSeconds": 2.4
+      "start": 44.03,
+      "speechEnd": 47.155,
+      "end": 49.8113,
+      "gapSeconds": 2.6562
     },
     {
+      "sentenceId": "source-989722bad00e08ea-s-eb8ff99f9d31",
       "segmentId": "source-989722bad00e08ea",
-      "start": 45.7147,
-      "speechEnd": 49.6072,
-      "end": 52.9158,
-      "gapSeconds": 3.3086
+      "start": 49.8113,
+      "speechEnd": 54.6863,
+      "end": 58.83,
+      "gapSeconds": 4.1437
     },
     {
+      "sentenceId": "source-cd2ab2dd6e991c2c-s-d3a489756120",
       "segmentId": "source-cd2ab2dd6e991c2c",
-      "start": 52.9158,
-      "speechEnd": 55.5708,
-      "end": 57.9708,
-      "gapSeconds": 2.4
+      "start": 58.83,
+      "speechEnd": 62.255,
+      "end": 65.1663,
+      "gapSeconds": 2.9112
     },
     {
+      "sentenceId": "source-2349f33cbbf1b3af-s-2b93ad3cae84",
       "segmentId": "source-2349f33cbbf1b3af",
-      "start": 57.9708,
-      "speechEnd": 61.1992,
-      "end": 63.9434,
-      "gapSeconds": 2.7442
+      "start": 65.1663,
+      "speechEnd": 69.8413,
+      "end": 73.815,
+      "gapSeconds": 3.9737
     },
     {
+      "sentenceId": "source-400556cc9a4f78ec-s-dbbeb945df69",
       "segmentId": "source-400556cc9a4f78ec",
-      "start": 63.9434,
-      "speechEnd": 67.7109,
-      "end": 70.9133,
-      "gapSeconds": 3.2024
+      "start": 73.815,
+      "speechEnd": 78.49,
+      "end": 82.4638,
+      "gapSeconds": 3.9737
     },
     {
+      "sentenceId": "source-2492142cc3f57878-s-3f052bbef738",
       "segmentId": "source-2492142cc3f57878",
-      "start": 70.9133,
-      "speechEnd": 75.2308,
-      "end": 78.9007,
-      "gapSeconds": 3.6699
+      "start": 82.4638,
+      "speechEnd": 87.8637,
+      "end": 92.4537,
+      "gapSeconds": 4.59
     },
     {
+      "sentenceId": "source-09a7b66c81b21112-s-8e12cad9fd6d",
       "segmentId": "source-09a7b66c81b21112",
-      "start": 78.9007,
-      "speechEnd": 83.0432,
-      "end": 86.5643,
-      "gapSeconds": 3.5211
+      "start": 92.4537,
+      "speechEnd": 97.6287,
+      "end": 102.0275,
+      "gapSeconds": 4.3987
     },
     {
+      "sentenceId": "source-d9bbac2b32916ac9-s-7fac7472cb8c",
       "segmentId": "source-d9bbac2b32916ac9",
-      "start": 86.5643,
-      "speechEnd": 90.4443,
-      "end": 93.7423,
-      "gapSeconds": 3.298
+      "start": 102.0275,
+      "speechEnd": 106.9025,
+      "end": 111.0463,
+      "gapSeconds": 4.1437
     },
     {
+      "sentenceId": "source-f3ee84c550f70184-s-a94bd59a5823",
       "segmentId": "source-f3ee84c550f70184",
-      "start": 93.7423,
-      "speechEnd": 97.7809,
-      "end": 101.2137,
-      "gapSeconds": 3.4328
+      "start": 111.0463,
+      "speechEnd": 116.5463,
+      "end": 121.2212,
+      "gapSeconds": 4.675
     },
     {
+      "sentenceId": "source-4d61c2a9871121e6-s-8464fc39ca55",
       "segmentId": "source-4d61c2a9871121e6",
-      "start": 101.2137,
-      "speechEnd": 103.7312,
-      "end": 106.1312,
-      "gapSeconds": 2.4
+      "start": 121.2212,
+      "speechEnd": 124.5713,
+      "end": 127.4188,
+      "gapSeconds": 2.8475
     },
     {
+      "sentenceId": "source-bda882971282deca-s-23e98420acaa",
       "segmentId": "source-bda882971282deca",
-      "start": 106.1312,
-      "speechEnd": 107.9862,
-      "end": 110.3862,
+      "start": 127.4188,
+      "speechEnd": 130.1937,
+      "end": 132.5938,
       "gapSeconds": 2.4
     },
     {
+      "sentenceId": "source-2efdbf41957ab125-s-422d8befbf5c",
       "segmentId": "source-2efdbf41957ab125",
-      "start": 110.3862,
-      "speechEnd": 112.4858,
-      "end": 114.8858,
-      "gapSeconds": 2.4
+      "start": 132.5938,
+      "speechEnd": 135.9187,
+      "end": 138.745,
+      "gapSeconds": 2.8262
     },
     {
+      "sentenceId": "source-00d2169fce4e76d5-s-163ffd7c144d",
       "segmentId": "source-00d2169fce4e76d5",
-      "start": 114.8858,
-      "speechEnd": 117.3283,
-      "end": 121.8283,
-      "gapSeconds": 2.4
+      "start": 138.745,
+      "speechEnd": 143.12,
+      "end": 146.8388,
+      "gapSeconds": 3.7188
     },
     {
+      "sentenceId": "source-3056e2b038b60177-s-a19dae57a2e8",
       "segmentId": "source-3056e2b038b60177",
-      "start": 121.8283,
-      "speechEnd": 124.3708,
-      "end": 128.8708,
-      "gapSeconds": 2.4
+      "start": 146.8388,
+      "speechEnd": 151.2637,
+      "end": 155.025,
+      "gapSeconds": 3.7612
     },
     {
+      "sentenceId": "source-c1bb50acbbe10202-s-680d8c4cf281",
       "segmentId": "source-c1bb50acbbe10202",
-      "start": 128.8708,
-      "speechEnd": 131.1133,
-      "end": 135.6133,
-      "gapSeconds": 2.4
+      "start": 155.025,
+      "speechEnd": 159.25,
+      "end": 162.8413,
+      "gapSeconds": 3.5912
     },
     {
+      "sentenceId": "source-e7b1bdbe0b97b567-s-0d3d5c1327ea",
       "segmentId": "source-e7b1bdbe0b97b567",
-      "start": 135.6133,
-      "speechEnd": 138.4308,
-      "end": 142.9308,
-      "gapSeconds": 2.4
+      "start": 162.8413,
+      "speechEnd": 167.5163,
+      "end": 171.49,
+      "gapSeconds": 3.9737
     },
     {
+      "sentenceId": "source-1d952d59ce7e23ad-s-0ddf14f22323",
       "segmentId": "source-1d952d59ce7e23ad",
-      "start": 142.9308,
-      "speechEnd": 144.9547,
-      "end": 149.4547,
-      "gapSeconds": 2.4
+      "start": 171.49,
+      "speechEnd": 175.74,
+      "end": 179.3525,
+      "gapSeconds": 3.6125
+    }
+  ],
+  "sentence-source-8bb1fa8285570ad2-s-c708417cc9a9": [
+    {
+      "sentenceId": "source-8bb1fa8285570ad2-s-c708417cc9a9",
+      "segmentId": "source-8bb1fa8285570ad2",
+      "start": 0.0,
+      "speechEnd": 8.95,
+      "end": 9.95,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-8bb1fa8285570ad2-s-c708417cc9a9-slow": [
+    {
+      "sentenceId": "source-8bb1fa8285570ad2-s-c708417cc9a9",
+      "segmentId": "source-8bb1fa8285570ad2",
+      "start": 0.0,
+      "speechEnd": 10.125,
+      "end": 11.625,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-8bb1fa8285570ad2-s-c708417cc9a9-recite": [
+    {
+      "sentenceId": "source-8bb1fa8285570ad2-s-c708417cc9a9",
+      "segmentId": "source-8bb1fa8285570ad2",
+      "start": 0.0,
+      "speechEnd": 9.75,
+      "end": 18.0375,
+      "gapSeconds": 8.2875
+    }
+  ],
+  "sentence-source-52b65c3aa95b9e9e-s-15dd40e24d54": [
+    {
+      "sentenceId": "source-52b65c3aa95b9e9e-s-15dd40e24d54",
+      "segmentId": "source-52b65c3aa95b9e9e",
+      "start": 0.0,
+      "speechEnd": 13.1,
+      "end": 14.1,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-52b65c3aa95b9e9e-s-15dd40e24d54-slow": [
+    {
+      "sentenceId": "source-52b65c3aa95b9e9e-s-15dd40e24d54",
+      "segmentId": "source-52b65c3aa95b9e9e",
+      "start": 0.0,
+      "speechEnd": 14.875,
+      "end": 16.375,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-52b65c3aa95b9e9e-s-15dd40e24d54-recite": [
+    {
+      "sentenceId": "source-52b65c3aa95b9e9e-s-15dd40e24d54",
+      "segmentId": "source-52b65c3aa95b9e9e",
+      "start": 0.0,
+      "speechEnd": 14.05,
+      "end": 25.9925,
+      "gapSeconds": 11.9425
+    }
+  ],
+  "sentence-source-00fc153e670b5ee6-s-072a4b39ab4a": [
+    {
+      "sentenceId": "source-00fc153e670b5ee6-s-072a4b39ab4a",
+      "segmentId": "source-00fc153e670b5ee6",
+      "start": 0.0,
+      "speechEnd": 3.125,
+      "end": 4.125,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-00fc153e670b5ee6-s-072a4b39ab4a-slow": [
+    {
+      "sentenceId": "source-00fc153e670b5ee6-s-072a4b39ab4a",
+      "segmentId": "source-00fc153e670b5ee6",
+      "start": 0.0,
+      "speechEnd": 3.125,
+      "end": 4.625,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-00fc153e670b5ee6-s-072a4b39ab4a-recite": [
+    {
+      "sentenceId": "source-00fc153e670b5ee6-s-072a4b39ab4a",
+      "segmentId": "source-00fc153e670b5ee6",
+      "start": 0.0,
+      "speechEnd": 3.125,
+      "end": 5.7812,
+      "gapSeconds": 2.6562
+    }
+  ],
+  "sentence-source-989722bad00e08ea-s-eb8ff99f9d31": [
+    {
+      "sentenceId": "source-989722bad00e08ea-s-eb8ff99f9d31",
+      "segmentId": "source-989722bad00e08ea",
+      "start": 0.0,
+      "speechEnd": 4.575,
+      "end": 5.575,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-989722bad00e08ea-s-eb8ff99f9d31-slow": [
+    {
+      "sentenceId": "source-989722bad00e08ea-s-eb8ff99f9d31",
+      "segmentId": "source-989722bad00e08ea",
+      "start": 0.0,
+      "speechEnd": 5.05,
+      "end": 6.55,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-989722bad00e08ea-s-eb8ff99f9d31-recite": [
+    {
+      "sentenceId": "source-989722bad00e08ea-s-eb8ff99f9d31",
+      "segmentId": "source-989722bad00e08ea",
+      "start": 0.0,
+      "speechEnd": 4.875,
+      "end": 9.0188,
+      "gapSeconds": 4.1437
+    }
+  ],
+  "sentence-source-cd2ab2dd6e991c2c-s-d3a489756120": [
+    {
+      "sentenceId": "source-cd2ab2dd6e991c2c-s-d3a489756120",
+      "segmentId": "source-cd2ab2dd6e991c2c",
+      "start": 0.0,
+      "speechEnd": 3.425,
+      "end": 4.425,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-cd2ab2dd6e991c2c-s-d3a489756120-slow": [
+    {
+      "sentenceId": "source-cd2ab2dd6e991c2c-s-d3a489756120",
+      "segmentId": "source-cd2ab2dd6e991c2c",
+      "start": 0.0,
+      "speechEnd": 3.425,
+      "end": 4.925,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-cd2ab2dd6e991c2c-s-d3a489756120-recite": [
+    {
+      "sentenceId": "source-cd2ab2dd6e991c2c-s-d3a489756120",
+      "segmentId": "source-cd2ab2dd6e991c2c",
+      "start": 0.0,
+      "speechEnd": 3.425,
+      "end": 6.3362,
+      "gapSeconds": 2.9112
+    }
+  ],
+  "sentence-source-2349f33cbbf1b3af-s-2b93ad3cae84": [
+    {
+      "sentenceId": "source-2349f33cbbf1b3af-s-2b93ad3cae84",
+      "segmentId": "source-2349f33cbbf1b3af",
+      "start": 0.0,
+      "speechEnd": 4.4,
+      "end": 5.4,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-2349f33cbbf1b3af-s-2b93ad3cae84-slow": [
+    {
+      "sentenceId": "source-2349f33cbbf1b3af-s-2b93ad3cae84",
+      "segmentId": "source-2349f33cbbf1b3af",
+      "start": 0.0,
+      "speechEnd": 4.975,
+      "end": 6.475,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-2349f33cbbf1b3af-s-2b93ad3cae84-recite": [
+    {
+      "sentenceId": "source-2349f33cbbf1b3af-s-2b93ad3cae84",
+      "segmentId": "source-2349f33cbbf1b3af",
+      "start": 0.0,
+      "speechEnd": 4.675,
+      "end": 8.6487,
+      "gapSeconds": 3.9737
+    }
+  ],
+  "sentence-source-400556cc9a4f78ec-s-dbbeb945df69": [
+    {
+      "sentenceId": "source-400556cc9a4f78ec-s-dbbeb945df69",
+      "segmentId": "source-400556cc9a4f78ec",
+      "start": 0.0,
+      "speechEnd": 4.375,
+      "end": 5.375,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-400556cc9a4f78ec-s-dbbeb945df69-slow": [
+    {
+      "sentenceId": "source-400556cc9a4f78ec-s-dbbeb945df69",
+      "segmentId": "source-400556cc9a4f78ec",
+      "start": 0.0,
+      "speechEnd": 4.85,
+      "end": 6.35,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-400556cc9a4f78ec-s-dbbeb945df69-recite": [
+    {
+      "sentenceId": "source-400556cc9a4f78ec-s-dbbeb945df69",
+      "segmentId": "source-400556cc9a4f78ec",
+      "start": 0.0,
+      "speechEnd": 4.675,
+      "end": 8.6487,
+      "gapSeconds": 3.9737
+    }
+  ],
+  "sentence-source-2492142cc3f57878-s-3f052bbef738": [
+    {
+      "sentenceId": "source-2492142cc3f57878-s-3f052bbef738",
+      "segmentId": "source-2492142cc3f57878",
+      "start": 0.0,
+      "speechEnd": 5.075,
+      "end": 6.075,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-2492142cc3f57878-s-3f052bbef738-slow": [
+    {
+      "sentenceId": "source-2492142cc3f57878-s-3f052bbef738",
+      "segmentId": "source-2492142cc3f57878",
+      "start": 0.0,
+      "speechEnd": 5.65,
+      "end": 7.15,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-2492142cc3f57878-s-3f052bbef738-recite": [
+    {
+      "sentenceId": "source-2492142cc3f57878-s-3f052bbef738",
+      "segmentId": "source-2492142cc3f57878",
+      "start": 0.0,
+      "speechEnd": 5.4,
+      "end": 9.99,
+      "gapSeconds": 4.59
+    }
+  ],
+  "sentence-source-09a7b66c81b21112-s-8e12cad9fd6d": [
+    {
+      "sentenceId": "source-09a7b66c81b21112-s-8e12cad9fd6d",
+      "segmentId": "source-09a7b66c81b21112",
+      "start": 0.0,
+      "speechEnd": 4.65,
+      "end": 5.65,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-09a7b66c81b21112-s-8e12cad9fd6d-slow": [
+    {
+      "sentenceId": "source-09a7b66c81b21112-s-8e12cad9fd6d",
+      "segmentId": "source-09a7b66c81b21112",
+      "start": 0.0,
+      "speechEnd": 5.3,
+      "end": 6.8,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-09a7b66c81b21112-s-8e12cad9fd6d-recite": [
+    {
+      "sentenceId": "source-09a7b66c81b21112-s-8e12cad9fd6d",
+      "segmentId": "source-09a7b66c81b21112",
+      "start": 0.0,
+      "speechEnd": 5.175,
+      "end": 9.5738,
+      "gapSeconds": 4.3987
+    }
+  ],
+  "sentence-source-d9bbac2b32916ac9-s-7fac7472cb8c": [
+    {
+      "sentenceId": "source-d9bbac2b32916ac9-s-7fac7472cb8c",
+      "segmentId": "source-d9bbac2b32916ac9",
+      "start": 0.0,
+      "speechEnd": 4.525,
+      "end": 5.525,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-d9bbac2b32916ac9-s-7fac7472cb8c-slow": [
+    {
+      "sentenceId": "source-d9bbac2b32916ac9-s-7fac7472cb8c",
+      "segmentId": "source-d9bbac2b32916ac9",
+      "start": 0.0,
+      "speechEnd": 5.175,
+      "end": 6.675,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-d9bbac2b32916ac9-s-7fac7472cb8c-recite": [
+    {
+      "sentenceId": "source-d9bbac2b32916ac9-s-7fac7472cb8c",
+      "segmentId": "source-d9bbac2b32916ac9",
+      "start": 0.0,
+      "speechEnd": 4.875,
+      "end": 9.0188,
+      "gapSeconds": 4.1437
+    }
+  ],
+  "sentence-source-f3ee84c550f70184-s-a94bd59a5823": [
+    {
+      "sentenceId": "source-f3ee84c550f70184-s-a94bd59a5823",
+      "segmentId": "source-f3ee84c550f70184",
+      "start": 0.0,
+      "speechEnd": 5.175,
+      "end": 6.175,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-f3ee84c550f70184-s-a94bd59a5823-slow": [
+    {
+      "sentenceId": "source-f3ee84c550f70184-s-a94bd59a5823",
+      "segmentId": "source-f3ee84c550f70184",
+      "start": 0.0,
+      "speechEnd": 5.775,
+      "end": 7.275,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-f3ee84c550f70184-s-a94bd59a5823-recite": [
+    {
+      "sentenceId": "source-f3ee84c550f70184-s-a94bd59a5823",
+      "segmentId": "source-f3ee84c550f70184",
+      "start": 0.0,
+      "speechEnd": 5.5,
+      "end": 10.175,
+      "gapSeconds": 4.675
+    }
+  ],
+  "sentence-source-4d61c2a9871121e6-s-8464fc39ca55": [
+    {
+      "sentenceId": "source-4d61c2a9871121e6-s-8464fc39ca55",
+      "segmentId": "source-4d61c2a9871121e6",
+      "start": 0.0,
+      "speechEnd": 3.35,
+      "end": 4.35,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-4d61c2a9871121e6-s-8464fc39ca55-slow": [
+    {
+      "sentenceId": "source-4d61c2a9871121e6-s-8464fc39ca55",
+      "segmentId": "source-4d61c2a9871121e6",
+      "start": 0.0,
+      "speechEnd": 3.35,
+      "end": 4.85,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-4d61c2a9871121e6-s-8464fc39ca55-recite": [
+    {
+      "sentenceId": "source-4d61c2a9871121e6-s-8464fc39ca55",
+      "segmentId": "source-4d61c2a9871121e6",
+      "start": 0.0,
+      "speechEnd": 3.35,
+      "end": 6.1975,
+      "gapSeconds": 2.8475
+    }
+  ],
+  "sentence-source-bda882971282deca-s-23e98420acaa": [
+    {
+      "sentenceId": "source-bda882971282deca-s-23e98420acaa",
+      "segmentId": "source-bda882971282deca",
+      "start": 0.0,
+      "speechEnd": 2.775,
+      "end": 3.775,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-bda882971282deca-s-23e98420acaa-slow": [
+    {
+      "sentenceId": "source-bda882971282deca-s-23e98420acaa",
+      "segmentId": "source-bda882971282deca",
+      "start": 0.0,
+      "speechEnd": 2.775,
+      "end": 4.275,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-bda882971282deca-s-23e98420acaa-recite": [
+    {
+      "sentenceId": "source-bda882971282deca-s-23e98420acaa",
+      "segmentId": "source-bda882971282deca",
+      "start": 0.0,
+      "speechEnd": 2.775,
+      "end": 5.375,
+      "gapSeconds": 2.6
+    }
+  ],
+  "sentence-source-2efdbf41957ab125-s-422d8befbf5c": [
+    {
+      "sentenceId": "source-2efdbf41957ab125-s-422d8befbf5c",
+      "segmentId": "source-2efdbf41957ab125",
+      "start": 0.0,
+      "speechEnd": 3.325,
+      "end": 4.325,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-2efdbf41957ab125-s-422d8befbf5c-slow": [
+    {
+      "sentenceId": "source-2efdbf41957ab125-s-422d8befbf5c",
+      "segmentId": "source-2efdbf41957ab125",
+      "start": 0.0,
+      "speechEnd": 3.325,
+      "end": 4.825,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-2efdbf41957ab125-s-422d8befbf5c-recite": [
+    {
+      "sentenceId": "source-2efdbf41957ab125-s-422d8befbf5c",
+      "segmentId": "source-2efdbf41957ab125",
+      "start": 0.0,
+      "speechEnd": 3.325,
+      "end": 6.1513,
+      "gapSeconds": 2.8262
+    }
+  ],
+  "sentence-source-00d2169fce4e76d5-s-163ffd7c144d": [
+    {
+      "sentenceId": "source-00d2169fce4e76d5-s-163ffd7c144d",
+      "segmentId": "source-00d2169fce4e76d5",
+      "start": 0.0,
+      "speechEnd": 4.05,
+      "end": 5.05,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-00d2169fce4e76d5-s-163ffd7c144d-slow": [
+    {
+      "sentenceId": "source-00d2169fce4e76d5-s-163ffd7c144d",
+      "segmentId": "source-00d2169fce4e76d5",
+      "start": 0.0,
+      "speechEnd": 4.55,
+      "end": 6.05,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-00d2169fce4e76d5-s-163ffd7c144d-recite": [
+    {
+      "sentenceId": "source-00d2169fce4e76d5-s-163ffd7c144d",
+      "segmentId": "source-00d2169fce4e76d5",
+      "start": 0.0,
+      "speechEnd": 4.375,
+      "end": 8.0938,
+      "gapSeconds": 3.7188
+    }
+  ],
+  "sentence-source-3056e2b038b60177-s-a19dae57a2e8": [
+    {
+      "sentenceId": "source-3056e2b038b60177-s-a19dae57a2e8",
+      "segmentId": "source-3056e2b038b60177",
+      "start": 0.0,
+      "speechEnd": 4.15,
+      "end": 5.15,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-3056e2b038b60177-s-a19dae57a2e8-slow": [
+    {
+      "sentenceId": "source-3056e2b038b60177-s-a19dae57a2e8",
+      "segmentId": "source-3056e2b038b60177",
+      "start": 0.0,
+      "speechEnd": 4.6,
+      "end": 6.1,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-3056e2b038b60177-s-a19dae57a2e8-recite": [
+    {
+      "sentenceId": "source-3056e2b038b60177-s-a19dae57a2e8",
+      "segmentId": "source-3056e2b038b60177",
+      "start": 0.0,
+      "speechEnd": 4.425,
+      "end": 8.1862,
+      "gapSeconds": 3.7612
+    }
+  ],
+  "sentence-source-c1bb50acbbe10202-s-680d8c4cf281": [
+    {
+      "sentenceId": "source-c1bb50acbbe10202-s-680d8c4cf281",
+      "segmentId": "source-c1bb50acbbe10202",
+      "start": 0.0,
+      "speechEnd": 3.775,
+      "end": 4.775,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-c1bb50acbbe10202-s-680d8c4cf281-slow": [
+    {
+      "sentenceId": "source-c1bb50acbbe10202-s-680d8c4cf281",
+      "segmentId": "source-c1bb50acbbe10202",
+      "start": 0.0,
+      "speechEnd": 4.35,
+      "end": 5.85,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-c1bb50acbbe10202-s-680d8c4cf281-recite": [
+    {
+      "sentenceId": "source-c1bb50acbbe10202-s-680d8c4cf281",
+      "segmentId": "source-c1bb50acbbe10202",
+      "start": 0.0,
+      "speechEnd": 4.225,
+      "end": 7.8163,
+      "gapSeconds": 3.5912
+    }
+  ],
+  "sentence-source-e7b1bdbe0b97b567-s-0d3d5c1327ea": [
+    {
+      "sentenceId": "source-e7b1bdbe0b97b567-s-0d3d5c1327ea",
+      "segmentId": "source-e7b1bdbe0b97b567",
+      "start": 0.0,
+      "speechEnd": 4.375,
+      "end": 5.375,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-e7b1bdbe0b97b567-s-0d3d5c1327ea-slow": [
+    {
+      "sentenceId": "source-e7b1bdbe0b97b567-s-0d3d5c1327ea",
+      "segmentId": "source-e7b1bdbe0b97b567",
+      "start": 0.0,
+      "speechEnd": 4.85,
+      "end": 6.35,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-e7b1bdbe0b97b567-s-0d3d5c1327ea-recite": [
+    {
+      "sentenceId": "source-e7b1bdbe0b97b567-s-0d3d5c1327ea",
+      "segmentId": "source-e7b1bdbe0b97b567",
+      "start": 0.0,
+      "speechEnd": 4.675,
+      "end": 8.6487,
+      "gapSeconds": 3.9737
+    }
+  ],
+  "sentence-source-1d952d59ce7e23ad-s-0ddf14f22323": [
+    {
+      "sentenceId": "source-1d952d59ce7e23ad-s-0ddf14f22323",
+      "segmentId": "source-1d952d59ce7e23ad",
+      "start": 0.0,
+      "speechEnd": 3.9,
+      "end": 4.9,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-1d952d59ce7e23ad-s-0ddf14f22323-slow": [
+    {
+      "sentenceId": "source-1d952d59ce7e23ad-s-0ddf14f22323",
+      "segmentId": "source-1d952d59ce7e23ad",
+      "start": 0.0,
+      "speechEnd": 4.35,
+      "end": 5.85,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-1d952d59ce7e23ad-s-0ddf14f22323-recite": [
+    {
+      "sentenceId": "source-1d952d59ce7e23ad-s-0ddf14f22323",
+      "segmentId": "source-1d952d59ce7e23ad",
+      "start": 0.0,
+      "speechEnd": 4.25,
+      "end": 7.8625,
+      "gapSeconds": 3.6125
     }
   ],
   "reasons": [
     {
+      "sentenceId": "source-ddf227447b28dbdd-s-829cccddb6ec",
       "segmentId": "source-ddf227447b28dbdd",
       "start": 0.0,
-      "speechEnd": 13.1892,
-      "end": 15.2392,
+      "speechEnd": 15.15,
+      "end": 15.8,
       "gapSeconds": 0.65
     },
     {
+      "sentenceId": "source-2b1811aba4f2613c-s-0f5d52791499",
       "segmentId": "source-2b1811aba4f2613c",
-      "start": 15.2392,
-      "speechEnd": 32.426,
-      "end": 34.476,
+      "start": 15.8,
+      "speechEnd": 28.3,
+      "end": 28.95,
       "gapSeconds": 0.65
     },
     {
+      "sentenceId": "source-2b1811aba4f2613c-s-f7f25db08139",
+      "segmentId": "source-2b1811aba4f2613c",
+      "start": 28.95,
+      "speechEnd": 35.2,
+      "end": 35.85,
+      "gapSeconds": 0.65
+    },
+    {
+      "sentenceId": "source-ed0f29a22871938c-s-7eb71c7d5c79",
       "segmentId": "source-ed0f29a22871938c",
-      "start": 34.476,
-      "speechEnd": 51.4047,
-      "end": 52.0547,
+      "start": 35.85,
+      "speechEnd": 45.875,
+      "end": 46.525,
       "gapSeconds": 0.65
     }
   ],
   "reasons-slow": [
     {
+      "sentenceId": "source-ddf227447b28dbdd-s-829cccddb6ec",
       "segmentId": "source-ddf227447b28dbdd",
       "start": 0.0,
-      "speechEnd": 15.0718,
-      "end": 18.0918,
+      "speechEnd": 17.2,
+      "end": 18.4,
       "gapSeconds": 1.2
     },
     {
+      "sentenceId": "source-2b1811aba4f2613c-s-0f5d52791499",
       "segmentId": "source-2b1811aba4f2613c",
-      "start": 18.0918,
-      "speechEnd": 38.2891,
-      "end": 41.3091,
+      "start": 18.4,
+      "speechEnd": 32.9,
+      "end": 34.1,
       "gapSeconds": 1.2
     },
     {
+      "sentenceId": "source-2b1811aba4f2613c-s-f7f25db08139",
+      "segmentId": "source-2b1811aba4f2613c",
+      "start": 34.1,
+      "speechEnd": 41.25,
+      "end": 42.45,
+      "gapSeconds": 1.2
+    },
+    {
+      "sentenceId": "source-ed0f29a22871938c-s-7eb71c7d5c79",
       "segmentId": "source-ed0f29a22871938c",
-      "start": 41.3091,
-      "speechEnd": 61.1615,
-      "end": 62.3615,
+      "start": 42.45,
+      "speechEnd": 53.775,
+      "end": 54.975,
       "gapSeconds": 1.2
     }
   ],
   "reasons-recite": [
     {
+      "sentenceId": "source-ddf227447b28dbdd-s-829cccddb6ec",
       "segmentId": "source-ddf227447b28dbdd",
       "start": 0.0,
-      "speechEnd": 14.2393,
-      "end": 28.3393,
+      "speechEnd": 16.425,
+      "end": 28.425,
       "gapSeconds": 12
     },
     {
+      "sentenceId": "source-2b1811aba4f2613c-s-0f5d52791499",
       "segmentId": "source-2b1811aba4f2613c",
-      "start": 28.3393,
-      "speechEnd": 48.1565,
-      "end": 62.2565,
-      "gapSeconds": 12
+      "start": 28.425,
+      "speechEnd": 42.275,
+      "end": 54.0475,
+      "gapSeconds": 11.7725
     },
     {
+      "sentenceId": "source-2b1811aba4f2613c-s-f7f25db08139",
+      "segmentId": "source-2b1811aba4f2613c",
+      "start": 54.0475,
+      "speechEnd": 60.8475,
+      "end": 66.6275,
+      "gapSeconds": 5.78
+    },
+    {
+      "sentenceId": "source-ed0f29a22871938c-s-7eb71c7d5c79",
       "segmentId": "source-ed0f29a22871938c",
-      "start": 62.2565,
-      "speechEnd": 82.2565,
-      "end": 94.2565,
+      "start": 66.6275,
+      "speechEnd": 77.4525,
+      "end": 86.6538,
+      "gapSeconds": 9.2012
+    }
+  ],
+  "sentence-source-ddf227447b28dbdd-s-829cccddb6ec": [
+    {
+      "sentenceId": "source-ddf227447b28dbdd-s-829cccddb6ec",
+      "segmentId": "source-ddf227447b28dbdd",
+      "start": 0.0,
+      "speechEnd": 15.15,
+      "end": 16.15,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-ddf227447b28dbdd-s-829cccddb6ec-slow": [
+    {
+      "sentenceId": "source-ddf227447b28dbdd-s-829cccddb6ec",
+      "segmentId": "source-ddf227447b28dbdd",
+      "start": 0.0,
+      "speechEnd": 17.2,
+      "end": 18.7,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-ddf227447b28dbdd-s-829cccddb6ec-recite": [
+    {
+      "sentenceId": "source-ddf227447b28dbdd-s-829cccddb6ec",
+      "segmentId": "source-ddf227447b28dbdd",
+      "start": 0.0,
+      "speechEnd": 16.425,
+      "end": 28.425,
       "gapSeconds": 12
+    }
+  ],
+  "sentence-source-2b1811aba4f2613c-s-0f5d52791499": [
+    {
+      "sentenceId": "source-2b1811aba4f2613c-s-0f5d52791499",
+      "segmentId": "source-2b1811aba4f2613c",
+      "start": 0.0,
+      "speechEnd": 12.5,
+      "end": 13.5,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-2b1811aba4f2613c-s-0f5d52791499-slow": [
+    {
+      "sentenceId": "source-2b1811aba4f2613c-s-0f5d52791499",
+      "segmentId": "source-2b1811aba4f2613c",
+      "start": 0.0,
+      "speechEnd": 14.5,
+      "end": 16.0,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-2b1811aba4f2613c-s-0f5d52791499-recite": [
+    {
+      "sentenceId": "source-2b1811aba4f2613c-s-0f5d52791499",
+      "segmentId": "source-2b1811aba4f2613c",
+      "start": 0.0,
+      "speechEnd": 13.85,
+      "end": 25.6225,
+      "gapSeconds": 11.7725
+    }
+  ],
+  "sentence-source-2b1811aba4f2613c-s-f7f25db08139": [
+    {
+      "sentenceId": "source-2b1811aba4f2613c-s-f7f25db08139",
+      "segmentId": "source-2b1811aba4f2613c",
+      "start": 0.0,
+      "speechEnd": 6.25,
+      "end": 7.25,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-2b1811aba4f2613c-s-f7f25db08139-slow": [
+    {
+      "sentenceId": "source-2b1811aba4f2613c-s-f7f25db08139",
+      "segmentId": "source-2b1811aba4f2613c",
+      "start": 0.0,
+      "speechEnd": 7.15,
+      "end": 8.65,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-2b1811aba4f2613c-s-f7f25db08139-recite": [
+    {
+      "sentenceId": "source-2b1811aba4f2613c-s-f7f25db08139",
+      "segmentId": "source-2b1811aba4f2613c",
+      "start": 0.0,
+      "speechEnd": 6.8,
+      "end": 12.58,
+      "gapSeconds": 5.78
+    }
+  ],
+  "sentence-source-ed0f29a22871938c-s-7eb71c7d5c79": [
+    {
+      "sentenceId": "source-ed0f29a22871938c-s-7eb71c7d5c79",
+      "segmentId": "source-ed0f29a22871938c",
+      "start": 0.0,
+      "speechEnd": 10.025,
+      "end": 11.025,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-ed0f29a22871938c-s-7eb71c7d5c79-slow": [
+    {
+      "sentenceId": "source-ed0f29a22871938c-s-7eb71c7d5c79",
+      "segmentId": "source-ed0f29a22871938c",
+      "start": 0.0,
+      "speechEnd": 11.325,
+      "end": 12.825,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-ed0f29a22871938c-s-7eb71c7d5c79-recite": [
+    {
+      "sentenceId": "source-ed0f29a22871938c-s-7eb71c7d5c79",
+      "segmentId": "source-ed0f29a22871938c",
+      "start": 0.0,
+      "speechEnd": 10.825,
+      "end": 20.0263,
+      "gapSeconds": 9.2012
     }
   ],
   "connectors": [
     {
+      "sentenceId": "source-223c1b1bf3355d73-s-84d083a49d9d",
       "segmentId": "source-223c1b1bf3355d73",
       "start": 0.0,
-      "speechEnd": 0.8125,
-      "end": 1.6625,
+      "speechEnd": 2.2,
+      "end": 3.05,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-db6917b5679ec1d7-s-4e01d649b188",
       "segmentId": "source-db6917b5679ec1d7",
-      "start": 1.6625,
-      "speechEnd": 2.7375,
-      "end": 3.5875,
+      "start": 3.05,
+      "speechEnd": 5.35,
+      "end": 6.2,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-2303b271a66af62d-s-db5239ba1c83",
       "segmentId": "source-2303b271a66af62d",
-      "start": 3.5875,
-      "speechEnd": 4.5,
-      "end": 5.35,
+      "start": 6.2,
+      "speechEnd": 8.475,
+      "end": 9.325,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-95f06b3449bf2981-s-c170fd2c59f6",
       "segmentId": "source-95f06b3449bf2981",
-      "start": 5.35,
-      "speechEnd": 6.1103,
-      "end": 6.9603,
+      "start": 9.325,
+      "speechEnd": 11.55,
+      "end": 12.4,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-cfaac67921b337a9-s-b67ddcfb6b34",
       "segmentId": "source-cfaac67921b337a9",
-      "start": 6.9603,
-      "speechEnd": 7.7603,
-      "end": 8.6103,
+      "start": 12.4,
+      "speechEnd": 14.6,
+      "end": 15.45,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-ce7a7beccef88809-s-49e35e5d2b9d",
       "segmentId": "source-ce7a7beccef88809",
-      "start": 8.6103,
-      "speechEnd": 9.9403,
-      "end": 10.7903,
+      "start": 15.45,
+      "speechEnd": 17.925,
+      "end": 18.775,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-2ab567456ed5e776-s-613ce0bf8ab8",
       "segmentId": "source-2ab567456ed5e776",
-      "start": 10.7903,
-      "speechEnd": 11.8328,
-      "end": 12.6828,
+      "start": 18.775,
+      "speechEnd": 21.15,
+      "end": 22.0,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-1f827e7a576723e7-s-b4fe6f6ce0ac",
       "segmentId": "source-1f827e7a576723e7",
-      "start": 12.6828,
-      "speechEnd": 13.5453,
-      "end": 14.3953,
+      "start": 22.0,
+      "speechEnd": 24.275,
+      "end": 25.125,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-b83c06dc964f912d-s-1bc12ca3c71d",
       "segmentId": "source-b83c06dc964f912d",
-      "start": 14.3953,
-      "speechEnd": 15.3578,
-      "end": 16.2078,
+      "start": 25.125,
+      "speechEnd": 27.425,
+      "end": 28.275,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-3c9559c8a9bc9f26-s-b8fc61c647d2",
       "segmentId": "source-3c9559c8a9bc9f26",
-      "start": 16.2078,
-      "speechEnd": 17.1328,
-      "end": 17.9828,
+      "start": 28.275,
+      "speechEnd": 30.5,
+      "end": 31.35,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-512edcbb4ca89642-s-0eb0aa483b71",
       "segmentId": "source-512edcbb4ca89642",
-      "start": 17.9828,
-      "speechEnd": 18.7203,
-      "end": 19.5703,
+      "start": 31.35,
+      "speechEnd": 33.575,
+      "end": 34.425,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-348867d8778ea067-s-17540dcb9791",
       "segmentId": "source-348867d8778ea067",
-      "start": 19.5703,
-      "speechEnd": 20.2953,
-      "end": 21.1453,
+      "start": 34.425,
+      "speechEnd": 36.575,
+      "end": 37.425,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-dbfd83f543640990-s-6024d6897fc6",
       "segmentId": "source-dbfd83f543640990",
-      "start": 21.1453,
-      "speechEnd": 22.0453,
-      "end": 22.8953,
+      "start": 37.425,
+      "speechEnd": 39.65,
+      "end": 40.5,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-b75c32775ce3d713-s-928e4b1cddc4",
       "segmentId": "source-b75c32775ce3d713",
-      "start": 22.8953,
-      "speechEnd": 23.7878,
-      "end": 24.6378,
+      "start": 40.5,
+      "speechEnd": 42.8,
+      "end": 43.65,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-a69fef3aa9a15f3c-s-ddde224937bb",
       "segmentId": "source-a69fef3aa9a15f3c",
-      "start": 24.6378,
-      "speechEnd": 25.6253,
-      "end": 26.4753,
+      "start": 43.65,
+      "speechEnd": 45.975,
+      "end": 46.825,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-871e6bcd1cc9321d-s-9cbb2b6486df",
       "segmentId": "source-871e6bcd1cc9321d",
-      "start": 26.4753,
-      "speechEnd": 27.3503,
-      "end": 28.2003,
+      "start": 46.825,
+      "speechEnd": 49.075,
+      "end": 49.925,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-b8f5a19d94e32ba7-s-6454aefdc16f",
       "segmentId": "source-b8f5a19d94e32ba7",
-      "start": 28.2003,
-      "speechEnd": 29.7678,
-      "end": 30.6178,
+      "start": 49.925,
+      "speechEnd": 52.525,
+      "end": 53.375,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-1ac8c60f4db4d7c5-s-2b5d10b90326",
       "segmentId": "source-1ac8c60f4db4d7c5",
-      "start": 30.6178,
-      "speechEnd": 33.6258,
-      "end": 35.6758,
+      "start": 53.375,
+      "speechEnd": 57.325,
+      "end": 57.975,
       "gapSeconds": 0.65
     },
     {
+      "sentenceId": "source-547c63e577ac964c-s-22da70ec10d5",
       "segmentId": "source-547c63e577ac964c",
-      "start": 35.6758,
-      "speechEnd": 36.3508,
-      "end": 37.2008,
+      "start": 57.975,
+      "speechEnd": 60.225,
+      "end": 61.075,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-c32daf6be151e0cb-s-1ff57a29d7c9",
       "segmentId": "source-c32daf6be151e0cb",
-      "start": 37.2008,
-      "speechEnd": 37.6633,
-      "end": 38.5133,
+      "start": 61.075,
+      "speechEnd": 63.125,
+      "end": 63.975,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-8ed0a74554c8bef1-s-0597f441dcca",
       "segmentId": "source-8ed0a74554c8bef1",
-      "start": 38.5133,
-      "speechEnd": 39.0133,
-      "end": 39.8633,
+      "start": 63.975,
+      "speechEnd": 65.975,
+      "end": 66.825,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-d946d6de89329b5c-s-ac9068f06c83",
       "segmentId": "source-d946d6de89329b5c",
-      "start": 39.8633,
-      "speechEnd": 40.6508,
-      "end": 41.5008,
+      "start": 66.825,
+      "speechEnd": 69.075,
+      "end": 69.925,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-039c9ebc3bedddbc-s-ebea03e1947a",
       "segmentId": "source-039c9ebc3bedddbc",
-      "start": 41.5008,
-      "speechEnd": 42.5183,
-      "end": 43.3683,
+      "start": 69.925,
+      "speechEnd": 72.25,
+      "end": 73.1,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-cf1cc9dd720f81fd-s-89a918b1587b",
       "segmentId": "source-cf1cc9dd720f81fd",
-      "start": 43.3683,
-      "speechEnd": 44.1558,
-      "end": 45.0058,
+      "start": 73.1,
+      "speechEnd": 75.375,
+      "end": 76.225,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-c868c44a44eb6c5d-s-788cf535ed52",
       "segmentId": "source-c868c44a44eb6c5d",
-      "start": 45.0058,
-      "speechEnd": 45.7683,
-      "end": 46.6183,
+      "start": 76.225,
+      "speechEnd": 78.4,
+      "end": 79.25,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-379e0f3500672a93-s-b1839d65de8e",
       "segmentId": "source-379e0f3500672a93",
-      "start": 46.6183,
-      "speechEnd": 47.5358,
-      "end": 48.3858,
+      "start": 79.25,
+      "speechEnd": 81.55,
+      "end": 82.4,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-ec9463e1182b45ce-s-b117cb00183a",
       "segmentId": "source-ec9463e1182b45ce",
-      "start": 48.3858,
-      "speechEnd": 49.2533,
-      "end": 50.1033,
+      "start": 82.4,
+      "speechEnd": 84.65,
+      "end": 85.5,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-cf1cfecec640ab8e-s-5232f1caee23",
       "segmentId": "source-cf1cfecec640ab8e",
-      "start": 50.1033,
-      "speechEnd": 51.1958,
-      "end": 52.0458,
+      "start": 85.5,
+      "speechEnd": 87.775,
+      "end": 88.625,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-fdc17899e263456e-s-735730f52e5c",
       "segmentId": "source-fdc17899e263456e",
-      "start": 52.0458,
-      "speechEnd": 52.5708,
-      "end": 53.4208,
+      "start": 88.625,
+      "speechEnd": 90.6,
+      "end": 91.45,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-d14f3c9e1d736e9e-s-9e28f1d7710e",
       "segmentId": "source-d14f3c9e1d736e9e",
-      "start": 53.4208,
-      "speechEnd": 54.4458,
-      "end": 55.2958,
+      "start": 91.45,
+      "speechEnd": 93.775,
+      "end": 94.625,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-72878cb5b5ee5e93-s-3781906c1cf2",
       "segmentId": "source-72878cb5b5ee5e93",
-      "start": 55.2958,
-      "speechEnd": 56.8083,
-      "end": 57.6583,
+      "start": 94.625,
+      "speechEnd": 97.65,
+      "end": 98.5,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-7de601ca9a1f42dc-s-68e3dfa54150",
       "segmentId": "source-7de601ca9a1f42dc",
-      "start": 57.6583,
-      "speechEnd": 58.5333,
-      "end": 59.3833,
+      "start": 98.5,
+      "speechEnd": 100.725,
+      "end": 101.575,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-06441d45007f87ae-s-c9113f82ea7d",
       "segmentId": "source-06441d45007f87ae",
-      "start": 59.3833,
-      "speechEnd": 60.5133,
-      "end": 61.3633,
+      "start": 101.575,
+      "speechEnd": 104.025,
+      "end": 104.875,
       "gapSeconds": 0.85
     },
     {
+      "sentenceId": "source-a537f530ef21a88c-s-47951833ecf6",
       "segmentId": "source-a537f530ef21a88c",
-      "start": 61.3633,
-      "speechEnd": 61.8133,
-      "end": 62.6633,
+      "start": 104.875,
+      "speechEnd": 106.95,
+      "end": 107.8,
       "gapSeconds": 0.85
     }
   ],
   "connectors-slow": [
     {
+      "sentenceId": "source-223c1b1bf3355d73-s-84d083a49d9d",
       "segmentId": "source-223c1b1bf3355d73",
       "start": 0.0,
-      "speechEnd": 0.8125,
-      "end": 2.2125,
+      "speechEnd": 2.2,
+      "end": 3.6,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-db6917b5679ec1d7-s-4e01d649b188",
       "segmentId": "source-db6917b5679ec1d7",
-      "start": 2.2125,
-      "speechEnd": 3.2875,
-      "end": 4.6875,
+      "start": 3.6,
+      "speechEnd": 5.9,
+      "end": 7.3,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-2303b271a66af62d-s-db5239ba1c83",
       "segmentId": "source-2303b271a66af62d",
-      "start": 4.6875,
-      "speechEnd": 5.6,
-      "end": 7.0,
+      "start": 7.3,
+      "speechEnd": 9.575,
+      "end": 10.975,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-95f06b3449bf2981-s-c170fd2c59f6",
       "segmentId": "source-95f06b3449bf2981",
-      "start": 7.0,
-      "speechEnd": 7.7603,
-      "end": 9.1603,
+      "start": 10.975,
+      "speechEnd": 13.2,
+      "end": 14.6,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-cfaac67921b337a9-s-b67ddcfb6b34",
       "segmentId": "source-cfaac67921b337a9",
-      "start": 9.1603,
-      "speechEnd": 9.9603,
-      "end": 11.3603,
+      "start": 14.6,
+      "speechEnd": 16.8,
+      "end": 18.2,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-ce7a7beccef88809-s-49e35e5d2b9d",
       "segmentId": "source-ce7a7beccef88809",
-      "start": 11.3603,
-      "speechEnd": 12.6903,
-      "end": 14.0903,
+      "start": 18.2,
+      "speechEnd": 20.675,
+      "end": 22.075,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-2ab567456ed5e776-s-613ce0bf8ab8",
       "segmentId": "source-2ab567456ed5e776",
-      "start": 14.0903,
-      "speechEnd": 15.1328,
-      "end": 16.5328,
+      "start": 22.075,
+      "speechEnd": 24.45,
+      "end": 25.85,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-1f827e7a576723e7-s-b4fe6f6ce0ac",
       "segmentId": "source-1f827e7a576723e7",
-      "start": 16.5328,
-      "speechEnd": 17.3953,
-      "end": 18.7953,
+      "start": 25.85,
+      "speechEnd": 28.125,
+      "end": 29.525,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-b83c06dc964f912d-s-1bc12ca3c71d",
       "segmentId": "source-b83c06dc964f912d",
-      "start": 18.7953,
-      "speechEnd": 19.7578,
-      "end": 21.1578,
+      "start": 29.525,
+      "speechEnd": 31.825,
+      "end": 33.225,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-3c9559c8a9bc9f26-s-b8fc61c647d2",
       "segmentId": "source-3c9559c8a9bc9f26",
-      "start": 21.1578,
-      "speechEnd": 22.0828,
-      "end": 23.4828,
+      "start": 33.225,
+      "speechEnd": 35.45,
+      "end": 36.85,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-512edcbb4ca89642-s-0eb0aa483b71",
       "segmentId": "source-512edcbb4ca89642",
-      "start": 23.4828,
-      "speechEnd": 24.2203,
-      "end": 25.6203,
+      "start": 36.85,
+      "speechEnd": 39.075,
+      "end": 40.475,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-348867d8778ea067-s-17540dcb9791",
       "segmentId": "source-348867d8778ea067",
-      "start": 25.6203,
-      "speechEnd": 26.3453,
-      "end": 27.7453,
+      "start": 40.475,
+      "speechEnd": 42.625,
+      "end": 44.025,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-dbfd83f543640990-s-6024d6897fc6",
       "segmentId": "source-dbfd83f543640990",
-      "start": 27.7453,
-      "speechEnd": 28.6453,
-      "end": 30.0453,
+      "start": 44.025,
+      "speechEnd": 46.25,
+      "end": 47.65,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-b75c32775ce3d713-s-928e4b1cddc4",
       "segmentId": "source-b75c32775ce3d713",
-      "start": 30.0453,
-      "speechEnd": 30.9378,
-      "end": 32.3378,
+      "start": 47.65,
+      "speechEnd": 49.95,
+      "end": 51.35,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-a69fef3aa9a15f3c-s-ddde224937bb",
       "segmentId": "source-a69fef3aa9a15f3c",
-      "start": 32.3378,
-      "speechEnd": 33.3253,
-      "end": 34.7253,
+      "start": 51.35,
+      "speechEnd": 53.675,
+      "end": 55.075,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-871e6bcd1cc9321d-s-9cbb2b6486df",
       "segmentId": "source-871e6bcd1cc9321d",
-      "start": 34.7253,
-      "speechEnd": 35.6003,
-      "end": 37.0003,
+      "start": 55.075,
+      "speechEnd": 57.325,
+      "end": 58.725,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-b8f5a19d94e32ba7-s-6454aefdc16f",
       "segmentId": "source-b8f5a19d94e32ba7",
-      "start": 37.0003,
-      "speechEnd": 38.5678,
-      "end": 39.9678,
+      "start": 58.725,
+      "speechEnd": 61.325,
+      "end": 62.725,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-1ac8c60f4db4d7c5-s-2b5d10b90326",
       "segmentId": "source-1ac8c60f4db4d7c5",
-      "start": 39.9678,
-      "speechEnd": 43.3958,
-      "end": 46.4158,
+      "start": 62.725,
+      "speechEnd": 67.425,
+      "end": 68.625,
       "gapSeconds": 1.2
     },
     {
+      "sentenceId": "source-547c63e577ac964c-s-22da70ec10d5",
       "segmentId": "source-547c63e577ac964c",
-      "start": 46.4158,
-      "speechEnd": 47.0908,
-      "end": 48.4908,
+      "start": 68.625,
+      "speechEnd": 70.875,
+      "end": 72.275,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-c32daf6be151e0cb-s-1ff57a29d7c9",
       "segmentId": "source-c32daf6be151e0cb",
-      "start": 48.4908,
-      "speechEnd": 48.9533,
-      "end": 50.3533,
+      "start": 72.275,
+      "speechEnd": 74.325,
+      "end": 75.725,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-8ed0a74554c8bef1-s-0597f441dcca",
       "segmentId": "source-8ed0a74554c8bef1",
-      "start": 50.3533,
-      "speechEnd": 50.8533,
-      "end": 52.2533,
+      "start": 75.725,
+      "speechEnd": 77.725,
+      "end": 79.125,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-d946d6de89329b5c-s-ac9068f06c83",
       "segmentId": "source-d946d6de89329b5c",
-      "start": 52.2533,
-      "speechEnd": 53.0408,
-      "end": 54.4408,
+      "start": 79.125,
+      "speechEnd": 81.375,
+      "end": 82.775,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-039c9ebc3bedddbc-s-ebea03e1947a",
       "segmentId": "source-039c9ebc3bedddbc",
-      "start": 54.4408,
-      "speechEnd": 55.4583,
-      "end": 56.8583,
+      "start": 82.775,
+      "speechEnd": 85.1,
+      "end": 86.5,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-cf1cc9dd720f81fd-s-89a918b1587b",
       "segmentId": "source-cf1cc9dd720f81fd",
-      "start": 56.8583,
-      "speechEnd": 57.6458,
-      "end": 59.0458,
+      "start": 86.5,
+      "speechEnd": 88.775,
+      "end": 90.175,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-c868c44a44eb6c5d-s-788cf535ed52",
       "segmentId": "source-c868c44a44eb6c5d",
-      "start": 59.0458,
-      "speechEnd": 59.8083,
-      "end": 61.2083,
+      "start": 90.175,
+      "speechEnd": 92.35,
+      "end": 93.75,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-379e0f3500672a93-s-b1839d65de8e",
       "segmentId": "source-379e0f3500672a93",
-      "start": 61.2083,
-      "speechEnd": 62.1258,
-      "end": 63.5258,
+      "start": 93.75,
+      "speechEnd": 96.05,
+      "end": 97.45,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-ec9463e1182b45ce-s-b117cb00183a",
       "segmentId": "source-ec9463e1182b45ce",
-      "start": 63.5258,
-      "speechEnd": 64.3933,
-      "end": 65.7933,
+      "start": 97.45,
+      "speechEnd": 99.7,
+      "end": 101.1,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-cf1cfecec640ab8e-s-5232f1caee23",
       "segmentId": "source-cf1cfecec640ab8e",
-      "start": 65.7933,
-      "speechEnd": 66.8858,
-      "end": 68.2858,
+      "start": 101.1,
+      "speechEnd": 103.375,
+      "end": 104.775,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-fdc17899e263456e-s-735730f52e5c",
       "segmentId": "source-fdc17899e263456e",
-      "start": 68.2858,
-      "speechEnd": 68.8108,
-      "end": 70.2108,
+      "start": 104.775,
+      "speechEnd": 106.75,
+      "end": 108.15,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-d14f3c9e1d736e9e-s-9e28f1d7710e",
       "segmentId": "source-d14f3c9e1d736e9e",
-      "start": 70.2108,
-      "speechEnd": 71.2358,
-      "end": 72.6358,
+      "start": 108.15,
+      "speechEnd": 110.475,
+      "end": 111.875,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-72878cb5b5ee5e93-s-3781906c1cf2",
       "segmentId": "source-72878cb5b5ee5e93",
-      "start": 72.6358,
-      "speechEnd": 74.3908,
-      "end": 75.7908,
+      "start": 111.875,
+      "speechEnd": 115.275,
+      "end": 116.675,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-7de601ca9a1f42dc-s-68e3dfa54150",
       "segmentId": "source-7de601ca9a1f42dc",
-      "start": 75.7908,
-      "speechEnd": 76.6658,
-      "end": 78.0658,
+      "start": 116.675,
+      "speechEnd": 118.9,
+      "end": 120.3,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-06441d45007f87ae-s-c9113f82ea7d",
       "segmentId": "source-06441d45007f87ae",
-      "start": 78.0658,
-      "speechEnd": 79.1958,
-      "end": 80.5958,
+      "start": 120.3,
+      "speechEnd": 122.75,
+      "end": 124.15,
       "gapSeconds": 1.4
     },
     {
+      "sentenceId": "source-a537f530ef21a88c-s-47951833ecf6",
       "segmentId": "source-a537f530ef21a88c",
-      "start": 80.5958,
-      "speechEnd": 81.0458,
-      "end": 82.4458,
+      "start": 124.15,
+      "speechEnd": 126.225,
+      "end": 127.625,
       "gapSeconds": 1.4
     }
   ],
   "connectors-recite": [
     {
+      "sentenceId": "source-223c1b1bf3355d73-s-84d083a49d9d",
       "segmentId": "source-223c1b1bf3355d73",
       "start": 0.0,
-      "speechEnd": 0.8125,
-      "end": 3.2125,
+      "speechEnd": 2.2,
+      "end": 4.6,
       "gapSeconds": 2.4
     },
     {
+      "sentenceId": "source-db6917b5679ec1d7-s-4e01d649b188",
       "segmentId": "source-db6917b5679ec1d7",
-      "start": 3.2125,
-      "speechEnd": 4.2875,
-      "end": 6.6875,
+      "start": 4.6,
+      "speechEnd": 6.9,
+      "end": 9.3,
       "gapSeconds": 2.4
     },
     {
+      "sentenceId": "source-2303b271a66af62d-s-db5239ba1c83",
       "segmentId": "source-2303b271a66af62d",
-      "start": 6.6875,
-      "speechEnd": 7.6,
-      "end": 10.0,
+      "start": 9.3,
+      "speechEnd": 11.575,
+      "end": 13.975,
       "gapSeconds": 2.4
     },
     {
+      "sentenceId": "source-95f06b3449bf2981-s-c170fd2c59f6",
       "segmentId": "source-95f06b3449bf2981",
-      "start": 10.0,
-      "speechEnd": 10.7603,
-      "end": 13.1603,
+      "start": 13.975,
+      "speechEnd": 16.2,
+      "end": 18.6,
       "gapSeconds": 2.4
     },
     {
+      "sentenceId": "source-cfaac67921b337a9-s-b67ddcfb6b34",
       "segmentId": "source-cfaac67921b337a9",
-      "start": 13.1603,
-      "speechEnd": 13.9603,
-      "end": 16.3603,
+      "start": 18.6,
+      "speechEnd": 20.8,
+      "end": 23.2,
       "gapSeconds": 2.4
     },
     {
+      "sentenceId": "source-ce7a7beccef88809-s-49e35e5d2b9d",
       "segmentId": "source-ce7a7beccef88809",
-      "start": 16.3603,
-      "speechEnd": 17.6903,
-      "end": 20.0903,
+      "start": 23.2,
+      "speechEnd": 25.675,
+      "end": 28.075,
       "gapSeconds": 2.4
     },
     {
+      "sentenceId": "source-2ab567456ed5e776-s-613ce0bf8ab8",
       "segmentId": "source-2ab567456ed5e776",
-      "start": 20.0903,
-      "speechEnd": 21.1328,
-      "end": 23.5328,
+      "start": 28.075,
+      "speechEnd": 30.45,
+      "end": 32.85,
       "gapSeconds": 2.4
     },
     {
+      "sentenceId": "source-1f827e7a576723e7-s-b4fe6f6ce0ac",
       "segmentId": "source-1f827e7a576723e7",
-      "start": 23.5328,
-      "speechEnd": 24.3953,
-      "end": 26.7953,
+      "start": 32.85,
+      "speechEnd": 35.125,
+      "end": 37.525,
       "gapSeconds": 2.4
     },
     {
+      "sentenceId": "source-b83c06dc964f912d-s-1bc12ca3c71d",
       "segmentId": "source-b83c06dc964f912d",
-      "start": 26.7953,
-      "speechEnd": 27.7578,
-      "end": 30.1578,
+      "start": 37.525,
+      "speechEnd": 39.825,
+      "end": 42.225,
       "gapSeconds": 2.4
     },
     {
+      "sentenceId": "source-3c9559c8a9bc9f26-s-b8fc61c647d2",
       "segmentId": "source-3c9559c8a9bc9f26",
-      "start": 30.1578,
-      "speechEnd": 31.0828,
-      "end": 33.4828,
+      "start": 42.225,
+      "speechEnd": 44.45,
+      "end": 46.85,
       "gapSeconds": 2.4
     },
     {
+      "sentenceId": "source-512edcbb4ca89642-s-0eb0aa483b71",
       "segmentId": "source-512edcbb4ca89642",
-      "start": 33.4828,
-      "speechEnd": 34.2203,
-      "end": 36.6203,
+      "start": 46.85,
+      "speechEnd": 49.075,
+      "end": 51.475,
       "gapSeconds": 2.4
     },
     {
+      "sentenceId": "source-348867d8778ea067-s-17540dcb9791",
       "segmentId": "source-348867d8778ea067",
-      "start": 36.6203,
-      "speechEnd": 37.3453,
-      "end": 39.7453,
+      "start": 51.475,
+      "speechEnd": 53.625,
+      "end": 56.025,
       "gapSeconds": 2.4
     },
     {
+      "sentenceId": "source-dbfd83f543640990-s-6024d6897fc6",
       "segmentId": "source-dbfd83f543640990",
-      "start": 39.7453,
-      "speechEnd": 40.6453,
-      "end": 43.0453,
+      "start": 56.025,
+      "speechEnd": 58.25,
+      "end": 60.65,
       "gapSeconds": 2.4
     },
     {
+      "sentenceId": "source-b75c32775ce3d713-s-928e4b1cddc4",
       "segmentId": "source-b75c32775ce3d713",
-      "start": 43.0453,
-      "speechEnd": 43.9378,
-      "end": 46.3378,
+      "start": 60.65,
+      "speechEnd": 62.95,
+      "end": 65.35,
       "gapSeconds": 2.4
     },
     {
+      "sentenceId": "source-a69fef3aa9a15f3c-s-ddde224937bb",
       "segmentId": "source-a69fef3aa9a15f3c",
-      "start": 46.3378,
-      "speechEnd": 47.3253,
-      "end": 49.7253,
+      "start": 65.35,
+      "speechEnd": 67.675,
+      "end": 70.075,
       "gapSeconds": 2.4
     },
     {
+      "sentenceId": "source-871e6bcd1cc9321d-s-9cbb2b6486df",
       "segmentId": "source-871e6bcd1cc9321d",
-      "start": 49.7253,
-      "speechEnd": 50.6003,
-      "end": 53.0003,
+      "start": 70.075,
+      "speechEnd": 72.325,
+      "end": 74.725,
       "gapSeconds": 2.4
     },
     {
+      "sentenceId": "source-b8f5a19d94e32ba7-s-6454aefdc16f",
       "segmentId": "source-b8f5a19d94e32ba7",
-      "start": 53.0003,
-      "speechEnd": 54.5678,
-      "end": 56.9678,
+      "start": 74.725,
+      "speechEnd": 77.325,
+      "end": 79.725,
       "gapSeconds": 2.4
     },
     {
+      "sentenceId": "source-1ac8c60f4db4d7c5-s-2b5d10b90326",
       "segmentId": "source-1ac8c60f4db4d7c5",
-      "start": 56.9678,
-      "speechEnd": 60.6758,
-      "end": 65.1758,
-      "gapSeconds": 2.4
+      "start": 79.725,
+      "speechEnd": 84.2,
+      "end": 88.0037,
+      "gapSeconds": 3.8037
     },
     {
+      "sentenceId": "source-547c63e577ac964c-s-22da70ec10d5",
       "segmentId": "source-547c63e577ac964c",
-      "start": 65.1758,
-      "speechEnd": 65.8508,
-      "end": 68.2508,
+      "start": 88.0037,
+      "speechEnd": 90.2537,
+      "end": 92.6538,
       "gapSeconds": 2.4
     },
     {
+      "sentenceId": "source-c32daf6be151e0cb-s-1ff57a29d7c9",
       "segmentId": "source-c32daf6be151e0cb",
-      "start": 68.2508,
-      "speechEnd": 68.7133,
-      "end": 71.1133,
+      "start": 92.6538,
+      "speechEnd": 94.7037,
+      "end": 97.1038,
       "gapSeconds": 2.4
     },
     {
+      "sentenceId": "source-8ed0a74554c8bef1-s-0597f441dcca",
       "segmentId": "source-8ed0a74554c8bef1",
-      "start": 71.1133,
-      "speechEnd": 71.6133,
-      "end": 74.0133,
+      "start": 97.1038,
+      "speechEnd": 99.1038,
+      "end": 101.5037,
       "gapSeconds": 2.4
     },
     {
+      "sentenceId": "source-d946d6de89329b5c-s-ac9068f06c83",
       "segmentId": "source-d946d6de89329b5c",
-      "start": 74.0133,
-      "speechEnd": 74.8008,
-      "end": 77.2008,
+      "start": 101.5037,
+      "speechEnd": 103.7537,
+      "end": 106.1538,
       "gapSeconds": 2.4
     },
     {
+      "sentenceId": "source-039c9ebc3bedddbc-s-ebea03e1947a",
       "segmentId": "source-039c9ebc3bedddbc",
-      "start": 77.2008,
-      "speechEnd": 78.2183,
-      "end": 80.6183,
+      "start": 106.1538,
+      "speechEnd": 108.4788,
+      "end": 110.8787,
       "gapSeconds": 2.4
     },
     {
+      "sentenceId": "source-cf1cc9dd720f81fd-s-89a918b1587b",
       "segmentId": "source-cf1cc9dd720f81fd",
-      "start": 80.6183,
-      "speechEnd": 81.4058,
-      "end": 83.8058,
+      "start": 110.8787,
+      "speechEnd": 113.1538,
+      "end": 115.5537,
       "gapSeconds": 2.4
     },
     {
+      "sentenceId": "source-c868c44a44eb6c5d-s-788cf535ed52",
       "segmentId": "source-c868c44a44eb6c5d",
-      "start": 83.8058,
-      "speechEnd": 84.5683,
-      "end": 86.9683,
+      "start": 115.5537,
+      "speechEnd": 117.7288,
+      "end": 120.1287,
       "gapSeconds": 2.4
     },
     {
+      "sentenceId": "source-379e0f3500672a93-s-b1839d65de8e",
       "segmentId": "source-379e0f3500672a93",
-      "start": 86.9683,
-      "speechEnd": 87.8858,
-      "end": 90.2858,
+      "start": 120.1287,
+      "speechEnd": 122.4287,
+      "end": 124.8287,
       "gapSeconds": 2.4
     },
     {
+      "sentenceId": "source-ec9463e1182b45ce-s-b117cb00183a",
       "segmentId": "source-ec9463e1182b45ce",
-      "start": 90.2858,
-      "speechEnd": 91.1533,
-      "end": 93.5533,
+      "start": 124.8287,
+      "speechEnd": 127.0787,
+      "end": 129.4787,
       "gapSeconds": 2.4
     },
     {
+      "sentenceId": "source-cf1cfecec640ab8e-s-5232f1caee23",
       "segmentId": "source-cf1cfecec640ab8e",
-      "start": 93.5533,
-      "speechEnd": 94.6458,
-      "end": 97.0458,
+      "start": 129.4787,
+      "speechEnd": 131.7537,
+      "end": 134.1538,
       "gapSeconds": 2.4
     },
     {
+      "sentenceId": "source-fdc17899e263456e-s-735730f52e5c",
       "segmentId": "source-fdc17899e263456e",
-      "start": 97.0458,
-      "speechEnd": 97.5708,
-      "end": 99.9708,
+      "start": 134.1538,
+      "speechEnd": 136.1287,
+      "end": 138.5288,
       "gapSeconds": 2.4
     },
     {
+      "sentenceId": "source-d14f3c9e1d736e9e-s-9e28f1d7710e",
       "segmentId": "source-d14f3c9e1d736e9e",
-      "start": 99.9708,
-      "speechEnd": 100.9958,
-      "end": 103.3958,
+      "start": 138.5288,
+      "speechEnd": 140.8537,
+      "end": 143.2537,
       "gapSeconds": 2.4
     },
     {
+      "sentenceId": "source-72878cb5b5ee5e93-s-3781906c1cf2",
       "segmentId": "source-72878cb5b5ee5e93",
-      "start": 103.3958,
-      "speechEnd": 105.0458,
-      "end": 107.4458,
-      "gapSeconds": 2.4
+      "start": 143.2537,
+      "speechEnd": 146.4787,
+      "end": 149.22,
+      "gapSeconds": 2.7412
     },
     {
+      "sentenceId": "source-7de601ca9a1f42dc-s-68e3dfa54150",
       "segmentId": "source-7de601ca9a1f42dc",
-      "start": 107.4458,
-      "speechEnd": 108.3208,
-      "end": 110.7208,
+      "start": 149.22,
+      "speechEnd": 151.445,
+      "end": 153.845,
       "gapSeconds": 2.4
     },
     {
+      "sentenceId": "source-06441d45007f87ae-s-c9113f82ea7d",
       "segmentId": "source-06441d45007f87ae",
-      "start": 110.7208,
-      "speechEnd": 111.8508,
-      "end": 114.2508,
+      "start": 153.845,
+      "speechEnd": 156.295,
+      "end": 158.695,
       "gapSeconds": 2.4
     },
     {
+      "sentenceId": "source-a537f530ef21a88c-s-47951833ecf6",
       "segmentId": "source-a537f530ef21a88c",
-      "start": 114.2508,
-      "speechEnd": 114.7008,
-      "end": 117.1008,
+      "start": 158.695,
+      "speechEnd": 160.77,
+      "end": 163.17,
       "gapSeconds": 2.4
+    }
+  ],
+  "sentence-source-223c1b1bf3355d73-s-84d083a49d9d": [
+    {
+      "sentenceId": "source-223c1b1bf3355d73-s-84d083a49d9d",
+      "segmentId": "source-223c1b1bf3355d73",
+      "start": 0.0,
+      "speechEnd": 2.2,
+      "end": 3.2,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-223c1b1bf3355d73-s-84d083a49d9d-slow": [
+    {
+      "sentenceId": "source-223c1b1bf3355d73-s-84d083a49d9d",
+      "segmentId": "source-223c1b1bf3355d73",
+      "start": 0.0,
+      "speechEnd": 2.2,
+      "end": 3.7,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-223c1b1bf3355d73-s-84d083a49d9d-recite": [
+    {
+      "sentenceId": "source-223c1b1bf3355d73-s-84d083a49d9d",
+      "segmentId": "source-223c1b1bf3355d73",
+      "start": 0.0,
+      "speechEnd": 2.2,
+      "end": 4.8,
+      "gapSeconds": 2.6
+    }
+  ],
+  "sentence-source-db6917b5679ec1d7-s-4e01d649b188": [
+    {
+      "sentenceId": "source-db6917b5679ec1d7-s-4e01d649b188",
+      "segmentId": "source-db6917b5679ec1d7",
+      "start": 0.0,
+      "speechEnd": 2.3,
+      "end": 3.3,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-db6917b5679ec1d7-s-4e01d649b188-slow": [
+    {
+      "sentenceId": "source-db6917b5679ec1d7-s-4e01d649b188",
+      "segmentId": "source-db6917b5679ec1d7",
+      "start": 0.0,
+      "speechEnd": 2.3,
+      "end": 3.8,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-db6917b5679ec1d7-s-4e01d649b188-recite": [
+    {
+      "sentenceId": "source-db6917b5679ec1d7-s-4e01d649b188",
+      "segmentId": "source-db6917b5679ec1d7",
+      "start": 0.0,
+      "speechEnd": 2.3,
+      "end": 4.9,
+      "gapSeconds": 2.6
+    }
+  ],
+  "sentence-source-2303b271a66af62d-s-db5239ba1c83": [
+    {
+      "sentenceId": "source-2303b271a66af62d-s-db5239ba1c83",
+      "segmentId": "source-2303b271a66af62d",
+      "start": 0.0,
+      "speechEnd": 2.275,
+      "end": 3.275,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-2303b271a66af62d-s-db5239ba1c83-slow": [
+    {
+      "sentenceId": "source-2303b271a66af62d-s-db5239ba1c83",
+      "segmentId": "source-2303b271a66af62d",
+      "start": 0.0,
+      "speechEnd": 2.275,
+      "end": 3.775,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-2303b271a66af62d-s-db5239ba1c83-recite": [
+    {
+      "sentenceId": "source-2303b271a66af62d-s-db5239ba1c83",
+      "segmentId": "source-2303b271a66af62d",
+      "start": 0.0,
+      "speechEnd": 2.275,
+      "end": 4.875,
+      "gapSeconds": 2.6
+    }
+  ],
+  "sentence-source-95f06b3449bf2981-s-c170fd2c59f6": [
+    {
+      "sentenceId": "source-95f06b3449bf2981-s-c170fd2c59f6",
+      "segmentId": "source-95f06b3449bf2981",
+      "start": 0.0,
+      "speechEnd": 2.225,
+      "end": 3.225,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-95f06b3449bf2981-s-c170fd2c59f6-slow": [
+    {
+      "sentenceId": "source-95f06b3449bf2981-s-c170fd2c59f6",
+      "segmentId": "source-95f06b3449bf2981",
+      "start": 0.0,
+      "speechEnd": 2.225,
+      "end": 3.725,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-95f06b3449bf2981-s-c170fd2c59f6-recite": [
+    {
+      "sentenceId": "source-95f06b3449bf2981-s-c170fd2c59f6",
+      "segmentId": "source-95f06b3449bf2981",
+      "start": 0.0,
+      "speechEnd": 2.225,
+      "end": 4.825,
+      "gapSeconds": 2.6
+    }
+  ],
+  "sentence-source-cfaac67921b337a9-s-b67ddcfb6b34": [
+    {
+      "sentenceId": "source-cfaac67921b337a9-s-b67ddcfb6b34",
+      "segmentId": "source-cfaac67921b337a9",
+      "start": 0.0,
+      "speechEnd": 2.2,
+      "end": 3.2,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-cfaac67921b337a9-s-b67ddcfb6b34-slow": [
+    {
+      "sentenceId": "source-cfaac67921b337a9-s-b67ddcfb6b34",
+      "segmentId": "source-cfaac67921b337a9",
+      "start": 0.0,
+      "speechEnd": 2.2,
+      "end": 3.7,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-cfaac67921b337a9-s-b67ddcfb6b34-recite": [
+    {
+      "sentenceId": "source-cfaac67921b337a9-s-b67ddcfb6b34",
+      "segmentId": "source-cfaac67921b337a9",
+      "start": 0.0,
+      "speechEnd": 2.2,
+      "end": 4.8,
+      "gapSeconds": 2.6
+    }
+  ],
+  "sentence-source-ce7a7beccef88809-s-49e35e5d2b9d": [
+    {
+      "sentenceId": "source-ce7a7beccef88809-s-49e35e5d2b9d",
+      "segmentId": "source-ce7a7beccef88809",
+      "start": 0.0,
+      "speechEnd": 2.475,
+      "end": 3.475,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-ce7a7beccef88809-s-49e35e5d2b9d-slow": [
+    {
+      "sentenceId": "source-ce7a7beccef88809-s-49e35e5d2b9d",
+      "segmentId": "source-ce7a7beccef88809",
+      "start": 0.0,
+      "speechEnd": 2.475,
+      "end": 3.975,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-ce7a7beccef88809-s-49e35e5d2b9d-recite": [
+    {
+      "sentenceId": "source-ce7a7beccef88809-s-49e35e5d2b9d",
+      "segmentId": "source-ce7a7beccef88809",
+      "start": 0.0,
+      "speechEnd": 2.475,
+      "end": 5.075,
+      "gapSeconds": 2.6
+    }
+  ],
+  "sentence-source-2ab567456ed5e776-s-613ce0bf8ab8": [
+    {
+      "sentenceId": "source-2ab567456ed5e776-s-613ce0bf8ab8",
+      "segmentId": "source-2ab567456ed5e776",
+      "start": 0.0,
+      "speechEnd": 2.375,
+      "end": 3.375,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-2ab567456ed5e776-s-613ce0bf8ab8-slow": [
+    {
+      "sentenceId": "source-2ab567456ed5e776-s-613ce0bf8ab8",
+      "segmentId": "source-2ab567456ed5e776",
+      "start": 0.0,
+      "speechEnd": 2.375,
+      "end": 3.875,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-2ab567456ed5e776-s-613ce0bf8ab8-recite": [
+    {
+      "sentenceId": "source-2ab567456ed5e776-s-613ce0bf8ab8",
+      "segmentId": "source-2ab567456ed5e776",
+      "start": 0.0,
+      "speechEnd": 2.375,
+      "end": 4.975,
+      "gapSeconds": 2.6
+    }
+  ],
+  "sentence-source-1f827e7a576723e7-s-b4fe6f6ce0ac": [
+    {
+      "sentenceId": "source-1f827e7a576723e7-s-b4fe6f6ce0ac",
+      "segmentId": "source-1f827e7a576723e7",
+      "start": 0.0,
+      "speechEnd": 2.275,
+      "end": 3.275,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-1f827e7a576723e7-s-b4fe6f6ce0ac-slow": [
+    {
+      "sentenceId": "source-1f827e7a576723e7-s-b4fe6f6ce0ac",
+      "segmentId": "source-1f827e7a576723e7",
+      "start": 0.0,
+      "speechEnd": 2.275,
+      "end": 3.775,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-1f827e7a576723e7-s-b4fe6f6ce0ac-recite": [
+    {
+      "sentenceId": "source-1f827e7a576723e7-s-b4fe6f6ce0ac",
+      "segmentId": "source-1f827e7a576723e7",
+      "start": 0.0,
+      "speechEnd": 2.275,
+      "end": 4.875,
+      "gapSeconds": 2.6
+    }
+  ],
+  "sentence-source-b83c06dc964f912d-s-1bc12ca3c71d": [
+    {
+      "sentenceId": "source-b83c06dc964f912d-s-1bc12ca3c71d",
+      "segmentId": "source-b83c06dc964f912d",
+      "start": 0.0,
+      "speechEnd": 2.3,
+      "end": 3.3,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-b83c06dc964f912d-s-1bc12ca3c71d-slow": [
+    {
+      "sentenceId": "source-b83c06dc964f912d-s-1bc12ca3c71d",
+      "segmentId": "source-b83c06dc964f912d",
+      "start": 0.0,
+      "speechEnd": 2.3,
+      "end": 3.8,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-b83c06dc964f912d-s-1bc12ca3c71d-recite": [
+    {
+      "sentenceId": "source-b83c06dc964f912d-s-1bc12ca3c71d",
+      "segmentId": "source-b83c06dc964f912d",
+      "start": 0.0,
+      "speechEnd": 2.3,
+      "end": 4.9,
+      "gapSeconds": 2.6
+    }
+  ],
+  "sentence-source-3c9559c8a9bc9f26-s-b8fc61c647d2": [
+    {
+      "sentenceId": "source-3c9559c8a9bc9f26-s-b8fc61c647d2",
+      "segmentId": "source-3c9559c8a9bc9f26",
+      "start": 0.0,
+      "speechEnd": 2.225,
+      "end": 3.225,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-3c9559c8a9bc9f26-s-b8fc61c647d2-slow": [
+    {
+      "sentenceId": "source-3c9559c8a9bc9f26-s-b8fc61c647d2",
+      "segmentId": "source-3c9559c8a9bc9f26",
+      "start": 0.0,
+      "speechEnd": 2.225,
+      "end": 3.725,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-3c9559c8a9bc9f26-s-b8fc61c647d2-recite": [
+    {
+      "sentenceId": "source-3c9559c8a9bc9f26-s-b8fc61c647d2",
+      "segmentId": "source-3c9559c8a9bc9f26",
+      "start": 0.0,
+      "speechEnd": 2.225,
+      "end": 4.825,
+      "gapSeconds": 2.6
+    }
+  ],
+  "sentence-source-512edcbb4ca89642-s-0eb0aa483b71": [
+    {
+      "sentenceId": "source-512edcbb4ca89642-s-0eb0aa483b71",
+      "segmentId": "source-512edcbb4ca89642",
+      "start": 0.0,
+      "speechEnd": 2.225,
+      "end": 3.225,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-512edcbb4ca89642-s-0eb0aa483b71-slow": [
+    {
+      "sentenceId": "source-512edcbb4ca89642-s-0eb0aa483b71",
+      "segmentId": "source-512edcbb4ca89642",
+      "start": 0.0,
+      "speechEnd": 2.225,
+      "end": 3.725,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-512edcbb4ca89642-s-0eb0aa483b71-recite": [
+    {
+      "sentenceId": "source-512edcbb4ca89642-s-0eb0aa483b71",
+      "segmentId": "source-512edcbb4ca89642",
+      "start": 0.0,
+      "speechEnd": 2.225,
+      "end": 4.825,
+      "gapSeconds": 2.6
+    }
+  ],
+  "sentence-source-348867d8778ea067-s-17540dcb9791": [
+    {
+      "sentenceId": "source-348867d8778ea067-s-17540dcb9791",
+      "segmentId": "source-348867d8778ea067",
+      "start": 0.0,
+      "speechEnd": 2.15,
+      "end": 3.15,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-348867d8778ea067-s-17540dcb9791-slow": [
+    {
+      "sentenceId": "source-348867d8778ea067-s-17540dcb9791",
+      "segmentId": "source-348867d8778ea067",
+      "start": 0.0,
+      "speechEnd": 2.15,
+      "end": 3.65,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-348867d8778ea067-s-17540dcb9791-recite": [
+    {
+      "sentenceId": "source-348867d8778ea067-s-17540dcb9791",
+      "segmentId": "source-348867d8778ea067",
+      "start": 0.0,
+      "speechEnd": 2.15,
+      "end": 4.75,
+      "gapSeconds": 2.6
+    }
+  ],
+  "sentence-source-dbfd83f543640990-s-6024d6897fc6": [
+    {
+      "sentenceId": "source-dbfd83f543640990-s-6024d6897fc6",
+      "segmentId": "source-dbfd83f543640990",
+      "start": 0.0,
+      "speechEnd": 2.225,
+      "end": 3.225,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-dbfd83f543640990-s-6024d6897fc6-slow": [
+    {
+      "sentenceId": "source-dbfd83f543640990-s-6024d6897fc6",
+      "segmentId": "source-dbfd83f543640990",
+      "start": 0.0,
+      "speechEnd": 2.225,
+      "end": 3.725,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-dbfd83f543640990-s-6024d6897fc6-recite": [
+    {
+      "sentenceId": "source-dbfd83f543640990-s-6024d6897fc6",
+      "segmentId": "source-dbfd83f543640990",
+      "start": 0.0,
+      "speechEnd": 2.225,
+      "end": 4.825,
+      "gapSeconds": 2.6
+    }
+  ],
+  "sentence-source-b75c32775ce3d713-s-928e4b1cddc4": [
+    {
+      "sentenceId": "source-b75c32775ce3d713-s-928e4b1cddc4",
+      "segmentId": "source-b75c32775ce3d713",
+      "start": 0.0,
+      "speechEnd": 2.3,
+      "end": 3.3,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-b75c32775ce3d713-s-928e4b1cddc4-slow": [
+    {
+      "sentenceId": "source-b75c32775ce3d713-s-928e4b1cddc4",
+      "segmentId": "source-b75c32775ce3d713",
+      "start": 0.0,
+      "speechEnd": 2.3,
+      "end": 3.8,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-b75c32775ce3d713-s-928e4b1cddc4-recite": [
+    {
+      "sentenceId": "source-b75c32775ce3d713-s-928e4b1cddc4",
+      "segmentId": "source-b75c32775ce3d713",
+      "start": 0.0,
+      "speechEnd": 2.3,
+      "end": 4.9,
+      "gapSeconds": 2.6
+    }
+  ],
+  "sentence-source-a69fef3aa9a15f3c-s-ddde224937bb": [
+    {
+      "sentenceId": "source-a69fef3aa9a15f3c-s-ddde224937bb",
+      "segmentId": "source-a69fef3aa9a15f3c",
+      "start": 0.0,
+      "speechEnd": 2.325,
+      "end": 3.325,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-a69fef3aa9a15f3c-s-ddde224937bb-slow": [
+    {
+      "sentenceId": "source-a69fef3aa9a15f3c-s-ddde224937bb",
+      "segmentId": "source-a69fef3aa9a15f3c",
+      "start": 0.0,
+      "speechEnd": 2.325,
+      "end": 3.825,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-a69fef3aa9a15f3c-s-ddde224937bb-recite": [
+    {
+      "sentenceId": "source-a69fef3aa9a15f3c-s-ddde224937bb",
+      "segmentId": "source-a69fef3aa9a15f3c",
+      "start": 0.0,
+      "speechEnd": 2.325,
+      "end": 4.925,
+      "gapSeconds": 2.6
+    }
+  ],
+  "sentence-source-871e6bcd1cc9321d-s-9cbb2b6486df": [
+    {
+      "sentenceId": "source-871e6bcd1cc9321d-s-9cbb2b6486df",
+      "segmentId": "source-871e6bcd1cc9321d",
+      "start": 0.0,
+      "speechEnd": 2.25,
+      "end": 3.25,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-871e6bcd1cc9321d-s-9cbb2b6486df-slow": [
+    {
+      "sentenceId": "source-871e6bcd1cc9321d-s-9cbb2b6486df",
+      "segmentId": "source-871e6bcd1cc9321d",
+      "start": 0.0,
+      "speechEnd": 2.25,
+      "end": 3.75,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-871e6bcd1cc9321d-s-9cbb2b6486df-recite": [
+    {
+      "sentenceId": "source-871e6bcd1cc9321d-s-9cbb2b6486df",
+      "segmentId": "source-871e6bcd1cc9321d",
+      "start": 0.0,
+      "speechEnd": 2.25,
+      "end": 4.85,
+      "gapSeconds": 2.6
+    }
+  ],
+  "sentence-source-b8f5a19d94e32ba7-s-6454aefdc16f": [
+    {
+      "sentenceId": "source-b8f5a19d94e32ba7-s-6454aefdc16f",
+      "segmentId": "source-b8f5a19d94e32ba7",
+      "start": 0.0,
+      "speechEnd": 2.6,
+      "end": 3.6,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-b8f5a19d94e32ba7-s-6454aefdc16f-slow": [
+    {
+      "sentenceId": "source-b8f5a19d94e32ba7-s-6454aefdc16f",
+      "segmentId": "source-b8f5a19d94e32ba7",
+      "start": 0.0,
+      "speechEnd": 2.6,
+      "end": 4.1,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-b8f5a19d94e32ba7-s-6454aefdc16f-recite": [
+    {
+      "sentenceId": "source-b8f5a19d94e32ba7-s-6454aefdc16f",
+      "segmentId": "source-b8f5a19d94e32ba7",
+      "start": 0.0,
+      "speechEnd": 2.6,
+      "end": 5.2,
+      "gapSeconds": 2.6
+    }
+  ],
+  "sentence-source-1ac8c60f4db4d7c5-s-2b5d10b90326": [
+    {
+      "sentenceId": "source-1ac8c60f4db4d7c5-s-2b5d10b90326",
+      "segmentId": "source-1ac8c60f4db4d7c5",
+      "start": 0.0,
+      "speechEnd": 3.95,
+      "end": 4.95,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-1ac8c60f4db4d7c5-s-2b5d10b90326-slow": [
+    {
+      "sentenceId": "source-1ac8c60f4db4d7c5-s-2b5d10b90326",
+      "segmentId": "source-1ac8c60f4db4d7c5",
+      "start": 0.0,
+      "speechEnd": 4.7,
+      "end": 6.2,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-1ac8c60f4db4d7c5-s-2b5d10b90326-recite": [
+    {
+      "sentenceId": "source-1ac8c60f4db4d7c5-s-2b5d10b90326",
+      "segmentId": "source-1ac8c60f4db4d7c5",
+      "start": 0.0,
+      "speechEnd": 4.475,
+      "end": 8.2788,
+      "gapSeconds": 3.8037
+    }
+  ],
+  "sentence-source-547c63e577ac964c-s-22da70ec10d5": [
+    {
+      "sentenceId": "source-547c63e577ac964c-s-22da70ec10d5",
+      "segmentId": "source-547c63e577ac964c",
+      "start": 0.0,
+      "speechEnd": 2.25,
+      "end": 3.25,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-547c63e577ac964c-s-22da70ec10d5-slow": [
+    {
+      "sentenceId": "source-547c63e577ac964c-s-22da70ec10d5",
+      "segmentId": "source-547c63e577ac964c",
+      "start": 0.0,
+      "speechEnd": 2.25,
+      "end": 3.75,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-547c63e577ac964c-s-22da70ec10d5-recite": [
+    {
+      "sentenceId": "source-547c63e577ac964c-s-22da70ec10d5",
+      "segmentId": "source-547c63e577ac964c",
+      "start": 0.0,
+      "speechEnd": 2.25,
+      "end": 4.85,
+      "gapSeconds": 2.6
+    }
+  ],
+  "sentence-source-c32daf6be151e0cb-s-1ff57a29d7c9": [
+    {
+      "sentenceId": "source-c32daf6be151e0cb-s-1ff57a29d7c9",
+      "segmentId": "source-c32daf6be151e0cb",
+      "start": 0.0,
+      "speechEnd": 2.05,
+      "end": 3.05,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-c32daf6be151e0cb-s-1ff57a29d7c9-slow": [
+    {
+      "sentenceId": "source-c32daf6be151e0cb-s-1ff57a29d7c9",
+      "segmentId": "source-c32daf6be151e0cb",
+      "start": 0.0,
+      "speechEnd": 2.05,
+      "end": 3.55,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-c32daf6be151e0cb-s-1ff57a29d7c9-recite": [
+    {
+      "sentenceId": "source-c32daf6be151e0cb-s-1ff57a29d7c9",
+      "segmentId": "source-c32daf6be151e0cb",
+      "start": 0.0,
+      "speechEnd": 2.05,
+      "end": 4.65,
+      "gapSeconds": 2.6
+    }
+  ],
+  "sentence-source-8ed0a74554c8bef1-s-0597f441dcca": [
+    {
+      "sentenceId": "source-8ed0a74554c8bef1-s-0597f441dcca",
+      "segmentId": "source-8ed0a74554c8bef1",
+      "start": 0.0,
+      "speechEnd": 2.0,
+      "end": 3.0,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-8ed0a74554c8bef1-s-0597f441dcca-slow": [
+    {
+      "sentenceId": "source-8ed0a74554c8bef1-s-0597f441dcca",
+      "segmentId": "source-8ed0a74554c8bef1",
+      "start": 0.0,
+      "speechEnd": 2.0,
+      "end": 3.5,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-8ed0a74554c8bef1-s-0597f441dcca-recite": [
+    {
+      "sentenceId": "source-8ed0a74554c8bef1-s-0597f441dcca",
+      "segmentId": "source-8ed0a74554c8bef1",
+      "start": 0.0,
+      "speechEnd": 2.0,
+      "end": 4.6,
+      "gapSeconds": 2.6
+    }
+  ],
+  "sentence-source-d946d6de89329b5c-s-ac9068f06c83": [
+    {
+      "sentenceId": "source-d946d6de89329b5c-s-ac9068f06c83",
+      "segmentId": "source-d946d6de89329b5c",
+      "start": 0.0,
+      "speechEnd": 2.25,
+      "end": 3.25,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-d946d6de89329b5c-s-ac9068f06c83-slow": [
+    {
+      "sentenceId": "source-d946d6de89329b5c-s-ac9068f06c83",
+      "segmentId": "source-d946d6de89329b5c",
+      "start": 0.0,
+      "speechEnd": 2.25,
+      "end": 3.75,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-d946d6de89329b5c-s-ac9068f06c83-recite": [
+    {
+      "sentenceId": "source-d946d6de89329b5c-s-ac9068f06c83",
+      "segmentId": "source-d946d6de89329b5c",
+      "start": 0.0,
+      "speechEnd": 2.25,
+      "end": 4.85,
+      "gapSeconds": 2.6
+    }
+  ],
+  "sentence-source-039c9ebc3bedddbc-s-ebea03e1947a": [
+    {
+      "sentenceId": "source-039c9ebc3bedddbc-s-ebea03e1947a",
+      "segmentId": "source-039c9ebc3bedddbc",
+      "start": 0.0,
+      "speechEnd": 2.325,
+      "end": 3.325,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-039c9ebc3bedddbc-s-ebea03e1947a-slow": [
+    {
+      "sentenceId": "source-039c9ebc3bedddbc-s-ebea03e1947a",
+      "segmentId": "source-039c9ebc3bedddbc",
+      "start": 0.0,
+      "speechEnd": 2.325,
+      "end": 3.825,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-039c9ebc3bedddbc-s-ebea03e1947a-recite": [
+    {
+      "sentenceId": "source-039c9ebc3bedddbc-s-ebea03e1947a",
+      "segmentId": "source-039c9ebc3bedddbc",
+      "start": 0.0,
+      "speechEnd": 2.325,
+      "end": 4.925,
+      "gapSeconds": 2.6
+    }
+  ],
+  "sentence-source-cf1cc9dd720f81fd-s-89a918b1587b": [
+    {
+      "sentenceId": "source-cf1cc9dd720f81fd-s-89a918b1587b",
+      "segmentId": "source-cf1cc9dd720f81fd",
+      "start": 0.0,
+      "speechEnd": 2.275,
+      "end": 3.275,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-cf1cc9dd720f81fd-s-89a918b1587b-slow": [
+    {
+      "sentenceId": "source-cf1cc9dd720f81fd-s-89a918b1587b",
+      "segmentId": "source-cf1cc9dd720f81fd",
+      "start": 0.0,
+      "speechEnd": 2.275,
+      "end": 3.775,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-cf1cc9dd720f81fd-s-89a918b1587b-recite": [
+    {
+      "sentenceId": "source-cf1cc9dd720f81fd-s-89a918b1587b",
+      "segmentId": "source-cf1cc9dd720f81fd",
+      "start": 0.0,
+      "speechEnd": 2.275,
+      "end": 4.875,
+      "gapSeconds": 2.6
+    }
+  ],
+  "sentence-source-c868c44a44eb6c5d-s-788cf535ed52": [
+    {
+      "sentenceId": "source-c868c44a44eb6c5d-s-788cf535ed52",
+      "segmentId": "source-c868c44a44eb6c5d",
+      "start": 0.0,
+      "speechEnd": 2.175,
+      "end": 3.175,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-c868c44a44eb6c5d-s-788cf535ed52-slow": [
+    {
+      "sentenceId": "source-c868c44a44eb6c5d-s-788cf535ed52",
+      "segmentId": "source-c868c44a44eb6c5d",
+      "start": 0.0,
+      "speechEnd": 2.175,
+      "end": 3.675,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-c868c44a44eb6c5d-s-788cf535ed52-recite": [
+    {
+      "sentenceId": "source-c868c44a44eb6c5d-s-788cf535ed52",
+      "segmentId": "source-c868c44a44eb6c5d",
+      "start": 0.0,
+      "speechEnd": 2.175,
+      "end": 4.775,
+      "gapSeconds": 2.6
+    }
+  ],
+  "sentence-source-379e0f3500672a93-s-b1839d65de8e": [
+    {
+      "sentenceId": "source-379e0f3500672a93-s-b1839d65de8e",
+      "segmentId": "source-379e0f3500672a93",
+      "start": 0.0,
+      "speechEnd": 2.3,
+      "end": 3.3,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-379e0f3500672a93-s-b1839d65de8e-slow": [
+    {
+      "sentenceId": "source-379e0f3500672a93-s-b1839d65de8e",
+      "segmentId": "source-379e0f3500672a93",
+      "start": 0.0,
+      "speechEnd": 2.3,
+      "end": 3.8,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-379e0f3500672a93-s-b1839d65de8e-recite": [
+    {
+      "sentenceId": "source-379e0f3500672a93-s-b1839d65de8e",
+      "segmentId": "source-379e0f3500672a93",
+      "start": 0.0,
+      "speechEnd": 2.3,
+      "end": 4.9,
+      "gapSeconds": 2.6
+    }
+  ],
+  "sentence-source-ec9463e1182b45ce-s-b117cb00183a": [
+    {
+      "sentenceId": "source-ec9463e1182b45ce-s-b117cb00183a",
+      "segmentId": "source-ec9463e1182b45ce",
+      "start": 0.0,
+      "speechEnd": 2.25,
+      "end": 3.25,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-ec9463e1182b45ce-s-b117cb00183a-slow": [
+    {
+      "sentenceId": "source-ec9463e1182b45ce-s-b117cb00183a",
+      "segmentId": "source-ec9463e1182b45ce",
+      "start": 0.0,
+      "speechEnd": 2.25,
+      "end": 3.75,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-ec9463e1182b45ce-s-b117cb00183a-recite": [
+    {
+      "sentenceId": "source-ec9463e1182b45ce-s-b117cb00183a",
+      "segmentId": "source-ec9463e1182b45ce",
+      "start": 0.0,
+      "speechEnd": 2.25,
+      "end": 4.85,
+      "gapSeconds": 2.6
+    }
+  ],
+  "sentence-source-cf1cfecec640ab8e-s-5232f1caee23": [
+    {
+      "sentenceId": "source-cf1cfecec640ab8e-s-5232f1caee23",
+      "segmentId": "source-cf1cfecec640ab8e",
+      "start": 0.0,
+      "speechEnd": 2.275,
+      "end": 3.275,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-cf1cfecec640ab8e-s-5232f1caee23-slow": [
+    {
+      "sentenceId": "source-cf1cfecec640ab8e-s-5232f1caee23",
+      "segmentId": "source-cf1cfecec640ab8e",
+      "start": 0.0,
+      "speechEnd": 2.275,
+      "end": 3.775,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-cf1cfecec640ab8e-s-5232f1caee23-recite": [
+    {
+      "sentenceId": "source-cf1cfecec640ab8e-s-5232f1caee23",
+      "segmentId": "source-cf1cfecec640ab8e",
+      "start": 0.0,
+      "speechEnd": 2.275,
+      "end": 4.875,
+      "gapSeconds": 2.6
+    }
+  ],
+  "sentence-source-fdc17899e263456e-s-735730f52e5c": [
+    {
+      "sentenceId": "source-fdc17899e263456e-s-735730f52e5c",
+      "segmentId": "source-fdc17899e263456e",
+      "start": 0.0,
+      "speechEnd": 1.975,
+      "end": 2.975,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-fdc17899e263456e-s-735730f52e5c-slow": [
+    {
+      "sentenceId": "source-fdc17899e263456e-s-735730f52e5c",
+      "segmentId": "source-fdc17899e263456e",
+      "start": 0.0,
+      "speechEnd": 1.975,
+      "end": 3.475,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-fdc17899e263456e-s-735730f52e5c-recite": [
+    {
+      "sentenceId": "source-fdc17899e263456e-s-735730f52e5c",
+      "segmentId": "source-fdc17899e263456e",
+      "start": 0.0,
+      "speechEnd": 1.975,
+      "end": 4.575,
+      "gapSeconds": 2.6
+    }
+  ],
+  "sentence-source-d14f3c9e1d736e9e-s-9e28f1d7710e": [
+    {
+      "sentenceId": "source-d14f3c9e1d736e9e-s-9e28f1d7710e",
+      "segmentId": "source-d14f3c9e1d736e9e",
+      "start": 0.0,
+      "speechEnd": 2.325,
+      "end": 3.325,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-d14f3c9e1d736e9e-s-9e28f1d7710e-slow": [
+    {
+      "sentenceId": "source-d14f3c9e1d736e9e-s-9e28f1d7710e",
+      "segmentId": "source-d14f3c9e1d736e9e",
+      "start": 0.0,
+      "speechEnd": 2.325,
+      "end": 3.825,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-d14f3c9e1d736e9e-s-9e28f1d7710e-recite": [
+    {
+      "sentenceId": "source-d14f3c9e1d736e9e-s-9e28f1d7710e",
+      "segmentId": "source-d14f3c9e1d736e9e",
+      "start": 0.0,
+      "speechEnd": 2.325,
+      "end": 4.925,
+      "gapSeconds": 2.6
+    }
+  ],
+  "sentence-source-72878cb5b5ee5e93-s-3781906c1cf2": [
+    {
+      "sentenceId": "source-72878cb5b5ee5e93-s-3781906c1cf2",
+      "segmentId": "source-72878cb5b5ee5e93",
+      "start": 0.0,
+      "speechEnd": 3.025,
+      "end": 4.025,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-72878cb5b5ee5e93-s-3781906c1cf2-slow": [
+    {
+      "sentenceId": "source-72878cb5b5ee5e93-s-3781906c1cf2",
+      "segmentId": "source-72878cb5b5ee5e93",
+      "start": 0.0,
+      "speechEnd": 3.4,
+      "end": 4.9,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-72878cb5b5ee5e93-s-3781906c1cf2-recite": [
+    {
+      "sentenceId": "source-72878cb5b5ee5e93-s-3781906c1cf2",
+      "segmentId": "source-72878cb5b5ee5e93",
+      "start": 0.0,
+      "speechEnd": 3.225,
+      "end": 5.9662,
+      "gapSeconds": 2.7412
+    }
+  ],
+  "sentence-source-7de601ca9a1f42dc-s-68e3dfa54150": [
+    {
+      "sentenceId": "source-7de601ca9a1f42dc-s-68e3dfa54150",
+      "segmentId": "source-7de601ca9a1f42dc",
+      "start": 0.0,
+      "speechEnd": 2.225,
+      "end": 3.225,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-7de601ca9a1f42dc-s-68e3dfa54150-slow": [
+    {
+      "sentenceId": "source-7de601ca9a1f42dc-s-68e3dfa54150",
+      "segmentId": "source-7de601ca9a1f42dc",
+      "start": 0.0,
+      "speechEnd": 2.225,
+      "end": 3.725,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-7de601ca9a1f42dc-s-68e3dfa54150-recite": [
+    {
+      "sentenceId": "source-7de601ca9a1f42dc-s-68e3dfa54150",
+      "segmentId": "source-7de601ca9a1f42dc",
+      "start": 0.0,
+      "speechEnd": 2.225,
+      "end": 4.825,
+      "gapSeconds": 2.6
+    }
+  ],
+  "sentence-source-06441d45007f87ae-s-c9113f82ea7d": [
+    {
+      "sentenceId": "source-06441d45007f87ae-s-c9113f82ea7d",
+      "segmentId": "source-06441d45007f87ae",
+      "start": 0.0,
+      "speechEnd": 2.45,
+      "end": 3.45,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-06441d45007f87ae-s-c9113f82ea7d-slow": [
+    {
+      "sentenceId": "source-06441d45007f87ae-s-c9113f82ea7d",
+      "segmentId": "source-06441d45007f87ae",
+      "start": 0.0,
+      "speechEnd": 2.45,
+      "end": 3.95,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-06441d45007f87ae-s-c9113f82ea7d-recite": [
+    {
+      "sentenceId": "source-06441d45007f87ae-s-c9113f82ea7d",
+      "segmentId": "source-06441d45007f87ae",
+      "start": 0.0,
+      "speechEnd": 2.45,
+      "end": 5.05,
+      "gapSeconds": 2.6
+    }
+  ],
+  "sentence-source-a537f530ef21a88c-s-47951833ecf6": [
+    {
+      "sentenceId": "source-a537f530ef21a88c-s-47951833ecf6",
+      "segmentId": "source-a537f530ef21a88c",
+      "start": 0.0,
+      "speechEnd": 2.075,
+      "end": 3.075,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-a537f530ef21a88c-s-47951833ecf6-slow": [
+    {
+      "sentenceId": "source-a537f530ef21a88c-s-47951833ecf6",
+      "segmentId": "source-a537f530ef21a88c",
+      "start": 0.0,
+      "speechEnd": 2.075,
+      "end": 3.575,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-a537f530ef21a88c-s-47951833ecf6-recite": [
+    {
+      "sentenceId": "source-a537f530ef21a88c-s-47951833ecf6",
+      "segmentId": "source-a537f530ef21a88c",
+      "start": 0.0,
+      "speechEnd": 2.075,
+      "end": 4.675,
+      "gapSeconds": 2.6
     }
   ],
   "conclusion": [
     {
+      "sentenceId": "source-d652934491d09866-s-f97738533797",
       "segmentId": "source-d652934491d09866",
       "start": 0.0,
-      "speechEnd": 10.4997,
-      "end": 11.1497,
+      "speechEnd": 11.7,
+      "end": 12.35,
       "gapSeconds": 0.65
+    },
+    {
+      "sentenceId": "source-57e9e9818088779f-s-08bc0dfd2b0d",
+      "segmentId": "source-57e9e9818088779f",
+      "start": 12.35,
+      "speechEnd": 21.425,
+      "end": 22.075,
+      "gapSeconds": 0.65
+    },
+    {
+      "sentenceId": "source-b2841f8647cc35b0-s-f7745cc1f40b",
+      "segmentId": "source-b2841f8647cc35b0",
+      "start": 22.075,
+      "speechEnd": 30.975,
+      "end": 31.825,
+      "gapSeconds": 0.85
     }
   ],
   "conclusion-slow": [
     {
+      "sentenceId": "source-d652934491d09866-s-f97738533797",
       "segmentId": "source-d652934491d09866",
       "start": 0.0,
-      "speechEnd": 12.4537,
-      "end": 13.6537,
+      "speechEnd": 13.225,
+      "end": 14.425,
       "gapSeconds": 1.2
+    },
+    {
+      "sentenceId": "source-57e9e9818088779f-s-08bc0dfd2b0d",
+      "segmentId": "source-57e9e9818088779f",
+      "start": 14.425,
+      "speechEnd": 24.7,
+      "end": 25.9,
+      "gapSeconds": 1.2
+    },
+    {
+      "sentenceId": "source-b2841f8647cc35b0-s-f7745cc1f40b",
+      "segmentId": "source-b2841f8647cc35b0",
+      "start": 25.9,
+      "speechEnd": 36.1,
+      "end": 37.5,
+      "gapSeconds": 1.4
     }
   ],
   "conclusion-recite": [
     {
+      "sentenceId": "source-d652934491d09866-s-f97738533797",
       "segmentId": "source-d652934491d09866",
       "start": 0.0,
-      "speechEnd": 12.0512,
-      "end": 20.5097,
-      "gapSeconds": 8.4585
+      "speechEnd": 12.675,
+      "end": 23.4488,
+      "gapSeconds": 10.7737
+    },
+    {
+      "sentenceId": "source-57e9e9818088779f-s-08bc0dfd2b0d",
+      "segmentId": "source-57e9e9818088779f",
+      "start": 23.4488,
+      "speechEnd": 33.3237,
+      "end": 41.7175,
+      "gapSeconds": 8.3937
+    },
+    {
+      "sentenceId": "source-b2841f8647cc35b0-s-f7745cc1f40b",
+      "segmentId": "source-b2841f8647cc35b0",
+      "start": 41.7175,
+      "speechEnd": 51.5425,
+      "end": 59.8937,
+      "gapSeconds": 8.3512
+    }
+  ],
+  "sentence-source-d652934491d09866-s-f97738533797": [
+    {
+      "sentenceId": "source-d652934491d09866-s-f97738533797",
+      "segmentId": "source-d652934491d09866",
+      "start": 0.0,
+      "speechEnd": 11.7,
+      "end": 12.7,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-d652934491d09866-s-f97738533797-slow": [
+    {
+      "sentenceId": "source-d652934491d09866-s-f97738533797",
+      "segmentId": "source-d652934491d09866",
+      "start": 0.0,
+      "speechEnd": 13.225,
+      "end": 14.725,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-d652934491d09866-s-f97738533797-recite": [
+    {
+      "sentenceId": "source-d652934491d09866-s-f97738533797",
+      "segmentId": "source-d652934491d09866",
+      "start": 0.0,
+      "speechEnd": 12.675,
+      "end": 23.4488,
+      "gapSeconds": 10.7737
+    }
+  ],
+  "sentence-source-57e9e9818088779f-s-08bc0dfd2b0d": [
+    {
+      "sentenceId": "source-57e9e9818088779f-s-08bc0dfd2b0d",
+      "segmentId": "source-57e9e9818088779f",
+      "start": 0.0,
+      "speechEnd": 9.075,
+      "end": 10.075,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-57e9e9818088779f-s-08bc0dfd2b0d-slow": [
+    {
+      "sentenceId": "source-57e9e9818088779f-s-08bc0dfd2b0d",
+      "segmentId": "source-57e9e9818088779f",
+      "start": 0.0,
+      "speechEnd": 10.275,
+      "end": 11.775,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-57e9e9818088779f-s-08bc0dfd2b0d-recite": [
+    {
+      "sentenceId": "source-57e9e9818088779f-s-08bc0dfd2b0d",
+      "segmentId": "source-57e9e9818088779f",
+      "start": 0.0,
+      "speechEnd": 9.875,
+      "end": 18.2688,
+      "gapSeconds": 8.3937
+    }
+  ],
+  "sentence-source-b2841f8647cc35b0-s-f7745cc1f40b": [
+    {
+      "sentenceId": "source-b2841f8647cc35b0-s-f7745cc1f40b",
+      "segmentId": "source-b2841f8647cc35b0",
+      "start": 0.0,
+      "speechEnd": 8.9,
+      "end": 9.9,
+      "gapSeconds": 1.0
+    }
+  ],
+  "sentence-source-b2841f8647cc35b0-s-f7745cc1f40b-slow": [
+    {
+      "sentenceId": "source-b2841f8647cc35b0-s-f7745cc1f40b",
+      "segmentId": "source-b2841f8647cc35b0",
+      "start": 0.0,
+      "speechEnd": 10.2,
+      "end": 11.7,
+      "gapSeconds": 1.5
+    }
+  ],
+  "sentence-source-b2841f8647cc35b0-s-f7745cc1f40b-recite": [
+    {
+      "sentenceId": "source-b2841f8647cc35b0-s-f7745cc1f40b",
+      "segmentId": "source-b2841f8647cc35b0",
+      "start": 0.0,
+      "speechEnd": 9.825,
+      "end": 18.1762,
+      "gapSeconds": 8.3512
     }
   ]
 }

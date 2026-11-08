@@ -1,4 +1,4 @@
-export type LoopMode = 'all' | 'one' | 'off';
+export type LoopMode = 'all' | 'one' | 'off' | 'sentence';
 export function nextIndex(index: number, count: number, loop: LoopMode): number | null {
   if (loop === 'one') return index;
   if (index + 1 < count) return index + 1;

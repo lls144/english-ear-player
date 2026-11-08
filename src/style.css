@@ -4,3 +4,5 @@
 body{padding-top:env(safe-area-inset-top);padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}
 .player-dock{padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right))}
 @media(max-width:700px){#chapters{top:env(safe-area-inset-top)}}
+
+.sentence{cursor:pointer;border-radius:3px;box-decoration-break:clone;-webkit-box-decoration-break:clone}.sentence:focus-visible{outline:2px solid var(--accent);outline-offset:4px}.sentence.selected{box-shadow:0 2px 0 #8cae94;background:#24372a}.playing .sentence.current-sentence{color:#f0faf2;background:#294333}.playing .sentence:not(.current-sentence){color:#a6b4aa}

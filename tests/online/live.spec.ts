@@ -1,5 +1,6 @@
 import {test,expect,type Page} from '@playwright/test';
 import fs from 'node:fs';
+import {decodeEveryMP3} from '../media-decoding';
 // Functional media checks use the exact HTTPS files without competing with
 // first-install prefetches. cache-update.spec separately tests the real worker.
 test.use({serviceWorkers:'block'});
@@ -18,8 +19,9 @@ test('HTTPS homepage and every English paragraph match the release',async({page}
  expect(segments).toBe(library.chapters.reduce((n:number,c:any)=>n+c.segments.length,0));
  const v=await page.request.get('version.json?check='+Date.now());expect(v.ok()).toBe(true);const meta=await v.json();expect(meta.contentVersion).toBe(library.contentVersion);expect(meta.version).toBe(library.version);
 });
-test('all HTTPS MP3s play and pause loop and speed affect real media',async({page})=>{
+test('all HTTPS MP3s play and pause loop and speed affect real media',async({page},info)=>{
  test.setTimeout(300000);
+ if(info.project.name==='edge-desktop'||process.env.EAR_ONLINE_CI_ONLY==='1')await decodeEveryMP3(page,library.files,info);
  for(const preset of ['continuous','recite','slow']){await page.locator('#preset').selectOption(preset);for(const c of library.chapters){await page.locator('[data-chapter="'+c.id+'"]').click();if((await state(page)).paused)await page.locator('#play').click();await expect.poll(async()=>(await state(page)).src).toContain(library.audioModes[preset][c.id]);await expect.poll(async()=>(await state(page)).time).toBeGreaterThan(.1);expect((await state(page)).duration).toBeGreaterThan(2);}}
  await page.locator('#rate').selectOption('0.65');expect((await state(page)).rate).toBeCloseTo(.65/library.referenceRate,5);
  await audio(page).evaluate((a:HTMLAudioElement)=>{a.currentTime=a.duration-.15;});await expect(page.locator('#chapter-title')).toHaveText(library.chapters[0].title);

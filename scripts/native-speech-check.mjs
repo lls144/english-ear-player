@@ -15,7 +15,7 @@ function record(seconds,kind='meter'){
 const prepared=spawnSync(path.join(root,'.venv/Scripts/python.exe'),['scripts/prepare_native_browser.py',firefox.executablePath()],{windowsHide:true,encoding:'utf8'});
 assert.equal(prepared.status,0,prepared.stderr);
 let server;
-try{await fetch('http://127.0.0.1:5173/',{signal:AbortSignal.timeout(1500)});}catch{const {createServer}=await import('vite');server=await createServer();await server.listen();}
+try{await fetch('http://127.0.0.1:5173/',{signal:AbortSignal.timeout(1500)});}catch{const {createServer}=await import('vite');server=await createServer({server:{host:'127.0.0.1',port:5173,strictPort:true}});await server.listen();}
 const browser=await firefox.launch({headless:false,executablePath:path.join(root,'.local/browsers/firefox/firefox.exe')});
 try{
  const page=await browser.newPage();const errors=[];page.on('pageerror',e=>errors.push(String(e)));

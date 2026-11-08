@@ -54,8 +54,11 @@ try{
   const candidate=JSON.parse(git(stage,'show',rollback+':content/materials.json'));
   if(candidate.schemaVersion!==2||candidate.policy!=='verbatim-source-only')throw Error('Legacy edited material is not a valid source-only rollback target');
   const prior=JSON.parse(await fs.readFile(path.join(stage,'content/audio-provenance.json'),'utf8'));
-  // Restore published content, not the current maintenance/security tooling.
-  git(stage,'restore','--source='+rollback,'--staged','--worktree','--','content','public/assets/audio','src/library.generated.json');
+  // Restore a coherent runtime, compiler and tests across content schema changes.
+  // Retain the current publisher/security checks: rollback is a new forward commit.
+  const runtime=['content','public','src','tests','scripts','README.md','ACCEPTANCE.md','docs','package.json','package-lock.json','vite.config.ts','tsconfig.json','playwright.config.ts','playwright.pwa.config.ts','playwright.online.config.ts'];
+  git(stage,'restore','--source='+rollback,'--staged','--worktree','--',...runtime);
+  git(stage,'restore','--source='+originalHead,'--staged','--worktree','--',...['release-content.mjs','release-planning.mjs','release-checkpoint.mjs','tag-release.mjs','watch-release.mjs','scan-public.mjs','audit.mjs','check-online.mjs'].map(f=>'scripts/'+f));
   const restoredVersion=JSON.parse(git(stage,'show',rollback+':package.json')).version;
   for(const name of ['package.json','package-lock.json']){
    const p=JSON.parse(await fs.readFile(path.join(stage,name),'utf8'));p.version=restoredVersion;if(p.packages?.[''])p.packages[''].version=restoredVersion;
@@ -78,7 +81,7 @@ try{
   npmRun(stage,'audio:quality',env);
   audioSummary=JSON.parse(await fs.readFile(path.join(stage,'.local/generated/last-update.json'),'utf8'));
  }
- const contentChanged=Boolean(git(stage,'diff','--name-only','HEAD','--','content','public'));
+ const contentChanged=Boolean(git(stage,'diff','--name-only','HEAD','--','content','public','src','scripts','tests','package.json','package-lock.json','vite.config.ts','tsconfig.json','playwright.config.ts','playwright.pwa.config.ts','playwright.online.config.ts'));
  if(!contentChanged&&!initial){
   if(branch==='main')for(const name of ['sync-state.json','source-current.md'])try{await fs.copyFile(path.join(stage,'.local',name),path.join(root,'.local',name));}catch{}
   console.log('No material/audio changes: no commit, no push, no deployment.');
@@ -102,6 +105,9 @@ try{
   if(dry)console.log('Full isolated release rehearsal passed. Production files, Git history and remote are unchanged.');
   else{
    git(stage,'add','--','content','public','src/library.generated.json','package.json','package-lock.json','CHANGELOG.md');
+   git(stage,'diff','--cached','--check');
+   const staged=git(stage,'diff','--cached','--name-only').split('\n');
+   if(staged.some(file=>/(^|\/)(\.local|\.venv|node_modules|dist)(\/|$)|\.(onnx|safetensors|npy|bin)$/.test(file)))throw Error('Unexpected private/generated file staged for publication');
    await fs.writeFile(path.join(stage,'.local/commit-message.txt'),(rollback?'revert: restore '+rollback:'release: v'+pkg.version)+'\n');
    git(stage,'commit','--file','.local/commit-message.txt');const commit=git(stage,'rev-parse','HEAD');
    if(branch==='main'){

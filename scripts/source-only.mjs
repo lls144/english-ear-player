@@ -1,3 +1,4 @@
+import {pronunciation,splitSentences,decorateSegment} from './reading.mjs';
 import {createHash} from 'node:crypto';
 export const hash=s=>createHash('sha256').update(s).digest('hex');
 export const definitions=[{id:'picture',title:'首段描图',inMainLoop:true},{id:'theme-trends',title:'主题句与社会趋势',inMainLoop:true},{id:'reasons',title:'原因分析',inMainLoop:true},{id:'connectors',title:'逻辑连接词',inMainLoop:false},{id:'conclusion',title:'第三段结尾',inMainLoop:true}];
@@ -8,12 +9,7 @@ export function clean(raw){
  s=s.replace(/（[^）]*）|\([^)]*[\u3400-\u9fff][^)]*\)/g,'').replace(/[\u3400-\u9fff]+/g,'').replace(/[：，]/g,'');
  return s.replace(/SLOT(\d+)TOKEN/g,(_,i)=>slots[Number(i)]).replace(/\s*\+\s*/g,' ').replace(/\s+/g,' ').trim();
 }
-export function speechParts(text){
- const parts=[],pattern=/\[[^\]]+\]|×+|do sth\.?|\.{3,}|…+|\/{1,2}/g;let at=0;
- const words=s=>{s=s.replace(/^[\s,;:.—-]+|[\s,;:—-]+$/g,'').trim();if(/[A-Za-z]/.test(s))parts.push({text:s});};
- for(const m of text.matchAll(pattern)){words(text.slice(at,m.index));parts.push({pauseMs:m[0].startsWith('/')?(m[0]==='//'?1200:650):1400});at=m.index+m[0].length;}
- words(text.slice(at));return parts;
-}
+export function speechParts(text){return splitSentences(text).map(s=>({text:pronunciation(s).speechText}));}
 export function chapterFor(headings,rules=[]){
  const custom=rules.find(r=>headings.includes(r.heading));if(custom)return custom.id;
  const h=headings.join('/');if(/三段|第三段/.test(h))return 'conclusion';if(/连接词/.test(h))return 'connectors';if(/一段|首段/.test(h))return 'picture';if(/二段|第二段/.test(h))return /主题句|社会进入|通用趋势/.test(h)?'theme-trends':'reasons';return null;
@@ -55,9 +51,9 @@ export function parseNote(source,rules=[]){
 }
 function materialize(blocks,rules=[]){
  const specs=[...definitions,...rules.filter(r=>!definitions.some(d=>d.id===r.id)).map(r=>({...r,inMainLoop:true}))];
- return {schemaVersion:2,policy:'verbatim-source-only',chapters:specs.map(c=>({...c,subtitle:c.title,segments:blocks.filter(b=>b.chapter===c.id).map(b=>({id:'source-'+b.id.slice(5),kind:b.kind,text:b.text,category:b.category,...(b.tier?{tier:b.tier}:{}),parts:b.parts,sourceIds:[b.id],sourceLines:b.lines.map(n=>[n,n]),change:'仅提取原笔记英文；不补全主题；占位符静音。'}))})).filter(c=>c.segments.length)};
+ return {schemaVersion:2,policy:'verbatim-source-only',chapters:specs.map(c=>({...c,subtitle:c.title,segments:blocks.filter(b=>b.chapter===c.id).map(b=>({id:'source-'+b.id.slice(5),kind:b.kind,text:b.text,category:b.category,...(b.tier?{tier:b.tier}:{}),parts:b.parts,sourceIds:[b.id],sourceLines:b.lines.map(n=>[n,n]),change:'展示保留原文；朗读仅作中性占位替换，不添加作文事实。'})).map(decorateSegment)})).filter(c=>c.segments.length)};
 }
-export function sourceIndex(materials){return {schemaVersion:2,policy:'verbatim-source-only',entries:materials.chapters.flatMap(c=>c.segments.map(s=>({id:s.id,sourceIds:s.sourceIds,chapter:c.id,textSha256:hash(s.text),partsSha256:hash(JSON.stringify(s.parts))})))};}
+export function sourceIndex(materials){return {schemaVersion:2,policy:'verbatim-source-only',entries:materials.chapters.flatMap(c=>c.segments.map(s=>({id:s.id,sourceIds:s.sourceIds,chapter:c.id,textSha256:hash(s.text),partsSha256:hash(JSON.stringify(s.parts)),displayTextSha256:hash(s.displayText),speechTextSha256:hash(s.speechText),sentencesSha256:hash(JSON.stringify(s.sentences))})))};}
 export function bootstrap(source,materials=null,rules=[]){
  const parsed=parseNote(source,rules);if(parsed.issues.length)throw Error('Unclassified English requires source review');
  if(materials&&materials.schemaVersion!==2)throw Error('Legacy edited material cannot bootstrap a source-only registry');

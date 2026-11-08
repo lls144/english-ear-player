@@ -15,10 +15,7 @@
           "category": "描图",
           "parts": [
             {
-              "text": "Portrayed in the above drawing is a thought-provoking scene"
-            },
-            {
-              "pauseMs": 1400
+              "text": "Portrayed in the above drawing is a thought-provoking scene."
             }
           ],
           "sourceIds": [
@@ -30,7 +27,27 @@
               3
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Portrayed in the above drawing is a thought-provoking scene: [完整句子].",
+          "speechText": "Portrayed in the above drawing is a thought-provoking scene.",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-a40b38ad9494459e-s-a370485394ea",
+              "displayText": "Portrayed in the above drawing is a thought-provoking scene: [完整句子].",
+              "speechText": "Portrayed in the above drawing is a thought-provoking scene.",
+              "pronunciationText": "Portrayed in the above drawing is a thought-provoking scene.",
+              "substitutions": [
+                {
+                  "original": ": [完整句子].",
+                  "replacement": "."
+                }
+              ],
+              "sourceIds": [
+                "note-a40b38ad9494459e"
+              ]
+            }
+          ]
         },
         {
           "id": "source-314b88970023ea7c",
@@ -51,7 +68,22 @@
               11
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "seemingly indifferent to the lecture",
+          "speechText": "seemingly indifferent to the lecture",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-314b88970023ea7c-s-be5005ded8f9",
+              "displayText": "seemingly indifferent to the lecture",
+              "speechText": "seemingly indifferent to the lecture",
+              "pronunciationText": "seemingly indifferent to the lecture",
+              "substitutions": [],
+              "sourceIds": [
+                "note-314b88970023ea7c"
+              ]
+            }
+          ]
         },
         {
           "id": "source-5141ab4f3bcf4c10",
@@ -76,7 +108,22 @@
               19
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "taking a positive view",
+          "speechText": "taking a positive view",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-5141ab4f3bcf4c10-s-a469b837cab7",
+              "displayText": "taking a positive view",
+              "speechText": "taking a positive view",
+              "pronunciationText": "taking a positive view",
+              "substitutions": [],
+              "sourceIds": [
+                "note-5141ab4f3bcf4c10"
+              ]
+            }
+          ]
         },
         {
           "id": "source-aac688a38e9875b9",
@@ -97,7 +144,22 @@
               13
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "deeply concerned about the issue",
+          "speechText": "deeply concerned about the issue",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-aac688a38e9875b9-s-b3aa9b37d308",
+              "displayText": "deeply concerned about the issue",
+              "speechText": "deeply concerned about the issue",
+              "pronunciationText": "deeply concerned about the issue",
+              "substitutions": [],
+              "sourceIds": [
+                "note-aac688a38e9875b9"
+              ]
+            }
+          ]
         },
         {
           "id": "source-b332c1df3bfe5672",
@@ -118,7 +180,22 @@
               14
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "with a smile on her face",
+          "speechText": "with a smile on her face",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-b332c1df3bfe5672-s-7463fe619c10",
+              "displayText": "with a smile on her face",
+              "speechText": "with a smile on her face",
+              "pronunciationText": "with a smile on her face",
+              "substitutions": [],
+              "sourceIds": [
+                "note-b332c1df3bfe5672"
+              ]
+            }
+          ]
         },
         {
           "id": "source-98465588330f8d17",
@@ -139,7 +216,22 @@
               15
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "who seems indifferent to the lecture",
+          "speechText": "who seems indifferent to the lecture",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-98465588330f8d17-s-b901287274c3",
+              "displayText": "who seems indifferent to the lecture",
+              "speechText": "who seems indifferent to the lecture",
+              "pronunciationText": "who seems indifferent to the lecture",
+              "substitutions": [],
+              "sourceIds": [
+                "note-98465588330f8d17"
+              ]
+            }
+          ]
         },
         {
           "id": "source-db2b29abe006b6c8",
@@ -148,10 +240,7 @@
           "category": "人物插入语",
           "parts": [
             {
-              "text": "seemingly indifferent to"
-            },
-            {
-              "pauseMs": 1400
+              "text": "seemingly indifferent to something"
             }
           ],
           "sourceIds": [
@@ -163,7 +252,27 @@
               18
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "seemingly indifferent to ...",
+          "speechText": "seemingly indifferent to something",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-db2b29abe006b6c8-s-d97dc8b7b32c",
+              "displayText": "seemingly indifferent to ...",
+              "speechText": "seemingly indifferent to something",
+              "pronunciationText": "seemingly indifferent to something",
+              "substitutions": [
+                {
+                  "original": "...",
+                  "replacement": "something"
+                }
+              ],
+              "sourceIds": [
+                "note-db2b29abe006b6c8"
+              ]
+            }
+          ]
         },
         {
           "id": "source-b4a0968651b9ed96",
@@ -184,7 +293,22 @@
               23
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "The girl on the left, seemingly indifferent to the lecture, dismisses it as useless, while the girl on the right, taking a more positive view, points out that attending it can be beneficial.",
+          "speechText": "The girl on the left, seemingly indifferent to the lecture, dismisses it as useless, while the girl on the right, taking a more positive view, points out that attending it can be beneficial.",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-b4a0968651b9ed96-s-4d6abd79b71b",
+              "displayText": "The girl on the left, seemingly indifferent to the lecture, dismisses it as useless, while the girl on the right, taking a more positive view, points out that attending it can be beneficial.",
+              "speechText": "The girl on the left, seemingly indifferent to the lecture, dismisses it as useless, while the girl on the right, taking a more positive view, points out that attending it can be beneficial.",
+              "pronunciationText": "The girl on the left, seemingly indifferent to the lecture, dismisses it as useless, while the girl on the right, taking a more positive view, points out that attending it can be beneficial.",
+              "substitutions": [],
+              "sourceIds": [
+                "note-b4a0968651b9ed96"
+              ]
+            }
+          ]
         },
         {
           "id": "source-250066e1232e9d59",
@@ -193,10 +317,7 @@
           "category": "图加表",
           "parts": [
             {
-              "text": "An extraordinary drawing and a chart unfold before our eyes"
-            },
-            {
-              "pauseMs": 1400
+              "text": "An extraordinary drawing and a chart unfold before our eyes."
             }
           ],
           "sourceIds": [
@@ -208,7 +329,27 @@
               26
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "An extraordinary drawing and a chart unfold before our eyes: [句子].",
+          "speechText": "An extraordinary drawing and a chart unfold before our eyes.",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-250066e1232e9d59-s-c8194e1672b1",
+              "displayText": "An extraordinary drawing and a chart unfold before our eyes: [句子].",
+              "speechText": "An extraordinary drawing and a chart unfold before our eyes.",
+              "pronunciationText": "An extraordinary drawing and a chart unfold before our eyes.",
+              "substitutions": [
+                {
+                  "original": ": [句子].",
+                  "replacement": "."
+                }
+              ],
+              "sourceIds": [
+                "note-250066e1232e9d59"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -225,19 +366,7 @@
           "category": "主题句",
           "parts": [
             {
-              "text": "Behind the drawing"
-            },
-            {
-              "pauseMs": 650
-            },
-            {
-              "text": "picture lies a profound message about"
-            },
-            {
-              "pauseMs": 1400
-            },
-            {
-              "text": "which merits further discussion."
+              "text": "Behind the drawing lies a profound message about something, which merits further discussion."
             }
           ],
           "sourceIds": [
@@ -249,7 +378,31 @@
               29
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Behind the drawing/picture lies a profound message about [主题词], which merits further discussion.",
+          "speechText": "Behind the drawing lies a profound message about something, which merits further discussion.",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-8bb1fa8285570ad2-s-c708417cc9a9",
+              "displayText": "Behind the drawing/picture lies a profound message about [主题词], which merits further discussion.",
+              "speechText": "Behind the drawing lies a profound message about something, which merits further discussion.",
+              "pronunciationText": "Behind the drawing lies a profound message about something, which merits further discussion.",
+              "substitutions": [
+                {
+                  "original": "[主题词]",
+                  "replacement": "something"
+                },
+                {
+                  "original": "drawing/picture",
+                  "replacement": "drawing"
+                }
+              ],
+              "sourceIds": [
+                "note-8bb1fa8285570ad2"
+              ]
+            }
+          ]
         },
         {
           "id": "source-52b65c3aa95b9e9e",
@@ -258,25 +411,7 @@
           "category": "社会进入新纪元",
           "parts": [
             {
-              "text": "Modern society having entered an era marked by"
-            },
-            {
-              "pauseMs": 1400
-            },
-            {
-              "text": "and"
-            },
-            {
-              "pauseMs": 1400
-            },
-            {
-              "text": "the significance of"
-            },
-            {
-              "pauseMs": 1400
-            },
-            {
-              "text": "has come into sharper focus."
+              "text": "Modern society having entered an era marked by trend A and trend B, the significance of something has come into sharper focus."
             }
           ],
           "sourceIds": [
@@ -288,7 +423,35 @@
               34
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Modern society having entered an era marked by [趋势 A] and [趋势 B], the significance of [主题词] has come into sharper focus.",
+          "speechText": "Modern society having entered an era marked by trend A and trend B, the significance of something has come into sharper focus.",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-52b65c3aa95b9e9e-s-15dd40e24d54",
+              "displayText": "Modern society having entered an era marked by [趋势 A] and [趋势 B], the significance of [主题词] has come into sharper focus.",
+              "speechText": "Modern society having entered an era marked by trend A and trend B, the significance of something has come into sharper focus.",
+              "pronunciationText": "Modern society having entered an era marked by trend eigh and trend bee, the significance of something has come into sharper focus.",
+              "substitutions": [
+                {
+                  "original": "[趋势 A]",
+                  "replacement": "trend A"
+                },
+                {
+                  "original": "[趋势 B]",
+                  "replacement": "trend B"
+                },
+                {
+                  "original": "[主题词]",
+                  "replacement": "something"
+                }
+              ],
+              "sourceIds": [
+                "note-52b65c3aa95b9e9e"
+              ]
+            }
+          ]
         },
         {
           "id": "source-00fc153e670b5ee6",
@@ -309,7 +472,22 @@
               42
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "intensifying competition",
+          "speechText": "intensifying competition",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-00fc153e670b5ee6-s-072a4b39ab4a",
+              "displayText": "intensifying competition",
+              "speechText": "intensifying competition",
+              "pronunciationText": "intensifying competition",
+              "substitutions": [],
+              "sourceIds": [
+                "note-00fc153e670b5ee6"
+              ]
+            }
+          ]
         },
         {
           "id": "source-989722bad00e08ea",
@@ -330,7 +508,22 @@
               43
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "the accelerating pace of modern life",
+          "speechText": "the accelerating pace of modern life",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-989722bad00e08ea-s-eb8ff99f9d31",
+              "displayText": "the accelerating pace of modern life",
+              "speechText": "the accelerating pace of modern life",
+              "pronunciationText": "the accelerating pace of modern life",
+              "substitutions": [],
+              "sourceIds": [
+                "note-989722bad00e08ea"
+              ]
+            }
+          ]
         },
         {
           "id": "source-cd2ab2dd6e991c2c",
@@ -351,7 +544,22 @@
               44
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "rapid technological advances",
+          "speechText": "rapid technological advances",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-cd2ab2dd6e991c2c-s-d3a489756120",
+              "displayText": "rapid technological advances",
+              "speechText": "rapid technological advances",
+              "pronunciationText": "rapid technological advances",
+              "substitutions": [],
+              "sourceIds": [
+                "note-cd2ab2dd6e991c2c"
+              ]
+            }
+          ]
         },
         {
           "id": "source-2349f33cbbf1b3af",
@@ -372,7 +580,22 @@
               45
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "the overwhelming flow of information",
+          "speechText": "the overwhelming flow of information",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-2349f33cbbf1b3af-s-2b93ad3cae84",
+              "displayText": "the overwhelming flow of information",
+              "speechText": "the overwhelming flow of information",
+              "pronunciationText": "the overwhelming flow of information",
+              "substitutions": [],
+              "sourceIds": [
+                "note-2349f33cbbf1b3af"
+              ]
+            }
+          ]
         },
         {
           "id": "source-400556cc9a4f78ec",
@@ -393,7 +616,22 @@
               46
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "the growing demand for diverse skills",
+          "speechText": "the growing demand for diverse skills",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-400556cc9a4f78ec-s-dbbeb945df69",
+              "displayText": "the growing demand for diverse skills",
+              "speechText": "the growing demand for diverse skills",
+              "pronunciationText": "the growing demand for diverse skills",
+              "substitutions": [],
+              "sourceIds": [
+                "note-400556cc9a4f78ec"
+              ]
+            }
+          ]
         },
         {
           "id": "source-2492142cc3f57878",
@@ -414,7 +652,22 @@
               47
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "the increasing emphasis on personal growth",
+          "speechText": "the increasing emphasis on personal growth",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-2492142cc3f57878-s-3f052bbef738",
+              "displayText": "the increasing emphasis on personal growth",
+              "speechText": "the increasing emphasis on personal growth",
+              "pronunciationText": "the increasing emphasis on personal growth",
+              "substitutions": [],
+              "sourceIds": [
+                "note-2492142cc3f57878"
+              ]
+            }
+          ]
         },
         {
           "id": "source-09a7b66c81b21112",
@@ -435,7 +688,22 @@
               53
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "growing connections between different fields",
+          "speechText": "growing connections between different fields",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-09a7b66c81b21112-s-8e12cad9fd6d",
+              "displayText": "growing connections between different fields",
+              "speechText": "growing connections between different fields",
+              "pronunciationText": "growing connections between different fields",
+              "substitutions": [],
+              "sourceIds": [
+                "note-09a7b66c81b21112"
+              ]
+            }
+          ]
         },
         {
           "id": "source-d9bbac2b32916ac9",
@@ -456,7 +724,22 @@
               54
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "the growing influence of social media",
+          "speechText": "the growing influence of social media",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-d9bbac2b32916ac9-s-7fac7472cb8c",
+              "displayText": "the growing influence of social media",
+              "speechText": "the growing influence of social media",
+              "pronunciationText": "the growing influence of social media",
+              "substitutions": [],
+              "sourceIds": [
+                "note-d9bbac2b32916ac9"
+              ]
+            }
+          ]
         },
         {
           "id": "source-f3ee84c550f70184",
@@ -477,7 +760,22 @@
               55
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "the decline in face-to-face communication",
+          "speechText": "the decline in face-to-face communication",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-f3ee84c550f70184-s-a94bd59a5823",
+              "displayText": "the decline in face-to-face communication",
+              "speechText": "the decline in face-to-face communication",
+              "pronunciationText": "the decline in face-to-face communication",
+              "substitutions": [],
+              "sourceIds": [
+                "note-f3ee84c550f70184"
+              ]
+            }
+          ]
         },
         {
           "id": "source-4d61c2a9871121e6",
@@ -498,7 +796,22 @@
               56
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "increasing cultural exchanges",
+          "speechText": "increasing cultural exchanges",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-4d61c2a9871121e6-s-8464fc39ca55",
+              "displayText": "increasing cultural exchanges",
+              "speechText": "increasing cultural exchanges",
+              "pronunciationText": "increasing cultural exchanges",
+              "substitutions": [],
+              "sourceIds": [
+                "note-4d61c2a9871121e6"
+              ]
+            }
+          ]
         },
         {
           "id": "source-bda882971282deca",
@@ -519,7 +832,22 @@
               57
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "shifting social values",
+          "speechText": "shifting social values",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-bda882971282deca-s-23e98420acaa",
+              "displayText": "shifting social values",
+              "speechText": "shifting social values",
+              "pronunciationText": "shifting social values",
+              "substitutions": [],
+              "sourceIds": [
+                "note-bda882971282deca"
+              ]
+            }
+          ]
         },
         {
           "id": "source-2efdbf41957ab125",
@@ -540,7 +868,22 @@
               58
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "growing environmental awareness",
+          "speechText": "growing environmental awareness",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-2efdbf41957ab125-s-422d8befbf5c",
+              "displayText": "growing environmental awareness",
+              "speechText": "growing environmental awareness",
+              "pronunciationText": "growing environmental awareness",
+              "substitutions": [],
+              "sourceIds": [
+                "note-2efdbf41957ab125"
+              ]
+            }
+          ]
         },
         {
           "id": "source-00d2169fce4e76d5",
@@ -549,10 +892,7 @@
           "category": "替换结构",
           "parts": [
             {
-              "text": "the growing importance of"
-            },
-            {
-              "pauseMs": 1400
+              "text": "the growing importance of something"
             }
           ],
           "sourceIds": [
@@ -564,7 +904,27 @@
               62
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "the growing importance of ...",
+          "speechText": "the growing importance of something",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-00d2169fce4e76d5-s-163ffd7c144d",
+              "displayText": "the growing importance of ...",
+              "speechText": "the growing importance of something",
+              "pronunciationText": "the growing importance of something",
+              "substitutions": [
+                {
+                  "original": "...",
+                  "replacement": "something"
+                }
+              ],
+              "sourceIds": [
+                "note-00d2169fce4e76d5"
+              ]
+            }
+          ]
         },
         {
           "id": "source-3056e2b038b60177",
@@ -573,10 +933,7 @@
           "category": "替换结构",
           "parts": [
             {
-              "text": "the increasing pressure on"
-            },
-            {
-              "pauseMs": 1400
+              "text": "the increasing pressure on something"
             }
           ],
           "sourceIds": [
@@ -588,7 +945,27 @@
               63
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "the increasing pressure on ...",
+          "speechText": "the increasing pressure on something",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-3056e2b038b60177-s-a19dae57a2e8",
+              "displayText": "the increasing pressure on ...",
+              "speechText": "the increasing pressure on something",
+              "pronunciationText": "the increasing pressure on something",
+              "substitutions": [
+                {
+                  "original": "...",
+                  "replacement": "something"
+                }
+              ],
+              "sourceIds": [
+                "note-3056e2b038b60177"
+              ]
+            }
+          ]
         },
         {
           "id": "source-c1bb50acbbe10202",
@@ -597,10 +974,7 @@
           "category": "替换结构",
           "parts": [
             {
-              "text": "the growing demand for"
-            },
-            {
-              "pauseMs": 1400
+              "text": "the growing demand for something"
             }
           ],
           "sourceIds": [
@@ -612,7 +986,27 @@
               64
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "the growing demand for ...",
+          "speechText": "the growing demand for something",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-c1bb50acbbe10202-s-680d8c4cf281",
+              "displayText": "the growing demand for ...",
+              "speechText": "the growing demand for something",
+              "pronunciationText": "the growing demand for something",
+              "substitutions": [
+                {
+                  "original": "...",
+                  "replacement": "something"
+                }
+              ],
+              "sourceIds": [
+                "note-c1bb50acbbe10202"
+              ]
+            }
+          ]
         },
         {
           "id": "source-e7b1bdbe0b97b567",
@@ -621,10 +1015,7 @@
           "category": "替换结构",
           "parts": [
             {
-              "text": "the increasing reliance on"
-            },
-            {
-              "pauseMs": 1400
+              "text": "the increasing reliance on something"
             }
           ],
           "sourceIds": [
@@ -636,7 +1027,27 @@
               65
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "the increasing reliance on ...",
+          "speechText": "the increasing reliance on something",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-e7b1bdbe0b97b567-s-0d3d5c1327ea",
+              "displayText": "the increasing reliance on ...",
+              "speechText": "the increasing reliance on something",
+              "pronunciationText": "the increasing reliance on something",
+              "substitutions": [
+                {
+                  "original": "...",
+                  "replacement": "something"
+                }
+              ],
+              "sourceIds": [
+                "note-e7b1bdbe0b97b567"
+              ]
+            }
+          ]
         },
         {
           "id": "source-1d952d59ce7e23ad",
@@ -645,10 +1056,7 @@
           "category": "替换结构",
           "parts": [
             {
-              "text": "the growing awareness of"
-            },
-            {
-              "pauseMs": 1400
+              "text": "the growing awareness of something"
             }
           ],
           "sourceIds": [
@@ -660,7 +1068,27 @@
               66
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "the growing awareness of ...",
+          "speechText": "the growing awareness of something",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-1d952d59ce7e23ad-s-0ddf14f22323",
+              "displayText": "the growing awareness of ...",
+              "speechText": "the growing awareness of something",
+              "pronunciationText": "the growing awareness of something",
+              "substitutions": [
+                {
+                  "original": "...",
+                  "replacement": "something"
+                }
+              ],
+              "sourceIds": [
+                "note-1d952d59ce7e23ad"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -677,10 +1105,7 @@
           "category": "不好现象",
           "parts": [
             {
-              "text": "The strain of modern life has opened a Pandora’s box of problems, as people become increasingly profit-oriented and thus tend to disregard"
-            },
-            {
-              "pauseMs": 1400
+              "text": "The strain of modern life has opened a Pandora’s box of problems, as people become increasingly profit-oriented and thus tend to disregard something."
             }
           ],
           "sourceIds": [
@@ -692,7 +1117,27 @@
               72
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "The strain of modern life has opened a Pandora’s box of problems, as people become increasingly profit-oriented and thus tend to disregard [主题词].",
+          "speechText": "The strain of modern life has opened a Pandora’s box of problems, as people become increasingly profit-oriented and thus tend to disregard something.",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-ddf227447b28dbdd-s-829cccddb6ec",
+              "displayText": "The strain of modern life has opened a Pandora’s box of problems, as people become increasingly profit-oriented and thus tend to disregard [主题词].",
+              "speechText": "The strain of modern life has opened a Pandora’s box of problems, as people become increasingly profit-oriented and thus tend to disregard something.",
+              "pronunciationText": "The strain of modern life has opened a Pandora’s box of problems, as people become increasingly profit-oriented and thus tend to disregard something.",
+              "substitutions": [
+                {
+                  "original": "[主题词]",
+                  "replacement": "something"
+                }
+              ],
+              "sourceIds": [
+                "note-ddf227447b28dbdd"
+              ]
+            }
+          ]
         },
         {
           "id": "source-2b1811aba4f2613c",
@@ -701,22 +1146,10 @@
           "category": "媒体倡导",
           "parts": [
             {
-              "text": "Folks are absorbed into a culture of"
+              "text": "Folks are absorbed into a culture of A which values B, driven by the mass media that offer numerous reports and interviews."
             },
             {
-              "pauseMs": 1400
-            },
-            {
-              "text": "which values"
-            },
-            {
-              "pauseMs": 1400
-            },
-            {
-              "text": "driven by the mass media that offer numerous reports and interviews. Therefore, unsurprisingly, people choose to"
-            },
-            {
-              "pauseMs": 1400
+              "text": "Therefore, unsurprisingly, people choose to do something."
             }
           ],
           "sourceIds": [
@@ -728,7 +1161,46 @@
               75
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Folks are absorbed into a culture of ×× which values ××, driven by the mass media that offer numerous reports and interviews. Therefore, unsurprisingly, people choose to do sth.",
+          "speechText": "Folks are absorbed into a culture of A which values B, driven by the mass media that offer numerous reports and interviews. Therefore, unsurprisingly, people choose to do something.",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-2b1811aba4f2613c-s-0f5d52791499",
+              "displayText": "Folks are absorbed into a culture of ×× which values ××, driven by the mass media that offer numerous reports and interviews.",
+              "speechText": "Folks are absorbed into a culture of A which values B, driven by the mass media that offer numerous reports and interviews.",
+              "pronunciationText": "Folks are absorbed into a culture of eigh which values bee, driven by the mass media that offer numerous reports and interviews.",
+              "substitutions": [
+                {
+                  "original": "××",
+                  "replacement": "A"
+                },
+                {
+                  "original": "××",
+                  "replacement": "B"
+                }
+              ],
+              "sourceIds": [
+                "note-2b1811aba4f2613c"
+              ]
+            },
+            {
+              "id": "source-2b1811aba4f2613c-s-f7f25db08139",
+              "displayText": "Therefore, unsurprisingly, people choose to do sth.",
+              "speechText": "Therefore, unsurprisingly, people choose to do something.",
+              "pronunciationText": "Therefore, unsurprisingly, people choose to do something.",
+              "substitutions": [
+                {
+                  "original": "sth.",
+                  "replacement": "something"
+                }
+              ],
+              "sourceIds": [
+                "note-2b1811aba4f2613c"
+              ]
+            }
+          ]
         },
         {
           "id": "source-ed0f29a22871938c",
@@ -737,28 +1209,7 @@
           "category": "带来好处",
           "parts": [
             {
-              "pauseMs": 1400
-            },
-            {
-              "text": "will bring numerous benefits—improving competitive advantage"
-            },
-            {
-              "pauseMs": 650
-            },
-            {
-              "text": "efficiency both in personal life and work"
-            },
-            {
-              "pauseMs": 1200
-            },
-            {
-              "text": "bringing about a safe community"
-            },
-            {
-              "pauseMs": 650
-            },
-            {
-              "text": "the refreshing air."
+              "text": "A will bring numerous benefits—improving competitive advantage both in personal life and work."
             }
           ],
           "sourceIds": [
@@ -770,7 +1221,35 @@
               79
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "×× will bring numerous benefits—improving competitive advantage/efficiency both in personal life and work//bringing about a safe community/the refreshing air.",
+          "speechText": "A will bring numerous benefits—improving competitive advantage both in personal life and work.",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-ed0f29a22871938c-s-7eb71c7d5c79",
+              "displayText": "×× will bring numerous benefits—improving competitive advantage/efficiency both in personal life and work//bringing about a safe community/the refreshing air.",
+              "speechText": "A will bring numerous benefits—improving competitive advantage both in personal life and work.",
+              "pronunciationText": "eigh will bring numerous benefits—improving competitive advantage both in personal life and work.",
+              "substitutions": [
+                {
+                  "original": "××",
+                  "replacement": "A"
+                },
+                {
+                  "original": "A will bring numerous benefits—improving competitive advantage/efficiency both in personal life and work//bringing about a safe community/the refreshing air.",
+                  "replacement": "A will bring numerous benefits—improving competitive advantage/efficiency both in personal life and work."
+                },
+                {
+                  "original": "advantage/efficiency",
+                  "replacement": "advantage"
+                }
+              ],
+              "sourceIds": [
+                "note-ed0f29a22871938c"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -800,7 +1279,22 @@
               84
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Firstly",
+          "speechText": "Firstly",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-223c1b1bf3355d73-s-84d083a49d9d",
+              "displayText": "Firstly",
+              "speechText": "Firstly",
+              "pronunciationText": "Firstly",
+              "substitutions": [],
+              "sourceIds": [
+                "note-223c1b1bf3355d73"
+              ]
+            }
+          ]
         },
         {
           "id": "source-db6917b5679ec1d7",
@@ -822,7 +1316,22 @@
               84
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "First of all",
+          "speechText": "First of all",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-db6917b5679ec1d7-s-4e01d649b188",
+              "displayText": "First of all",
+              "speechText": "First of all",
+              "pronunciationText": "First of all",
+              "substitutions": [],
+              "sourceIds": [
+                "note-db6917b5679ec1d7"
+              ]
+            }
+          ]
         },
         {
           "id": "source-2303b271a66af62d",
@@ -844,7 +1353,22 @@
               84
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "To begin with",
+          "speechText": "To begin with",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-2303b271a66af62d-s-db5239ba1c83",
+              "displayText": "To begin with",
+              "speechText": "To begin with",
+              "pronunciationText": "To begin with",
+              "substitutions": [],
+              "sourceIds": [
+                "note-2303b271a66af62d"
+              ]
+            }
+          ]
         },
         {
           "id": "source-95f06b3449bf2981",
@@ -866,7 +1390,22 @@
               84
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Primarily",
+          "speechText": "Primarily",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-95f06b3449bf2981-s-c170fd2c59f6",
+              "displayText": "Primarily",
+              "speechText": "Primarily",
+              "pronunciationText": "Primarily",
+              "substitutions": [],
+              "sourceIds": [
+                "note-95f06b3449bf2981"
+              ]
+            }
+          ]
         },
         {
           "id": "source-cfaac67921b337a9",
@@ -888,7 +1427,22 @@
               84
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Above all",
+          "speechText": "Above all",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-cfaac67921b337a9-s-b67ddcfb6b34",
+              "displayText": "Above all",
+              "speechText": "Above all",
+              "pronunciationText": "Above all",
+              "substitutions": [],
+              "sourceIds": [
+                "note-cfaac67921b337a9"
+              ]
+            }
+          ]
         },
         {
           "id": "source-ce7a7beccef88809",
@@ -910,7 +1464,22 @@
               84
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "First and foremost",
+          "speechText": "First and foremost",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-ce7a7beccef88809-s-49e35e5d2b9d",
+              "displayText": "First and foremost",
+              "speechText": "First and foremost",
+              "pronunciationText": "First and foremost",
+              "substitutions": [],
+              "sourceIds": [
+                "note-ce7a7beccef88809"
+              ]
+            }
+          ]
         },
         {
           "id": "source-2ab567456ed5e776",
@@ -932,7 +1501,22 @@
               84
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Fundamentally",
+          "speechText": "Fundamentally",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-2ab567456ed5e776-s-613ce0bf8ab8",
+              "displayText": "Fundamentally",
+              "speechText": "Fundamentally",
+              "pronunciationText": "Fundamentally",
+              "substitutions": [],
+              "sourceIds": [
+                "note-2ab567456ed5e776"
+              ]
+            }
+          ]
         },
         {
           "id": "source-1f827e7a576723e7",
@@ -954,7 +1538,22 @@
               84
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Essentially",
+          "speechText": "Essentially",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-1f827e7a576723e7-s-b4fe6f6ce0ac",
+              "displayText": "Essentially",
+              "speechText": "Essentially",
+              "pronunciationText": "Essentially",
+              "substitutions": [],
+              "sourceIds": [
+                "note-1f827e7a576723e7"
+              ]
+            }
+          ]
         },
         {
           "id": "source-b83c06dc964f912d",
@@ -976,7 +1575,22 @@
               84
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "In essence",
+          "speechText": "In essence",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-b83c06dc964f912d-s-1bc12ca3c71d",
+              "displayText": "In essence",
+              "speechText": "In essence",
+              "pronunciationText": "In essence",
+              "substitutions": [],
+              "sourceIds": [
+                "note-b83c06dc964f912d"
+              ]
+            }
+          ]
         },
         {
           "id": "source-3c9559c8a9bc9f26",
@@ -998,7 +1612,22 @@
               85
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Secondly",
+          "speechText": "Secondly",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-3c9559c8a9bc9f26-s-b8fc61c647d2",
+              "displayText": "Secondly",
+              "speechText": "Secondly",
+              "pronunciationText": "Secondly",
+              "substitutions": [],
+              "sourceIds": [
+                "note-3c9559c8a9bc9f26"
+              ]
+            }
+          ]
         },
         {
           "id": "source-512edcbb4ca89642",
@@ -1020,7 +1649,22 @@
               85
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Besides",
+          "speechText": "Besides",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-512edcbb4ca89642-s-0eb0aa483b71",
+              "displayText": "Besides",
+              "speechText": "Besides",
+              "pronunciationText": "Besides",
+              "substitutions": [],
+              "sourceIds": [
+                "note-512edcbb4ca89642"
+              ]
+            }
+          ]
         },
         {
           "id": "source-348867d8778ea067",
@@ -1042,7 +1686,22 @@
               85
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Moreover",
+          "speechText": "Moreover",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-348867d8778ea067-s-17540dcb9791",
+              "displayText": "Moreover",
+              "speechText": "Moreover",
+              "pronunciationText": "Moreover",
+              "substitutions": [],
+              "sourceIds": [
+                "note-348867d8778ea067"
+              ]
+            }
+          ]
         },
         {
           "id": "source-dbfd83f543640990",
@@ -1064,7 +1723,22 @@
               85
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Furthermore",
+          "speechText": "Furthermore",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-dbfd83f543640990-s-6024d6897fc6",
+              "displayText": "Furthermore",
+              "speechText": "Furthermore",
+              "pronunciationText": "Furthermore",
+              "substitutions": [],
+              "sourceIds": [
+                "note-dbfd83f543640990"
+              ]
+            }
+          ]
         },
         {
           "id": "source-b75c32775ce3d713",
@@ -1086,7 +1760,22 @@
               85
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Additionally",
+          "speechText": "Additionally",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-b75c32775ce3d713-s-928e4b1cddc4",
+              "displayText": "Additionally",
+              "speechText": "Additionally",
+              "pronunciationText": "Additionally",
+              "substitutions": [],
+              "sourceIds": [
+                "note-b75c32775ce3d713"
+              ]
+            }
+          ]
         },
         {
           "id": "source-a69fef3aa9a15f3c",
@@ -1108,7 +1797,22 @@
               85
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "In addition",
+          "speechText": "In addition",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-a69fef3aa9a15f3c-s-ddde224937bb",
+              "displayText": "In addition",
+              "speechText": "In addition",
+              "pronunciationText": "In addition",
+              "substitutions": [],
+              "sourceIds": [
+                "note-a69fef3aa9a15f3c"
+              ]
+            }
+          ]
         },
         {
           "id": "source-871e6bcd1cc9321d",
@@ -1130,7 +1834,22 @@
               85
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "What is more",
+          "speechText": "What is more",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-871e6bcd1cc9321d-s-9cbb2b6486df",
+              "displayText": "What is more",
+              "speechText": "What is more",
+              "pronunciationText": "What is more",
+              "substitutions": [],
+              "sourceIds": [
+                "note-871e6bcd1cc9321d"
+              ]
+            }
+          ]
         },
         {
           "id": "source-b8f5a19d94e32ba7",
@@ -1152,7 +1871,22 @@
               85
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Equally importantly",
+          "speechText": "Equally importantly",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-b8f5a19d94e32ba7-s-6454aefdc16f",
+              "displayText": "Equally importantly",
+              "speechText": "Equally importantly",
+              "pronunciationText": "Equally importantly",
+              "substitutions": [],
+              "sourceIds": [
+                "note-b8f5a19d94e32ba7"
+              ]
+            }
+          ]
         },
         {
           "id": "source-1ac8c60f4db4d7c5",
@@ -1162,16 +1896,7 @@
           "tier": "进阶",
           "parts": [
             {
-              "text": "Not only"
-            },
-            {
-              "pauseMs": 1400
-            },
-            {
-              "text": "but also"
-            },
-            {
-              "pauseMs": 1400
+              "text": "Not only A, but also B."
             }
           ],
           "sourceIds": [
@@ -1183,7 +1908,27 @@
               85
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Not only...but also...",
+          "speechText": "Not only A, but also B.",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-1ac8c60f4db4d7c5-s-2b5d10b90326",
+              "displayText": "Not only...but also...",
+              "speechText": "Not only A, but also B.",
+              "pronunciationText": "Not only eigh, but also bee.",
+              "substitutions": [
+                {
+                  "original": "Not only...but also...",
+                  "replacement": "Not only A, but also B."
+                }
+              ],
+              "sourceIds": [
+                "note-1ac8c60f4db4d7c5"
+              ]
+            }
+          ]
         },
         {
           "id": "source-547c63e577ac964c",
@@ -1205,7 +1950,22 @@
               85
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Meanwhile",
+          "speechText": "Meanwhile",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-547c63e577ac964c-s-22da70ec10d5",
+              "displayText": "Meanwhile",
+              "speechText": "Meanwhile",
+              "pronunciationText": "Meanwhile",
+              "substitutions": [],
+              "sourceIds": [
+                "note-547c63e577ac964c"
+              ]
+            }
+          ]
         },
         {
           "id": "source-c32daf6be151e0cb",
@@ -1227,7 +1987,22 @@
               86
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Next",
+          "speechText": "Next",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-c32daf6be151e0cb-s-1ff57a29d7c9",
+              "displayText": "Next",
+              "speechText": "Next",
+              "pronunciationText": "Next",
+              "substitutions": [],
+              "sourceIds": [
+                "note-c32daf6be151e0cb"
+              ]
+            }
+          ]
         },
         {
           "id": "source-8ed0a74554c8bef1",
@@ -1249,7 +2024,22 @@
               86
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Then",
+          "speechText": "Then",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-8ed0a74554c8bef1-s-0597f441dcca",
+              "displayText": "Then",
+              "speechText": "Then",
+              "pronunciationText": "Then",
+              "substitutions": [],
+              "sourceIds": [
+                "note-8ed0a74554c8bef1"
+              ]
+            }
+          ]
         },
         {
           "id": "source-d946d6de89329b5c",
@@ -1271,7 +2061,22 @@
               86
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "After that",
+          "speechText": "After that",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-d946d6de89329b5c-s-ac9068f06c83",
+              "displayText": "After that",
+              "speechText": "After that",
+              "pronunciationText": "After that",
+              "substitutions": [],
+              "sourceIds": [
+                "note-d946d6de89329b5c"
+              ]
+            }
+          ]
         },
         {
           "id": "source-039c9ebc3bedddbc",
@@ -1293,7 +2098,22 @@
               86
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Subsequently",
+          "speechText": "Subsequently",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-039c9ebc3bedddbc-s-ebea03e1947a",
+              "displayText": "Subsequently",
+              "speechText": "Subsequently",
+              "pronunciationText": "Subsequently",
+              "substitutions": [],
+              "sourceIds": [
+                "note-039c9ebc3bedddbc"
+              ]
+            }
+          ]
         },
         {
           "id": "source-cf1cc9dd720f81fd",
@@ -1315,7 +2135,22 @@
               86
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Thereupon",
+          "speechText": "Thereupon",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-cf1cc9dd720f81fd-s-89a918b1587b",
+              "displayText": "Thereupon",
+              "speechText": "Thereupon",
+              "pronunciationText": "Thereupon",
+              "substitutions": [],
+              "sourceIds": [
+                "note-cf1cc9dd720f81fd"
+              ]
+            }
+          ]
         },
         {
           "id": "source-c868c44a44eb6c5d",
@@ -1337,7 +2172,22 @@
               87
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Finally",
+          "speechText": "Finally",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-c868c44a44eb6c5d-s-788cf535ed52",
+              "displayText": "Finally",
+              "speechText": "Finally",
+              "pronunciationText": "Finally",
+              "substitutions": [],
+              "sourceIds": [
+                "note-c868c44a44eb6c5d"
+              ]
+            }
+          ]
         },
         {
           "id": "source-379e0f3500672a93",
@@ -1359,7 +2209,22 @@
               87
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Eventually",
+          "speechText": "Eventually",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-379e0f3500672a93-s-b1839d65de8e",
+              "displayText": "Eventually",
+              "speechText": "Eventually",
+              "pronunciationText": "Eventually",
+              "substitutions": [],
+              "sourceIds": [
+                "note-379e0f3500672a93"
+              ]
+            }
+          ]
         },
         {
           "id": "source-ec9463e1182b45ce",
@@ -1381,7 +2246,22 @@
               87
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Ultimately",
+          "speechText": "Ultimately",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-ec9463e1182b45ce-s-b117cb00183a",
+              "displayText": "Ultimately",
+              "speechText": "Ultimately",
+              "pronunciationText": "Ultimately",
+              "substitutions": [],
+              "sourceIds": [
+                "note-ec9463e1182b45ce"
+              ]
+            }
+          ]
         },
         {
           "id": "source-cf1cfecec640ab8e",
@@ -1403,7 +2283,22 @@
               87
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Consequently",
+          "speechText": "Consequently",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-cf1cfecec640ab8e-s-5232f1caee23",
+              "displayText": "Consequently",
+              "speechText": "Consequently",
+              "pronunciationText": "Consequently",
+              "substitutions": [],
+              "sourceIds": [
+                "note-cf1cfecec640ab8e"
+              ]
+            }
+          ]
         },
         {
           "id": "source-fdc17899e263456e",
@@ -1425,7 +2320,22 @@
               87
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Thus",
+          "speechText": "Thus",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-fdc17899e263456e-s-735730f52e5c",
+              "displayText": "Thus",
+              "speechText": "Thus",
+              "pronunciationText": "Thus",
+              "substitutions": [],
+              "sourceIds": [
+                "note-fdc17899e263456e"
+              ]
+            }
+          ]
         },
         {
           "id": "source-d14f3c9e1d736e9e",
@@ -1447,7 +2357,22 @@
               87
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "As a result",
+          "speechText": "As a result",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-d14f3c9e1d736e9e-s-9e28f1d7710e",
+              "displayText": "As a result",
+              "speechText": "As a result",
+              "pronunciationText": "As a result",
+              "substitutions": [],
+              "sourceIds": [
+                "note-d14f3c9e1d736e9e"
+              ]
+            }
+          ]
         },
         {
           "id": "source-72878cb5b5ee5e93",
@@ -1469,7 +2394,22 @@
               87
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "In the long run",
+          "speechText": "In the long run",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-72878cb5b5ee5e93-s-3781906c1cf2",
+              "displayText": "In the long run",
+              "speechText": "In the long run",
+              "pronunciationText": "In the long run",
+              "substitutions": [],
+              "sourceIds": [
+                "note-72878cb5b5ee5e93"
+              ]
+            }
+          ]
         },
         {
           "id": "source-7de601ca9a1f42dc",
@@ -1491,7 +2431,22 @@
               87
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Altogether",
+          "speechText": "Altogether",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-7de601ca9a1f42dc-s-68e3dfa54150",
+              "displayText": "Altogether",
+              "speechText": "Altogether",
+              "pronunciationText": "Altogether",
+              "substitutions": [],
+              "sourceIds": [
+                "note-7de601ca9a1f42dc"
+              ]
+            }
+          ]
         },
         {
           "id": "source-06441d45007f87ae",
@@ -1512,7 +2467,22 @@
               88
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "unfortunately",
+          "speechText": "unfortunately",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-06441d45007f87ae-s-c9113f82ea7d",
+              "displayText": "unfortunately",
+              "speechText": "unfortunately",
+              "pronunciationText": "unfortunately",
+              "substitutions": [],
+              "sourceIds": [
+                "note-06441d45007f87ae"
+              ]
+            }
+          ]
         },
         {
           "id": "source-a537f530ef21a88c",
@@ -1533,7 +2503,22 @@
               88
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "however",
+          "speechText": "however",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-a537f530ef21a88c-s-47951833ecf6",
+              "displayText": "however",
+              "speechText": "however",
+              "pronunciationText": "however",
+              "substitutions": [],
+              "sourceIds": [
+                "note-a537f530ef21a88c"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -1550,13 +2535,7 @@
           "category": "要培养主题词，主题是各项事业的基石",
           "parts": [
             {
-              "text": "Great care must be exercised to instill the belief that"
-            },
-            {
-              "pauseMs": 1400
-            },
-            {
-              "text": "serves as a cornerstone of success in all endeavors."
+              "text": "Great care must be exercised to instill the belief that something serves as a cornerstone of success in all endeavors."
             }
           ],
           "sourceIds": [
@@ -1568,7 +2547,104 @@
               92
             ]
           ],
-          "change": "仅提取原笔记英文；不补全主题；占位符静音。"
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Great care must be exercised to instill the belief that [主题词] serves as a cornerstone of success in all endeavors.",
+          "speechText": "Great care must be exercised to instill the belief that something serves as a cornerstone of success in all endeavors.",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-d652934491d09866-s-f97738533797",
+              "displayText": "Great care must be exercised to instill the belief that [主题词] serves as a cornerstone of success in all endeavors.",
+              "speechText": "Great care must be exercised to instill the belief that something serves as a cornerstone of success in all endeavors.",
+              "pronunciationText": "Great care must be exercised to instill the belief that something serves as a cornerstone of success in all endeavors.",
+              "substitutions": [
+                {
+                  "original": "[主题词]",
+                  "replacement": "something"
+                }
+              ],
+              "sourceIds": [
+                "note-d652934491d09866"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "source-57e9e9818088779f",
+          "kind": "source-template",
+          "text": "We must strive to cultivate an environment that values the spirit with regard to [主题词]",
+          "category": "必须努力营造重视XX精神的氛围",
+          "parts": [
+            {
+              "text": "We must strive to cultivate an environment that values the spirit with regard to something"
+            }
+          ],
+          "sourceIds": [
+            "note-57e9e9818088779f"
+          ],
+          "sourceLines": [
+            [
+              94,
+              94
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "We must strive to cultivate an environment that values the spirit with regard to [主题词]",
+          "speechText": "We must strive to cultivate an environment that values the spirit with regard to something",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-57e9e9818088779f-s-08bc0dfd2b0d",
+              "displayText": "We must strive to cultivate an environment that values the spirit with regard to [主题词]",
+              "speechText": "We must strive to cultivate an environment that values the spirit with regard to something",
+              "pronunciationText": "We must strive to cultivate an environment that values the spirit with regard to something",
+              "substitutions": [
+                {
+                  "original": "[主题词]",
+                  "replacement": "something"
+                }
+              ],
+              "sourceIds": [
+                "note-57e9e9818088779f"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "source-b2841f8647cc35b0",
+          "kind": "source-phrase",
+          "text": "Let’s get prepared and embrace the harmonious and society built by our joint efforts.",
+          "category": "展望未来",
+          "parts": [
+            {
+              "text": "Let’s get prepared and embrace the harmonious and society built by our joint efforts."
+            }
+          ],
+          "sourceIds": [
+            "note-b2841f8647cc35b0"
+          ],
+          "sourceLines": [
+            [
+              96,
+              96
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Let’s get prepared and embrace the harmonious and society built by our joint efforts.",
+          "speechText": "Let’s get prepared and embrace the harmonious and society built by our joint efforts.",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-b2841f8647cc35b0-s-f7745cc1f40b",
+              "displayText": "Let’s get prepared and embrace the harmonious and society built by our joint efforts.",
+              "speechText": "Let’s get prepared and embrace the harmonious and society built by our joint efforts.",
+              "pronunciationText": "Let’s get prepared and embrace the harmonious and society built by our joint efforts.",
+              "substitutions": [],
+              "sourceIds": [
+                "note-b2841f8647cc35b0"
+              ]
+            }
+          ]
         }
       ]
     }

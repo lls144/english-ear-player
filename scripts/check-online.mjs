@@ -23,8 +23,9 @@ for(const [file,digest]of Object.entries({...artifact.assets,'sw.js':sha(await f
  verifiedAssets.push({file,sha256:digest,status:r.status});
 }
 const audio=[];
-for(const [id,file]of Object.entries(meta.audio)){
- console.log('Verifying formal HTTPS MP3: '+id);
+const entries=Object.entries(meta.audio);
+for(let offset=0;offset<entries.length;offset+=6){
+ const results=await Promise.allSettled(entries.slice(offset,offset+6).map(async([id,file])=>{
  let response,data;
  for(let attempt=0;attempt<2;attempt++){
   try{response=await fetch(new URL(file,url),{cache:'no-store',signal:AbortSignal.timeout(90000)});data=Buffer.from(await response.arrayBuffer());break;}
@@ -33,7 +34,10 @@ for(const [id,file]of Object.entries(meta.audio)){
  if(!response?.ok)throw Error('HTTPS audio missing: '+id);
  const receipt=receipts.find(r=>r.id===id);
  if(!receipt||sha(data)!==receipt.mp3Sha256)throw Error('Production MP3 hash mismatch: '+id);
- audio.push({id,url:new URL(file,url).href,bytes:data.length,sha256:sha(data),status:response.status});
+ return {id,url:new URL(file,url).href,bytes:data.length,sha256:sha(data),status:response.status};
+ }));
+ for(const result of results){if(result.status==='rejected')throw result.reason;audio.push(result.value);}
+ console.log('Verified formal HTTPS MP3: '+audio.length+'/'+entries.length);
 }
 await fs.mkdir('.local/qa',{recursive:true});await fs.writeFile('.local/qa/online-media.json',JSON.stringify({url,version:meta.version,contentVersion:meta.contentVersion,buildVersion:meta.buildVersion,assets:verifiedAssets,audio},null,2));
 const test=spawnSync(process.execPath,['node_modules/@playwright/test/cli.js','test','--config','playwright.online.config.ts'],{stdio:'inherit',windowsHide:true,env:{...process.env,EAR_ONLINE_URL:url}});

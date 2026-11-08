@@ -33,7 +33,7 @@ jobs:
       - run: npm run test:audio
       - run: npm run build
       - run: npm run release:check
-      - run: npm run test:e2e:production
+      - run: npm run test:e2e:production -- --workers=4
       - run: npm run test:pwa
       - uses: actions/upload-artifact@v4
         if: always()

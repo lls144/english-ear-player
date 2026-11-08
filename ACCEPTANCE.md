@@ -1,22 +1,17 @@
-# V1.1 验收范围
+# V1.2 acceptance scope
 
-基线：5 章、66 条严格原文（15 模板、50 短语、1 完整例句），三种预设共 15 个真实 MP3。原始笔记只读，通过最新 master 与稳定来源索引逐项核对；没有主题补全或编辑例句。删除 27 个旧编辑条目中的 58 个扩写/填充句。
+5 chapters, 68 verbatim source entries, 69 true sentence/phrase units. Latest selected master adds two conclusion entries. Original display, grammar, placeholders, real 2022 example and connector categories remain intact. The 58 editorial sentences removed in V1.1 remain forbidden. Deterministic neutral speechText and pronunciationText are audited separately from displayText and stable source IDs.
 
-自动检查包括 TypeScript、55 项单元/同步/发布回归、全部 15 轨 FFmpeg 解码、时长/RMS/峰值/非静音及静音时间表检查。离线英语 ASR 无参考提示覆盖全部轨道，整轨与缩短已知项间留白的误差分开记录；ASR 不是主观自然度评分。模型、音色、原文计划与公开音频有匹配哈希和质量记录。
+222 genuine Kokoro/af_heart MP3s: 15 complete chapter tracks and 207 independent sentence tracks for three presets. Each complete sentence is one model inference, without context-word splicing, amplitude trimming or placeholder silence. All generated samples, including quiet tails, are retained. Padding, continuity ramps and capped gain replace destructive boundary processing. See [audio details and evidence limits](docs/AUDIO_V1_2.md) and [source review](docs/SOURCE_REVIEW_V1_2.md).
 
-生产浏览器套件 19 项 × 6 配置：本机 Edge、安卓尺寸 Chrome、320px 小屏、iPhone WebKit、iPad WebKit、横屏 WebKit。检查实际媒体时间推进、暂停/继续、切章、九档速度、主循环跳过连接词与末章回首章、单章循环、预设与高亮时间表、存储恢复、快速操作、Media Session、网络/加载失败和导入错误。播放器实际高度 97px（不含物理设备可能额外的安全区）；末段不被遮挡。
+Local gates: TypeScript; 74 Node unit/source/sync/player/release regressions; 5 standard-library acoustic fault-injection cases; 4 isolated waveform-pipeline tests; 2 actual pinned-model G2P checks; 5 real cache/failure injections. Every MP3 is fully decoded and checked for non-silence, duration, decoded sample-derived sentence cues, actual gaps, 4x peak estimate, clipping, impulsive spikes, edge/join energy and source/settings/ASR hash consistency. Raw and normalized ASR results remain distinct. An unchanged incremental update must generate zero files.
 
-PWA 回归实际构造 A/B 版本：旧页面继续播放旧音频，新开取得新哈希音频；缺失核心文件的新版本拒绝安装且旧版可离线使用。正式 HTTPS 另验证真实 JS/CSS/全部 15 轨字节哈希、66 条正文、播放、速度/循环、设置、重新访问，以及旧 HTML/元数据/MP3 缓存不会污染新版本。
+Production browser suite: 24 cases × 6 configurations (local Edge, Android Chrome, 320px phone, iPhone WebKit, iPad WebKit and landscape WebKit). Real media clocks/decoding validate play, pause, resume, previous/next, chapter/list/off loops, all rates, presets, current highlights, source failures, offline recovery, local-file failures/imports, Media Session and storage. Five new cases cover first/middle/last sentence targets, long clauses, multiple sentences, manual-lock independence, preset/rate/seek/pause/refresh, implicit current target, rapid switching and native independent-file loop. QA samples actual native clock wraps at 20 ms; production never uses those polls to cut or loop audio. iPhone/Android emulation each performs 20 actual repetitions in EACH preset; other configurations perform at least 20 total. No forced ended events or artificial end seeks are used in this repetition check.
 
-本机原生英语 TTS 已以英语 voice、真实语音边界、Windows 进程音频峰值及 WASAPI 回环非静音 PCM 检验。暂停后音频输出归零，快速切换最多一个请求；内置 MP3 也产生实际进程输出。浏览器 TTS 不作为锁屏承诺或 MP3 生成器。
+The compact player remains 97px before physical safe-area additions; scrolling and last-paragraph visibility are tested. Small-phone rendering is inspected as an image. Browser TTS is also tested with an actual local English voice, real boundaries, Windows audio-session peaks and WASAPI loopback output, including zero output after pause and no overlapping utterances. It is not an MP3 generator or a stable lock-screen promise.
 
-本机另有 5 项真实故障注入：分别改变音色、模型、处理版本、生成语速和停顿，禁用模型，确认旧 MP3 不会被错误复用且失败后所有原音频/登记字节不变。PWA 回归还验证非默认轨道按需下载校验后缓存、正确返回 Range 字节。
+Two PWA regressions construct A/B releases: active playback retains old verified bytes; reopening gets new hashed JS/audio; an incomplete candidate is rejected with offline access to the complete prior version. Optional files are SHA-verified on demand and support Range responses. Formal HTTPS acceptance verifies the exact buildVersion plus JS/CSS/HTML/manifest/icons/worker and all 222 MP3 byte hashes, then repeats player and single-sentence cases against the actual public URL. GitHub Actions independently runs production gates before official Pages deployment, then HTTPS acceptance.
 
-限制：没有物理 iPhone/Android 连接，真实锁屏、来电、系统挂起和硬件媒体键尚未验收；移动模拟与桌面标签切换不能代替真机。Windows WebKit 的有效 blob/data MP3 被原生后端拒绝，验证失败提示与内置音频恢复；不能宣称真实 Safari 导入通过。Windows WebKit 没有 Media Session 的场景明确记录，其他支持平台验证了元数据和系统动作。
+Evidence is in ignored .local/qa and each commit's Actions artifacts. Completion requires that commit's successful deploy AND real HTTPS browser results. Public reports contain selected material and acoustic receipts, never the full private source or model weights. Rollback restores a coherent old runtime/compiler/tests/content in isolation and publishes a forward commit only after all gates. No force push or V1.0 editorial-content rollback.
 
-测试证据、原文、A/B WAV、完整转写和隔离更新演练保存在忽略的 .local。公开 Actions 的 validation-results / online-validation artifact 是每次运行的结果证据；不上传原笔记或模型。完成状态以对应提交成功的 Actions 与正式 HTTPS 验收为准。
-
-
-补充回归：相同章节选择不重载音频、首次元数据不额外 seek 零点；Chrome 原生安全区模拟验证横屏左右留白和底部安全区。线上验收还重新构建对应提交，核对 HTML、JS、CSS、manifest、图标及 worker 的实际 SHA256 与 buildVersion，不能仅凭相同内容版本放行旧界面。
-
-慢速网络回归：真实 HTTPS 观察到未返回元数据的请求等待超过 12 秒。播放器保留最多 60 秒加载宽限，硬错误仍立即提示；到期无进展会停止并允许重试。线上功能测试和真实 PWA 首装分别覆盖，避免每个功能用例都触发整套预缓存竞争；始终以真实解码和时钟推进作通过标准。
+Limits: no physical iPhone or Android is attached; real lock screen, calls, OS suspension and hardware media buttons remain unverified. Desktop WebKit emulation is not physical Safari. Windows WebKit rejects some valid local blob MP3s in its native backend; failure and built-in recovery are tested, without claiming physical Safari import passed. Media Session is checked where supported. Acoustic thresholds and ASR cannot certify subjective naturalness or prove every small plosive/tail artifact absent. Original grammar is not silently corrected; specifically the latest conclusion retains “harmonious and society” with a separate optional correction suggestion.

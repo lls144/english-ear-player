@@ -13,7 +13,7 @@ export async function workerFor(directory){
 }
 if(process.argv[1]&&path.resolve(process.argv[1])===path.join(root,'scripts/package-site.mjs')){
  const library=await readJson('src/library.generated.json'),dist=path.join(root,'dist');
- const allAudio=Object.fromEntries(Object.entries(library.audioModes).flatMap(([mode,entries])=>Object.entries(entries).map(([id,file])=>[id+(mode==='continuous'?'':'-'+mode),file])));
+ const allAudio=library.files;
  const allowed=new Set(Object.values(allAudio).map(p=>path.resolve(dist,p)));
  async function walk(d){return (await Promise.all((await fs.readdir(d,{withFileTypes:true})).map(x=>x.isDirectory()?walk(path.join(d,x.name)):[path.join(d,x.name)]))).flat();}
  for(const file of await walk(path.join(dist,'assets/audio')))if(!allowed.has(path.resolve(file)))await fs.unlink(file);

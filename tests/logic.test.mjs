@@ -20,7 +20,7 @@ test('untrusted stored settings cannot produce NaN or out of range playback',()=
   assert.equal(safeNumber(99,1,.5,2),2);
   assert.equal(safeNumber(-1,1,.5,2),.5);
 });
-test('source examples remain distinct and placeholders remain silent templates',async()=>{
+test('source examples remain distinct and displayed templates cannot be silently rewritten',async()=>{
   const m=await readJson('content/materials.json');
   validate(m);
   assert.ok(m.chapters.length>=5);

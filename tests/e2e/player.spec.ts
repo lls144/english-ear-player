@@ -2,6 +2,7 @@ import {test,expect,type Page} from '@playwright/test';
 import path from 'node:path';
 import fs from 'node:fs';
 import {randomUUID} from 'node:crypto';
+import {decodeEveryMP3} from '../media-decoding';
 const cases=new WeakMap<Page,string>();
 const consoleErrors=new WeakMap<Page,string[]>();
 const fault=(p:Page,data:object)=>p.request.post('/__e2e_control/'+cases.get(p),{data});
@@ -40,7 +41,9 @@ test.afterEach(async({page},info)=>{
  const unexpected=logs.filter(s=>!s.startsWith('[vite]') && !(faultCase && /Failed to load resource|NetworkError|Load failed|network connection/i.test(s)));
  expect(unexpected).toEqual([]);
 });
-test('all five real files advance time with matching chapter and source',async({page})=>{
+test('all five real files advance time with matching chapter and source',async({page},info)=>{
+ test.setTimeout(180000);
+ if(info.project.name==='edge-desktop')await decodeEveryMP3(page,published.files,info);
  const element=await audio(page).elementHandle();
  for(let i=0;i<ids.length;i++){
   await page.locator('[data-chapter="'+ids[i]+'"]').click();await expect(page.locator('#now-title')).toHaveText(titles[i]);
@@ -192,7 +195,7 @@ test('no English voice gives honest feedback with working MP3',async({page})=>{
  await expect(page.locator('#play')).toHaveAttribute('aria-label','播放');await mode(page,'audio');await start(page);
 });
 test('corrupt or denied local storage does not break actual playback',async({page})=>{
- await page.evaluate(()=>localStorage.setItem('english-ear-player:v1.1','{broken'));await page.reload();await start(page);
+ await page.evaluate(()=>localStorage.setItem('english-ear-player:v1.2','{broken'));await page.reload();await start(page);
  await page.addInitScript(()=>{Storage.prototype.setItem=()=>{throw new DOMException('denied','SecurityError');};});await page.reload();await start(page);
 });
 

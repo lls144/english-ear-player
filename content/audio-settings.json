@@ -8,8 +8,8 @@
   "voice": "af_heart",
   "language": "en-us",
   "license": "Apache-2.0",
-  "processor": "source-only-context-guard-v1.1.0",
-  "shortPhraseMinSpeed": 0.85,
+  "processor": "whole-sentence-raw-infer-v1.2.1",
+  "shortPhraseMinSpeed": 0.9,
   "sampleRate": 24000,
   "referenceRate": 0.7,
   "bitrate": "96k",
@@ -19,25 +19,51 @@
       "modelSpeed": 0.7,
       "sentenceGapMs": 650,
       "phraseGapMs": 850,
-      "slotFactor": 1,
-      "recallFactor": 0
+      "recallFactor": 0,
+      "loopGapMs": 1000
     },
     "slow": {
       "label": "慢速听",
       "modelSpeed": 0.6,
       "sentenceGapMs": 1200,
       "phraseGapMs": 1400,
-      "slotFactor": 1.3,
-      "recallFactor": 0
+      "recallFactor": 0,
+      "loopGapMs": 1500
     },
     "recite": {
       "label": "跟背听",
       "modelSpeed": 0.65,
       "sentenceGapMs": 2400,
       "phraseGapMs": 2400,
-      "slotFactor": 1.5,
-      "recallFactor": 0.85
+      "recallFactor": 0.85,
+      "loopGapMs": 2600
     }
   },
-  "upstreamModelSha256": "8fbea51ea711f2af382e88c833d9e288c6dc82ce5e98421ea61c058ce21a34cb"
+  "upstreamModelSha256": "8fbea51ea711f2af382e88c833d9e288c6dc82ce5e98421ea61c058ce21a34cb",
+  "edgePaddingMs": {
+    "leading": 200,
+    "trailing": 350
+  },
+  "fadeMs": 12,
+  "maxGain": 1.5,
+  "activeRmsTarget": 0.085,
+  "peakCeiling": 0.7,
+  "sentenceOverrides": {
+    "source-fdc17899e263456e-s-735730f52e5c": {
+      "all": {
+        "styleLength": 16,
+        "modelSpeed": 0.9
+      }
+    },
+    "source-db2b29abe006b6c8-s-d97dc8b7b32c": {
+      "slow": {
+        "styleLength": 32,
+        "modelSpeed": 0.8
+      },
+      "recite": {
+        "styleLength": 32,
+        "modelSpeed": 0.8
+      }
+    }
+  }
 }

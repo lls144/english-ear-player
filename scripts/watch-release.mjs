@@ -4,7 +4,7 @@ import fs from 'node:fs/promises';
 const arg=n=>process.argv[process.argv.indexOf(n)+1],commit=arg('--commit'),branch=arg('--branch');
 const gh=(...a)=>execFileSync('gh',a,{encoding:'utf8',windowsHide:true,maxBuffer:8*1024*1024});
 let run,last='',started=Date.now();
-while(Date.now()-started<20*60*1000){
+while(Date.now()-started<45*60*1000){
  let runs=[];
  try{runs=JSON.parse(gh('run','list','--repo','lls144/english-ear-player','--commit',commit,'--workflow','pages.yml','--json','databaseId,status,conclusion,url'));}catch(error){if(Date.now()-started>120000)throw error;}
  run=runs[0];

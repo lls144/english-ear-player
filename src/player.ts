@@ -2,17 +2,18 @@ import rawLibrary from './library.generated.json';
 import { nextIndex, safeNumber, speechChunk, type LoopMode } from './logic';
 export type Preset = 'continuous'|'slow'|'recite';
 type Part={text?:string;pauseMs?:number};
-type Cue={segmentId:string;start:number;speechEnd:number;end:number};
-type SourceChapter={id:string;title:string;subtitle:string;inMainLoop:boolean;segments:{id:string;text:string;kind:string;category:string;tier?:string;parts:Part[]}[]};
-type Profile={id:Preset;label:string;modelSpeed:number;sentenceGapMs:number;phraseGapMs:number;slotFactor:number;recallFactor:number};
-export const library=rawLibrary as unknown as {version:string;contentVersion:string;chapters:SourceChapter[];audio:Record<string,string>;audioModes:Record<Preset,Record<string,string>>;timings:Record<Preset,Record<string,Cue[]>>;presets:Profile[];defaultRate:number;defaultPreset:Preset;referenceRate:number};
+type Cue={sentenceId?:string;segmentId:string;start:number;speechEnd:number;end:number};
+type Sentence={id:string;displayText:string;speechText:string;pronunciationText?:string;sourceIds:string[]};
+type SourceChapter={id:string;title:string;subtitle:string;inMainLoop:boolean;segments:{id:string;text:string;displayText:string;speechText:string;sentences:Sentence[];kind:string;category:string;tier?:string;parts:Part[]}[]};
+type Profile={id:Preset;label:string;modelSpeed:number;sentenceGapMs:number;phraseGapMs:number;loopGapMs:number;recallFactor:number};
+export const library=rawLibrary as unknown as {version:string;contentVersion:string;chapters:SourceChapter[];audio:Record<string,string>;audioModes:Record<Preset,Record<string,string>>;sentenceAudio:Record<Preset,Record<string,string>>;timings:Record<Preset,Record<string,Cue[]>>;presets:Profile[];defaultRate:number;defaultPreset:Preset;referenceRate:number};
 export const chapters = library.chapters;
 export type Chapter = typeof chapters[number];
 export type Mode = 'speech' | 'audio';
-type Settings = { schemaVersion:number;chapter: string; mode: Mode; preset:Preset;loop: LoopMode; rate: number; voice: string; audioPositions: Record<string, number>; speechPositions: Record<string, number> };
-export const storageKey = 'english-ear-player:v1.1';
+type Settings = { schemaVersion:number;selectedSentences:Record<string,string>;manualSentences:Record<string,boolean>;contentVersion:string;chapter: string; mode: Mode; preset:Preset;loop: LoopMode; rate: number; voice: string; audioPositions: Record<string, number>; speechPositions: Record<string, number> };
+export const storageKey = 'english-ear-player:v1.2';
 export const rates=[.55,.60,.65,.70,.75,.80,.85,.90,1];
-const defaults: Settings = {schemaVersion:2,chapter: chapters[0].id, mode:'audio',preset:'slow',loop: 'all', rate:.7, voice: '', audioPositions: {}, speechPositions: {}};
+const defaults: Settings = {schemaVersion:2,selectedSentences:{},manualSentences:{},contentVersion:library.contentVersion,chapter: chapters[0].id, mode:'audio',preset:'slow',loop: 'all', rate:.7, voice: '', audioPositions: {}, speechPositions: {}};
 export class Player {
   readonly audio = new Audio();
   settings: Settings = structuredClone(defaults);
@@ -39,16 +40,17 @@ export class Player {
   constructor(notify: () => void) {
     this.notify = notify;
     try {
-      const raw = JSON.parse(localStorage.getItem(storageKey) ?? localStorage.getItem('english-ear-player:v1') ?? 'null');
+      const raw = JSON.parse(localStorage.getItem(storageKey) ?? localStorage.getItem('english-ear-player:v1.1') ?? localStorage.getItem('english-ear-player:v1') ?? 'null');
       if (raw && typeof raw === 'object') {
         this.settings.chapter = chapters.some(c => c.id === raw.chapter) ? raw.chapter : defaults.chapter;
         this.settings.mode = raw.schemaVersion===2&&raw.mode==='speech' ? 'speech' : 'audio';
         this.settings.preset = ['continuous','slow','recite'].includes(raw.preset)?raw.preset:'slow';
-        this.settings.loop = ['all','one','off'].includes(raw.loop) ? raw.loop : 'all';
+        this.settings.loop = ['all','one','off','sentence'].includes(raw.loop) ? raw.loop : 'all';
         this.settings.rate = raw.schemaVersion===2&&rates.includes(raw.rate)?raw.rate:.7;
+        for(const c of chapters){const id=raw.selectedSentences?.[c.id];if(c.segments.some(s=>s.sentences.some(u=>u.id===id))){this.settings.selectedSentences[c.id]=id;this.settings.manualSentences[c.id]=raw.manualSentences?.[c.id]===true;}}
         this.settings.voice = typeof raw.voice === 'string' ? raw.voice : '';
         if(raw.schemaVersion===2)for(const [key,value]of Object.entries(raw.audioPositions??{}))this.settings.audioPositions[key]=safeNumber(value,0,0,86400);
-        if(raw.schemaVersion===2)for (const c of chapters)this.settings.speechPositions[c.id] = safeNumber(raw.speechPositions?.[c.id],0,0,this.textFor(c).length);
+        if(raw.schemaVersion===2&&raw.contentVersion===library.contentVersion)for (const c of chapters)this.settings.speechPositions[c.id] = safeNumber(raw.speechPositions?.[c.id],0,0,this.textFor(c).length);
       }
     } catch { this.status = '无法读取本机记录；仍可正常播放。'; }
     if (!this.speechSupported && this.settings.mode === 'speech') this.settings.mode = 'audio';
@@ -78,7 +80,7 @@ export class Player {
     this.audio.addEventListener('seeking',observePosition);
     this.audio.addEventListener('timeupdate', () => { if(this.settings.mode === 'audio') { observePosition(); this.save(false); this.changed(); } });
     this.audio.addEventListener('ratechange', () => {
-      if (this.settings.mode === 'audio') { const requested=this.audio.playbackRate*(this.imported.has(this.current.id)?1:library.referenceRate);this.settings.rate=rates.reduce((a,b)=>Math.abs(b-requested)<Math.abs(a-requested)?b:a);if(Math.abs(this.audio.playbackRate-this.mediaRate)>.0001)this.audio.playbackRate=this.mediaRate;this.save(); this.changed(); }
+      if (this.settings.mode === 'audio') { const requested=this.audio.playbackRate*(this.usingImportedAudio?1:library.referenceRate);this.settings.rate=rates.reduce((a,b)=>Math.abs(b-requested)<Math.abs(a-requested)?b:a);if(Math.abs(this.audio.playbackRate-this.mediaRate)>.0001)this.audio.playbackRate=this.mediaRate;this.save(); this.changed(); }
     });
     this.audio.addEventListener('loadedmetadata', () => {
       if(this.audio.currentSrc !== this.audioSource) return;
@@ -90,9 +92,9 @@ export class Player {
       }
       this.restoredAt = 0; this.audio.playbackRate = this.mediaRate; this.changed();
     });
-    this.audio.addEventListener('ended', () => { if (this.settings.mode === 'audio') this.finished(); });
+    this.audio.addEventListener('ended', () => { if (this.settings.mode === 'audio'&&this.audio.ended&&this.audio.currentSrc===this.audioSource) this.finished(); });
     this.audio.addEventListener('error', () => {
-      if(this.settings.mode !== 'audio' || !this.audio.getAttribute('src')) return;
+      if(this.settings.mode !== 'audio' || !this.audio.getAttribute('src')||!this.audio.error) return;
       this.busy = false; this.playing = false;
       this.wantedPlayback=false; this.audio.pause();
       this.audioFailed=true;
@@ -109,13 +111,18 @@ export class Player {
   }
   get current() { return chapters.find(c => c.id === this.settings.chapter)!; }
   get index() { return chapters.indexOf(this.current); }
-  textFor(c: Chapter) { return c.segments.map(s => s.parts.filter(p=>p.text).map(p=>p.text).join('\n\n')).join('\n\n'); }
+  textFor(c: Chapter) { return c.segments.flatMap(s=>s.sentences).map(u=>u.pronunciationText??u.speechText).join('\n\n'); }
+  get sentences(){return this.current.segments.flatMap(s=>s.sentences);}
+  get selectedSentence(){return this.sentences.find(u=>u.id===this.settings.selectedSentences[this.current.id])??this.sentences[0];}
+  get usingImportedAudio(){return this.settings.loop!=='sentence'&&this.imported.has(this.current.id);}
+  get activeSentenceId(){if(this.settings.loop==='sentence')return this.selectedSentence.id;if(this.settings.mode==='speech')return this.sentences[this.speechActiveIndex]?.id;const cue=(library.timings[this.settings.preset][this.current.id]??[]).find(t=>this.audio.currentTime>=t.start&&this.audio.currentTime<t.end);return this.usingImportedAudio?undefined:cue?.sentenceId??this.current.segments.find(s=>s.id===cue?.segmentId)?.sentences[0]?.id;}
   get profile(){return library.presets.find(p=>p.id===this.settings.preset)!;}
-  get mediaRate(){return this.settings.rate/(this.imported.has(this.current.id)?1:library.referenceRate);}
-  positionKeyFor(id:string){return this.settings.preset+':'+id+':'+(this.imported.get(id)?.name??this.builtinSource(id));}
+  get mediaRate(){return this.settings.rate/(this.usingImportedAudio?1:library.referenceRate);}
+  positionKeyFor(id:string){return this.settings.preset+':'+id+':'+(this.settings.loop==='sentence'?'sentence:'+this.selectedSentence.id+':'+library.sentenceAudio[this.settings.preset]?.[this.selectedSentence.id]:(this.imported.get(id)?.name??this.builtinSource(id)));}
   get positionKey(){return this.positionKeyFor(this.current.id);}
-  get text() { return this.textFor(this.current); }
+  get text() { return this.settings.loop==='sentence'?(this.selectedSentence.pronunciationText??this.selectedSentence.speechText):this.textFor(this.current); }
   get audioSource(): string | undefined {
+    if(this.settings.loop==='sentence'){const file=library.sentenceAudio[this.settings.preset]?.[this.selectedSentence.id];return file?new URL(file,document.baseURI).href:undefined;}
     return this.imported.get(this.current.id)?.url ?? this.builtinSource(this.current.id);
   }
   builtinSource(id: string): string | undefined {
@@ -125,12 +132,7 @@ export class Player {
   get position() { return this.settings.mode === 'audio' ? this.audio.currentTime : this.speechOffset; }
   get duration() { return this.settings.mode === 'audio' ? (this.audioReady && Number.isFinite(this.audio.duration) ? this.audio.duration : 0) : this.text.length; }
   get progress() { return this.duration > 0 ? Math.min(1,this.position/this.duration) : 0; }
-  get activeSegment() {
-    if (this.settings.mode === 'speech')return this.speechActiveIndex;
-    if(this.imported.has(this.current.id)||this.audio.currentSrc!==this.builtinSource(this.current.id))return -1;
-    const cues=library.timings[this.settings.preset][this.current.id]??[];
-    return cues.findIndex(t=>this.audio.currentTime>=t.start&&this.audio.currentTime<t.end);
-  }
+  get activeSegment() {return this.current.segments.findIndex(s=>s.sentences.some(u=>u.id===this.activeSentenceId));}
   refreshVoices = () => {
     this.voices = this.synth?.getVoices().filter(v => /^en(?:-|_)/i.test(v.lang) || v.lang.toLowerCase()==='en') ?? [];
     this.notify();
@@ -189,10 +191,8 @@ export class Player {
     if(!this.voices.length){this.wantedPlayback=false;this.playing=false;this.busy=false;this.status='未找到英语语音，请使用内置 MP3。';this.changed();return;}
     let at=0;
     const units:{text:string;start:number;end:number;segment:number;pause:number}[]=[];
-    this.current.segments.forEach((s,segment)=>{
-      for(const p of s.parts){if(p.text){units.push({text:p.text,start:at,end:at+p.text.length,segment,pause:0});at+=p.text.length+2;}else if(units.length)units.at(-1)!.pause+=(p.pauseMs??0)*this.profile.slotFactor;}
-      if(units.length)units.at(-1)!.pause+=s.kind==='source-phrase'?this.profile.phraseGapMs:this.profile.sentenceGapMs;
-    });
+    const choices=this.settings.loop==='sentence'?[this.selectedSentence]:this.sentences;
+    choices.forEach(s=>{const segment=this.sentences.indexOf(s),text=s.pronunciationText??s.speechText;units.push({text,start:at,end:at+text.length,segment,pause:Math.max(this.profile.sentenceGapMs,this.settings.loop==='sentence'?this.profile.loopGapMs:0)});at+=text.length+2;});
     const unit=units.find(u=>this.speechOffset<u.end);
     if(!unit){this.finished();return;}
     const start=Math.max(this.speechOffset,unit.start),chunk=unit.text.slice(start-unit.start),expected=++this.token;
@@ -203,7 +203,7 @@ export class Player {
     utterance.lang=utterance.voice?.lang ?? 'en-US';
     utterance.onstart=()=>{ if(expected!==this.token)return; this.speechActiveIndex=unit.segment;this.playing=true; this.busy=false; this.status='英语朗读中'; this.changed(); };
     utterance.onboundary=e=>{ if(expected!==this.token)return; this.speechOffset=start+e.charIndex; this.save(false); this.changed(); };
-    utterance.onend=()=>{ if(expected!==this.token)return; this.speechOffset=unit.end+2; this.save();const recall=this.profile.recallFactor?Math.max(2400,chunk.split(/\s+/).length*420*this.profile.recallFactor):0;this.speechTimer=setTimeout(()=>{if(expected!==this.token)return;if(this.speechOffset>=this.text.length)this.finished();else this.speak();},Math.max(unit.pause,recall)); };
+    utterance.onend=()=>{ if(expected!==this.token)return; this.speechOffset=unit.end+2; this.save();const recall=this.profile.recallFactor?Math.max(2400,chunk.split(/\s+/).length*420*this.profile.recallFactor):0;this.speechTimer=setTimeout(()=>{if(expected!==this.token)return;if(this.speechOffset>=this.text.length){if(this.settings.loop==='sentence'){this.speechOffset=0;this.speak();}else this.finished();}else this.speak();},Math.max(unit.pause,recall)); };
     utterance.onerror=e=>{ if(expected!==this.token)return; this.playing=false; this.busy=false; this.status='朗读中断（'+e.error+'）。请轻点播放重试，或切换英语语音。'; this.changed(); };
     this.synth.speak(utterance); this.changed();
   }
@@ -235,12 +235,30 @@ export class Player {
     const resume=this.playing||this.busy;
     this.pause(); this.settings.voice=uri; this.save(); this.changed(); if(resume)void this.play();
   }
-  setLoop(loop: LoopMode) { this.settings.loop=loop; this.audio.loop=loop==='one'; this.save(); this.changed(); }
+  selectSentence(id:string){
+    if(!this.sentences.some(u=>u.id===id))return;
+    const resume=this.playing||this.busy;if(this.settings.loop==='sentence')this.pause();
+    this.settings.selectedSentences[this.current.id]=id;this.settings.manualSentences[this.current.id]=true;
+    if(this.settings.loop==='sentence'){this.settings.audioPositions[this.positionKey]=0;this.speechOffset=0;if(this.settings.mode==='audio')this.loadAudio();}
+    this.save();this.changed();if(resume&&this.settings.loop==='sentence')void this.play();
+  }
+  setLoop(loop:LoopMode){
+    if(loop===this.settings.loop)return;
+    const old=this.settings.loop,resume=this.playing||this.busy,active=this.activeSentenceId;
+    if(old==='sentence'||loop==='sentence'){
+      this.pause();
+      if(loop==='sentence'&&!this.settings.manualSentences[this.current.id])this.settings.selectedSentences[this.current.id]=active??this.sentences[0].id;
+      this.settings.loop=loop;this.speechOffset=0;
+      if(old==='sentence'){const cue=library.timings[this.settings.preset][this.current.id].find(t=>t.sentenceId===this.selectedSentence.id);this.settings.audioPositions[this.positionKey]=cue?.start??0;}
+      if(this.settings.mode==='audio')this.loadAudio();this.save();this.changed();if(resume)void this.play();return;
+    }
+    this.settings.loop=loop;this.audio.loop=loop==='one';this.save();this.changed();
+  }
   setPreset(preset:Preset){
     if(!['continuous','slow','recite'].includes(preset)||preset===this.settings.preset)return;
-    const resume=this.playing||this.busy,segment=this.activeSegment;
+    const resume=this.playing||this.busy,segment=this.activeSegment,activeId=this.activeSentenceId;
     this.pause();this.settings.preset=preset;
-    if(this.settings.audioPositions[this.positionKey]===undefined&&segment>=0)this.settings.audioPositions[this.positionKey]=library.timings[preset][this.current.id]?.[segment]?.start??0;
+    if(this.settings.loop!=='sentence'&&this.settings.audioPositions[this.positionKey]===undefined&&segment>=0)this.settings.audioPositions[this.positionKey]=(library.timings[preset][this.current.id]?.find(t=>t.sentenceId===activeId)??library.timings[preset][this.current.id]?.[segment])?.start??0;
     if(this.settings.mode==='audio')this.loadAudio();this.save();this.changed();if(resume)void this.play();
   }
   seek(ratio: number) {
@@ -261,12 +279,13 @@ export class Player {
     this.loopRestartAllowed=false;
     this.audioFailed=false;
     const source=this.audioSource;
-    this.audio.pause(); this.audio.loop=this.settings.loop==='one'; this.audio.playbackRate=this.mediaRate;
+    this.audio.pause(); this.audio.loop=(this.settings.loop==='one'||this.settings.loop==='sentence'); this.audio.playbackRate=this.mediaRate;
     this.restoredAt=this.settings.audioPositions[this.positionKey] ?? 0;
     if(source) this.audio.src=source; else this.audio.removeAttribute('src');
     this.audio.load();
   }
   private finished() {
+    if(this.settings.loop==='sentence'){this.playing=false;this.busy=false;this.audio.currentTime=0;void this.play();return;}
     const completed=this.current.id;
     const completedKey=this.positionKey;
     const preferred=chapters.filter(c=>c.inMainLoop),list=preferred.length?preferred:chapters,index=list.findIndex(c=>c.id===completed);
