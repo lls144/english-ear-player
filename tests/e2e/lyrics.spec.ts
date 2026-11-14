@@ -9,7 +9,7 @@ test.beforeEach(async({page})=>{const errors:string[]=[];problems.set(page,error
 test.afterEach(async({page},info)=>{expect(problems.get(page)).toEqual([]);if(info.status!==info.expectedStatus)await info.attach('lyrics-debug',{body:JSON.stringify(await page.evaluate(()=>({scrollY,innerHeight,follow:document.querySelector('#transcript')?.getAttribute('data-follow'),current:document.querySelector('.current-sentence')?.getBoundingClientRect().toJSON()}))),contentType:'application/json'});});
 
 test('real sentence boundary follows a measured easing trajectory into the readable viewport',async({page})=>{
- const cue=lib.timings.slow.picture[1];await play(page);await page.waitForTimeout(850);
+ const cue=lib.timings.slow.picture[2];await play(page);await page.waitForTimeout(850);
  const frames=await page.evaluate(async(cue:{sentenceId:string;start:number})=>{
   const a=document.querySelector('audio')!,row=document.querySelector<HTMLElement>('[data-sentence="'+cue.sentenceId+'"]')!;
   const points:{time:number;y:number;scroll:number;current:boolean;header:number;dock:number}[]=[];const begin=performance.now();a.currentTime=cue.start-.08;
