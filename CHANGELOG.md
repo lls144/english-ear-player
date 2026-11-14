@@ -6,6 +6,10 @@ Chapters 9 → 9; segments 105 → 105; generated MP3: none.
 
 Chapters 9 → 9; segments 105 → 105; generated MP3: none.
 
+## 1.3.0
+
+Chapters 9 → 9; segments 105 → 105; generated MP3: none.
+
 ## 1.2.1
 
 Chapters 5 → 9; segments 68 → 105; generated MP3: none.
