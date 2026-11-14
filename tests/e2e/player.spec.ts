@@ -227,3 +227,8 @@ test('phrase collection is separate from paragraph templates and has playable in
  await page.locator('#play').click();await page.reload();await expect(page.locator('#chapter-title')).toHaveText(phrases.title);await expect(page.locator('[data-sentence="'+u.id+'"]')).toHaveAttribute('aria-pressed','true');
  await page.locator('[data-chapter=letter-body]').click();await expect(page.locator('#transcript')).toContainText('Great Wall');await expect(page.locator('#transcript')).not.toContainText('seek assistance from professionals');
 });
+
+
+test('every displayed paragraph preserves the source punctuation between sentence units',async({page})=>{
+ for(const c of published.chapters){await page.locator('[data-chapter="'+c.id+'"]').click();expect(await page.locator('#transcript .passage p').allTextContents()).toEqual(c.segments.map((s:any)=>s.displayText));}
+});
