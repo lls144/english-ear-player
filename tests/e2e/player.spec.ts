@@ -147,7 +147,7 @@ test('wrong extension empty corrupt MP3 fail safely and valid import recovers',a
  }else{await page.locator('#file-input').setInputFiles(path.resolve('public/assets/audio/picture.mp3'));await start(page);}
 });
 test('long text settings touch scrolling and dock fit viewport',async({page,browserName})=>{
- await page.locator('[data-chapter=connectors]').click();
+ await page.locator('[data-chapter=connectors]').click();await expect(page.locator('#chapter-title')).toHaveText(titles[3]);
  await expect(page.locator('#more-settings')).not.toBeVisible();
  await expect(page.locator('#source-info')).not.toHaveAttribute('open');
  await page.locator('#transcript .passage').last().scrollIntoViewIfNeeded();
@@ -159,7 +159,7 @@ test('long text settings touch scrolling and dock fit viewport',async({page,brow
   const original=page.viewportSize()!,cdp=await page.context().newCDPSession(page);
   await page.setViewportSize({width:844,height:390});
   await cdp.send('Emulation.setSafeAreaInsetsOverride',{insets:{top:0,left:44,right:44,bottom:21}});
-  await expect.poll(()=>page.locator('.player-dock').evaluate(e=>e.getBoundingClientRect().height)).toBe(118);
+  await expect.poll(()=>page.locator('.player-dock').evaluate(e=>e.getBoundingClientRect().height)).toBeLessThanOrEqual(110);expect(await page.locator('.player-dock').evaluate(e=>e.getBoundingClientRect().bottom)).toBeLessThanOrEqual(369);
   expect(await page.locator('body').evaluate(e=>getComputedStyle(e).paddingLeft)).toBe('44px');
   const controls=await page.locator('.dock-inner').boundingBox();expect(controls!.x).toBeGreaterThanOrEqual(44);expect(controls!.x+controls!.width).toBeLessThanOrEqual(800);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(844);
@@ -230,5 +230,5 @@ test('phrase collection is separate from paragraph templates and has playable in
 
 
 test('every displayed paragraph preserves the source punctuation between sentence units',async({page})=>{
- for(const c of published.chapters){await page.locator('[data-chapter="'+c.id+'"]').click();expect(await page.locator('#transcript .passage p').allTextContents()).toEqual(c.segments.map((s:any)=>s.displayText));}
+ for(const c of published.chapters){await page.locator('[data-chapter="'+c.id+'"]').click();await expect.poll(()=>page.locator('#transcript .passage p').allTextContents()).toEqual(c.segments.map((s:any)=>s.displayText));}
 });

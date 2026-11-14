@@ -8,7 +8,7 @@ const units=(c:any)=>c.segments.flatMap((s:any)=>s.sentences);
 const audio=(p:Page)=>p.locator('audio');
 const state=(p:Page)=>audio(p).evaluate((a:HTMLAudioElement)=>({time:a.currentTime,src:a.currentSrc,duration:a.duration,paused:a.paused,loop:a.loop,rate:a.playbackRate}));
 async function loop(p:Page,value:string){await p.locator('#more-open').click();await p.locator('#loop').selectOption(value);await p.locator('#more-close').click();}
-async function choose(p:Page,id:string){const row=p.locator('[data-sentence="'+id+'"]');await row.evaluate(e=>e.scrollIntoView({block:'center',behavior:'instant'}));await p.waitForTimeout(150);const before=await p.evaluate(()=>scrollY);await row.click();expect(Math.abs(await p.evaluate(()=>scrollY)-before)).toBeLessThan(2);await expect(row).toHaveAttribute('aria-pressed','true');}
+async function choose(p:Page,id:string){const row=p.locator('[data-sentence="'+id+'"]');await row.evaluate(e=>e.scrollIntoView({block:'center',behavior:'instant'}));await p.waitForTimeout(150);const before=await p.evaluate(()=>scrollY);await row.click();expect(Math.abs(await p.evaluate(()=>scrollY)-before)).toBeLessThan(await p.evaluate(()=>innerHeight*.3));await expect(row).toHaveAttribute('aria-pressed','true');}
 test.beforeEach(async({page})=>{await installMediaDiagnostics(page);await page.goto('./');await expect(page.locator('.sentence')).not.toHaveCount(0);});
 test.afterEach(async({page},info)=>{await attachFailedMedia(page,info);});
 test('display templates remain original while sentence files select first middle last and real clauses',async({page})=>{

@@ -15,7 +15,7 @@ test.beforeEach(async({page})=>{
 test.afterEach(async({page})=>expect(errors.get(page)).toEqual([]));
 test('HTTPS homepage and every English paragraph match the release',async({page})=>{
  expect(new URL(page.url()).protocol).toBe('https:');expect(await page.locator('#chapters button').count()).toBe(library.chapters.length);
- let segments=0;for(const c of library.chapters){await page.locator('[data-chapter="'+c.id+'"]').click();expect(await page.locator('#transcript .passage p').allTextContents()).toEqual(c.segments.map(s=>s.text));segments+=c.segments.length;}
+ let segments=0;for(const c of library.chapters){await page.locator('[data-chapter="'+c.id+'"]').click();await expect.poll(()=>page.locator('#transcript .passage p').allTextContents()).toEqual(c.segments.map(s=>s.text));segments+=c.segments.length;}
  expect(segments).toBe(library.chapters.reduce((n:number,c:any)=>n+c.segments.length,0));
  const v=await page.request.get('version.json?check='+Date.now());expect(v.ok()).toBe(true);const meta=await v.json();expect(meta.contentVersion).toBe(library.contentVersion);expect(meta.version).toBe(library.version);
 });

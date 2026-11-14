@@ -1,3 +1,11 @@
+# V1.3 immersive lyrics acceptance
+
+Materials and all 360 MP3 bytes remain exactly V1.2.1. UI-only publication must not fetch private notes or run audio generation. New regressions measure the actual sentence-boundary scroll trajectory and stable header/dock, manual browsing across cue changes, one-seek drag release, repeat gaps without scroll jitter, reduced motion, touch cancellation, rapid chapter changes, small portrait and landscape long sentences. Two formal HTTPS UI cases additionally exercise actual cue focus, manual hold and one-commit scrubbing on the published resources.
+
+Design exploration captures indigo/purple and graphite alternatives in a real browser. The selected system-font/indigo treatment is checked in ten meaningful states, five transition frames and a short recording. A separate Windows WebKit DPR3 sample compares designed, quiet and unstyled rendering. Concurrent Windows WebKit can throttle frame sampling; the trajectory gate checks measured intermediate steps, direction, no full jump, actual focal bounds and stable controls, rather than claiming physical-device frame rates. Native Android touch input is tested through CDP. Mobile WebKit has no automation swipe command: touch cancellation plus actual scrolling is tested, without calling it a physical Safari swipe.
+
+The existing native audio, preset, rate, loop, Media Session, source, decode, PWA and complete production/HTTPS suites remain mandatory. Real lock screens, calls, suspension, Safari browser chrome and hardware rendering require physical devices and remain unverified.
+
 # V1.2.1 content and grouping acceptance
 
 9 chapters, 105 verbatim entries, 111 independent reading units; 32 phrase entries live in their own categorized collection, with 34 connectors kept separately. Paragraph chapters contain sentence templates and complete original examples. Both phrase collections are excluded from the main loop. Stable source/sentence IDs survive moves. The current 360 MP3s comprise 27 chapter tracks and 333 single-unit tracks for the same three Kokoro/af_heart presets. New regressions cover letter/big-essay routing, phrase templates, highlighted table expressions, quoted caption sentence boundaries, source edit plus appended sections, and real phrase playback/selection/refresh in each device configuration.

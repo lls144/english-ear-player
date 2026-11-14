@@ -1,4 +1,4 @@
-import { readFile, writeFile, mkdir, access } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, access, readdir } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
@@ -52,7 +52,8 @@ export async function compile() {
   }
   if(m.chapters.some(c=>Object.values(audioModes).some(mode=>!mode[c.id])||c.segments.some(s=>s.sentences.some(u=>Object.values(sentenceAudio).some(mode=>!mode[u.id])))))throw Error('Every sentence and chapter/preset needs a verified MP3');
   const pkg=await readJson('package.json');
-  const clientInputs=await Promise.all(['src/main.ts','src/player.ts','src/logic.ts','src/pwa.ts','src/style.css','index.html','scripts/content.mjs','vite.config.ts'].map(f=>readFile(path.join(root,f),'utf8')));
+  const clients=(await readdir(path.join(root,'src'),{recursive:true})).filter(f=>/\.(ts|css)$/.test(f)).map(f=>'src/'+f.replaceAll('\\','/')).sort();
+  const clientInputs=await Promise.all([...clients,'index.html','scripts/content.mjs','vite.config.ts'].map(f=>readFile(path.join(root,f),'utf8')));
   const published={version:pkg.version,contentVersion:contentRevision(m.chapters,provenance,clientInputs),chapters:m.chapters.map(c=>({id:c.id,title:c.title,subtitle:c.title,inMainLoop:c.inMainLoop!==false,segments:c.segments.map(({id,text,displayText,speechText,sentences,kind,parts,category,tier})=>({id,text,displayText,speechText,sentences,kind,parts,category,tier}))})),audio:publicAudio,audioModes,sentenceAudio,files,timings,presets:Object.entries(settings.presets).map(([id,p])=>({id,...p})),defaultRate:.7,defaultPreset:'slow',referenceRate:settings.referenceRate};
   await mkdir(path.join(root,'src'),{recursive:true});
   await writeFile(path.join(root,'src/library.generated.json'),JSON.stringify(published,null,2)+'\n');

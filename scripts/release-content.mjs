@@ -7,8 +7,9 @@ import {releaseVersion} from './release-planning.mjs';
 import {verifyCheckpoint} from './release-checkpoint.mjs';
 Object.assign(process.env,browserEnv());
 const argv=process.argv.slice(2),has=n=>argv.includes(n),value=n=>{const i=argv.indexOf(n);return i<0?null:argv[i+1];};
-const publishCurrent=has('--publish-current');
+const publishCurrent=has('--publish-current'),uiOnly=has('--ui-only');
 const branch=value('--branch')??'main',dry=has('--dry-run'),initial=has('--initial'),rollback=value('--rollback-to'),fixture=value('--source-file');
+if(uiOnly&&(!publishCurrent||fixture||rollback))throw Error('UI-only release requires committed maintenance changes and cannot sync or roll back notes');
 if(has('--rollback-to')&&!rollback)throw Error('A trusted version tag is required for rollback');
 if(!/^main$|^rehearsal\/[a-z0-9-]+$/.test(branch))throw Error('Unsupported release branch');
 if(fixture&&!dry&&branch==='main')throw Error('Fixture input cannot be published to the production branch');
@@ -48,12 +49,17 @@ try{
  for(const name of ['sync-config.json','sync-state.json','sync-resolutions.json','source.md','source-current.md']){
   try{await fs.copyFile(path.join(root,'.local',name),path.join(stage,'.local',name));}catch(e){if(e.code!=='ENOENT')throw e;}
  }
- try{await fs.cp(path.join(root,'.local/audio-cache'),path.join(stage,'.local/audio-cache'),{recursive:true});}catch(e){if(e.code!=='ENOENT')throw e;}
+ if(!uiOnly)try{await fs.cp(path.join(root,'.local/audio-cache'),path.join(stage,'.local/audio-cache'),{recursive:true});}catch(e){if(e.code!=='ENOENT')throw e;}
  await fs.symlink(path.join(root,'node_modules'),path.join(stage,'node_modules'),process.platform==='win32'?'junction':'dir');
  const before=JSON.parse(publishCurrent?git(root,'show','origin/main:content/materials.json'):await fs.readFile(path.join(stage,'content/materials.json'),'utf8'));
  const python=path.join(root,process.platform==='win32'?'.venv/Scripts/python.exe':'.venv/bin/python'),env={EAR_PYTHON:python,EAR_AI_PYTHON:path.join(root,process.platform==='win32'?'.local/ai-venv/Scripts/python.exe':'.local/ai-venv/bin/python'),EAR_TTS_MODEL_DIR:path.join(root,'.local/models/kokoro'),EAR_ASR_MODEL_DIR:path.join(root,'.local/models/whisper-base-en')};
  let audioSummary={changed:[],reused:[],deleted:[],generated:[]};
- if(rollback){
+ if(uiOnly){
+  if(git(root,'diff','--name-only','origin/main',originalHead,'--','content','public/assets/audio'))throw Error('UI-only release cannot change materials, provenance or MP3 bytes');
+  verifyCheckpoint(before,await readJson('.local/sync-state.json'),await fs.readFile(path.join(root,'.local/source-current.md'),'utf8'));
+  audioSummary.reused=Object.keys(JSON.parse(await fs.readFile(path.join(stage,'content/audio-manifest.json'),'utf8')));
+ }
+ else if(rollback){
   const candidate=JSON.parse(git(stage,'show',rollback+':content/materials.json'));
   if(candidate.schemaVersion!==2||candidate.policy!=='verbatim-source-only')throw Error('Legacy edited material is not a valid source-only rollback target');
   const prior=JSON.parse(await fs.readFile(path.join(stage,'content/audio-provenance.json'),'utf8'));
