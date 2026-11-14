@@ -1,3 +1,7 @@
+## 1.2.1
+
+Chapters 5 → 9; segments 68 → 105; generated MP3: none.
+
 ## 1.2.0
 
 Preserve original display templates while reading whole neutral sentences. Add stable, clickable sentence targets and native loops through 207 independent MP3s across three presets. Regenerate all chapter audio with untrimmed waveforms, quiet padding/ramped seams, bounded gain and sample-derived cues. Add actual G2P, waveform faults, 20-round loops and HTTPS/PWA regressions. Latest selected source adds two original conclusion entries; no editorial sentence is restored.
