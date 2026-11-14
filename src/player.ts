@@ -35,6 +35,8 @@ export class Player {
   private wantedPlayback = false;
   private loopRestartAllowed = false;
   private audioFailed = false;
+  private sentenceSeek?:{id:string;source:string;at:number;applied:boolean};
+  private preciseChapter?:string;
   private speechTimer?:ReturnType<typeof setTimeout>;
   private speechActiveIndex=0;
   private audioTimer?:ReturnType<typeof setTimeout>;
@@ -95,12 +97,15 @@ export class Player {
     this.audio.addEventListener('loadedmetadata', () => {
       if(this.audio.currentSrc !== this.audioSource) return;
       this.audioReady = true;
+      this.applySentenceSeek();
       // load() already starts at zero. Seeking to zero again as metadata arrives
       // can stall WebKit's media pipeline just after a user starts playback.
       if(this.audio.paused)this.restorePosition(false,true);
       this.audio.playbackRate = this.mediaRate; this.changed();
     });
-    this.audio.addEventListener('ended', () => { if (this.settings.mode === 'audio'&&this.wantedPlayback&&this.audio.ended&&this.audio.currentSrc===this.audioSource) this.finished(); });
+    this.audio.addEventListener('canplay',()=>this.applySentenceSeek());
+    this.audio.addEventListener('seeked',()=>{const request=this.sentenceSeek;if(request?.applied&&this.audio.currentSrc===request.source&&Math.abs(this.audio.currentTime-request.at)<.35){this.sentenceSeek=undefined;this.changed();}});
+    this.audio.addEventListener('ended', () => { if (!this.sentenceSeek&&this.settings.mode === 'audio'&&this.wantedPlayback&&this.audio.ended&&this.audio.currentSrc===this.audioSource) this.finished(); });
     this.audio.addEventListener('error', () => {
       if(this.settings.mode !== 'audio' || !this.audio.getAttribute('src')||!this.audio.error) return;
       this.busy = false; this.playing = false;
@@ -122,16 +127,16 @@ export class Player {
   textFor(c: Chapter) { return c.segments.flatMap(s=>s.sentences).map(u=>u.pronunciationText??u.speechText).join('\n\n'); }
   get sentences(){return this.current.segments.flatMap(s=>s.sentences);}
   get selectedSentence(){return this.sentences.find(u=>u.id===this.settings.selectedSentences[this.current.id])??this.sentences[0];}
-  get usingImportedAudio(){return this.settings.loop!=='sentence'&&this.imported.has(this.current.id);}
-  get activeSentenceId(){if(this.settings.loop==='sentence')return this.selectedSentence.id;if(this.settings.mode==='speech')return this.sentences[this.speechActiveIndex]?.id;const cue=(library.timings[this.settings.preset][this.current.id]??[]).find(t=>this.audio.currentTime>=t.start&&this.audio.currentTime<t.end);return this.usingImportedAudio?undefined:cue?.sentenceId??this.current.segments.find(s=>s.id===cue?.segmentId)?.sentences[0]?.id;}
+  get usingImportedAudio(){return this.settings.loop!=='sentence'&&this.preciseChapter!==this.current.id&&this.imported.has(this.current.id);}
+  get activeSentenceId(){if(this.settings.loop==='sentence')return this.selectedSentence.id;if(this.settings.mode==='speech')return this.sentences[this.speechActiveIndex]?.id;if(this.sentenceSeek)return this.sentenceSeek.id;const cue=(library.timings[this.settings.preset][this.current.id]??[]).find(t=>this.audio.currentTime>=t.start&&this.audio.currentTime<t.end);return this.usingImportedAudio?undefined:cue?.sentenceId??this.current.segments.find(s=>s.id===cue?.segmentId)?.sentences[0]?.id;}
   get profile(){return library.presets.find(p=>p.id===this.settings.preset)!;}
   get mediaRate(){return this.settings.rate/(this.usingImportedAudio?1:library.referenceRate);}
-  positionKeyFor(id:string){return this.settings.preset+':'+id+':'+(this.settings.loop==='sentence'?'sentence:'+this.selectedSentence.id+':'+library.sentenceAudio[this.settings.preset]?.[this.selectedSentence.id]:(this.imported.get(id)?.name??this.builtinSource(id)));}
+  positionKeyFor(id:string){return this.settings.preset+':'+id+':'+(this.settings.loop==='sentence'?'sentence:'+this.selectedSentence.id+':'+library.sentenceAudio[this.settings.preset]?.[this.selectedSentence.id]:((this.preciseChapter===id?undefined:this.imported.get(id)?.name)??this.builtinSource(id)));}
   get positionKey(){return this.positionKeyFor(this.current.id);}
   get text() { return this.settings.loop==='sentence'?(this.selectedSentence.pronunciationText??this.selectedSentence.speechText):this.textFor(this.current); }
   get audioSource(): string | undefined {
     if(this.settings.loop==='sentence'){const file=library.sentenceAudio[this.settings.preset]?.[this.selectedSentence.id];return file?new URL(file,document.baseURI).href:undefined;}
-    return this.imported.get(this.current.id)?.url ?? this.builtinSource(this.current.id);
+    return (this.usingImportedAudio?this.imported.get(this.current.id)?.url:undefined) ?? this.builtinSource(this.current.id);
   }
   builtinSource(id: string): string | undefined {
     const file = library.audioModes[this.settings.preset][id];
@@ -211,6 +216,12 @@ export class Player {
     if(final)this.restorePending=false;
     if(Math.abs(this.audio.currentTime-at)>.03)this.audio.currentTime=at;
   }
+  private applySentenceSeek(){
+    const request=this.sentenceSeek;
+    if(!request||request.applied||this.audio.currentSrc!==request.source||this.audio.readyState<1||!Number.isFinite(this.audio.duration))return;
+    request.at=Math.min(request.at,Math.max(0,this.audio.duration-.05));
+    try{this.audio.currentTime=request.at;request.applied=true;}catch{/* Metadata/canplay retries the latest target only. */}
+  }
   private observeStartup(expected:number,retrying:boolean){
     let previous:number|undefined,stalledSince=0;const began=performance.now();
     const seeking=()=>{previous=undefined;stalledSince=0;};
@@ -259,7 +270,7 @@ export class Player {
   select(id: string, autoplay = this.playing || this.busy, restart = false) {
     if(!chapters.some(c=>c.id===id)) return;
     if(id===this.current.id&&!restart){if(autoplay&&!this.playing&&!this.busy)void this.play();return;}
-    this.pause(); this.settings.chapter=id;
+    this.pause(); this.preciseChapter=undefined;this.settings.chapter=id;
     if(this.settings.loop==='sentence')this.settings.selectedSentences[id]??=this.sentences[0].id;
     if(restart) { this.settings.audioPositions[this.positionKeyFor(id)]=0; this.settings.speechPositions[id]=0; }
     this.speechOffset=this.settings.speechPositions[id] ?? 0;
@@ -286,11 +297,26 @@ export class Player {
     this.pause(); this.settings.voice=uri; this.save(); this.changed(); if(resume)void this.play();
   }
   selectSentence(id:string){
-    if(!this.sentences.some(u=>u.id===id))return;
-    const resume=this.playing||this.busy;if(this.settings.loop==='sentence')this.pause();
+    const index=this.sentences.findIndex(u=>u.id===id);if(index<0)return;
+    const cue=library.timings[this.settings.preset][this.current.id]?.find(t=>t.sentenceId===id);
+    if(this.settings.mode==='audio'&&this.settings.loop!=='sentence'&&!cue)return;
+    this.pause();
     this.settings.selectedSentences[this.current.id]=id;this.settings.manualSentences[this.current.id]=true;
-    if(this.settings.loop==='sentence'){this.settings.audioPositions[this.positionKey]=0;this.speechOffset=0;if(this.settings.mode==='audio')this.loadAudio();}
-    this.save();this.changed();if(resume&&this.settings.loop==='sentence')void this.play();
+    if(this.settings.mode==='speech'){
+      this.speechOffset=this.settings.loop==='sentence'?0:this.sentences.slice(0,index).reduce((n,u)=>n+(u.pronunciationText??u.speechText).length+2,0);
+      this.speechActiveIndex=index;
+    }else if(this.settings.loop==='sentence'){
+      this.settings.audioPositions[this.positionKey]=0;this.loadAudio();
+    }else{
+      // Imported files have no verified cue map. Preserve their association,
+      // but use the corresponding built-in chapter for an exact lyric jump.
+      if(this.usingImportedAudio){this.preciseChapter=this.current.id;this.loadAudio();}
+      if(this.audio.getAttribute('src')!==this.audioSource||this.audio.error||this.audioFailed)this.loadAudio();
+      this.restorePending=false;this.restoredAt=cue!.start;
+      this.sentenceSeek={id,source:this.audioSource!,at:cue!.start,applied:false};
+      this.settings.audioPositions[this.positionKey]=cue!.start;this.applySentenceSeek();
+    }
+    this.save();this.changed();void this.play();
   }
   setLoop(loop:LoopMode){
     if(loop===this.settings.loop)return;
@@ -312,6 +338,7 @@ export class Player {
     if(this.settings.mode==='audio')this.loadAudio();this.save();this.changed();if(resume)void this.play();
   }
   seek(ratio: number) {
+    this.sentenceSeek=undefined;
     ratio=safeNumber(ratio,0,0,1);
     if(this.settings.mode==='audio') {
       if(this.duration>0) this.audio.currentTime=ratio*this.duration;
@@ -326,6 +353,7 @@ export class Player {
     this.save(); this.changed();
   }
   loadAudio() {
+    this.sentenceSeek=undefined;
     this.audioReady = false;
     this.loopRestartAllowed=false;
     this.audioFailed=false;
@@ -359,7 +387,7 @@ export class Player {
     const previous=this.imported.get(id), current=id===this.current.id, resume=current && this.settings.mode==='audio' && (this.playing||this.busy);
     if(current && this.settings.mode==='audio')this.pause();
     const url=URL.createObjectURL(file);
-    this.imported.set(id,{url,name:file.name});
+    this.imported.set(id,{url,name:file.name});if(id===this.current.id)this.preciseChapter=undefined;
     if(current && this.settings.mode==='audio') { this.settings.audioPositions[this.positionKey]=0; this.loadAudio(); }
     if(previous)URL.revokeObjectURL(previous.url);
     this.status='已在本机关联：'+file.name+'。刷新后需要重新导入。'; this.changed();

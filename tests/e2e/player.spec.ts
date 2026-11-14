@@ -1,3 +1,4 @@
+import {selectSetting} from '../ui';
 import {test,expect,type Page} from '@playwright/test';
 import path from 'node:path';
 import fs from 'node:fs';
@@ -16,7 +17,7 @@ async function settings(p:Page){if(!await p.locator('#more-settings').isVisible(
 async function close(p:Page){if(await p.locator('#more-settings').isVisible())await p.locator('#more-close').click();}
 async function mode(p:Page,v:string){await settings(p);await p.locator('[data-mode='+v+']').click();await close(p);}
 async function imports(p:Page){await settings(p);if(await p.locator('#imports').getAttribute('open')===null)await p.locator('#imports > summary').click();}
-async function rate(p:Page,v:string){await p.locator('#rate').selectOption(v);}
+async function rate(p:Page,v:string){await selectSetting(p,'#rate',v);}
 async function loop(p:Page,v:string){await settings(p);await p.locator('#loop').selectOption(v);await close(p);}
 test.beforeEach(async({page})=>{
  const logs:string[]=[];consoleErrors.set(page,logs);page.on('console',m=>{if(m.type()==='error')logs.push(m.text());});
@@ -46,7 +47,7 @@ test('all published chapter files advance time with matching chapter and source'
  if(info.project.name==='edge-desktop')await decodeEveryMP3(page,published.files,info);
  const element=await audio(page).elementHandle();
  for(let i=0;i<ids.length;i++){
-  await page.locator('[data-chapter="'+ids[i]+'"]').click();await expect(page.locator('#now-title')).toHaveText(titles[i]);
+  await page.locator('[data-chapter="'+ids[i]+'"]').click();await expect(page.locator('#chapter-title')).toHaveText(titles[i]);
   await expect.poll(async()=>(await state(page)).src).toMatch(new RegExp('/'+ids[i]+'-slow(?:\\.[a-f0-9]+)?\\.mp3$'));
   if((await state(page)).paused)await start(page);else await expect.poll(async()=>(await state(page)).time).toBeGreaterThan(.1);
   expect((await state(page)).duration).toBeGreaterThan(2);expect(await element!.evaluate(a=>a===document.querySelector('audio'))).toBe(true);
@@ -109,7 +110,7 @@ test('rapid play pause and chapter changes settle to one correct real player',as
  for(const id of ['reasons','theme-trends','conclusion','picture','connectors'])await page.locator('[data-chapter="'+id+'"]').click({delay:0});
  if((await state(page)).paused)await start(page);
  await expect.poll(async()=>(await state(page)).paused).toBe(false);expect(await audio(page).count()).toBe(1);
- expect((await state(page)).src).toMatch(/connectors-slow(?:\.[a-f0-9]+)?\.mp3$/);await expect(page.locator('#now-title')).toHaveText(titles[3]);
+ expect((await state(page)).src).toMatch(/connectors-slow(?:\.[a-f0-9]+)?\.mp3$/);await expect(page.locator('#chapter-title')).toHaveText(titles[3]);
 });
 test('slow source switch ignores superseded request',async({page})=>{
  await fault(page,{delayFile:'theme-trends-slow.mp3',delayMs:1200});
@@ -166,7 +167,7 @@ test('long text settings touch scrolling and dock fit viewport',async({page,brow
   await cdp.send('Emulation.setSafeAreaInsetsOverride',{insets:{}});await page.setViewportSize(original);await cdp.detach();
  }
  await settings(page);await expect(page.locator('#voice')).toBeVisible();await close(page);
- await page.locator('#next').click();await expect(page.locator('#now-title')).toHaveText(titles[4]);
+ await page.locator('#next').click();await expect(page.locator('#chapter-title')).toHaveText(titles[4]);
 });
 test('native Media Session handlers control actual audio and metadata',async({page})=>{
  if(!await page.evaluate(()=>'mediaSession' in navigator)){test.info().annotations.push({type:'limitation',description:'No native Media Session API'});return;}
@@ -175,7 +176,7 @@ test('native Media Session handlers control actual audio and metadata',async({pa
  await page.evaluate(()=>(window as any).__actions.pause({action:'pause'}));expect((await state(page)).paused).toBe(true);
  await page.evaluate(()=>(window as any).__actions.play({action:'play'}));await expect.poll(async()=>(await state(page)).paused).toBe(false);
  for(const action of ['nexttrack','previoustrack'])if(registered.includes(action)){
-  await page.evaluate(a=>(window as any).__actions[a]({action:a}),action);await expect(page.locator('#now-title')).toHaveText(action==='nexttrack'?titles[1]:titles[0]);
+  await page.evaluate(a=>(window as any).__actions[a]({action:a}),action);await expect(page.locator('#chapter-title')).toHaveText(action==='nexttrack'?titles[1]:titles[0]);
  }
  if(registered.includes('seekto')){await expect.poll(async()=>(await state(page)).duration).toBeGreaterThan(0);await page.evaluate(()=>(window as any).__actions.seekto({action:'seekto',seekTime:4}));expect((await state(page)).time).toBeGreaterThan(3.7);}
  if(registered.includes('seekforward')){await page.evaluate(()=>(window as any).__actions.seekforward({action:'seekforward',seekOffset:2}));expect((await state(page)).time).toBeGreaterThan(5.7);}
@@ -184,7 +185,7 @@ test('native Media Session handlers control actual audio and metadata',async({pa
 });
 test('background and foreground tab transition preserves playback across boundary',async({page,context})=>{
  await start(page);await audio(page).evaluate((a:HTMLAudioElement)=>{a.currentTime=a.duration-.4;});
- const other=await context.newPage();await other.goto('about:blank');await other.bringToFront();await expect(page.locator('#now-title')).toHaveText(titles[1]);
+ const other=await context.newPage();await other.goto('about:blank');await other.bringToFront();await expect(page.locator('#chapter-title')).toHaveText(titles[1]);
  test.info().annotations.push({type:'background-scope',description:'Other-tab visibilityState='+await page.evaluate(()=>document.visibilityState)+'; this is not OS lock/suspension'});
  await page.bringToFront();await expect.poll(async()=>(await state(page)).time).toBeGreaterThan(.1);expect((await state(page)).paused).toBe(false);await other.close();
 });
@@ -203,7 +204,7 @@ test('corrupt or denied local storage does not break actual playback',async({pag
 test('three native listening presets play every chapter and real cues highlight text',async({page})=>{
  test.setTimeout(120000);
  for(const preset of ['continuous','slow','recite']){
-  await page.locator('#preset').selectOption(preset);
+  await selectSetting(page,'#preset',preset);
   for(const c of published.chapters){
    await page.locator('[data-chapter="'+c.id+'"]').click();if((await state(page)).paused)await start(page);
    await expect.poll(async()=>(await state(page)).src).toContain(published.audioModes[preset][c.id]);

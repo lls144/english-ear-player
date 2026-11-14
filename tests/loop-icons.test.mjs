@@ -1,0 +1,2 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';import {loopIcon,loopNames} from '../src/loop-icons.ts';
+test('four loop modes have different SVG geometry and explicit accessible names',()=>{const modes=['all','one','off','sentence'];assert.equal(new Set(modes.map(loopIcon)).size,4);assert.equal(new Set(modes.map(m=>loopNames[m])).size,4);for(const mode of modes){assert.match(loopIcon(mode),new RegExp('data-loop-icon="'+mode+'"'));assert.match(loopIcon(mode),/<path/);}});

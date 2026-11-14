@@ -1,3 +1,4 @@
+import {readHttpsBytes} from './https-read.mjs';
 import {browserEnv} from './browser-env.mjs';
 import fs from 'node:fs/promises';
 import {spawnSync} from 'node:child_process';
@@ -19,23 +20,18 @@ for(let n=0;n<24;n++){
 if(!meta)throw Error('Production metadata did not match the validated release');
 const verifiedAssets=[];
 for(const [file,digest]of Object.entries({...artifact.assets,'sw.js':sha(await fs.readFile('dist/sw.js'))})){
- const r=await fetch(new URL(file+'?verify='+Date.now(),url),{cache:'no-store',signal:AbortSignal.timeout(30000)});
- if(!r.ok||sha(Buffer.from(await r.arrayBuffer()))!==digest)throw Error('Formal application asset mismatch: '+file);
+ const r=await readHttpsBytes(new URL(file+'?verify='+Date.now(),url));
+ if(sha(r.bytes)!==digest)throw Error('Formal application asset mismatch: '+file);
  verifiedAssets.push({file,sha256:digest,status:r.status});
 }
 const audio=[];
-const entries=Object.entries(meta.audio);
-for(let offset=0;offset<entries.length;offset+=6){
- const results=await Promise.allSettled(entries.slice(offset,offset+6).map(async([id,file])=>{
- let response,data;
- for(let attempt=0;attempt<2;attempt++){
-  try{response=await fetch(new URL(file,url),{cache:'no-store',signal:AbortSignal.timeout(90000)});data=Buffer.from(await response.arrayBuffer());break;}
-  catch(error){if(attempt)throw error;console.log('Retrying transient HTTPS download: '+id);await wait(2000);}
- }
- if(!response?.ok)throw Error('HTTPS audio missing: '+id);
+const entries=Object.entries(meta.audio),concurrency=process.platform==='win32'?3:6;
+for(let offset=0;offset<entries.length;offset+=concurrency){
+ const results=await Promise.allSettled(entries.slice(offset,offset+concurrency).map(async([id,file])=>{
+ const {bytes:data,status}=await readHttpsBytes(new URL(file,url));
  const receipt=receipts.find(r=>r.id===id);
  if(!receipt||sha(data)!==receipt.mp3Sha256)throw Error('Production MP3 hash mismatch: '+id);
- return {id,url:new URL(file,url).href,bytes:data.length,sha256:sha(data),status:response.status};
+ return {id,url:new URL(file,url).href,bytes:data.length,sha256:sha(data),status};
  }));
  for(const result of results){if(result.status==='rejected')throw result.reason;audio.push(result.value);}
  console.log('Verified formal HTTPS MP3: '+audio.length+'/'+entries.length);

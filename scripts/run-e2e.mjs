@@ -2,7 +2,7 @@ import {browserEnv} from './browser-env.mjs';
 import {spawn} from 'node:child_process';
 import fs from 'node:fs/promises';
 const prod=process.argv.includes('--production'),args=process.argv.slice(2).filter(a=>a!=='--production');
-const motion='real sentence boundary follows a measured easing trajectory';
+const motion='real sentence boundary follows a measured easing trajectory|scrubbing previews without seeking or pausing';
 const split=prod&&!args.some(a=>a==='--grep'||a==='--grep-invert'||a==='-g'||a.startsWith('--grep='));
 async function run(argv,suffix=''){
  return await new Promise(resolve=>{const child=spawn(process.execPath,['node_modules/@playwright/test/cli.js','test',...argv],{stdio:'inherit',windowsHide:true,env:{...browserEnv(),EAR_E2E_PRODUCTION:prod?'1':'0',EAR_E2E_REPORT_SUFFIX:suffix}});child.on('error',()=>resolve(1));child.on('exit',code=>resolve(code??1));});

@@ -1,3 +1,4 @@
+import {selectSetting} from '../ui';
 import {test,expect,type Page} from '@playwright/test';
 import fs from 'node:fs';
 import {installMediaDiagnostics,attachFailedMedia} from '../media-diagnostics';
@@ -22,23 +23,23 @@ test('display templates remain original while sentence files select first middle
    await expect.poll(async()=>(await state(page)).src).toContain(lib.sentenceAudio.slow[u.id]);
    await expect.poll(async()=>(await state(page)).time).toBeGreaterThan(.15);
    expect((await state(page)).loop).toBe(true);expect(await element!.evaluate(a=>a===document.querySelector('audio'))).toBe(true);
-   for(const preset of ['continuous','recite','slow']){await page.locator('#preset').selectOption(preset);await expect.poll(async()=>(await state(page)).src).toContain(lib.sentenceAudio[preset][u.id]);await expect.poll(async()=>(await state(page)).time).toBeGreaterThan(.1);const before=(await state(page)).time;await expect.poll(async()=>(await state(page)).time).toBeGreaterThan(before+.1);await expect(page.locator('[data-sentence="'+u.id+'"]').first()).toHaveAttribute('aria-pressed','true');}
+   for(const preset of ['continuous','recite','slow']){await selectSetting(page,'#preset',preset);await expect.poll(async()=>(await state(page)).src).toContain(lib.sentenceAudio[preset][u.id]);await expect.poll(async()=>(await state(page)).time).toBeGreaterThan(.1);const before=(await state(page)).time;await expect.poll(async()=>(await state(page)).time).toBeGreaterThan(before+.1);await expect(page.locator('[data-sentence="'+u.id+'"]').first()).toHaveAttribute('aria-pressed','true');}
   }
  }
  expect(errors).toEqual([]);
 });
 test('manual lock resists follow highlighting and survives seek pause refresh and loop exit',async({page})=>{
- const c=lib.chapters[0],all=units(c),u=all[2];await choose(page,u.id);await page.locator('#play').click();
+ const c=lib.chapters[0],all=units(c),u=all[2];await choose(page,u.id);if((await state(page)).paused)await page.locator('#play').click();
  await audio(page).evaluate((a:HTMLAudioElement)=>{a.currentTime=1;});await page.waitForTimeout(300);await expect(page.locator('[data-sentence="'+u.id+'"]')).toHaveAttribute('aria-pressed','true');
  await loop(page,'sentence');await expect.poll(async()=>(await state(page)).src).toContain(lib.sentenceAudio.slow[u.id]);
  await expect.poll(async()=>(await state(page)).time).toBeGreaterThan(.1);await page.locator('#play').click();const at=(await state(page)).time;await page.waitForTimeout(200);expect(Math.abs((await state(page)).time-at)).toBeLessThan(.15);
- await page.locator('#rate').selectOption('0.55');await page.locator('#progress').fill('500');await page.locator('#progress').dispatchEvent('input');await expect.poll(async()=>(await state(page)).time/(await state(page)).duration).toBeGreaterThan(.45);
- await page.reload();await expect(page.locator('#loop-label')).toHaveText('单句');await expect(page.locator('[data-sentence="'+u.id+'"]')).toHaveAttribute('aria-pressed','true');expect((await state(page)).paused).toBe(true);expect((await state(page)).time).toBeLessThan(.1);
+ await selectSetting(page,'#rate','0.55');await page.locator('#progress').fill('500');await page.locator('#progress').dispatchEvent('input');await expect.poll(async()=>(await state(page)).time/(await state(page)).duration).toBeGreaterThan(.45);
+ await page.reload();await expect(page.locator('#loop-button')).toHaveAttribute('aria-label','循环方式：单句循环');await expect(page.locator('[data-sentence="'+u.id+'"]')).toHaveAttribute('aria-pressed','true');expect((await state(page)).paused).toBe(true);expect((await state(page)).time).toBeLessThan(.1);
  await loop(page,'all');await expect.poll(async()=>(await state(page)).src).toContain(lib.audio[c.id]);expect((await state(page)).loop).toBe(false);await page.locator('#play').click();const cue=lib.timings.slow[c.id].find((t:any)=>t.sentenceId===u.id);await expect.poll(async()=>(await state(page)).time).toBeGreaterThan(cue.start+.1);
 });
 test('rapid locked sentence changes discard old sources and keep the latest selected ID',async({page})=>{
  const all=units(lib.chapters[0]);await page.route('**/'+lib.sentenceAudio.slow[all[3].id],async route=>{await new Promise(r=>setTimeout(r,750));await route.continue().catch(()=>{});});await loop(page,'sentence');await page.locator('#play').click();
- for(const preset of ['continuous','recite','slow'])await page.locator('#preset').selectOption(preset);
+ for(const preset of ['continuous','recite','slow'])await selectSetting(page,'#preset',preset);
  for(const u of [all[0],all[3],all[1],all.at(-1),all[2]])await choose(page,u.id);
  await expect.poll(async()=>(await state(page)).src).toContain(lib.sentenceAudio.slow[all[2].id]);await expect.poll(async()=>(await state(page)).time).toBeGreaterThan(.1);
  expect((await state(page)).paused).toBe(false);expect(await audio(page).count()).toBe(1);
@@ -56,7 +57,7 @@ test('native single-sentence loops complete twenty rounds without entering any o
  const c=lib.chapters.find((c:any)=>c.id==='connectors'),u=units(c)[0];await page.locator('[data-chapter=connectors]').click();await choose(page,u.id);await loop(page,'sentence');
  const longRun=['android-chrome','iphone-webkit'].includes(info.project.name),rounds=longRun?[20,20,20]:[7,7,6];const reports=[];
  for(const [i,preset] of ['continuous','slow','recite'].entries()){
-  await page.locator('#preset').selectOption(preset);if(await page.locator('#play').getAttribute('aria-label')==='播放')await page.locator('#play').click();
+  await selectSetting(page,'#preset',preset);if(await page.locator('#play').getAttribute('aria-label')==='播放')await page.locator('#play').click();
   await expect.poll(async()=>(await state(page)).src).toContain(lib.sentenceAudio[preset][u.id]);await expect.poll(async()=>(await state(page)).time).toBeGreaterThan(.1);
   const result=await audio(page).evaluate(async(a:HTMLAudioElement,n:number)=>{
    const source=a.currentSrc,duration=a.duration;let wraps=0,last=a.currentTime,lastBoundary=-Infinity,pauseSince:number|null=null,recoveries=0,maxRecoveryMs=0;const started=performance.now(),seen=new Set<string>();
