@@ -1,3 +1,5 @@
+Production runs execute 192 functional cases with normal concurrency and the six measured-motion cases separately with one worker. Both JSON reports and the merged 198-case report are retained; no motion case is skipped and no assertion is relaxed. The isolated pass prevents simultaneous software WebKit instances and media decoders on the shared runner from starving animation-frame sampling. Actual single-browser performance evidence remains separate from physical-device claims.
+
 # V1.3 immersive lyrics acceptance
 
 Materials and all 360 MP3 bytes remain exactly V1.2.1. UI-only publication must not fetch private notes or run audio generation. New regressions measure the actual sentence-boundary scroll trajectory and stable header/dock, manual browsing across cue changes, one-seek drag release, repeat gaps without scroll jitter, reduced motion, touch cancellation, rapid chapter changes, small portrait and landscape long sentences. Two formal HTTPS UI cases additionally exercise actual cue focus, manual hold and one-commit scrubbing on the published resources.

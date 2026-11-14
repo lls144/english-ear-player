@@ -1,0 +1,6 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';
+import {selectWorkflowRun} from '../scripts/github-actions.mjs';
+const commit='a'.repeat(40),base={id:1,head_sha:commit,head_branch:'main',repository:{full_name:'lls144/english-ear-player'},path:'.github/workflows/pages.yml',status:'completed',conclusion:'success'};
+test('deployment verification binds the exact commit, repository, branch and Pages workflow',()=>{for(const change of [{head_sha:'b'.repeat(40)},{head_branch:'rehearsal/test'},{repository:{full_name:'other/reader'}},{path:'.github/workflows/other.yml'}])assert.equal(selectWorkflowRun([{...base,...change}],commit,'main'),undefined);assert.equal(selectWorkflowRun([base],commit,'main'),base);});
+test('a newer running or failing workflow cannot be hidden by an earlier success',()=>{const pending={...base,id:2,status:'in_progress',conclusion:null};assert.equal(selectWorkflowRun([base,pending],commit,'main'),pending);const failed={...base,id:3,conclusion:'failure'};assert.equal(selectWorkflowRun([failed,base],commit,'main'),failed);});
+test('no workflow result is treated as pending rather than deployment success',()=>{assert.equal(selectWorkflowRun([],commit,'main'),undefined);});

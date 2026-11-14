@@ -2,7 +2,7 @@ import {defineConfig,devices} from '@playwright/test';
 const prod=process.env.EAR_E2E_PRODUCTION==='1';
 export default defineConfig({
  testDir:'./tests/e2e',timeout:35000,expect:{timeout:8000},workers:2,retries:0,
- reporter:[['list'],['json',{outputFile:prod?'.local/qa/e2e-production.json':'.local/qa/e2e-development.json'}]],
+ reporter:[['list'],['json',{outputFile:prod?'.local/qa/e2e-production'+(process.env.EAR_E2E_REPORT_SUFFIX??'')+'.json':'.local/qa/e2e-development.json'}]],
  outputDir:'.local/playwright-results',
  use:{baseURL:prod?'http://127.0.0.1:5185/english-ear-player/':'http://127.0.0.1:5184/',serviceWorkers:'block',trace:'retain-on-failure',screenshot:'only-on-failure'},
  webServer:[{command:prod?'npm run preview -- --host 127.0.0.1 --base /english-ear-player/':'npm run dev -- --host 127.0.0.1',url:prod?'http://127.0.0.1:4173/english-ear-player/':'http://127.0.0.1:5173/',reuseExistingServer:!prod,timeout:30000},{command:'node scripts/e2e-server.mjs',url:prod?'http://127.0.0.1:5185/english-ear-player/':'http://127.0.0.1:5184/',reuseExistingServer:false,timeout:30000}],

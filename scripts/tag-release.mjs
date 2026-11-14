@@ -1,3 +1,4 @@
+import {findWorkflowRun} from './github-actions.mjs';
 import {execFileSync} from 'node:child_process';
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -7,8 +8,8 @@ if(!/^[a-f0-9]{40}$/.test(commit)||!/^\d+\.\d+\.\d+$/.test(version))throw Error(
 const git=(...a)=>execFileSync('git',a,{encoding:'utf8',windowsHide:true}).trim();
 if(!/github\.com[:/]lls144\/english-ear-player(?:\.git)?$/.test(git('remote','get-url','origin')))throw Error('Unexpected public origin');
 if(JSON.parse(git('show',commit+':package.json')).version!==version)throw Error('Tag version does not match commit');
-const runs=JSON.parse(execFileSync('gh',['run','list','--repo','lls144/english-ear-player','--commit',commit,'--workflow','pages.yml','--json','headBranch,status,conclusion'],{encoding:'utf8',windowsHide:true}));
-if(!runs.some(r=>r.headBranch==='main'&&r.status==='completed'&&r.conclusion==='success'))throw Error('Only a successful production deployment and HTTPS acceptance may be tagged');
+const run=await findWorkflowRun(commit,'main');
+if(run?.status!=='completed'||run.conclusion!=='success')throw Error('Only a successful production deployment and HTTPS acceptance may be tagged');
 const state=JSON.parse(await fs.readFile('.local/sync-state.json','utf8')),source=await fs.readFile('.local/source-current.md','utf8');
 verifyCheckpoint(JSON.parse(git('show',commit+':content/materials.json')),state,source);
 const tag='v'+version,remote=git('ls-remote','--tags','origin','refs/tags/'+tag,'refs/tags/'+tag+'^{}').split('\n').filter(Boolean);

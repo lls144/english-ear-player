@@ -6,6 +6,7 @@ import {root,readJson,sha} from './content.mjs';
 import {releaseVersion} from './release-planning.mjs';
 import {verifyCheckpoint} from './release-checkpoint.mjs';
 Object.assign(process.env,browserEnv());
+if(process.env.HTTP_PROXY||process.env.HTTPS_PROXY)process.env.NODE_USE_ENV_PROXY??='1';
 const argv=process.argv.slice(2),has=n=>argv.includes(n),value=n=>{const i=argv.indexOf(n);return i<0?null:argv[i+1];};
 const publishCurrent=has('--publish-current'),uiOnly=has('--ui-only');
 const branch=value('--branch')??'main',dry=has('--dry-run'),initial=has('--initial'),rollback=value('--rollback-to'),fixture=value('--source-file');
@@ -67,7 +68,7 @@ try{
   // Retain the current publisher/security checks: rollback is a new forward commit.
   const runtime=['content','public','src','tests','scripts','README.md','ACCEPTANCE.md','docs','package.json','package-lock.json','vite.config.ts','tsconfig.json','playwright.config.ts','playwright.pwa.config.ts','playwright.online.config.ts'];
   git(stage,'restore','--source='+rollback,'--staged','--worktree','--',...runtime);
-  git(stage,'restore','--source='+originalHead,'--staged','--worktree','--',...['release-content.mjs','release-planning.mjs','release-checkpoint.mjs','tag-release.mjs','watch-release.mjs','scan-public.mjs','audit.mjs','check-online.mjs'].map(f=>'scripts/'+f));
+  git(stage,'restore','--source='+originalHead,'--staged','--worktree','--',...['release-content.mjs','release-planning.mjs','release-checkpoint.mjs','tag-release.mjs','watch-release.mjs','github-actions.mjs','scan-public.mjs','audit.mjs','check-online.mjs'].map(f=>'scripts/'+f));
   const restoredVersion=JSON.parse(git(stage,'show',rollback+':package.json')).version;
   for(const name of ['package.json','package-lock.json']){
    const p=JSON.parse(await fs.readFile(path.join(stage,name),'utf8'));p.version=restoredVersion;if(p.packages?.[''])p.packages[''].version=restoredVersion;
