@@ -37,9 +37,9 @@ export async function compile() {
   for(const [id,file] of Object.entries(audio)){
     const r=provenance.find(r=>r.id===id),chapter=m.chapters.find(c=>c.id===r?.chapterId),preset=r?.preset;
     if(!chapter||!audioModes[preset]||!/^assets\/audio\/[a-zA-Z0-9_-]+\.mp3$/.test(file))throw Error('Invalid audio '+id);
-    const all=chapter.segments.flatMap(s=>s.sentences.map(u=>({...u,segmentId:s.id}))),items=r.kind==='sentence'?all.filter(u=>u.id===r.sentenceId):all;
+    const all=chapter.segments.flatMap(s=>s.sentences.map(u=>({...u,segmentId:s.id,kind:s.kind}))),items=r.kind==='sentence'?all.filter(u=>u.id===r.sentenceId):all;
     if(!items.length||!['chapter','sentence'].includes(r.kind))throw Error('Invalid reading units '+id);
-    const plan=items.map(u=>({id:u.id,segmentId:u.segmentId,displayText:u.displayText,speechText:u.speechText,pronunciationText:u.pronunciationText}));
+    const plan=items.map(u=>({id:u.id,segmentId:u.segmentId,displayText:u.displayText,speechText:u.speechText,pronunciationText:u.pronunciationText,kind:u.kind}));
     const buf=await readFile(path.join(root,'public',file)),audit=quality.entries.find(q=>q.id===id);
     if(!audit?.passed||['mp3Sha256','readingPlanSha256','settingsSha256'].some(k=>audit[k]!==r[k]))throw Error('Missing/stale audio quality approval: '+id);
     if(buf.length<512||!(buf.subarray(0,3).toString()==='ID3'||buf[0]===255&&(buf[1]&224)===224))throw Error('Not an MP3 '+id);

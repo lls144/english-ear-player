@@ -1,3 +1,9 @@
+# V1.2.1 content and grouping acceptance
+
+9 chapters, 105 verbatim entries, 111 independent reading units; 32 phrase entries live in their own categorized collection, with 34 connectors kept separately. Paragraph chapters contain sentence templates and complete original examples. Both phrase collections are excluded from the main loop. Stable source/sentence IDs survive moves. The current 360 MP3s comprise 27 chapter tracks and 333 single-unit tracks for the same three Kokoro/af_heart presets. New regressions cover letter/big-essay routing, phrase templates, highlighted table expressions, quoted caption sentence boundaries, source edit plus appended sections, and real phrase playback/selection/refresh in each device configuration.
+
+The sections below document the V1.2 foundation and retain historical counts. Current results are recorded in the release Actions artifacts and private QA logs. Physical-phone and subjective-naturalness limits still apply.
+
 # V1.2 acceptance scope
 
 5 chapters, 68 verbatim source entries, 69 true sentence/phrase units. Latest selected master adds two conclusion entries. Original display, grammar, placeholders, real 2022 example and connector categories remain intact. The 58 editorial sentences removed in V1.1 remain forbidden. Deterministic neutral speechText and pronunciationText are audited separately from displayText and stable source IDs.

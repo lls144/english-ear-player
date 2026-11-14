@@ -26,7 +26,7 @@ test('source examples remain distinct and displayed templates cannot be silently
   const m=await readJson('content/materials.json');
   validate(m);
   assert.ok(m.chapters.length>=5);
-  assert.equal(m.chapters.flatMap(c=>c.segments).filter(s=>s.kind==='source-example').length,1);
+  assert.ok(m.chapters.flatMap(c=>c.segments).some(s=>s.kind==='source-example'&&s.text.startsWith('The girl on the left')));
   m.chapters[0].segments[0].text='A message about [主题词].';
   assert.throws(()=>validate(m),/Spoken text differs/);
 });

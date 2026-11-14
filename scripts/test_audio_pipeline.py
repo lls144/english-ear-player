@@ -2,7 +2,7 @@
 import tempfile,unittest
 from pathlib import Path
 import numpy as np
-from kokoro_audio import ROOT,load,synth_clip,compose
+from kokoro_audio import ROOT,load,synth_clip,compose,plan
 
 class Tokenizer:
  def known(self,p):return p
@@ -32,6 +32,9 @@ class SentencePipeline(unittest.TestCase):
  def test_waveform_cache_reuses_only_matching_processing(self):
   synth_clip(self.model,'A message.',.7,self.settings,self.cache);synth_clip(self.model,'A message.',.7,self.settings,self.cache);self.assertEqual(self.model.calls,1)
   changed={**self.settings,'fadeMs':13};synth_clip(self.model,'A message.',.7,changed,self.cache);self.assertEqual(self.model.calls,2)
+ def test_phrase_kind_changes_reading_cache_key(self):
+  u=dict(id='unit',segmentId='parent',kind='source-example',displayText='Original text.',speechText='Original text.',pronunciationText='Original text.')
+  self.assertNotEqual(plan([u]),plan([{**u,'kind':'source-phrase'}]))
  def test_single_loop_gap_only_follows_complete_clip(self):
   u=dict(id='unit',segmentId='parent',kind='source-template',speechText='A message about something, which merits discussion.',pronunciationText='A message about something, which merits discussion.')
   out,cues=compose([u],'recite',self.model,self.settings,self.cache,single=True)

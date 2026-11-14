@@ -35,7 +35,7 @@ def engine(settings):
  session=ort.InferenceSession(str(model),sess_options=options,providers=['CPUExecutionProvider'])
  return Kokoro.from_session(session,str(voices))
 def synth_clip(model,text,speed,settings,cache,pronunciation=None):
- if not re.search('[a-zA-Z]',text) or re.search(r'[\u3400-\u9fff\[\]×]|do sth\b|\.\.\.|/|==|\*\*',text):raise ValueError('Non-source placeholder in speech request')
+ if not re.search('[a-zA-Z]',text) or re.search(r'[\u3400-\u9fff\[\]×]|do sth\b|\.\.\.|/|==|\*\*',text):raise ValueError('Non-source placeholder in speech request: '+repr(text))
  # Punctuation controls prosody; no English words are appended to a phrase.
  spoken=pronunciation or text;prompt=spoken if re.search(r'[.!?]$',spoken) else spoken+'.'
  words=len(re.findall(r'[A-Za-z]+',text));speed=max(speed,settings.get('shortPhraseMinSpeed',.85)) if words<=3 else speed
@@ -69,7 +69,7 @@ def synth_clip(model,text,speed,settings,cache,pronunciation=None):
  return samples
 def units(chapter):
  return [dict(**u,segmentId=s['id'],kind=s['kind']) for s in chapter['segments'] for u in s['sentences']]
-def plan(items):return [dict(id=u['id'],segmentId=u['segmentId'],displayText=u['displayText'],speechText=u['speechText'],pronunciationText=u['pronunciationText']) for u in items]
+def plan(items):return [dict(id=u['id'],segmentId=u['segmentId'],displayText=u['displayText'],speechText=u['speechText'],pronunciationText=u['pronunciationText'],kind=u['kind']) for u in items]
 def scoped_settings(settings,preset,items):
  base={k:v for k,v in settings.items() if k!='sentenceOverrides'};matched={}
  for u in items:

@@ -64,6 +64,22 @@
         "styleLength": 32,
         "modelSpeed": 0.8
       }
+    },
+    "source-0830c8dc1c22d4d0-s-24433c531d00": {
+      "slow": {
+        "modelSpeed": 0.7
+      }
+    },
+    "source-813b1973de92714f-s-a88e73c109c5": {
+      "continuous": {
+        "modelSpeed": 0.65
+      }
+    },
+    "source-51b3aac1dd6c4cd0-s-03ea3ff7952f": {
+      "all": {
+        "modelSpeed": 0.85,
+        "styleLength": 32
+      }
     }
   }
 }

@@ -41,7 +41,7 @@ test.afterEach(async({page},info)=>{
  const unexpected=logs.filter(s=>!s.startsWith('[vite]') && !(faultCase && /Failed to load resource|NetworkError|Load failed|network connection/i.test(s)));
  expect(unexpected).toEqual([]);
 });
-test('all five real files advance time with matching chapter and source',async({page},info)=>{
+test('all published chapter files advance time with matching chapter and source',async({page},info)=>{
  test.setTimeout(180000);
  if(info.project.name==='edge-desktop')await decodeEveryMP3(page,published.files,info);
  const element=await audio(page).elementHandle();
@@ -201,7 +201,7 @@ test('corrupt or denied local storage does not break actual playback',async({pag
 
 
 test('three native listening presets play every chapter and real cues highlight text',async({page})=>{
- test.setTimeout(60000);
+ test.setTimeout(120000);
  for(const preset of ['continuous','slow','recite']){
   await page.locator('#preset').selectOption(preset);
   for(const c of published.chapters){
@@ -214,4 +214,16 @@ test('three native listening presets play every chapter and real cues highlight 
   }
  }
  await page.locator('#play').click();await page.reload();await expect(page.locator('#preset')).toHaveValue('recite');
+});
+
+
+test('phrase collection is separate from paragraph templates and has playable independent units',async({page})=>{
+ const phrases=published.chapters.find((c:any)=>c.id==='phrases');expect(phrases).toBeTruthy();expect(phrases.inMainLoop).toBe(false);
+ await page.locator('[data-chapter=phrases]').click();await expect(page.locator('#transcript h2').first()).toContainText('人物描写');
+ expect(await page.locator('#transcript .passage p').allTextContents()).toEqual(phrases.segments.map((s:any)=>s.text));
+ await start(page);await expect.poll(async()=>(await state(page)).src).toContain(published.audio.phrases);
+ await loop(page,'sentence');const u=phrases.segments.at(-1).sentences[0];await page.locator('[data-sentence="'+u.id+'"]').click();
+ await expect.poll(async()=>(await state(page)).src).toContain(published.sentenceAudio.slow[u.id]);await expect.poll(async()=>(await state(page)).time).toBeGreaterThan(.1);
+ await page.locator('#play').click();await page.reload();await expect(page.locator('#chapter-title')).toHaveText(phrases.title);await expect(page.locator('[data-sentence="'+u.id+'"]')).toHaveAttribute('aria-pressed','true');
+ await page.locator('[data-chapter=letter-body]').click();await expect(page.locator('#transcript')).toContainText('Great Wall');await expect(page.locator('#transcript')).not.toContainText('seek assistance from professionals');
 });

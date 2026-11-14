@@ -30,10 +30,10 @@ for r in receipts:
  s=array.array('f');s.frombytes(pcm);duration=len(s)/16000;rms=math.sqrt(sum(v*v for v in s)/len(s));peak=max(abs(v) for v in s);voiced=sum(abs(v)>.01 for v in s)/len(s)
  assert duration>1 and rms>.005 and .05<peak<.99 and voiced>.04,r['id']
  assert sha(body)==r['mp3Sha256']
- items=[dict(**u,segmentId=s['id']) for s in c['segments'] for u in s['sentences'] if r['kind']=='chapter' or u['id']==r.get('sentenceId')]
+ items=[dict(**u,segmentId=s['id'],kind=s['kind']) for s in c['segments'] for u in s['sentences'] if r['kind']=='chapter' or u['id']==r.get('sentenceId')]
  assert sha((chr(10)*2).join(u['displayText'] for u in items).encode())==r['textSha256']
  assert sha(' '.join(u['speechText'] for u in items).encode())==r['speechTextSha256']
- assert digest([{'id':u['id'],'segmentId':u['segmentId'],'displayText':u['displayText'],'speechText':u['speechText'],'pronunciationText':u['pronunciationText']} for u in items])==r['readingPlanSha256']
+ assert digest([{'id':u['id'],'segmentId':u['segmentId'],'displayText':u['displayText'],'speechText':u['speechText'],'pronunciationText':u['pronunciationText'],'kind':u['kind']} for u in items])==r['readingPlanSha256']
  assert digest(scoped_settings(settings,r['preset'],items))==r['settingsSha256']
  assert r['engine']=='kokoro-onnx' and r['modelSha256']==settings['modelSha256'] and r['voice']==settings['voice']
  assert digest(cue)==r['timingsSha256'] and abs(duration-cue[-1]['end'])<.15 and len(cue)==len(items)

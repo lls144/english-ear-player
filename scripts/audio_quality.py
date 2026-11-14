@@ -33,12 +33,18 @@ def main():
   # Only known inter-item silence is shortened; the published file is untouched.
   full_transcript='' # Full original MP3 bytes are measured above; ASR excludes known recall silence only.
   bounded=np.concatenate([np.concatenate([audio[round(t['start']*16000):round((t['speechEnd']+.10)*16000)],np.zeros(4800,dtype=np.float32)]) for t in cues[r['id']]])
-  segments,_=asr.transcribe(bounded,language='en',beam_size=5,temperature=0,condition_on_previous_text=False,word_timestamps=True,vad_filter=True,vad_parameters={'min_silence_duration_ms':500,'speech_pad_ms':200})
+  segments,_=asr.transcribe(bounded,language='en',beam_size=5,temperature=0,condition_on_previous_text=False,word_timestamps=True,hallucination_silence_threshold=1.0,vad_filter=True,vad_parameters={'min_silence_duration_ms':500,'speech_pad_ms':200})
   result=list(segments);transcript=' '.join(s.text.strip() for s in result)
   c=next(c for c in materials['chapters'] if c['id']==r['chapterId']);items=[u for s in c['segments'] for u in s['sentences'] if r['kind']=='chapter' or u['id']==r.get('sentenceId')];reference=' '.join(u['speechText'] for u in items)
   expected=words(reference);recognized=words(transcript);edits=distance(expected,recognized);wer=edits/max(1,len(expected))
   # Homophonic orthography is reported, not quietly treated as perfect ASR.
   normalized=transcript.lower().replace("they're up on",'thereupon').replace('they are upon','thereupon').replace('there upon','thereupon').replace('all together','altogether').replace('further more','furthermore')
+  # Orthographic token boundaries only, scoped to words actually present in the source.
+  # Keep Lao Shi versus Lao She as a real error; do not normalize different vowels.
+  spelling=[]
+  for source_word,pattern in [('hotpot',r'\bhot pot\b'),('shakespeare',r'\bshake spe[ae]r\b')]:
+   if source_word in expected and re.search(pattern,normalized):
+    normalized=re.sub(pattern,source_word,normalized);spelling.append(source_word)
   if any('eigh' in u.get('pronunciationText','') and 'A' in u['speechText'] for u in items):normalized=re.sub(r'\bay\b','a',normalized)
   if any('bee' in u.get('pronunciationText','') for u in items):normalized=re.sub(r'\b(?:bee|be)\b','b',normalized)
   adjusted=distance(expected,words(normalized))/max(1,len(expected))
@@ -46,11 +52,11 @@ def main():
   if adjusted>.18 and r['kind']=='sentence':
    # Prompt-free recognizer context for short isolated audio; the production MP3 is untouched.
    repeated=np.concatenate([bounded,np.zeros(3200,dtype=np.float32),bounded,np.zeros(3200,dtype=np.float32),bounded])
-   again,_=asr.transcribe(repeated,language='en',beam_size=5,temperature=0,condition_on_previous_text=False,vad_filter=True)
+   again,_=asr.transcribe(repeated,language='en',beam_size=5,temperature=0,condition_on_previous_text=False,word_timestamps=True,hallucination_silence_threshold=1.0,vad_filter=True)
    repeated_transcript=' '.join(s.text.strip() for s in again)
    # Keep the best matching contiguous recognition window, and retain raw transcripts for review.
    rw=words(repeated_transcript);adjusted=min(adjusted,min((distance(expected,rw[j:j+len(expected)])/max(1,len(expected)) for j in range(max(1,len(rw)-len(expected)+1))),default=1))
-  row={k:r[k] for k in ['id','mp3Sha256','readingPlanSha256','settingsSha256']};row.update(referenceWords=len(expected),rawWordErrorRate=round(wer,4),normalizedWordErrorRate=round(adjusted,4),acoustics=metrics,passed=adjusted<=.18 and metrics['passed'],audit=AUDIT)
+  row={k:r[k] for k in ['id','mp3Sha256','readingPlanSha256','settingsSha256']};row.update(referenceWords=len(expected),rawWordErrorRate=round(wer,4),normalizedWordErrorRate=round(adjusted,4),acoustics=metrics,passed=adjusted<=.18 and metrics['passed'],audit=AUDIT,orthographicNormalizations=spelling)
   rows.append(row);detail.append({'id':r['id'],'reference':reference,'transcript':transcript,'repeatedAudioTranscript':repeated_transcript,'wordErrorRate':wer,'normalizedWordErrorRate':adjusted,'asrWords':[{'word':w.word,'start':w.start,'end':w.end,'probability':w.probability} for s in result for w in s.words or []]})
   print(json.dumps({'id':r['id'],'rawWER':round(wer,4),'normalizedWER':round(adjusted,4),'passed':row['passed']}),flush=True)
  out=ROOT/'.local/qa/audio-asr-full.json';out.parent.mkdir(parents=True,exist_ok=True)

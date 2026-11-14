@@ -5,6 +5,7 @@ import {root,readJson,sha} from './content.mjs';
 import {releaseVersion} from './release-planning.mjs';
 import {verifyCheckpoint} from './release-checkpoint.mjs';
 const argv=process.argv.slice(2),has=n=>argv.includes(n),value=n=>{const i=argv.indexOf(n);return i<0?null:argv[i+1];};
+const publishCurrent=has('--publish-current');
 const branch=value('--branch')??'main',dry=has('--dry-run'),initial=has('--initial'),rollback=value('--rollback-to'),fixture=value('--source-file');
 if(has('--rollback-to')&&!rollback)throw Error('A trusted version tag is required for rollback');
 if(!/^main$|^rehearsal\/[a-z0-9-]+$/.test(branch))throw Error('Unsupported release branch');
@@ -35,7 +36,7 @@ try{
   const remote=git(root,'remote','get-url','origin');
   if(!/github\.com[:/]lls144\/english-ear-player(?:\.git)?$/.test(remote))throw Error('Unexpected origin; publication refused');
   git(root,'fetch','origin','--tags');
-  try{const upstream=git(root,'rev-parse','origin/main');if(git(root,'merge-base',upstream,originalHead)!==upstream)throw Error('Local main is behind/diverged; review before release');}catch(e){if(!initial)throw e;}
+  try{const upstream=git(root,'rev-parse','origin/main');if(publishCurrent&&upstream===originalHead)throw Error('--publish-current requires committed unpublished maintenance changes');if(git(root,'merge-base',upstream,originalHead)!==upstream)throw Error('Local main is behind/diverged; review before release');}catch(e){if(!initial)throw e;}
  }
  let base=originalHead;
  if(branch!=='main'){try{base=git(root,'rev-parse','origin/'+branch);}catch{}}
@@ -47,7 +48,7 @@ try{
  }
  try{await fs.cp(path.join(root,'.local/audio-cache'),path.join(stage,'.local/audio-cache'),{recursive:true});}catch(e){if(e.code!=='ENOENT')throw e;}
  await fs.symlink(path.join(root,'node_modules'),path.join(stage,'node_modules'),process.platform==='win32'?'junction':'dir');
- const before=JSON.parse(await fs.readFile(path.join(stage,'content/materials.json'),'utf8'));
+ const before=JSON.parse(publishCurrent?git(root,'show','origin/main:content/materials.json'):await fs.readFile(path.join(stage,'content/materials.json'),'utf8'));
  const python=path.join(root,process.platform==='win32'?'.venv/Scripts/python.exe':'.venv/bin/python'),env={EAR_PYTHON:python,EAR_AI_PYTHON:path.join(root,process.platform==='win32'?'.local/ai-venv/Scripts/python.exe':'.local/ai-venv/bin/python'),EAR_TTS_MODEL_DIR:path.join(root,'.local/models/kokoro'),EAR_ASR_MODEL_DIR:path.join(root,'.local/models/whisper-base-en')};
  let audioSummary={changed:[],reused:[],deleted:[],generated:[]};
  if(rollback){
@@ -82,7 +83,7 @@ try{
   audioSummary=JSON.parse(await fs.readFile(path.join(stage,'.local/generated/last-update.json'),'utf8'));
  }
  const contentChanged=Boolean(git(stage,'diff','--name-only','HEAD','--','content','public','src','scripts','tests','package.json','package-lock.json','vite.config.ts','tsconfig.json','playwright.config.ts','playwright.pwa.config.ts','playwright.online.config.ts'));
- if(!contentChanged&&!initial){
+ if(!contentChanged&&!initial&&!publishCurrent){
   if(branch==='main')for(const name of ['sync-state.json','source-current.md'])try{await fs.copyFile(path.join(stage,'.local',name),path.join(root,'.local',name));}catch{}
   console.log('No material/audio changes: no commit, no push, no deployment.');
   await fs.writeFile(path.join(root,'.local/last-release.json'),JSON.stringify({noChanges:true,stage},null,2));process.exitCode=0;
