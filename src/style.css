@@ -20,3 +20,5 @@ html[data-effects=quiet] .ambient-field{animation:none;will-change:auto}html[dat
 @media(max-width:760px){.app-header::before{height:calc(126px + var(--safe-top))}#chapters{z-index:7;background:transparent}}
 @media(max-width:350px){.app-header::before{height:calc(120px + var(--safe-top))}}
 @media(max-height:500px) and (orientation:landscape){.app-header::before{height:calc(106px + var(--safe-top))}.layout{display:block}#chapters{z-index:7;flex-direction:row;gap:4px;overflow-x:auto;scrollbar-width:none;padding:4px 0 8px;background:transparent}#chapters button{flex-shrink:0;padding:0 12px}#chapters::-webkit-scrollbar{display:none}}
+/* Keep Safari's native select semantics without its opaque platform bezel. */
+.preset,.rate{position:relative}.preset select,.rate select{-webkit-appearance:none;appearance:none;padding-right:20px}.preset::after,.rate::after{content:"";position:absolute;pointer-events:none;right:9px;top:calc(50% - 4px);width:5px;height:5px;border-right:1.5px solid #d5def0;border-bottom:1.5px solid #d5def0;transform:rotate(45deg)}

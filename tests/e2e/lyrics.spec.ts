@@ -68,6 +68,7 @@ test('small portrait and landscape long sentences remain scrollable above the gl
   await expect.poll(()=>page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   const row=page.locator('.sentence').nth(1);await row.evaluate(e=>e.scrollIntoView({block:'end',behavior:'instant'}));await page.evaluate(()=>window.scrollBy(0,150));
   const geometry=await row.evaluate(e=>({height:e.getBoundingClientRect().height,scroll:e.scrollHeight,overflow:getComputedStyle(e).overflow,maxHeight:getComputedStyle(e).maxHeight}));expect(geometry.overflow).toBe('visible');expect(geometry.maxHeight).toBe('none');expect(geometry.height).toBeGreaterThan(44);
+  for(const id of ['#preset','#rate']){const control=page.locator(id);expect(await control.evaluate(e=>getComputedStyle(e).appearance)).toBe('none');expect(await control.evaluate(e=>getComputedStyle(e).backgroundColor)).toBe('rgba(0, 0, 0, 0)');}
   const dock=(await page.locator('.player-dock').boundingBox())!;expect(dock.height).toBeLessThanOrEqual(110);expect(dock.width).toBeLessThanOrEqual(viewport.width-20);expect(dock.x).toBeGreaterThanOrEqual(10);
  }
 });
