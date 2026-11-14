@@ -1,3 +1,4 @@
+import {browserEnv} from './browser-env.mjs';
 import fs from 'node:fs/promises';
 import {spawnSync} from 'node:child_process';
 import {setTimeout as wait} from 'node:timers/promises';
@@ -40,7 +41,7 @@ for(let offset=0;offset<entries.length;offset+=6){
  console.log('Verified formal HTTPS MP3: '+audio.length+'/'+entries.length);
 }
 await fs.mkdir('.local/qa',{recursive:true});await fs.writeFile('.local/qa/online-media.json',JSON.stringify({url,version:meta.version,contentVersion:meta.contentVersion,buildVersion:meta.buildVersion,assets:verifiedAssets,audio},null,2));
-const test=spawnSync(process.execPath,['node_modules/@playwright/test/cli.js','test','--config','playwright.online.config.ts'],{stdio:'inherit',windowsHide:true,env:{...process.env,EAR_ONLINE_URL:url}});
+const test=spawnSync(process.execPath,['node_modules/@playwright/test/cli.js','test','--config','playwright.online.config.ts'],{stdio:'inherit',windowsHide:true,env:{...browserEnv(),EAR_ONLINE_URL:url}});
 if(test.status!==0)throw Error('Live browser acceptance failed');
 console.log('Formal HTTPS acceptance passed for '+meta.version+'; '+audio.length+' exact verified MP3 files.');
 

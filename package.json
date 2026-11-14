@@ -21,7 +21,7 @@
     "sync:notes": "node scripts/sync-notes.mjs",
     "audio:update": "node scripts/run-audio.mjs",
     "scan:public": "node scripts/scan-public.mjs",
-    "test:pwa": "playwright test --config playwright.pwa.config.ts",
+    "test:pwa": "node scripts/run-e2e.mjs --config playwright.pwa.config.ts",
     "release:content": "node scripts/release-content.mjs",
     "rollback": "node scripts/release-content.mjs --rollback-to",
     "audio:quality": "node scripts/run-audio-quality.mjs",

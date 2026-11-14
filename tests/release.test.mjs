@@ -30,3 +30,10 @@ test('rollback checkpoints must match both private source bytes and public Engli
  const edited=structuredClone(b.materials);edited.chapters[0].segments[0].text='Different English.';
  assert.throws(()=>verifyCheckpoint(edited,b.state,source),/published material/);
 });
+
+test('isolated Windows release workers inherit the local browser cache without overriding explicit settings',async()=>{
+ const {browserEnv}=await import('../scripts/browser-env.mjs');const base=path.resolve('.local/qa');await fs.mkdir(base,{recursive:true});const cwd=await fs.mkdtemp(path.join(base,'reader-browser-'));await fs.mkdir(path.join(cwd,'.local/browsers'),{recursive:true});
+ assert.equal(browserEnv({},cwd,'win32').PLAYWRIGHT_BROWSERS_PATH,path.join(cwd,'.local/browsers'));
+ assert.equal(browserEnv({PLAYWRIGHT_BROWSERS_PATH:'explicit'},cwd,'win32').PLAYWRIGHT_BROWSERS_PATH,'explicit');
+ assert.deepEqual(browserEnv({},cwd,'linux'),{});
+});

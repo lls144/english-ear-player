@@ -1,9 +1,11 @@
+import {browserEnv} from './browser-env.mjs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import {execFileSync,spawnSync} from 'node:child_process';
 import {root,readJson,sha} from './content.mjs';
 import {releaseVersion} from './release-planning.mjs';
 import {verifyCheckpoint} from './release-checkpoint.mjs';
+Object.assign(process.env,browserEnv());
 const argv=process.argv.slice(2),has=n=>argv.includes(n),value=n=>{const i=argv.indexOf(n);return i<0?null:argv[i+1];};
 const publishCurrent=has('--publish-current');
 const branch=value('--branch')??'main',dry=has('--dry-run'),initial=has('--initial'),rollback=value('--rollback-to'),fixture=value('--source-file');
