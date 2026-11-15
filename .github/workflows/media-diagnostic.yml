@@ -11,7 +11,7 @@ jobs:
       fail-fast: false
       matrix:
         mode: [baseline, early-observer]
-        transport: [direct, proxy]
+        project: [ipad-webkit, landscape-webkit]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -25,13 +25,12 @@ jobs:
       - if: matrix.mode == 'early-observer'
         run: node scripts/webkit-startup-probe.mjs --patch-only
       - run: npm run build
-      - run: node scripts/webkit-startup-probe.mjs
-        env:
-          PROBE_MODE: ${{ matrix.mode }}
-          PROBE_TRANSPORT: ${{ matrix.transport }}
+      - run: npm run test:e2e:production -- --project=${{ matrix.project }} --grep "all published chapter files|three native listening presets" --repeat-each=5 --workers=1
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: probe-${{ matrix.mode }}-${{ matrix.transport }}
-          path: .local/qa/webkit-startup-probe.json
+          name: probe-${{ matrix.mode }}-${{ matrix.project }}
+          path: |
+            .local/qa/*.json
+            .local/playwright-results/
           retention-days: 1
