@@ -3,7 +3,7 @@ import {test,expect,type Page} from '@playwright/test';
 import fs from 'node:fs';
 const lib=JSON.parse(fs.readFileSync('src/library.generated.json','utf8'));
 const state=(p:Page)=>p.locator('audio').evaluate((a:HTMLAudioElement)=>({time:a.currentTime,duration:a.duration,paused:a.paused,src:a.currentSrc,loop:a.loop}));
-async function play(p:Page){await p.locator('#play').click();await expect.poll(async()=>(await state(p)).time).toBeGreaterThan(.12);await p.waitForTimeout(450);}
+async function play(p:Page){await p.locator('audio').evaluate(a=>{(window as any).__lyricPlaying=false;a.addEventListener('playing',()=>{(window as any).__lyricPlaying=true;},{once:true});});await p.locator('#play').click();await expect.poll(async()=>(await state(p)).time).toBeGreaterThan(.12);await p.waitForFunction(()=>(window as any).__lyricPlaying);await p.waitForTimeout(450);}
 async function setLoop(p:Page,value:string){await p.locator('#more-open').click();await p.locator('#loop').selectOption(value);await p.locator('#more-close').click();}
 const problems=new WeakMap<Page,string[]>();
 test.beforeEach(async({page})=>{const errors:string[]=[];problems.set(page,errors);page.on('pageerror',e=>errors.push(e.message));await page.goto('./');await expect(page.locator('.sentence')).not.toHaveCount(0);});
@@ -31,6 +31,7 @@ test('manual touch and momentum defer follow then resume the pending real cue wi
  await expect(transcript).toHaveAttribute('data-follow','USER_INTERACTING');const before=await page.evaluate(()=>scrollY),cue=lib.timings.slow.picture[2];
  await page.locator('audio').evaluate((a:HTMLAudioElement,t:number)=>{a.currentTime=t;},cue.start+.1);await page.waitForTimeout(350);expect(Math.abs(await page.evaluate(()=>scrollY)-before)).toBeLessThan(4);expect((await state(page)).paused).toBe(false);
  await expect.poll(()=>page.locator('.sentence').first().evaluate(e=>getComputedStyle(e).filter)).toBe('none');
+ await expect(page.locator('[data-sentence="'+cue.sentenceId+'"]')).toHaveClass(/current-sentence/);await expect(transcript).toHaveAttribute('data-follow','USER_INTERACTING');
  // Run one continuous gesture on the browser clock. Separate automation RPCs
  // can exceed the real 180ms quiet window and correctly become a new browse.
  const momentum=await page.evaluate(async()=>{
@@ -56,6 +57,8 @@ test('scrubbing previews without seeking or pausing and commits one accurate see
 
 test('single-loop silence keeps focus and two actual wraps cause no repeated scrolling',async({page})=>{
  test.setTimeout(25000);await page.locator('[data-chapter=connectors]').click();await expect(page.locator('#transcript')).toHaveAttribute('data-lyric-chapter','connectors');await setLoop(page,'sentence');await play(page);
+ // Measure native wraps after the initial focus has settled, not its entry tail.
+ await expect(page.locator('#transcript')).toHaveAttribute('data-follow','FOLLOWING');
  const result=await page.locator('audio').evaluate(async(a:HTMLAudioElement)=>{let wraps=0,previous=a.currentTime,min=scrollY,max=scrollY;const start=performance.now();return await new Promise<{wraps:number;delta:number;current:string|null}>((resolve,reject)=>{const timer=setInterval(()=>{min=Math.min(min,scrollY);max=Math.max(max,scrollY);if(a.currentTime<previous-.3)wraps++;previous=a.currentTime;if(wraps===2){clearInterval(timer);resolve({wraps,delta:max-min,current:document.querySelector('.current-sentence')?.getAttribute('data-sentence')??null});}if(performance.now()-start>18000){clearInterval(timer);reject(Error('Two real wraps did not finish'));}},20);});});
  expect(result.wraps).toBe(2);expect(result.delta).toBeLessThan(3);expect(result.current).toBe(lib.chapters.find((c:any)=>c.id==='connectors').segments[0].sentences[0].id);
 });

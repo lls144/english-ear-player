@@ -36,8 +36,12 @@ export class LyricsFollower{
  select(id:string){clearTimeout(this.settleTimer);this.expectedScroll=scrollY;this.target=id;this.machine.reset();this.position(true);}
  update(id:string|undefined,playing:boolean){
   const changed=!!id&&id!==this.target,wasPlaying=this.playing;this.playing=playing;this.target=id??'';
-  if(changed&&playing&&this.machine.boundary())this.position(true);
-  else if(playing&&!wasPlaying&&!this.machine.browsing&&this.machine.state!=='ANIMATING_TO_LINE')this.position(true);
+  // Cues may arrive while native playback briefly buffers. Preserve their
+  // boundary even before 'playing', so a held gesture cannot lose its return.
+  const follow=changed&&this.machine.boundary();
+  if(changed&&!playing&&this.machine.browsing)this.machine.pendingBoundary=true;
+  if(playing&&follow)this.position(true);
+  else if(playing&&!wasPlaying&&((!this.machine.browsing&&this.machine.state!=='ANIMATING_TO_LINE')||(this.machine.state==='AWAITING_NEXT_LINE'&&this.machine.pendingBoundary&&!this.held)))this.position(true);
   this.paintState();
  }
  private position(animate:boolean){
