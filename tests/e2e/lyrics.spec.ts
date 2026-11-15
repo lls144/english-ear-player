@@ -69,9 +69,16 @@ test('scroll gestures cannot select text and rapid chapter fades finish on the l
  const first=page.locator('.sentence').first(),r=(await first.boundingBox())!;
  if(browserName==='chromium'){
   const cdp=await page.context().newCDPSession(page),y=isMobile?page.viewportSize()!.height*.70:r.y+40;
-  if(isMobile)await page.evaluate(()=>{(window as any).__nativeFrames=[];(window as any).__nativeTimer=setInterval(()=>{(window as any).__nativeFrames.push({ms:performance.now(),y:scrollY,state:document.querySelector('#transcript')!.getAttribute('data-follow')});},16);});
-  await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:r.x+25,y}]});for(let i=1;i<=12;i++){await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:r.x+25,y:y-i*12}]});await page.waitForTimeout(16);}const lift=await page.evaluate(()=>performance.now());await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
-  if(isMobile){await page.waitForTimeout(650);const frames=await page.evaluate(()=>{clearInterval((window as any).__nativeTimer);return (window as any).__nativeFrames as {ms:number;y:number;state:string}[];});const after=frames.filter(f=>f.ms>=lift);await test.info().attach('native-touch-momentum',{body:JSON.stringify({lift,frames}),contentType:'application/json'});expect(after.some(f=>f.state==='MOMENTUM_SCROLLING')).toBe(true);expect(Math.max(...after.map(f=>f.y))-after[0].y).toBeGreaterThan(2);}
+  if(isMobile){
+   await page.evaluate(()=>{const w=window as any;w.__nativeFrames=[];w.__nativeLift=0;window.addEventListener('touchend',()=>{w.__nativeLift=performance.now();},{once:true,passive:true});w.__nativeTimer=setInterval(()=>w.__nativeFrames.push({ms:performance.now(),y:scrollY,state:document.querySelector('#transcript')!.getAttribute('data-follow')}),16);});
+   // Feed native touch events in order with the actual gesture's timestamps.
+   // Do not wait for each CDP acknowledgement: that changes release velocity.
+   const stamp=await page.evaluate(()=>Date.now()/1000),pending=[cdp.send('Input.dispatchTouchEvent',{type:'touchStart',timestamp:stamp,touchPoints:[{x:r.x+25,y}]})];
+   for(let i=1;i<=12;i++){await new Promise(resolve=>setTimeout(resolve,16));pending.push(cdp.send('Input.dispatchTouchEvent',{type:'touchMove',timestamp:stamp+i*.016,touchPoints:[{x:r.x+25,y:y-i*12}]}));}
+   pending.push(cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',timestamp:stamp+13*.016,touchPoints:[]}));await Promise.all(pending);
+   await page.waitForTimeout(650);const sample=await page.evaluate(()=>{const w=window as any;clearInterval(w.__nativeTimer);return {lift:w.__nativeLift,frames:w.__nativeFrames as {ms:number;y:number;state:string}[]};});
+   const after=sample.frames.filter(f=>f.ms>=sample.lift);await test.info().attach('native-touch-momentum',{body:JSON.stringify(sample),contentType:'application/json'});expect(sample.lift).toBeGreaterThan(0);expect(after.some(f=>f.state==='MOMENTUM_SCROLLING')).toBe(true);expect(Math.max(...after.map(f=>f.y))-after[0].y).toBeGreaterThan(2);
+  }else{await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:r.x+25,y}]});for(let i=1;i<=12;i++){await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:r.x+25,y:y-i*12}]});await page.waitForTimeout(16);}await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});}
   await cdp.detach();
  }else{await first.dispatchEvent('pointerdown',{pointerId:7,clientX:r.x+25,clientY:r.y+40});await first.dispatchEvent('pointermove',{pointerId:7,clientX:r.x+25,clientY:r.y-60});await first.dispatchEvent('pointerup',{pointerId:7});await first.dispatchEvent('click');}
  await expect(page.locator('.sentence.selected')).toHaveCount(0);

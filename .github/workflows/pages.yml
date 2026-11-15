@@ -25,7 +25,7 @@ jobs:
           python-version: '3.12'
       - run: npm ci
       - run: python -m pip install -r scripts/requirements-audio.txt
-      - run: npx playwright install --with-deps chromium webkit
+      - run: npx playwright install --with-deps chromium
       - run: npm run scan:public
       - run: npm run typecheck
       - run: npm test
@@ -33,21 +33,61 @@ jobs:
       - run: npm run test:audio
       - run: npm run build
       - run: npm run release:check
-      - run: npm run test:e2e:production -- --workers=4
       - run: npm run test:pwa
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: validation-results
+          retention-days: 1
           path: |
             .local/qa/*.json
             .local/playwright-results/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
+  browsers:
+    needs: validate
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - project: edge-desktop
+            engine: chromium
+          - project: android-chrome
+            engine: chromium
+          - project: small-android
+            engine: chromium
+          - project: iphone-webkit
+            engine: webkit
+          - project: ipad-webkit
+            engine: webkit
+          - project: landscape-webkit
+            engine: webkit
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps ${{ matrix.engine }}
+      - run: npm run build
+      - name: Verify one isolated browser and native media backend
+        run: npm run test:e2e:production -- --project=${{ matrix.project }} --workers=1
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: browser-validation-${{ matrix.project }}
+          retention-days: 1
+          path: |
+            .local/qa/*.json
+            .local/playwright-results/
   deploy:
     if: github.ref == 'refs/heads/main'
-    needs: validate
+    needs: [validate, browsers]
     runs-on: ubuntu-latest
     permissions:
       pages: write
@@ -81,5 +121,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: online-validation
+          retention-days: 1
           path: .local/qa/online*.json
 
