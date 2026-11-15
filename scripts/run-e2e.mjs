@@ -2,7 +2,9 @@ import {browserEnv} from './browser-env.mjs';
 import {spawn} from 'node:child_process';
 import fs from 'node:fs/promises';
 const prod=process.argv.includes('--production'),args=process.argv.slice(2).filter(a=>a!=='--production');
-const motion='real sentence boundary follows a measured easing trajectory|scrubbing previews without seeking or pausing';
+// Keep clock/gesture measurements off the shared software-rendering queue.
+// Assertions and timeouts stay identical; only resource scheduling changes.
+const motion='real sentence boundary follows a measured easing trajectory|scrubbing previews without seeking or pausing|manual touch and momentum defer follow|nine slow speeds affect real media clock';
 const split=prod&&!args.some(a=>a==='--grep'||a==='--grep-invert'||a==='-g'||a.startsWith('--grep='));
 async function run(argv,suffix=''){
  return await new Promise(resolve=>{const child=spawn(process.execPath,['node_modules/@playwright/test/cli.js','test',...argv],{stdio:'inherit',windowsHide:true,env:{...browserEnv(),EAR_E2E_PRODUCTION:prod?'1':'0',EAR_E2E_REPORT_SUFFIX:suffix}});child.on('error',()=>resolve(1));child.on('exit',code=>resolve(code??1));});
@@ -18,7 +20,7 @@ else{
   const merged={...reports[0],suites:reports.flatMap(r=>r.suites),errors:reports.flatMap(r=>r.errors??[]),stats:{startTime:reports[0].stats.startTime,duration:Date.now()-began,expected:0,skipped:0,unexpected:0,flaky:0}};
   for(const key of ['expected','skipped','unexpected','flaky'])merged.stats[key]=reports.reduce((sum,r)=>sum+r.stats[key],0);
   await fs.writeFile('.local/qa/e2e-production.json',JSON.stringify(merged,null,2));
-  console.log('Complete production coverage: '+reports[0].stats.expected+' functional + '+reports[1].stats.expected+' isolated motion; no motion assertions skipped.');
+  console.log('Complete production coverage: '+reports[0].stats.expected+' functional + '+reports[1].stats.expected+' isolated timing/motion; no assertions skipped.');
   process.exitCode=Number(visual);
  }
 }
