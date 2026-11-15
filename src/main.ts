@@ -3,6 +3,7 @@ import {Player,chapters,library,rates,type Mode,type Preset} from './player';
 import {type LoopMode} from './logic';
 import {setupPwa} from './pwa';
 import {LyricsFollower} from './lyrics';
+import {LyricFeedback} from './lyric-feedback';
 import {shouldReduceEffects} from './lyric-motion';
 import {loopIcon,loopNames} from './loop-icons';
 if('scrollRestoration' in history)history.scrollRestoration='manual';
@@ -22,13 +23,19 @@ const dialog=el<HTMLDialogElement>('more-settings');
 const player=new Player(()=>queueMicrotask(render));el('native-audio').append(player.audio);
 const chapterButtons=new Map<string,HTMLButtonElement>(),rows=new Map<string,{file:HTMLElement;remove:HTMLButtonElement}>();
 let renderedChapter='',voicesSignature='',previousStatus='',noticeTimer:ReturnType<typeof setTimeout>,dragging=false,importTarget=chapters[0].id;
-let lastActiveSentence='',motionFrame=0,chapterSerial=0,pendingChapter='',chapterFade:Animation|undefined;
+let lastActiveSentence='',lyricViewKey='',motionFrame=0,chapterSerial=0,pendingChapter='',chapterFade:Animation|undefined;
 const follower=new LyricsFollower(el('transcript'),()=>({top:matchMedia('(max-width:760px), (max-height:500px) and (orientation:landscape)').matches?el('chapters').getBoundingClientRect().bottom+18:Math.max(50,document.querySelector('.app-header')!.getBoundingClientRect().bottom+12),bottom:document.querySelector('.player-dock')!.getBoundingClientRect().top-22}));
+const feedback=new LyricFeedback(el('transcript'));
 el('more-settings').querySelector('.settings-content')!.append(el('source-info'),document.querySelector('footer')!);
 const candidateTheme=new URLSearchParams(location.search).get('design');document.documentElement.dataset.theme=candidateTheme==='graphite'?'graphite':'indigo';
-const palettes=[['#30415e','#41334f','#18243a'],['#33455c','#353951','#172a3c'],['#3a405d','#4b354a','#1d263c'],['#2d4659','#3f3c58','#1a2c3d'],['#3e3d5d','#51414e','#22283d'],['#36455c','#45405a','#1e293e'],['#2e4359','#414859','#172939'],['#3a3f5a','#4b3c56','#20283e'],['#314456','#3f3e55','#1b2b3c']];
+const palettes=[['#3b6091','#895070','#23243c'],['#3e658e','#814875','#24243d'],['#405c91','#8a4b71','#24243b'],['#355f8c','#805179','#22253c'],['#405e8d','#91506d','#27243c'],['#3d638d','#864c79','#24243d'],['#385e88','#8a4d76','#23253c'],['#3d5e91','#8b5278','#26243e'],['#3c658b','#854c75','#24253b']];
 let ambientIndex=0,ambientReady=false;
-function setAtmosphere(index:number){const fields=[...document.querySelectorAll<HTMLElement>('.ambient-scene')];const colors=candidateTheme==='graphite'?['#3d4b58','#4c444b','#232d37']:palettes[index%palettes.length];if(!ambientReady){ambientReady=true;fields[0].style.transition='none';fields[0].style.background=`radial-gradient(ellipse at 15% 20%,${colors[0]} 0,transparent 67%),radial-gradient(ellipse at 85% 45%,${colors[1]} 0,transparent 67%),${colors[2]}`;requestAnimationFrame(()=>{fields[0].style.transition='';});return;}const next=fields[1-ambientIndex];next.style.background=`radial-gradient(ellipse at 15% 20%,${colors[0]} 0,transparent 67%),radial-gradient(ellipse at 85% 45%,${colors[1]} 0,transparent 67%),${colors[2]}`;next.style.opacity='1';fields[ambientIndex].style.opacity='0';ambientIndex=1-ambientIndex;}
+function setAtmosphere(index:number){
+ const fields=[...document.querySelectorAll<HTMLElement>('.ambient-scene')],colors=candidateTheme==='graphite'?['#4b6074','#725a71','#252b36']:palettes[index%palettes.length];
+ const paint=(field:HTMLElement)=>{for(const [i,key]of ['--ambient-blue','--ambient-plum','--ambient-base'].entries())field.style.setProperty(key,colors[i]);};
+ if(!ambientReady){ambientReady=true;paint(fields[0]);return;}
+ const next=fields[1-ambientIndex];paint(next);next.style.opacity='1';fields[ambientIndex].style.opacity='0';ambientIndex=1-ambientIndex;
+}
 
 for(const c of chapters){
  const button=document.createElement('button');button.dataset.chapter=c.id;button.textContent=c.title;button.addEventListener('click',()=>{follower.reset();player.select(c.id);window.scrollTo({top:0,behavior:'instant'});});el('chapters').append(button);chapterButtons.set(c.id,button);
@@ -43,10 +50,11 @@ function sourceText(p:HTMLElement,text:string){
 }
 const lyricVisibility=new IntersectionObserver(entries=>{for(const entry of entries)entry.target.classList.toggle('lyric-visible',entry.isIntersecting);},{rootMargin:'140px 0px'});
 function mountChapter(){
+ feedback.clear();lyricViewKey='';
  lyricVisibility.disconnect();
  const c=player.current;
   window.scrollTo({top:0,behavior:'instant'});renderedChapter=c.id;el('transcript').dataset.lyricChapter=c.id;pendingChapter='';lastActiveSentence='';follower.reset();setAtmosphere(player.index);el('chapter-title').textContent=c.title;el('transcript').replaceChildren();el('source-lines').replaceChildren();let group='';
-  c.segments.forEach(s=>{if((c.id==='connectors'||c.id==='phrases')&&group!==s.category){group=s.category;const h=document.createElement('h2');h.textContent=group;h.className='lyric-heading';el('transcript').append(h);lyricVisibility.observe(h);}const article=document.createElement('div');article.className='passage';article.dataset.segment=s.id;const p=document.createElement('p');let textAt=0;s.sentences.forEach(u=>{const start=s.displayText.indexOf(u.displayText,textAt);p.append(document.createTextNode(s.displayText.slice(textAt,start)));textAt=start+u.displayText.length;const span=document.createElement('span');span.className='sentence';span.dataset.sentence=u.id;span.tabIndex=0;span.setAttribute('role','button');span.title='选中此句';const body=document.createElement('span');body.className='lyric-body';sourceText(body,u.displayText);span.append(body);const choose=()=>{if(!follower.canChoose())return;follower.select(u.id);player.selectSentence(u.id);};span.addEventListener('click',choose);span.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();follower.select(u.id);player.selectSentence(u.id);}});p.append(span);lyricVisibility.observe(span);});p.append(document.createTextNode(s.displayText.slice(textAt)));article.append(p);el('transcript').append(article);const info=document.createElement('p');info.textContent=(s.kind==='source-template'?'原文模板':s.kind==='source-example'?'原文例句':'原文短语')+' · '+s.category+(s.tier?' · '+s.tier:'');el('source-lines').append(info);});
+  c.segments.forEach(s=>{if((c.id==='connectors'||c.id==='phrases')&&group!==s.category){group=s.category;const h=document.createElement('h2');h.textContent=group;h.className='lyric-heading';el('transcript').append(h);lyricVisibility.observe(h);}const article=document.createElement('div');article.className='passage';article.dataset.segment=s.id;const p=document.createElement('p');let textAt=0;s.sentences.forEach(u=>{const start=s.displayText.indexOf(u.displayText,textAt);p.append(document.createTextNode(s.displayText.slice(textAt,start)));textAt=start+u.displayText.length;const span=document.createElement('span');span.className='sentence';span.dataset.sentence=u.id;span.tabIndex=0;span.setAttribute('role','button');span.title='选中此句';const body=document.createElement('span');body.className='lyric-body';sourceText(body,u.displayText);span.append(body);const choose=()=>{if(!follower.canChoose())return;feedback.activate(span);follower.select(u.id);player.selectSentence(u.id);};span.addEventListener('click',choose);span.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();feedback.activate(span);follower.select(u.id);player.selectSentence(u.id);}});p.append(span);lyricVisibility.observe(span);});p.append(document.createTextNode(s.displayText.slice(textAt)));article.append(p);el('transcript').append(article);const info=document.createElement('p');info.textContent=(s.kind==='source-template'?'原文模板':s.kind==='source-example'?'原文例句':'原文短语')+' · '+s.category+(s.tier?' · '+s.tier:'');el('source-lines').append(info);});
  }
 function render(){
  const c=player.current;
@@ -56,12 +64,13 @@ function render(){
   else{chapterFade=el('transcript').animate([{opacity:1},{opacity:0}],{duration:90,easing:'ease-out',fill:'forwards'});void chapterFade.finished.catch(()=>{}).then(()=>{if(serial!==chapterSerial)return;mountChapter();chapterFade?.cancel();chapterFade=el('transcript').animate([{opacity:0,transform:'translateY(9px)'},{opacity:1,transform:'translateY(0)'}],{duration:260,easing:'cubic-bezier(.2,.7,.3,1)'});render();});}
  }
  const active=player.activeSegment,activeId=player.activeSentenceId;
- if(renderedChapter===c.id){
+ const viewKey=[c.id,activeId,player.settings.selectedSentences[c.id],player.playing,player.busy].join('|');
+ if(renderedChapter===c.id&&viewKey!==lyricViewKey){
   const units=player.sentences,activeIndex=units.findIndex(u=>u.id===activeId);
   document.querySelectorAll<HTMLElement>('.sentence').forEach((row,i)=>{const selected=row.dataset.sentence===player.settings.selectedSentences[c.id],current=row.dataset.sentence===activeId;row.classList.toggle('selected',selected);row.classList.toggle('current-sentence',current);row.classList.toggle('past-sentence',i<activeIndex);row.classList.toggle('next-sentence',i===activeIndex+1);const distance=i<activeIndex?'past':i===activeIndex+1?'next':i<=activeIndex+3?'near':'far';if(row.dataset.distance!==distance)row.dataset.distance=distance;if(row.getAttribute('aria-pressed')!==String(selected))row.setAttribute('aria-pressed',String(selected));if(current){if(row.getAttribute('aria-current')!=='true')row.setAttribute('aria-current','true');}else if(row.hasAttribute('aria-current'))row.removeAttribute('aria-current');});
   el('transcript').classList.toggle('playing',(player.playing||player.busy)&&!!activeId);
   el('transcript').querySelectorAll<HTMLElement>('.passage').forEach((p,i)=>{p.classList.toggle('speaking',i===active&&player.playing);if(i===active&&player.playing)p.setAttribute('aria-current','true');else p.removeAttribute('aria-current');});
-  follower.update(activeId,player.playing);lastActiveSentence=activeId??'';
+  follower.update(activeId,player.playing);lastActiveSentence=activeId??'';lyricViewKey=viewKey;
  }
  const visiblePlaying=String(player.playing&&!document.hidden);if(document.documentElement.dataset.playing!==visiblePlaying)document.documentElement.dataset.playing=visiblePlaying;
  if(player.playing&&!document.hidden&&!motionFrame)motionFrame=requestAnimationFrame(tickProgress);

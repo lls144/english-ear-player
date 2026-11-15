@@ -39,7 +39,7 @@ test.afterEach(async({page},info)=>{
  const logs=consoleErrors.get(page)??[];
  await info.attach('browser-errors',{body:JSON.stringify({console:logs,unhandled}),contentType:'application/json'});
  expect(unhandled).toEqual([]);
- const faultCase=/missing audio|offline new|wrong extension/.test(info.title);
+ const faultCase=/missing audio|offline new|wrong extension|temporary media failure/.test(info.title);
  const unexpected=logs.filter(s=>!s.startsWith('[vite]') && !(faultCase && /Failed to load resource|NetworkError|Load failed|network connection/i.test(s)));
  expect(unexpected).toEqual([]);
 });
@@ -53,6 +53,24 @@ test('all published chapter files advance time with matching chapter and source'
   if((await state(page)).paused)await start(page);else await expect.poll(async()=>(await state(page)).time).toBeGreaterThan(.1);
   expect((await state(page)).duration).toBeGreaterThan(2);expect(await element!.evaluate(a=>a===document.querySelector('audio'))).toBe(true);
  }
+});
+
+test('temporary media failure verifies a real MP3 then resumes the persistent native player once',async({page})=>{
+ const element=await audio(page).elementHandle();await fault(page,{failFile:'reasons-slow.mp3',status:503});
+ await page.evaluate(id=>{const w=window as any,native=window.fetch.bind(window);w.__verificationCalls=0;w.fetch=(input:RequestInfo|URL,init?:RequestInit)=>{if(String(input).includes('reasons-slow')){w.__verificationCalls++;return native('/__e2e_control/'+id,{method:'POST',body:'{}'}).then(()=>native(input,init));}return native(input,init);};},cases.get(page));
+ await page.locator('[data-chapter=reasons]').click();await page.locator('#play').click();
+ await expect.poll(async()=>(await state(page)).time).toBeGreaterThan(.2);
+ expect(await element!.evaluate(a=>a===document.querySelector('audio'))).toBe(true);expect((await state(page)).src).toContain(published.audio.reasons);expect(await page.evaluate(()=>(window as any).__verificationCalls)).toBe(1);
+ await expect(page.locator('#play')).toHaveAttribute('aria-label','暂停');await expect(page.locator('#status')).not.toContainText('文件是可播放');
+});
+
+test('temporary media failure recovery obeys an explicit pause during byte verification',async({page})=>{
+ await fault(page,{failFile:'reasons-slow.mp3',status:503});
+ await page.evaluate(id=>{const w=window as any,native=window.fetch.bind(window);w.__verificationPending=false;w.__verificationAborted=false;w.fetch=(input:RequestInfo|URL,init?:RequestInit)=>{if(String(input).includes('reasons-slow')){w.__verificationPending=true;init?.signal?.addEventListener('abort',()=>{w.__verificationAborted=true;});return native('/__e2e_control/'+id,{method:'POST',body:JSON.stringify({delayFile:'reasons-slow.mp3',delayMs:900})}).then(()=>native(input,init)).finally(()=>{w.__verificationPending=false;});}return native(input,init);};},cases.get(page));
+ await page.locator('[data-chapter=reasons]').click();await page.locator('#play').click();
+ await expect.poll(()=>page.evaluate(()=>(window as any).__verificationPending)).toBe(true);
+ await page.locator('#play').click();await page.waitForTimeout(1200);expect(await page.evaluate(()=>(window as any).__verificationAborted)).toBe(true);
+ expect((await state(page)).paused).toBe(true);await expect(page.locator('#play')).toHaveAttribute('aria-label','播放');
 });
 test('pause freezes real position and resume previous next agree',async({page})=>{
  await start(page);await page.locator('#play').click();const at=(await state(page)).time;

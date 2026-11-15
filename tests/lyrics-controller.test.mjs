@@ -16,7 +16,7 @@ function surface(){
  const rows={old:row(500),next:row(1000)},transcript=Object.assign(new EventTarget(),{dataset:{},querySelector:q=>rows[q.match(/"([^"]+)"/)[1]],querySelectorAll:()=>Object.values(rows)});
  const follower=new LyricsFollower(transcript,()=>({top:100,bottom:650}));controllers.push(follower);return {follower,transcript,win};
 }
-function flush(){const list=[...frames.values()];frames.clear();for(const fn of list)fn(performance.now()+1100);}
+function flush(){const start=performance.now();for(let i=1;i<=80&&frames.size;i++){const list=[...frames.values()];frames.clear();for(const fn of list)fn(start+i*16);}}
 function input(target,type,values){target.dispatchEvent(Object.assign(new Event(type),values));}
 function begin(s){input(s.transcript,'pointerdown',{pointerId:9,clientX:70,clientY:300});input(s.win,'pointermove',{pointerId:9,clientX:70,clientY:180});}
 const settle=()=>new Promise(resolve=>setTimeout(resolve,240));
@@ -30,3 +30,7 @@ test('a buffered cue received after momentum resumes when native playback become
 test('pause and resume without a new cue do not pull a manual reader back',async()=>{
  const s=surface();s.follower.update('old',true);flush();begin(s);input(s.win,'pointerup',{pointerId:9});await settle();s.follower.update('old',false);s.follower.update('old',true);assert.equal(s.transcript.dataset.follow,'AWAITING_NEXT_LINE');
 });
+
+test('losing focus releases the motion paint budget instead of leaving the page animating',()=>{const s=surface();s.follower.update('next',true);assert.equal(document.documentElement.dataset.lyricMotion,'moving');input(s.win,'blur',{});assert.equal(s.transcript.dataset.follow,'FOLLOWING');assert.equal(document.documentElement.dataset.lyricMotion,'still');assert.equal(frames.size,0);});
+
+test('repeated slow animation frames reduce decoration for that travel and restore it after settling',()=>{const s=surface();s.follower.update('next',true);const start=performance.now();for(let i=1;i<=3;i++){const list=[...frames.values()];frames.clear();for(const fn of list)fn(start+i*80);}assert.equal(document.documentElement.dataset.motionBudget,'quiet');flush();assert.equal(s.transcript.dataset.follow,'FOLLOWING');assert.equal(document.documentElement.dataset.motionBudget,undefined);});

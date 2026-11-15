@@ -1,4 +1,4 @@
-import {focusDestination,springFrame,cascadeOffset,isScrollGesture,FollowMachine,type ViewBounds} from './lyric-motion';
+import {focusDestination,springFrame,cascadeOffset,isScrollGesture,motionStep,FollowMachine,type ViewBounds} from './lyric-motion';
 /** Native scrolling remains in charge during touch and momentum. Audio cues own focus. */
 export class LyricsFollower{
  private machine=new FollowMachine();private frame=0;private serial=0;private target='';private playing=false;private velocity=0;
@@ -19,11 +19,11 @@ export class LyricsFollower{
   window.addEventListener('scroll',()=>{if(Math.abs(scrollY-this.expectedScroll)>3&&performance.now()>this.layoutUntil){this.expectedScroll=scrollY;this.manual(this.held);}},{passive:true});
   const resize=()=>{this.layoutUntil=performance.now()+140;this.expectedScroll=scrollY;this.cancel();if(!this.machine.browsing)this.position(false);};window.addEventListener('resize',resize,{passive:true});window.visualViewport?.addEventListener('resize',resize);
   this.reduced.addEventListener('change',()=>{this.cancel();if(!this.machine.browsing)this.position(false);});
-  const leave=()=>{this.cancel();if(this.held){this.pointers.clear();this.touches=0;this.pointer=undefined;this.machine.release(performance.now());this.paintState();this.settle();}};window.addEventListener('blur',leave);document.addEventListener('visibilitychange',()=>{if(document.hidden)leave();});
+  const leave=()=>{this.cancel();if(this.held){this.pointers.clear();this.touches=0;this.pointer=undefined;this.machine.release(performance.now());this.paintState();this.settle();}else if(this.machine.state==='ANIMATING_TO_LINE'){this.machine.finish();this.paintState();}};window.addEventListener('blur',leave);document.addEventListener('visibilitychange',()=>{if(document.hidden)leave();});
   this.paintState();
  }
  private get held(){return this.pointers.size>0||this.touches>0;}
- private paintState(){if(this.transcript.dataset.follow!==this.machine.state)this.transcript.dataset.follow=this.machine.state;}
+ private paintState(){if(this.transcript.dataset.follow!==this.machine.state)this.transcript.dataset.follow=this.machine.state;const motion=this.machine.state==='ANIMATING_TO_LINE'?'moving':'still';if(document.documentElement.dataset.lyricMotion!==motion)document.documentElement.dataset.lyricMotion=motion;if(motion==='still')delete document.documentElement.dataset.motionBudget;}
  private clearCascade(){for(const row of this.shifted)row.style.removeProperty('--flow-offset');this.shifted.clear();}
  private cancel(clear=true){this.serial++;cancelAnimationFrame(this.frame);this.frame=0;this.velocity=0;if(clear)this.clearCascade();}
  private manual(held:boolean){this.cancel();this.machine.move(performance.now(),held);this.paintState();this.settle();}
@@ -47,16 +47,16 @@ export class LyricsFollower{
  private position(animate:boolean){
   const row=this.target?this.transcript.querySelector<HTMLElement>('[data-sentence="'+this.target+'"]'):null;if(!row||document.hidden)return;
   const offset=(el:HTMLElement)=>{const transform=getComputedStyle(el).transform;return transform==='none'?0:new DOMMatrixReadOnly(transform).m42;};
-  const r=row.getBoundingClientRect(),from=scrollY,bounds=this.bounds(),to=focusDestination(r.top-offset(row),r.height,from,bounds,Math.max(0,document.documentElement.scrollHeight-innerHeight));
+  const r=row.getBoundingClientRect(),from=scrollY,bounds=this.bounds(),maxScroll=Math.max(0,document.documentElement.scrollHeight-innerHeight),to=focusDestination(r.top-offset(row),r.height,from,bounds,maxScroll);
   const distance=to-from,velocity=distance*this.velocity>0?Math.max(-1800,Math.min(1800,this.velocity)):0;
-  const entries=[...this.transcript.querySelectorAll<HTMLElement>('.sentence,.lyric-heading')].map(el=>({el,initial:offset(el),bottom:el.getBoundingClientRect().bottom}));
+  const entries=[...this.transcript.querySelectorAll<HTMLElement>('.lyric-visible')].map(el=>({el,initial:offset(el),bottom:el.getBoundingClientRect().bottom}));
   const first=Math.max(0,entries.findIndex(e=>e.bottom>bounds.top));
   this.cancel(false);this.machine.animate();this.paintState();
   const cascade=entries.map((e,i)=>({...e,delay:Math.min(.084,Math.max(0,i-first)*.014),cap:Math.min(24,Math.max(0,i-first)*6)}));
-  const scroll=(top:number)=>{window.scrollTo({top,behavior:'instant'});this.expectedScroll=scrollY;};
+  const scroll=(top:number)=>{this.expectedScroll=Math.max(0,Math.min(maxScroll,top));window.scrollTo({top:this.expectedScroll,behavior:'instant'});};
   if(Math.abs(distance)<2||!animate||this.reduced.matches){this.clearCascade();scroll(to);this.machine.finish();this.paintState();return;}
-  const serial=this.serial,started=performance.now();let lastCascade=0;
-  const tick=(now:number)=>{if(serial!==this.serial||document.hidden)return;const elapsed=(now-started)/1000,value=springFrame(elapsed,distance,velocity);this.velocity=value.velocity;scroll(from+value.position);if(document.documentElement.dataset.effects==='quiet'){this.clearCascade();}else if(now-lastCascade>=14){lastCascade=now;for(const entry of cascade)if(entry.el.classList.contains('lyric-visible')){entry.el.style.setProperty('--flow-offset',cascadeOffset(elapsed,distance,velocity,entry.delay,entry.initial,entry.cap).toFixed(3)+'px');this.shifted.add(entry.el);}}if(elapsed<.9&&(elapsed<.22||Math.abs(distance-value.position)>.35||Math.abs(value.velocity)>8))this.frame=requestAnimationFrame(tick);else{scroll(to);this.clearCascade();this.frame=0;this.velocity=0;this.machine.finish();this.paintState();}};
+  const serial=this.serial;let previous=performance.now(),elapsed=0,lastCascade=0,slowFrames=0;
+  const tick=(now:number)=>{if(serial!==this.serial||document.hidden)return;const dt=now-previous;elapsed+=motionStep(dt);previous=now;if(dt>50)slowFrames++;if(slowFrames>=3)document.documentElement.dataset.motionBudget='quiet';const value=springFrame(elapsed,distance,velocity);this.velocity=value.velocity;scroll(from+value.position);if(document.documentElement.dataset.effects==='quiet'||document.documentElement.dataset.motionBudget==='quiet'){this.clearCascade();}else if(now-lastCascade>=14){lastCascade=now;for(const entry of cascade)if(entry.el.classList.contains('lyric-visible')){entry.el.style.setProperty('--flow-offset',cascadeOffset(elapsed,distance,velocity,entry.delay,entry.initial,entry.cap).toFixed(3)+'px');this.shifted.add(entry.el);}}if(elapsed<.9&&(elapsed<.22||Math.abs(distance-value.position)>.35||Math.abs(value.velocity)>8))this.frame=requestAnimationFrame(tick);else{scroll(to);this.clearCascade();this.frame=0;this.velocity=0;this.machine.finish();this.paintState();}};
   this.frame=requestAnimationFrame(tick);
  }
 }

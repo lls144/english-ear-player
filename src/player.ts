@@ -35,6 +35,9 @@ export class Player {
   private wantedPlayback = false;
   private loopRestartAllowed = false;
   private audioFailed = false;
+  private retryUsed = false;
+  private recovery?:{controller:AbortController;token:number};
+  mediaFailure?:{name:string;code:number;source:string};
   private sentenceSeek?:{id:string;source:string;at:number;applied:boolean};
   private preciseChapter?:string;
   private speechTimer?:ReturnType<typeof setTimeout>;
@@ -78,6 +81,8 @@ export class Player {
     });
     this.audio.addEventListener('pause', () => {
       if(this.settings.mode !== 'audio' || !this.audio.paused) return;
+      if(this.wantedPlayback&&this.audio.currentSrc&&this.audio.currentSrc!==this.audioSource)return;
+      if(this.recovery&&this.wantedPlayback)return;
       if(this.audio.ended)return; // The ended handler owns natural completion.
       // Some WebKit media backends pause after the native loop seek to zero.
       // Only resume a proven loop boundary, never a user/system pause elsewhere.
@@ -90,7 +95,7 @@ export class Player {
     });
     const observePosition=()=>{if(this.audio.duration>0 && this.audio.currentTime>this.audio.duration-1)this.loopRestartAllowed=true;else if(this.audio.currentTime>1)this.loopRestartAllowed=false;};
     this.audio.addEventListener('seeking',observePosition);
-    this.audio.addEventListener('timeupdate', () => { if(this.settings.mode === 'audio') { observePosition(); this.save(false); this.changed(); } });
+    this.audio.addEventListener('timeupdate', () => { if(this.settings.mode === 'audio') { this.settleSentenceSeek();observePosition(); this.save(false); this.changed(); } });
     this.audio.addEventListener('ratechange', () => {
       if (this.settings.mode === 'audio') { const requested=this.audio.playbackRate*(this.usingImportedAudio?1:library.referenceRate);this.settings.rate=rates.reduce((a,b)=>Math.abs(b-requested)<Math.abs(a-requested)?b:a);if(Math.abs(this.audio.playbackRate-this.mediaRate)>.0001)this.audio.playbackRate=this.mediaRate;this.save(); this.changed(); }
     });
@@ -104,14 +109,12 @@ export class Player {
       this.audio.playbackRate = this.mediaRate; this.changed();
     });
     this.audio.addEventListener('canplay',()=>this.applySentenceSeek());
-    this.audio.addEventListener('seeked',()=>{const request=this.sentenceSeek;if(request?.applied&&this.audio.currentSrc===request.source&&Math.abs(this.audio.currentTime-request.at)<.35){this.sentenceSeek=undefined;this.changed();}});
+    this.audio.addEventListener('seeked',()=>{if(this.settleSentenceSeek())this.changed();});
     this.audio.addEventListener('ended', () => { if (!this.sentenceSeek&&this.settings.mode === 'audio'&&this.wantedPlayback&&this.audio.ended&&this.audio.currentSrc===this.audioSource) this.finished(); });
     this.audio.addEventListener('error', () => {
       if(this.settings.mode !== 'audio' || !this.audio.getAttribute('src')||!this.audio.error) return;
-      this.busy = false; this.playing = false;
-      this.wantedPlayback=false; this.audio.pause();
-      this.audioFailed=true;
-      this.status = '音频无法读取或格式不受支持。请重新导入真实 MP3，或检查内置文件。'; this.changed();
+      if(this.audio.currentSrc&&this.audio.currentSrc!==this.audioSource)return;
+      this.handleAudioFailure(new DOMException('Native media error',this.audio.error.code===2?'NetworkError':'NotSupportedError'),this.token);
     });
     this.audio.addEventListener('waiting', () => { if(this.settings.mode === 'audio') { this.status = '正在缓冲音频…'; this.changed(); } });
     this.audio.addEventListener('playing', () => { if(this.pauseGuard){this.audio.pause();return;}if(this.settings.mode === 'audio' && !this.audio.error&&this.audio.currentSrc===this.audioSource&&!this.audio.paused) { this.restorePosition(true);this.playing=true;this.busy=false;this.status = 'MP3 播放中'; this.changed(); } });
@@ -160,6 +163,7 @@ export class Player {
     try { localStorage.setItem(storageKey, JSON.stringify(this.settings)); } catch { /* Storage can be disabled. Playback stays available. */ }
   }
   pause() {
+    this.recovery?.controller.abort();this.recovery=undefined;
     this.stopStartup?.();
     if(this.pauseGuard)clearTimeout(this.pauseGuard);
     this.pauseGuard=this.settings.mode==='audio'?setTimeout(()=>{this.pauseGuard=undefined;},250):undefined;
@@ -172,6 +176,7 @@ export class Player {
   }
   async play(retrying=false) {
     if(this.busy || this.playing) return;
+    this.retryUsed=retrying;
     if(this.pauseGuard)clearTimeout(this.pauseGuard);this.pauseGuard=undefined;
     this.stopStartup?.();
     if(this.audioTimer)clearTimeout(this.audioTimer);
@@ -202,11 +207,51 @@ export class Player {
     try { await this.audio.play(); }
     catch (e) {
       if(expected!==this.token) return;
-      this.stopStartup?.();
-      if(this.audioTimer)clearTimeout(this.audioTimer);
-      this.busy=false; this.playing=false;this.wantedPlayback=false;
-      this.status=e instanceof DOMException && e.name==='NotAllowedError' ? '浏览器阻止了自动播放。请轻点播放继续。' : '播放失败，请确认文件是可播放的 MP3 后重试。'; this.changed();
+      this.handleAudioFailure(e,expected);
     }
+  }
+  private stopAudioWatch(){this.stopStartup?.();if(this.audioTimer)clearTimeout(this.audioTimer);this.audioTimer=undefined;}
+  private handleAudioFailure(error:unknown,expected:number){
+    if(expected!==this.token||this.recovery)return;
+    const name=error instanceof Error?error.name:'Error',code=this.audio.error?.code??0;
+    this.mediaFailure={name,code,source:this.usingImportedAudio?'imported':this.audioSource??''};
+    if(name==='AbortError'&&!code){
+      // pause/load interruptions do not establish that the file is invalid.
+      if(this.audio.paused){this.stopAudioWatch();this.wantedPlayback=false;this.busy=false;this.playing=false;this.status='播放请求已中断，轻点播放即可继续。';}
+      else{this.playing=true;this.busy=false;this.status='正在缓冲音频…';}
+      this.changed();return;
+    }
+    if(name==='NotAllowedError'){this.stopAudioWatch();this.wantedPlayback=false;this.busy=false;this.playing=false;this.status='浏览器阻止了自动播放。请轻点播放继续。';this.changed();return;}
+    const transient=code===2||code===4||(!code&&['NetworkError','NotSupportedError'].includes(name));
+    if(transient&&this.wantedPlayback&&!this.usingImportedAudio&&!this.retryUsed){void this.recoverAudio();return;}
+    this.finishAudioFailure(this.usingImportedAudio?'本机 MP3 无法读取或解码，请重新导入有效文件。':code===3?'音频无法解码。请稍后重试。':'音频暂时无法加载或播放，请轻点播放重试。');
+  }
+  private finishAudioFailure(message:string){
+    this.stopAudioWatch();this.wantedPlayback=false;this.audioFailed=true;this.busy=false;this.playing=false;this.audio.pause();this.status=message;this.changed();
+  }
+  private async recoverAudio(){
+    const source=this.audioSource!,key=this.positionKey,resume=Math.max(this.audio.currentTime,this.restoredAt),seek=this.sentenceSeek;
+    this.retryUsed=true;this.stopAudioWatch();
+    const controller=new AbortController(),expected=++this.token;this.recovery={controller,token:expected};
+    this.busy=true;this.playing=false;this.status='正在重新连接音频…';this.changed();
+    const timeout=setTimeout(()=>controller.abort(),12000);
+    try{
+      // Fetch the exact content-addressed file; never replace native playback with a blob.
+      const response=await fetch(source,{cache:'reload',signal:controller.signal});
+      if(!response.ok)throw Error('HTTP '+response.status);
+      const bytes=await response.arrayBuffer(),hash=new URL(source).pathname.match(/\.([a-f0-9]{16})\.mp3$/i)?.[1];
+      const actual=[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(n=>n.toString(16).padStart(2,'0')).join('');
+      if(!hash||!actual.startsWith(hash))throw Error('integrity');
+      if(expected!==this.token||!this.wantedPlayback||this.audioSource!==source||this.settings.mode!=='audio')return;
+      this.settings.audioPositions[key]=resume;this.loadAudio();
+      if(seek)this.sentenceSeek={...seek,applied:false};
+      this.recovery=undefined;this.busy=false;this.playing=false;void this.play(true);
+    }catch(error){
+      if(expected!==this.token||!this.wantedPlayback||this.recovery?.controller!==controller)return;
+      this.recovery=undefined;
+      const message=error instanceof Error?error.message:'';
+      this.finishAudioFailure(message==='integrity'?'内置音频校验失败，已停止播放。请稍后重试。':/^HTTP /.test(message)?'内置音频暂时无法加载（'+message+'），请稍后重试。':'音频连接暂时不可用，请检查网络后重试。');
+    }finally{clearTimeout(timeout);if(this.recovery?.controller===controller)this.recovery=undefined;}
   }
   private hasBufferedPosition(at:number){
     if(this.audio.readyState<3||!Number.isFinite(this.audio.duration))return false;
@@ -233,6 +278,15 @@ export class Player {
     request.at=Math.min(request.at,Math.max(0,this.audio.duration-.05));
     try{this.audio.currentTime=request.at;request.applied=true;}catch{/* Metadata/canplay retries the latest target only. */}
   }
+  private settleSentenceSeek(){
+    const request=this.sentenceSeek;
+    if(!request?.applied||this.audio.currentSrc!==request.source)return false;
+    const end=library.timings[this.settings.preset][this.current.id]?.find(t=>t.sentenceId===request.id)?.end??request.at+.35;
+    // MP3 seek rounding can land a few milliseconds before the cue. Keep the
+    // clicked focus until the real clock reaches it, avoiding a flash backward.
+    if(this.audio.currentTime>=request.at&&this.audio.currentTime<end){this.sentenceSeek=undefined;return true;}
+    return false;
+  }
   private observeStartup(expected:number,retrying:boolean){
     let previous:number|undefined,stalledSince=0;
     const seeking=()=>{previous=undefined;stalledSince=0;};
@@ -251,7 +305,7 @@ export class Player {
       else if(now-stalledSince>=1000){
         cleanup();
         if(retrying){if(this.audioTimer)clearTimeout(this.audioTimer);this.audioFailed=true;this.wantedPlayback=false;this.token++;this.audio.pause();this.playing=false;this.busy=false;this.status='音频播放失败，请轻点重试。';this.changed();return;}
-        const resume=Math.max(at,this.restoredAt);this.pause();this.settings.audioPositions[this.positionKey]=resume;this.loadAudio();void this.play(true);return;
+        const resume=Math.max(at,this.restoredAt),seek=this.sentenceSeek;this.pause();this.settings.audioPositions[this.positionKey]=resume;this.loadAudio();if(seek)this.sentenceSeek={...seek,applied:false};void this.play(true);return;
       }
     },250);
     this.audio.addEventListener('seeking',seeking);this.stopStartup=cleanup;

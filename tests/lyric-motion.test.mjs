@@ -1,6 +1,8 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {focusDestination,focusEase,isScrollGesture,shouldReduceEffects,springFrame,FollowMachine,cascadeOffset} from '../src/lyric-motion.ts';
+import {focusDestination,focusEase,isScrollGesture,motionStep,shouldReduceEffects,springFrame,FollowMachine,cascadeOffset} from '../src/lyric-motion.ts';
+
+test('a blocked frame advances a bounded spring step instead of skipping its trajectory',()=>{assert.equal(motionStep(16),.016);assert.equal(motionStep(220),.032);assert.equal(motionStep(-1),0);let elapsed=0,previous=0;for(const dt of [16,16,220,16,90,16,16]){elapsed+=motionStep(dt);const next=springFrame(elapsed,600).position;assert.ok(next-previous<600*.3);previous=next;}assert.ok(previous>100);});
 test('sentence focus uses visible bounds and a quiet upper-middle anchor',()=>{const t=focusDestination(600,120,100,{top:110,bottom:710},2000);assert.ok(Math.abs(t-446)<1e-8);assert.equal(focusDestination(50,120,0,{top:100,bottom:400},2000),0);});
 test('oversized sentences begin below navigation and the final sentence is document-clamped',()=>{assert.equal(focusDestination(500,700,300,{top:110,bottom:410},2000),682);assert.equal(focusDestination(1900,100,0,{top:100,bottom:500},1200),1200);});
 test('damped focus has a bounded single rebound and settles without long oscillation',()=>{for(const distance of [80,600,2400,-600]){const frames=Array.from({length:121},(_,i)=>springFrame(i/120,distance));assert.ok(frames.every(f=>f.position>=Math.min(0,distance)-8.01&&f.position<=Math.max(0,distance)+8.01));assert.ok(Math.abs(frames.at(-1).position-distance)<.01);assert.ok(Math.abs(frames.at(-1).velocity)<.01);}assert.ok(focusEase(.5)>1);assert.equal(focusEase(0),0);assert.equal(focusEase(1),1);});

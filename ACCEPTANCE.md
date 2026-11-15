@@ -1,3 +1,9 @@
+# V1.4.1 refinement acceptance
+
+The original content, neutral speech mapping, audio settings and all 360 MP3 bytes remain unchanged. New checks cover whole-sentence press/release and scroll cancellation, distinct blue/plum layers in each collection and reduced motion, real temporary HTTP media failures, content-prefix verification, one native retry and explicit-pause cancellation. Unit faults additionally cover altered bytes, missing files, imported files, request interruption, stale source events and cue rounding. Playback remains on the same HTML audio element; no blob/Web Audio fallback replaces built-in MP3s.
+
+Motion measurements compare the published V1.4 artifact and the new client at the same viewport/DPR, including an injected 180ms main-thread stall. Delayed frames advance at most 32ms of spring time. Layout is sampled for visible rows at the beginning of travel, not across all rows each frame; filters, backdrop and background motion yield during travel, with a temporary reduced decoration budget after repeated slow frames. These software-browser measurements do not establish physical iPhone/Android frame rates or touch feel. Full source/audio, unit, production browser, PWA, privacy-history and formal HTTPS gates remain required. See docs/DESIGN_V1_4_1.md and release artifacts for actual outcomes and limits.
+
 # V1.4 lyric interaction acceptance
 
 All four loop modes start actual audio from clicked stable sentence IDs, including paused/cold metadata/rapid clicks. Chapter mode seeks without reload; independent-sentence mode switches real files. TTS starts the selected sentence and rejects stale callbacks. Imported associations are preserved; exact cue jumps use the built-in source, never guessed custom-file timing.
