@@ -1,4 +1,4 @@
-name: Diagnose WebKit startup
+name: Diagnose WebKit player states
 on:
   push:
     branches: ['diagnostic/webkit-startup-v14']
@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        mode: [baseline, buffer-aware]
+        mode: [buffer-aware]
         project: [ipad-webkit, landscape-webkit]
     steps:
       - uses: actions/checkout@v4
@@ -23,9 +23,9 @@ jobs:
       - run: npm ci
       - run: npx playwright install --with-deps webkit
       - if: matrix.mode == 'buffer-aware'
-        run: git apply scripts/startup-recovery.patch
+        run: git apply scripts/startup-recovery.patch scripts/lyrics-state.patch
       - run: npm run build
-      - run: npm run test:e2e:production -- --project=${{ matrix.project }} --grep "all published chapter files|three native listening presets" --repeat-each=5 --workers=1
+      - run: npm run test:e2e:production -- --project=${{ matrix.project }} --grep "manual touch and momentum|single-loop silence" --repeat-each=5 --workers=1
       - uses: actions/upload-artifact@v4
         if: always()
         with:
