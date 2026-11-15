@@ -39,7 +39,7 @@ test('manual touch and momentum defer follow then resume the pending real cue wi
   for(const step of [50,25,10]){window.scrollBy(0,step);await new Promise<void>(resolve=>requestAnimationFrame(()=>resolve()));await new Promise(resolve=>setTimeout(resolve,65));points.push({time:performance.now(),y:scrollY,state:root.dataset.follow});}return points;
  });
  await test.info().attach('browser-clock-momentum',{body:JSON.stringify(momentum),contentType:'application/json'});
- expect(momentum.map(p=>p.state)).toEqual(['MOMENTUM_SCROLLING','MOMENTUM_SCROLLING','MOMENTUM_SCROLLING']);for(let i=1;i<momentum.length;i++){expect(momentum[i].time-momentum[i-1].time).toBeLessThan(180);expect(momentum[i].y).toBeGreaterThan(momentum[i-1].y);} 
+ expect(momentum.map(p=>p.state)).toEqual(['MOMENTUM_SCROLLING','MOMENTUM_SCROLLING','MOMENTUM_SCROLLING']);for(let i=1;i<momentum.length;i++){expect(momentum[i].time-momentum[i-1].time).toBeLessThan(180);expect(momentum[i].y).toBeGreaterThan(momentum[i-1].y);}
  await expect(transcript).toHaveAttribute('data-follow','FOLLOWING');const row=page.locator('[data-sentence="'+cue.sentenceId+'"]');await expect(row).toHaveClass(/current-sentence/);expect((await row.boundingBox())!.y).toBeGreaterThan(60);
 });
 
