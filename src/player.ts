@@ -217,6 +217,7 @@ export class Player {
     this.mediaFailure={name,code,source:this.usingImportedAudio?'imported':this.audioSource??''};
     if(name==='AbortError'&&!code){
       // pause/load interruptions do not establish that the file is invalid.
+      if(!this.wantedPlayback){this.stopAudioWatch();this.busy=false;this.playing=false;this.status='已暂停';this.changed();return;}
       if(this.audio.paused){this.stopAudioWatch();this.wantedPlayback=false;this.busy=false;this.playing=false;this.status='播放请求已中断，轻点播放即可继续。';}
       else{this.playing=true;this.busy=false;this.status='正在缓冲音频…';}
       this.changed();return;
@@ -250,7 +251,7 @@ export class Player {
       if(expected!==this.token||!this.wantedPlayback||this.recovery?.controller!==controller)return;
       this.recovery=undefined;
       const message=error instanceof Error?error.message:'';
-      this.finishAudioFailure(message==='integrity'?'内置音频校验失败，已停止播放。请稍后重试。':/^HTTP /.test(message)?'内置音频暂时无法加载（'+message+'），请稍后重试。':'音频连接暂时不可用，请检查网络后重试。');
+      this.finishAudioFailure(message==='integrity'?'内置音频校验失败，已停止播放。请稍后重试。':/^HTTP /.test(message)?'内置音频暂时无法加载（'+message+'），请稍后重试。':'音频连接失败，请检查网络后重试。');
     }finally{clearTimeout(timeout);if(this.recovery?.controller===controller)this.recovery=undefined;}
   }
   private hasBufferedPosition(at:number){
