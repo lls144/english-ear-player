@@ -32,15 +32,16 @@ test('manual touch and momentum defer follow then resume the pending real cue wi
  await page.locator('audio').evaluate((a:HTMLAudioElement,t:number)=>{a.currentTime=t;},cue.start+.1);await page.waitForTimeout(350);expect(Math.abs(await page.evaluate(()=>scrollY)-before)).toBeLessThan(4);expect((await state(page)).paused).toBe(false);
  await expect.poll(()=>page.locator('.sentence').first().evaluate(e=>getComputedStyle(e).filter)).toBe('none');
  await expect(page.locator('[data-sentence="'+cue.sentenceId+'"]')).toHaveClass(/current-sentence/);await expect(transcript).toHaveAttribute('data-follow','USER_INTERACTING');
- // Run one continuous gesture on the browser clock. Separate automation RPCs
- // can exceed the real 180ms quiet window and correctly become a new browse.
- const momentum=await page.evaluate(async()=>{
+ // This is the synthetic state-integration case; native post-lift displacement
+ // is tested separately below. Feed its continuous scroll events in one task:
+ // software WebKit can block rAF for longer than the real 180ms quiet window.
+ const momentum=await page.evaluate(()=>{
   const root=document.querySelector<HTMLElement>('#transcript')!;root.dispatchEvent(new PointerEvent('pointerup',{pointerId:9,bubbles:true}));
   const points:{time:number;y:number;state:string|undefined}[]=[];
-  for(const step of [50,25,10]){window.scrollBy(0,step);await new Promise<void>(resolve=>requestAnimationFrame(()=>resolve()));await new Promise(resolve=>setTimeout(resolve,65));points.push({time:performance.now(),y:scrollY,state:root.dataset.follow});}return points;
+  for(const step of [50,25,10]){window.scrollBy(0,step);window.dispatchEvent(new Event('scroll'));points.push({time:performance.now(),y:scrollY,state:root.dataset.follow});}return points;
  });
  await test.info().attach('browser-clock-momentum',{body:JSON.stringify(momentum),contentType:'application/json'});
- expect(momentum.map(p=>p.state)).toEqual(['MOMENTUM_SCROLLING','MOMENTUM_SCROLLING','MOMENTUM_SCROLLING']);for(let i=1;i<momentum.length;i++){expect(momentum[i].time-momentum[i-1].time).toBeLessThan(180);expect(momentum[i].y).toBeGreaterThan(momentum[i-1].y);}
+ expect(momentum.map(p=>p.state)).toEqual(['MOMENTUM_SCROLLING','MOMENTUM_SCROLLING','MOMENTUM_SCROLLING']);for(let i=1;i<momentum.length;i++)expect(momentum[i].y).toBeGreaterThan(momentum[i-1].y);
  await expect(transcript).toHaveAttribute('data-follow','FOLLOWING');const row=page.locator('[data-sentence="'+cue.sentenceId+'"]');await expect(row).toHaveClass(/current-sentence/);expect((await row.boundingBox())!.y).toBeGreaterThan(60);
 });
 
