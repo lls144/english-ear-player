@@ -196,9 +196,13 @@ export class Player {
       this.token++;this.audioFailed=true;this.wantedPlayback=false;this.audio.pause();
       this.playing=false;this.busy=false;this.status='音频加载失败或长时间无响应。请检查文件或网络后重试。';this.changed();
     },60000);
-    try { await this.audio.play();if(expected===this.token&&this.settings.mode==='audio'&&this.wantedPlayback)this.observeStartup(expected,retrying); }
+    // A native play promise can remain pending while the buffered clock stalls.
+    // Monitor immediately; neither a play event nor promise settlement proves output.
+    this.observeStartup(expected,retrying);
+    try { await this.audio.play(); }
     catch (e) {
       if(expected!==this.token) return;
+      this.stopStartup?.();
       if(this.audioTimer)clearTimeout(this.audioTimer);
       this.busy=false; this.playing=false;this.wantedPlayback=false;
       this.status=e instanceof DOMException && e.name==='NotAllowedError' ? '浏览器阻止了自动播放。请轻点播放继续。' : '播放失败，请确认文件是可播放的 MP3 后重试。'; this.changed();
@@ -209,6 +213,13 @@ export class Player {
     const ranges=this.audio.buffered;if(!ranges)return false;
     for(let i=0;i<ranges.length;i++)if(ranges.start(i)<=at&&ranges.end(i)>=Math.min(this.audio.duration,at+.2))return true;
     return false;
+  }
+  private hasCompleteBuffer(){
+    const duration=this.audio.duration,ranges=this.audio.buffered;
+    if(!Number.isFinite(duration)||duration<=0||!ranges.length)return false;
+    let covered=0;
+    for(let i=0;i<ranges.length;i++){if(ranges.start(i)>covered+.02)return false;covered=Math.max(covered,ranges.end(i));}
+    return covered>=duration-.02;
   }
   private restorePosition(final:boolean,metadata=false){
     if(!this.restorePending||!this.audioReady||(!metadata&&this.audio.readyState<3))return;
@@ -223,7 +234,7 @@ export class Player {
     try{this.audio.currentTime=request.at;request.applied=true;}catch{/* Metadata/canplay retries the latest target only. */}
   }
   private observeStartup(expected:number,retrying:boolean){
-    let previous:number|undefined,stalledSince=0;const began=performance.now();
+    let previous:number|undefined,stalledSince=0;
     const seeking=()=>{previous=undefined;stalledSince=0;};
     const cleanup=()=>{clearInterval(timer);this.audio.removeEventListener('seeking',seeking);if(this.stopStartup===cleanup)this.stopStartup=undefined;};
     const timer=setInterval(()=>{
@@ -233,7 +244,8 @@ export class Player {
         if(previous!==undefined&&Math.abs(at-previous)>.03){if(this.audioTimer)clearTimeout(this.audioTimer);this.audioTimer=undefined;this.restoredAt=0;cleanup();return;}
         previous=at;
       }else previous=undefined;
-      const full=this.audio.networkState===1&&!this.audio.paused&&!this.audio.seeking&&this.hasBufferedPosition(Math.max(at,this.restoredAt));
+      // WebKit can leave NETWORK_LOADING set even with the whole timeline buffered.
+      const full=!this.audio.paused&&!this.audio.seeking&&this.hasBufferedPosition(Math.max(at,this.restoredAt))&&(this.audio.networkState===1||this.hasCompleteBuffer());
       if(!full)stalledSince=0;
       else if(!stalledSince)stalledSince=now;
       else if(now-stalledSince>=1000){
@@ -241,7 +253,6 @@ export class Player {
         if(retrying){if(this.audioTimer)clearTimeout(this.audioTimer);this.audioFailed=true;this.wantedPlayback=false;this.token++;this.audio.pause();this.playing=false;this.busy=false;this.status='音频播放失败，请轻点重试。';this.changed();return;}
         const resume=Math.max(at,this.restoredAt);this.pause();this.settings.audioPositions[this.positionKey]=resume;this.loadAudio();void this.play(true);return;
       }
-      if(now-began>6000)cleanup();
     },250);
     this.audio.addEventListener('seeking',seeking);this.stopStartup=cleanup;
   }

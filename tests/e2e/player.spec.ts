@@ -34,6 +34,7 @@ test.beforeEach(async({page})=>{
  await expect.poll(async()=>(await state(page)).duration).toBeGreaterThan(0);
 });
 test.afterEach(async({page},info)=>{
+ if(info.status!==info.expectedStatus){const native=await audio(page).evaluate((a:HTMLAudioElement)=>({time:a.currentTime,source:a.currentSrc,paused:a.paused,ready:a.readyState,network:a.networkState,seeking:a.seeking,duration:a.duration,buffered:Array.from({length:a.buffered.length},(_,i)=>[a.buffered.start(i),a.buffered.end(i)])})).catch(error=>({unavailable:String(error)}));console.log('Native media failure: '+JSON.stringify(native));await info.attach('native-media-failure',{body:JSON.stringify(native),contentType:'application/json'});}
  const unhandled=await page.evaluate(()=>(window as any).__errors);
  const logs=consoleErrors.get(page)??[];
  await info.attach('browser-errors',{body:JSON.stringify({console:logs,unhandled}),contentType:'application/json'});

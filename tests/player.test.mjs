@@ -88,3 +88,30 @@ test('precise lyric jumps keep an imported association but use verified built-in
 
 test('late rejected play promises cannot undo a newer same-chapter lyric jump',async()=>{const p=make();metadata(p);const native=p.audio.play.bind(p.audio);let rejectOld;p.audio.play=()=>new Promise((_,reject)=>rejectOld=reject);p.selectSentence(p.current.segments[1].sentences[0].id);p.audio.play=native;const latest=p.current.segments[4].sentences[0].id;p.selectSentence(latest);rejectOld(new DOMException('old seek aborted','AbortError'));await Promise.resolve();await Promise.resolve();assert.equal(p.activeSentenceId,latest);assert.equal(p.playing,true);assert.equal(p.audio.currentTime,20);});
 test('changing chapters invalidates an unfulfilled metadata sentence target',()=>{const p=make();p.audio.readyState=0;p.audio.duration=NaN;p.selectSentence(p.current.segments[4].sentences[0].id);p.select('reasons',false,true);p.audio.readyState=4;p.audio.duration=100;metadata(p);assert.equal(p.current.id,'reasons');assert.equal(p.audio.currentTime,0);assert.equal(p.activeSentenceId,p.sentences[0].id);assert.equal(p.playing,false);});
+
+
+test('a pending native play promise cannot disable buffered startup recovery',async()=>{
+ const p=make(),a=p.audio;metadata(p);let calls=0,loads=0;const load=a.load.bind(a);
+ a.load=()=>{loads++;load();};a.play=()=>{calls++;a.paused=false;a.dispatchEvent(new Event('play'));return calls===1?new Promise(()=>{}):Promise.resolve();};
+ void p.play();await waitUntil(()=>loads===1);const ticker=setInterval(()=>a.currentTime+=.1,80);
+ try{await waitUntil(()=>a.currentTime>.3);assert.equal(p.audio,a);assert.equal(loads,1);assert.equal(calls,2);assert.equal(p.playing,true);}finally{clearInterval(ticker);}
+});
+
+test('explicit pause cancels recovery even while native play remains pending',async()=>{
+ const p=make(),a=p.audio;metadata(p);let loads=0;a.load=()=>loads++;a.play=()=>{a.paused=false;a.dispatchEvent(new Event('play'));return new Promise(()=>{});};
+ void p.play();p.pause();await new Promise(resolve=>setTimeout(resolve,1500));assert.equal(loads,0);assert.equal(a.paused,true);assert.equal(p.playing,false);
+});
+
+
+test('complete buffered audio can recover while WebKit still reports NETWORK_LOADING',async()=>{
+ const p=make(),a=p.audio;metadata(p);a.readyState=3;a.networkState=2;let loads=0;const load=a.load.bind(a);a.load=()=>{loads++;load();};void p.play();
+ await waitUntil(()=>loads===1);const ticker=setInterval(()=>a.currentTime+=.1,80);try{await waitUntil(()=>a.currentTime>.3);assert.equal(p.audio,a);assert.equal(loads,1);assert.equal(p.playing,true);}finally{clearInterval(ticker);}
+});
+
+test('a partially buffered loading stream is never mistaken for a complete resource',async()=>{
+ const p=make(),a=p.audio;metadata(p);a.readyState=3;a.networkState=2;Object.defineProperty(a,'buffered',{get:()=>({length:1,start:()=>0,end:()=>2})});let loads=0;a.load=()=>loads++;void p.play();await new Promise(resolve=>setTimeout(resolve,1600));assert.equal(loads,0);p.pause();assert.equal(a.paused,true);
+});
+
+test('startup monitoring stays armed when full data arrives after the initial six seconds',async()=>{
+ const p=make(),a=p.audio;metadata(p);a.readyState=1;a.networkState=2;let loads=0;const load=a.load.bind(a);a.load=()=>{loads++;load();};void p.play();await new Promise(resolve=>setTimeout(resolve,6250));assert.equal(loads,0);a.readyState=3;await waitUntil(()=>loads===1);p.pause();assert.equal(a.paused,true);
+});

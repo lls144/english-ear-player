@@ -51,3 +51,5 @@ Playback startup is confirmed by actual clock movement, clearing the load watchd
 An explicit pause temporarily disables native looping and rejects queued play/playing events for 250 ms. A new dock/Media Session play or native control gesture clears that guard. This prevents an already queued WebKit loop seek from overriding pause.
 
 CI runs every device profile on its own standard Ubuntu runner with one browser worker; all six profiles and all 228 cases must succeed before deployment. This isolates software rendering and native media backends. Native Android touch uses timestamped CDP input without serial acknowledgement delays, and actual post-touchend displacement is still measured. No assertion, test or profile is skipped.
+
+Startup liveness regressions require real clock progress rather than the play event or its promise. The complete-buffer NETWORK_LOADING case, unresolved native play promises, cancellation by explicit pause, partial data and slow data arrival are covered by five additional unit regressions (119 total). Actual native chapter/preset checks remain mandatory on all six profiles.
