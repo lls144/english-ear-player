@@ -57,7 +57,10 @@ test('scrubbing previews without seeking or pausing and commits one accurate see
 });
 
 test('single-loop silence keeps focus and two actual wraps cause no repeated scrolling',async({page})=>{
- test.setTimeout(25000);await page.locator('[data-chapter=connectors]').click();await expect(page.locator('#transcript')).toHaveAttribute('data-lyric-chapter','connectors');await setLoop(page,'sentence');await play(page);
+ // Keep the standard 35s case budget: browser/page setup is included. A CI
+ // WebKit cold page took 14s, leaving only 4s under the former 25s override.
+ // The actual two-wrap observation still has its own strict 18s deadline.
+ await page.locator('[data-chapter=connectors]').click();await expect(page.locator('#transcript')).toHaveAttribute('data-lyric-chapter','connectors');await setLoop(page,'sentence');await play(page);
  // Measure native wraps after the initial focus has settled, not its entry tail.
  await expect(page.locator('#transcript')).toHaveAttribute('data-follow','FOLLOWING');
  const result=await page.locator('audio').evaluate(async(a:HTMLAudioElement)=>{let wraps=0,previous=a.currentTime,min=scrollY,max=scrollY;const start=performance.now();return await new Promise<{wraps:number;delta:number;current:string|null}>((resolve,reject)=>{const timer=setInterval(()=>{min=Math.min(min,scrollY);max=Math.max(max,scrollY);if(a.currentTime<previous-.3)wraps++;previous=a.currentTime;if(wraps===2){clearInterval(timer);resolve({wraps,delta:max-min,current:document.querySelector('.current-sentence')?.getAttribute('data-sentence')??null});}if(performance.now()-start>18000){clearInterval(timer);reject(Error('Two real wraps did not finish'));}},20);});});
