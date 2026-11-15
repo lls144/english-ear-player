@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        mode: [baseline, early-observer]
+        mode: [baseline, buffer-aware]
         project: [ipad-webkit, landscape-webkit]
     steps:
       - uses: actions/checkout@v4
@@ -22,8 +22,8 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx playwright install --with-deps webkit
-      - if: matrix.mode == 'early-observer'
-        run: node scripts/webkit-startup-probe.mjs --patch-only
+      - if: matrix.mode == 'buffer-aware'
+        run: git apply scripts/startup-recovery.patch
       - run: npm run build
       - run: npm run test:e2e:production -- --project=${{ matrix.project }} --grep "all published chapter files|three native listening presets" --repeat-each=5 --workers=1
       - uses: actions/upload-artifact@v4

@@ -24,10 +24,8 @@ test.beforeEach(async({page})=>{
  await page.addInitScript(()=>{
   (window as any).__errors=[];(window as any).__actions={};
   const w=window as any;w.__nativePlay=[];w.__nativeEvents=[];
-  const snapshot=(a:HTMLMediaElement)=>({at:performance.now(),time:a.currentTime,source:a.currentSrc,paused:a.paused,ready:a.readyState,network:a.networkState,seeking:a.seeking,duration:a.duration,buffered:Array.from({length:a.buffered.length},(_,i)=>[a.buffered.start(i),a.buffered.end(i)])});
-  const nativePlay=HTMLMediaElement.prototype.play;HTMLMediaElement.prototype.play=function(){const row:any={...snapshot(this),state:'pending'};w.__nativePlay.push(row);const p=nativePlay.call(this);p.then(()=>{row.state='resolved';row.finished=snapshot(this);},e=>{row.state='rejected';row.error=String(e);});return p;};
-  for(const type of ['play','playing','pause','waiting','canplay','loadedmetadata','seeking','seeked','stalled','suspend','error'])document.addEventListener(type,e=>{if(e.target instanceof HTMLMediaElement)w.__nativeEvents.push({type,...snapshot(e.target)});},true);
-
+  const nativePlay=HTMLMediaElement.prototype.play;HTMLMediaElement.prototype.play=function(){const row:any={at:performance.now(),state:'pending'};w.__nativePlay.push(row);const p=nativePlay.call(this);p.then(()=>{row.state='resolved';row.finishedAt=performance.now();},e=>{row.state='rejected';row.error=String(e);});return p;};
+  for(const type of ['play','playing','pause','waiting','canplay','loadedmetadata','seeking','seeked','stalled','suspend','error'])document.addEventListener(type,e=>{if(e.target instanceof HTMLMediaElement)w.__nativeEvents.push({type,at:performance.now()});},true);
   window.addEventListener('unhandledrejection',e=>(window as any).__errors.push(String(e.reason)));
   window.addEventListener('error',e=>(window as any).__errors.push(e.message));
   if('mediaSession' in navigator){
