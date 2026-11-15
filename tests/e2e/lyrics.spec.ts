@@ -31,7 +31,15 @@ test('manual touch and momentum defer follow then resume the pending real cue wi
  await expect(transcript).toHaveAttribute('data-follow','USER_INTERACTING');const before=await page.evaluate(()=>scrollY),cue=lib.timings.slow.picture[2];
  await page.locator('audio').evaluate((a:HTMLAudioElement,t:number)=>{a.currentTime=t;},cue.start+.1);await page.waitForTimeout(350);expect(Math.abs(await page.evaluate(()=>scrollY)-before)).toBeLessThan(4);expect((await state(page)).paused).toBe(false);
  await expect.poll(()=>page.locator('.sentence').first().evaluate(e=>getComputedStyle(e).filter)).toBe('none');
- await transcript.dispatchEvent('pointerup',{pointerId:9});for(const step of [50,25,10]){await page.evaluate(d=>window.scrollBy(0,d),step);await page.waitForTimeout(85);await expect(transcript).toHaveAttribute('data-follow','MOMENTUM_SCROLLING');}
+ // Run one continuous gesture on the browser clock. Separate automation RPCs
+ // can exceed the real 180ms quiet window and correctly become a new browse.
+ const momentum=await page.evaluate(async()=>{
+  const root=document.querySelector<HTMLElement>('#transcript')!;root.dispatchEvent(new PointerEvent('pointerup',{pointerId:9,bubbles:true}));
+  const points:{time:number;y:number;state:string|undefined}[]=[];
+  for(const step of [50,25,10]){window.scrollBy(0,step);await new Promise<void>(resolve=>requestAnimationFrame(()=>resolve()));await new Promise(resolve=>setTimeout(resolve,65));points.push({time:performance.now(),y:scrollY,state:root.dataset.follow});}return points;
+ });
+ await test.info().attach('browser-clock-momentum',{body:JSON.stringify(momentum),contentType:'application/json'});
+ expect(momentum.map(p=>p.state)).toEqual(['MOMENTUM_SCROLLING','MOMENTUM_SCROLLING','MOMENTUM_SCROLLING']);for(let i=1;i<momentum.length;i++){expect(momentum[i].time-momentum[i-1].time).toBeLessThan(180);expect(momentum[i].y).toBeGreaterThan(momentum[i-1].y);} 
  await expect(transcript).toHaveAttribute('data-follow','FOLLOWING');const row=page.locator('[data-sentence="'+cue.sentenceId+'"]');await expect(row).toHaveClass(/current-sentence/);expect((await row.boundingBox())!.y).toBeGreaterThan(60);
 });
 
