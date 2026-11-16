@@ -1,5 +1,5 @@
 import {selectSetting} from '../ui';
-import {test,expect,type Page} from '@playwright/test';
+import {test,expect,type Page} from '../native-fixture';
 import path from 'node:path';
 import fs from 'node:fs';
 import {randomUUID} from 'node:crypto';

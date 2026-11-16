@@ -1,5 +1,5 @@
 import {selectSetting} from '../ui';
-import {test,expect,type Page} from '@playwright/test';
+import {test,expect,type Page} from '../native-fixture';
 import fs from 'node:fs';
 const lib=JSON.parse(fs.readFileSync('src/library.generated.json','utf8'));
 const state=(p:Page)=>p.locator('audio').evaluate((a:HTMLAudioElement)=>({time:a.currentTime,duration:a.duration,paused:a.paused,src:a.currentSrc,loop:a.loop}));

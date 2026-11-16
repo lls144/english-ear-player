@@ -1,5 +1,5 @@
 import {selectSetting} from '../ui';
-import {test,expect,type Page} from '@playwright/test';
+import {test,expect,type Page} from '../native-fixture';
 import fs from 'node:fs';
 import {installMediaDiagnostics,attachFailedMedia} from '../media-diagnostics';
 const lib=JSON.parse(fs.readFileSync('src/library.generated.json','utf8'));

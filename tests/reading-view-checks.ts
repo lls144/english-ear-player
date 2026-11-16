@@ -1,4 +1,4 @@
-import{test,expect,type Page}from'@playwright/test';
+import{test,expect,type Page}from'./native-fixture';
 
 /** The same checks run on local production and the actual HTTPS release. */
 export function readingViewChecks(){

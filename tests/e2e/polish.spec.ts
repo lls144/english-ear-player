@@ -1,4 +1,4 @@
-import {test,expect,type Page} from '@playwright/test';
+import {test,expect,type Page} from '../native-fixture';
 const problems=new WeakMap<Page,string[]>();
 test.beforeEach(async({page})=>{const errors:string[]=[];problems.set(page,errors);page.on('pageerror',e=>errors.push(e.message));page.on('crash',()=>errors.push('Browser renderer crashed'));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});});
 test.afterEach(async({page})=>expect(problems.get(page)).toEqual([]));

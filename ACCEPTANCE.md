@@ -4,6 +4,8 @@ Selected text, source mapping and all 360 MP3 bytes remain unchanged. Four share
 
 Press trajectories include normal input and a real 900ms stall after the trusted row click. Both retain held-scale, rendered-peak and full post-peak tail assertions through actual settlement, with console, page-error and renderer-crash capture. The old implementation is tested as an isolated failing control; fixed native/browser checks and both Linux WebKit stress profiles must pass before publication. Sparse software rendering and native seek latency remain recorded separately from physical-device acceptance.
 
+Production and formal HTTPS also repeat twenty settings open/change/close cycles during advancing native MP3 playback. The settings surface has no nested backdrop filters; header and transport glass remain. Native fixture teardown stops and releases media after assertions, before context destruction. Renderer crashes remain failures and are never converted to skipped or silently retried tests.
+
 Inspect actual iPhone/iPad/Android-sized frames and recordings, including paused and manually browsing states. Measure real background pixel changes as well as animation transforms. Software-port frame costs, existing Windows WebKit direct-network intermittence and physical-device limits are separate from browser functional acceptance. An explicit existing proxy may be used for Windows WebKit formal HTTPS checks; resources, assertions and timeouts remain unchanged. Never present injected WebKit pointer moves as a physical iPhone swipe.
 
 # V1.4.1 refinement acceptance
