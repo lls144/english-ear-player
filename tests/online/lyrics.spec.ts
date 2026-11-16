@@ -7,7 +7,10 @@ async function start(page:Page){await page.locator('#play').click();await expect
 test('formal immersive lyrics follow the actual cue and preserve manual browsing',async({page,browserName,isMobile},info)=>{
  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));await page.goto('./');await start(page);
  const cue=lib.timings.slow.picture[1];await page.locator('audio').evaluate((a:HTMLAudioElement,t:number)=>{a.currentTime=t;},cue.start+.2);
- const target=page.locator('[data-sentence="'+cue.sentenceId+'"]');await expect(target).toHaveClass(/current-sentence/);await page.waitForTimeout(550);
+ const target=page.locator('[data-sentence="'+cue.sentenceId+'"]');await expect(target).toHaveClass(/current-sentence/);
+ // Measure settled geometry, not an arbitrary intermediate spring frame.
+ // Keep the same eight-second motion bound and unchanged visible-area limits.
+ await expect(page.locator('#transcript')).toHaveAttribute('data-follow','FOLLOWING',{timeout:8000});
  const geometry=await target.boundingBox();expect(geometry!.y).toBeGreaterThan(60);expect(geometry!.y).toBeLessThan(page.viewportSize()!.height-130);expect(await target.evaluate(e=>getComputedStyle(e).backgroundColor)).toBe('rgba(0, 0, 0, 0)');
  if(['edge-desktop','iphone-webkit'].includes(info.project.name)){await fs.promises.mkdir('.local/qa/visual-online',{recursive:true});await page.screenshot({path:'.local/qa/visual-online/'+info.project.name+'.png'});}
  const transcript=page.locator('#transcript');await transcript.dispatchEvent('pointerdown',{pointerId:11,clientX:80,clientY:300});await transcript.dispatchEvent('pointermove',{pointerId:11,clientX:80,clientY:190});await page.evaluate(()=>window.scrollBy(0,600));
