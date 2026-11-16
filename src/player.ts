@@ -308,10 +308,12 @@ export class Player {
         cleanup();
         if(retrying){if(this.audioTimer)clearTimeout(this.audioTimer);this.audioFailed=true;this.wantedPlayback=false;this.token++;this.audio.pause();this.playing=false;this.busy=false;this.status='音频播放失败，请轻点重试。';this.changed();return;}
         const resume=Math.max(at,this.restoredAt),seek=this.sentenceSeek;this.pause();this.settings.audioPositions[this.positionKey]=resume;
-        // A fully buffered native seek can stay pending forever. Give its media
-        // pipeline one pause/play restart without reloading or seeking again.
-        // Partial streams and actual user/system pauses never enter this path.
-        if(!stalledSeek)this.loadAudio();if(seek)this.sentenceSeek=stalledSeek?seek:{...seek,applied:false};void this.play(true);return;
+        // Keep a complete decoded resource while restarting its native clock.
+        // Rebuilding that same pipeline can repeat the initial frozen startup.
+        // This also leaves a pending seek in place, without issuing it twice.
+        // Loading partial streams and actual user/system pauses never enter this
+        // path. An idle but incomplete resource retains its one reload fallback.
+        if(!complete)this.loadAudio();if(seek)this.sentenceSeek=complete?seek:{...seek,applied:false};void this.play(true);return;
       }
     },250);
     this.audio.addEventListener('seeking',seeking);this.stopStartup=cleanup;
