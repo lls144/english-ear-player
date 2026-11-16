@@ -254,8 +254,8 @@ export class Player {
       this.finishAudioFailure(message==='integrity'?'内置音频校验失败，已停止播放。请稍后重试。':/^HTTP /.test(message)?'内置音频暂时无法加载（'+message+'），请稍后重试。':'音频连接失败，请检查网络后重试。');
     }finally{clearTimeout(timeout);if(this.recovery?.controller===controller)this.recovery=undefined;}
   }
-  private hasBufferedPosition(at:number){
-    if(this.audio.readyState<3||!Number.isFinite(this.audio.duration))return false;
+  private hasBufferedPosition(at:number,minimumReady=3){
+    if(this.audio.readyState<minimumReady||!Number.isFinite(this.audio.duration))return false;
     const ranges=this.audio.buffered;if(!ranges)return false;
     for(let i=0;i<ranges.length;i++)if(ranges.start(i)<=at&&ranges.end(i)>=Math.min(this.audio.duration,at+.2))return true;
     return false;
@@ -301,7 +301,7 @@ export class Player {
       }else previous=undefined;
       // WebKit can leave NETWORK_LOADING set even with the whole timeline buffered.
       const complete=this.hasCompleteBuffer(),stalledSeek=this.audio.seeking&&complete;
-      const full=!this.audio.paused&&this.hasBufferedPosition(Math.max(at,this.restoredAt))&&(stalledSeek||!this.audio.seeking&&(this.audio.networkState===1||complete));
+      const full=!this.audio.paused&&this.hasBufferedPosition(Math.max(at,this.restoredAt),complete?2:3)&&(stalledSeek||!this.audio.seeking&&(this.audio.networkState===1||complete));
       if(!full)stalledSince=0;
       else if(!stalledSince)stalledSince=now;
       else if(now-stalledSince>=(stalledSeek?3000:1000)){
