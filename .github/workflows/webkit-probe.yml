@@ -14,6 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          fetch-depth: 0
           persist-credentials: false
       - uses: actions/setup-node@v4
         with:
@@ -23,7 +24,7 @@ jobs:
       - run: npx playwright install --with-deps webkit
       - run: npm test
       - run: npm run build
-      - run: npm run test:e2e:production -- --project=${{ matrix.profile }} --workers=1 --repeat-each=20 --grep='all four modes click|a whole sentence presses'
+      - run: npm run test:e2e:production -- --project=${{ matrix.profile }} --workers=1 --repeat-each=20 --grep='all four modes click|a whole sentence presses|real sentence boundary follows'
       - uses: actions/upload-artifact@v4
         if: always()
         with:
