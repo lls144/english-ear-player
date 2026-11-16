@@ -47,7 +47,8 @@ jobs:
           path: dist
   browsers:
     needs: validate
-    runs-on: ubuntu-latest
+    # Pin the native media stack; runner-image upgrades require separate probes.
+    runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
       matrix:
