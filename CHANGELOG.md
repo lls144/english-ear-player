@@ -1,3 +1,9 @@
+## 1.4.2
+
+Keep the ambient colors flowing while paused, retain distance blur until actual browsing, soften the layered header and frosted dock, and center the wide tablet transport on the screen. The entire 44px seek area accepts touch; sentence press feedback survives a delayed frame. Preserve loaded sentence audio and allow cold-device startup before bounded recovery.
+
+Chapters 9 → 9; segments 105 → 105; generated MP3: none.
+
 ## 1.4.1
 
 Chapters 9 → 9; segments 105 → 105; generated MP3: none.
