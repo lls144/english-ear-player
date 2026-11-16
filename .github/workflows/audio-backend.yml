@@ -6,11 +6,19 @@ permissions:
   contents: read
 jobs:
   audio:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        configuration: [headless-default, headless-pulse, headed-pulse]
+        include:
+          - configuration: headless-default
+            os: ubuntu-latest
+          - configuration: headless-default
+            os: ubuntu-24.04
+          - configuration: headless-pulse
+            os: ubuntu-latest
+          - configuration: headed-pulse
+            os: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
@@ -32,6 +40,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: native-${{ matrix.configuration }}
+          name: native-${{ matrix.configuration }}-${{ matrix.os }}
           retention-days: 1
           path: .local/qa/native-audio-diagnostic.json

@@ -8,8 +8,9 @@ ear_runtime="${RUNNER_TEMP}/ear-audio"
 mkdir -p "$ear_runtime"
 chmod 700 "$ear_runtime"
 export XDG_RUNTIME_DIR="$ear_runtime"
-export PULSE_SERVER="unix:${ear_runtime}/pulse/native"
+unset PULSE_SERVER
 pulseaudio --start --exit-idle-time=-1 --log-target=stderr
+export PULSE_SERVER="unix:${ear_runtime}/pulse/native"
 pactl load-module module-null-sink sink_name=ear_test rate=48000 channels=2
 pactl set-default-sink ear_test
 pactl unload-module module-suspend-on-idle || true
