@@ -23,11 +23,11 @@ export function readingViewChecks(){
  });
 
  test('ambient colors visibly advance while paused and survive chapter and slow-frame changes',async({page})=>{
-  await expect(page.locator('.ambient-scene')).toHaveCount(1);const sample=()=>page.locator('.ambient-scene').evaluate(e=>['::before','::after'].map(p=>({transform:getComputedStyle(e,p).transform,state:getComputedStyle(e,p).animationPlayState,name:getComputedStyle(e,p).animationName})));
-  const first=await sample();await page.evaluate(()=>{(window as any).__field=document.querySelector('.ambient-scene');document.documentElement.dataset.effects='quiet';document.documentElement.dataset.motionBudget='quiet';});await page.waitForTimeout(1100);const second=await sample();
+  await expect(page.locator('.ambient-scene')).toHaveCount(1);const sample=()=>page.locator('.ambient-scene').evaluate(e=>[...e.querySelectorAll('canvas')].map(layer=>({transform:getComputedStyle(layer).transform,state:getComputedStyle(layer).animationPlayState,name:getComputedStyle(layer).animationName})));
+  const first=await sample();await page.evaluate(()=>{(window as any).__field=document.querySelector('.ambient-scene');(window as any).__textures=[...document.querySelectorAll('.ambient-blob')];document.documentElement.dataset.effects='quiet';document.documentElement.dataset.motionBudget='quiet';});await page.waitForTimeout(1100);const second=await sample();
   for(let i=0;i<2;i++){expect(second[i].state).toBe('running');expect(second[i].name).not.toBe('none');expect(second[i].transform).not.toBe(first[i].transform);}
   for(const id of ['theme-trends','letter-body','picture'])await page.locator('[data-chapter="'+id+'"]').click();expect(await page.locator('.ambient-scene').evaluate(e=>e===(window as any).__field)).toBe(true);
-  const third=await sample();expect(third.every(l=>l.state==='running')).toBe(true);expect(await page.locator('audio').evaluate((a:HTMLAudioElement)=>a.paused)).toBe(true);
+  const third=await sample();expect(third).toHaveLength(2);expect(third.every(l=>l.state==='running')).toBe(true);expect(await page.locator('.ambient-scene').evaluate(e=>[...e.querySelectorAll('canvas')].every((c,i)=>c===(window as any).__textures[i]&&c.width===256&&c.height===256))).toBe(true);expect(await page.locator('audio').evaluate((a:HTMLAudioElement)=>a.paused)).toBe(true);
  });
 
  test('chapter replacement never blanks the reader or changes the frosted dock into an opaque block',async({page})=>{

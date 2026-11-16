@@ -64,6 +64,16 @@ html[data-effects=quiet] .sentence{transform:none!important}html[data-effects=qu
 @keyframes blue-flow{0%,100%{transform:translate3d(-6%,-8%,0) scale(1.04) rotate(-4deg)}50%{transform:translate3d(13%,10%,0) scale(1.18) rotate(5deg)}}
 @keyframes plum-flow{0%,100%{transform:translate3d(8%,9%,0) scale(1.08) rotate(5deg)}50%{transform:translate3d(-14%,-9%,0) scale(1.18) rotate(-5deg)}}
 html[data-visible=false] .ambient-scene::before,html[data-visible=false] .ambient-scene::after{animation-play-state:paused}
+.ambient-blob{position:absolute;inset:-15%;width:130%;height:130%;pointer-events:none;will-change:transform}
+.ambient-blue{transform:translate3d(-22%,-8%,0) scale(1.15);animation:blue-texture-flow 22s ease-in-out -6s infinite}
+.ambient-plum{transform:translate3d(20%,3%,0) scale(1.15);animation:plum-texture-flow 27s ease-in-out -13s infinite}
+.ambient-scene[data-paint=canvas]::before,.ambient-scene[data-paint=canvas]::after{display:none}
+@keyframes blue-texture-flow{0%,100%{transform:translate3d(-30%,-15%,0) scale(1.1)}50%{transform:translate3d(-8%,5%,0) scale(1.24)}}
+@keyframes plum-texture-flow{0%,100%{transform:translate3d(28%,9%,0) scale(1.1)}50%{transform:translate3d(5%,-12%,0) scale(1.2)}}
+html[data-visible=false] .ambient-blob{animation-play-state:paused}
+html:is([data-effects=quiet],[data-motion-budget=quiet]) .player-dock{-webkit-backdrop-filter:blur(6px) saturate(125%);backdrop-filter:blur(6px) saturate(125%)}
+html:is([data-effects=quiet],[data-motion-budget=quiet]) .app-header::after{-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+
 /* Consistent frosted glass avoids an opaque flash on every lyric transition. */
 .player-dock{background:linear-gradient(130deg,rgba(236,240,255,.075),rgba(255,255,255,.015) 70%),rgba(26,28,47,.5);-webkit-backdrop-filter:blur(12px) saturate(125%);backdrop-filter:blur(12px) saturate(125%);border-color:rgba(235,241,255,.15);box-shadow:0 8px 32px rgba(3,7,18,.12),inset 0 1px 0 rgba(255,255,255,.05)}
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.player-dock{background:rgba(30,33,51,.93)}}

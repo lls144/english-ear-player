@@ -26,7 +26,7 @@ test('every chapter keeps distinct blue and plum layers even when background mot
   const colors=await page.locator('.ambient-scene').evaluateAll(es=>es.map(e=>({opacity:getComputedStyle(e).opacity,blue:getComputedStyle(e).getPropertyValue('--ambient-blue'),plum:getComputedStyle(e).getPropertyValue('--ambient-plum')})));
   const active=colors.find(c=>c.opacity==='1')??colors.at(-1)!;expect(active.blue).not.toBe(active.plum);
  }
- await page.emulateMedia({reducedMotion:'reduce'});const layers=await page.locator('.ambient-scene').last().evaluate(e=>['::before','::after'].map(p=>({gradient:getComputedStyle(e,p).backgroundImage,animation:getComputedStyle(e,p).animationName})));
- expect(layers.every(l=>l.gradient.includes('radial-gradient')&&l.animation==='none')).toBe(true);
+ await page.emulateMedia({reducedMotion:'reduce'});const layers=await page.locator('.ambient-scene').last().evaluate(e=>[...e.querySelectorAll('canvas')].map(c=>({width:c.width,animation:getComputedStyle(c).animationName,x:new DOMMatrixReadOnly(getComputedStyle(c).transform).m41,alpha:c.getContext('2d')!.getImageData(128,128,1,1).data[3]})));
+ expect(layers).toHaveLength(2);expect(layers.every(l=>l.width===256&&l.alpha>245&&l.animation==='none')).toBe(true);expect(layers[0].x).toBeLessThan(0);expect(layers[1].x).toBeGreaterThan(0);
  const dimensions=await page.evaluate(()=>({width:document.documentElement.scrollWidth,viewport:innerWidth}));expect(dimensions.width).toBeLessThanOrEqual(dimensions.viewport);
 });

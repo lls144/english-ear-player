@@ -15,7 +15,7 @@ export function springFrame(seconds:number,distance:number,velocity=0){
 export const focusEase=(t:number)=>t<=0?0:t>=1?1:springFrame(t*.6,1).position;
 export const isScrollGesture=(x:number,y:number,startX:number,startY:number)=>Math.hypot(x-startX,y-startY)>9;
 // A delayed frame must not jump over most of the visible spring trajectory.
-export const motionStep=(milliseconds:number)=>Math.max(0,Math.min(32,milliseconds))/1000;
+export const motionStep=(milliseconds:number,quiet=false)=>Math.max(0,Math.min(quiet?50:32,milliseconds))/1000;
 export const shouldReduceEffects=(intervals:number[])=>{const samples=intervals.filter(n=>n>0&&n<250);const elapsed=samples.reduce((n,t)=>n+t,0);return samples.length>=10&&elapsed>=1500&&samples.filter(n=>n>80).length/samples.length>=.8||samples.length>=48&&elapsed>=4000&&samples.filter(n=>n>40).length/samples.length>=.7;};
 export type FollowState='FOLLOWING'|'USER_INTERACTING'|'MOMENTUM_SCROLLING'|'AWAITING_NEXT_LINE'|'ANIMATING_TO_LINE';
 export class FollowMachine{

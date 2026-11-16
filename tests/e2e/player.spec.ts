@@ -66,11 +66,18 @@ test('temporary media failure verifies a real MP3 then resumes the persistent na
 
 test('temporary media failure recovery obeys an explicit pause during byte verification',async({page})=>{
  await fault(page,{failFile:'reasons-slow.mp3',status:503});
- await page.evaluate(id=>{const w=window as any,native=window.fetch.bind(window);w.__verificationPending=false;w.__verificationAborted=false;w.fetch=(input:RequestInfo|URL,init?:RequestInit)=>{if(String(input).includes('reasons-slow')){w.__verificationPending=true;init?.signal?.addEventListener('abort',()=>{w.__verificationAborted=true;});return native('/__e2e_control/'+id,{method:'POST',body:JSON.stringify({delayFile:'reasons-slow.mp3',delayMs:900})}).then(()=>native(input,init)).finally(()=>{w.__verificationPending=false;});}return native(input,init);};},cases.get(page));
+ await page.evaluate(id=>{
+  const w=window as any,native=window.fetch.bind(window),a=document.querySelector('audio')!,play=a.play.bind(a);w.__verificationPending=false;w.__verificationAborted=false;w.__pauseDuringVerification=false;w.__latePlays=0;
+  a.play=()=>{if(w.__pauseDuringVerification)w.__latePlays++;return play();};document.getElementById('play')!.addEventListener('click',()=>{if(w.__verificationPending)w.__pauseDuringVerification=true;},{capture:true});
+  w.fetch=async(input:RequestInfo|URL,init?:RequestInit)=>{if(!String(input).includes('reasons-slow'))return native(input,init);init?.signal?.addEventListener('abort',()=>{w.__verificationAborted=w.__pauseDuringVerification;});await native('/__e2e_control/'+id,{method:'POST',body:'{}'});const response=await native(input,init),bytes=await response.arrayBuffer();w.__verificationPending=true;try{return await new Promise<Response>(resolve=>{w.__releaseVerification=()=>resolve(new Response(bytes,{status:response.status,headers:response.headers}));});}finally{w.__verificationPending=false;}};
+ },cases.get(page));
  await page.locator('[data-chapter=reasons]').click();await page.locator('#play').click();
- await expect.poll(()=>page.evaluate(()=>(window as any).__verificationPending)).toBe(true);
- await page.locator('#play').click();await page.waitForTimeout(1200);expect(await page.evaluate(()=>(window as any).__verificationAborted)).toBe(true);
- expect((await state(page)).paused).toBe(true);await expect(page.locator('#play')).toHaveAttribute('aria-label','播放');
+ await expect.poll(()=>page.evaluate(()=>(window as any).__verificationPending)).toBe(true);await expect(page.locator('#play')).toHaveAttribute('aria-label','暂停');
+ await page.locator('#play').click();await expect.poll(()=>page.evaluate(()=>(window as any).__verificationAborted)).toBe(true);
+ // Deliver the genuine downloaded bytes even after abort, proving that a late
+ // response cannot restart playback. This barrier has no renderer-speed race.
+ await page.evaluate(()=>(window as any).__releaseVerification());await expect.poll(()=>page.evaluate(()=>(window as any).__verificationPending)).toBe(false);await page.waitForTimeout(250);
+ expect(await page.evaluate(()=>(window as any).__latePlays)).toBe(0);expect((await state(page)).paused).toBe(true);await expect(page.locator('#play')).toHaveAttribute('aria-label','播放');
 });
 test('pause freezes real position and resume previous next agree',async({page})=>{
  await start(page);await page.locator('#play').click();const at=(await state(page)).time;

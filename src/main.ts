@@ -7,6 +7,7 @@ import {LyricFeedback} from './lyric-feedback';
 import {shouldReduceEffects} from './lyric-motion';
 import {loopIcon,loopNames} from './loop-icons';
 import {lyricDepth,scrubValue} from './reading-view';
+import {prepareAmbient} from './ambient';
 if('scrollRestoration' in history)history.scrollRestoration='manual';
 const svg=(s:string)=>'<svg viewBox="0 0 24 24" aria-hidden="true">'+s+'</svg>';
 const forward='<path d="M3.8 5.4c-.8-.5-1.8.1-1.8 1v11.2c0 .9 1 1.5 1.8 1l7-5.6c.7-.5.7-1.5 0-2Z"/><path transform="translate(9.5 0)" d="M3.8 5.4c-.8-.5-1.8.1-1.8 1v11.2c0 .9 1 1.5 1.8 1l7-5.6c.7-.5.7-1.5 0-2Z"/>';
@@ -33,6 +34,7 @@ const candidateTheme=new URLSearchParams(location.search).get('design');document
 function setAtmosphere(){
  const field=document.querySelector<HTMLElement>('.ambient-scene')!,colors=candidateTheme==='graphite'?['#4b6074','#725a71','#252b36']:['#3b6091','#895070','#23243c'];
  for(const [i,key]of ['--ambient-blue','--ambient-plum','--ambient-base'].entries())field.style.setProperty(key,colors[i]);
+ prepareAmbient(field,colors);
 }
 
 for(const c of chapters){
