@@ -300,13 +300,18 @@ export class Player {
         previous=at;
       }else previous=undefined;
       // WebKit can leave NETWORK_LOADING set even with the whole timeline buffered.
-      const full=!this.audio.paused&&!this.audio.seeking&&this.hasBufferedPosition(Math.max(at,this.restoredAt))&&(this.audio.networkState===1||this.hasCompleteBuffer());
+      const complete=this.hasCompleteBuffer(),stalledSeek=this.audio.seeking&&complete;
+      const full=!this.audio.paused&&this.hasBufferedPosition(Math.max(at,this.restoredAt))&&(stalledSeek||!this.audio.seeking&&(this.audio.networkState===1||complete));
       if(!full)stalledSince=0;
       else if(!stalledSince)stalledSince=now;
-      else if(now-stalledSince>=1000){
+      else if(now-stalledSince>=(stalledSeek?3000:1000)){
         cleanup();
         if(retrying){if(this.audioTimer)clearTimeout(this.audioTimer);this.audioFailed=true;this.wantedPlayback=false;this.token++;this.audio.pause();this.playing=false;this.busy=false;this.status='音频播放失败，请轻点重试。';this.changed();return;}
-        const resume=Math.max(at,this.restoredAt),seek=this.sentenceSeek;this.pause();this.settings.audioPositions[this.positionKey]=resume;this.loadAudio();if(seek)this.sentenceSeek={...seek,applied:false};void this.play(true);return;
+        const resume=Math.max(at,this.restoredAt),seek=this.sentenceSeek;this.pause();this.settings.audioPositions[this.positionKey]=resume;
+        // A fully buffered native seek can stay pending forever. Give its media
+        // pipeline one pause/play restart without reloading or seeking again.
+        // Partial streams and actual user/system pauses never enter this path.
+        if(!stalledSeek)this.loadAudio();if(seek)this.sentenceSeek=stalledSeek?seek:{...seek,applied:false};void this.play(true);return;
       }
     },250);
     this.audio.addEventListener('seeking',seeking);this.stopStartup=cleanup;

@@ -84,6 +84,7 @@ html:is([data-effects=quiet],[data-motion-budget=quiet]) .app-header::after{-web
 .sentence.is-pressing::before,.sentence.is-picked::before{opacity:1}
 #transcript .sentence:is(.is-pressing,.is-picked){filter:none!important;opacity:1}
 .sentence.is-pressing .lyric-body{transform:scale(.965);transition:transform 100ms ease-out}
+.sentence.is-picked .lyric-body{transition:none}
 /* Blur is restored after travel; filtered text is not repainted on every scroll frame. */
 #transcript[data-follow=ANIMATING_TO_LINE] .sentence.lyric-visible{transition:color 260ms ease,filter 230ms ease,opacity 260ms ease,text-shadow 260ms ease}
 #transcript[data-follow=ANIMATING_TO_LINE] .lyric-visible{will-change:transform;text-shadow:none}

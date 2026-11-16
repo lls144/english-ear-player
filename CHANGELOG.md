@@ -1,7 +1,3 @@
-## 1.4.2
-
-Chapters 9 → 9; segments 105 → 105; generated MP3: none.
-
 ## 1.4.1
 
 Chapters 9 → 9; segments 105 → 105; generated MP3: none.
