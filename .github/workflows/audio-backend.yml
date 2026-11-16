@@ -1,0 +1,37 @@
+name: Standalone native audio diagnostic
+on:
+  push:
+    branches: ['probe/audio-backend-*']
+permissions:
+  contents: read
+jobs:
+  audio:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        configuration: [headless-default, headless-pulse, headed-pulse]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps webkit
+      - if: matrix.configuration != 'headless-default'
+        run: bash diagnostics/setup-audio.sh
+      - if: matrix.configuration != 'headed-pulse'
+        run: node diagnostics/native-audio.mjs
+      - if: matrix.configuration == 'headed-pulse'
+        run: xvfb-run -a node diagnostics/native-audio.mjs
+        env:
+          EAR_NATIVE_HEADLESS: '0'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: native-${{ matrix.configuration }}
+          retention-days: 1
+          path: .local/qa/native-audio-diagnostic.json
