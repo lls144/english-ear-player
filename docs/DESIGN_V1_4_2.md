@@ -1,5 +1,7 @@
 # V1.4.2 continuous reading
 
+The buffered-clock watchdog allows three seconds for the output device to start. A controller fault-injection test supplies a valid clock that begins after 1.7 seconds: the former one-second policy interrupts and eventually stops it, while the new grace permits genuine progress without any restart. This is a product startup grace, not an increased browser assertion timeout. The loading grace, one-retry limit and explicit-pause cancellation remain intact.
+
 Tapping an independent sentence that is already loaded or loading keeps its source, decoder and pending download, and returns to its start without another load. This removes a redundant same-file pipeline rebuild captured in a failed WebKit startup trace. Metadata must belong to that source before seeking; initial tiny timestamps need no extra zero seek. Changed or errored sources still load normally. Shared production and formal HTTPS regressions check real native seek events, clock progress and zero additional loadstart events across repeated taps, alongside the existing bounded recovery and twenty-round loops. This does not establish a universal cure for operating-system audio faults.
 
 The earlier frame fallback disabled ambient animations and lyric filters, while the playing class removed depth on pause. Chapter changes also combined a blanking text fade, two alternating background scenes and opaque/transparent dock changes. V1.4.2 separates these responsibilities.
