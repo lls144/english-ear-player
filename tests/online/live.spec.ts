@@ -1,5 +1,5 @@
 import {selectSetting} from '../ui';
-import {test,expect,type Page} from '@playwright/test';
+import {test,expect,type Page} from '../native-fixture';
 import fs from 'node:fs';
 import {decodeEveryMP3} from '../media-decoding';
 // Functional media checks use the exact HTTPS files without competing with

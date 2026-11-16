@@ -1,4 +1,4 @@
-import {test,expect} from '@playwright/test';
+import {test,expect} from '../native-fixture';
 import fs from 'node:fs';
 const library=JSON.parse(fs.readFileSync('src/library.generated.json','utf8'));
 const receipts=JSON.parse(fs.readFileSync('content/audio-provenance.json','utf8'));
