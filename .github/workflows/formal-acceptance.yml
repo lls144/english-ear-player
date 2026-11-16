@@ -1,0 +1,68 @@
+name: Isolated formal HTTPS acceptance
+on:
+  push:
+    branches: ['probe/formal-v142-*']
+permissions:
+  contents: read
+jobs:
+  assets:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 70
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: node diagnostics/formal-assets.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: formal-assets
+          retention-days: 1
+          path: .local/qa/online-media.json
+  browsers:
+    needs: assets
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - profile: edge-desktop
+            engine: chromium
+          - profile: android-chrome
+            engine: chromium
+          - profile: small-android
+            engine: chromium
+          - profile: iphone-webkit
+            engine: webkit
+          - profile: ipad-webkit
+            engine: webkit
+          - profile: landscape-webkit
+            engine: webkit
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps ${{ matrix.engine }}
+      - run: npm run build
+      - name: Verify actual public HTTPS resources and native playback
+        run: npx playwright test --config playwright.online.config.ts --project=${{ matrix.profile }} --workers=1
+        env:
+          EAR_ONLINE_URL: https://lls144.github.io/english-ear-player/
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: formal-${{ matrix.profile }}
+          retention-days: 1
+          path: |
+            .local/qa/online-*.json
+            .local/online-results/
