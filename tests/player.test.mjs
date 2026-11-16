@@ -70,7 +70,7 @@ test('stale ended or error events cannot interrupt a new sentence source',async(
 
 const waitUntil=async(fn,ms=4500)=>{const start=Date.now();while(!fn()&&Date.now()-start<ms)await new Promise(r=>setTimeout(r,40));assert.ok(fn(),'Timed out awaiting the startup recovery');};
 test('buffered startup stalls retry once on the same element and require real clock movement',async()=>{
- const p=make(),q=make();p.setLoop('sentence');q.setLoop('sentence');metadata(p);metadata(q);let pl=0,ql=0;const pa=p.audio,qa=q.audio,pLoad=pa.load.bind(pa),qLoad=qa.load.bind(qa);pa.load=()=>{pl++;pLoad();};qa.load=()=>{ql++;qLoad();};await p.play();await q.play();await waitUntil(()=>pl===1&&ql===1);const ticker=setInterval(()=>{pa.currentTime+=.1;},80);try{await waitUntil(()=>!q.playing);assert.equal(pl,1);assert.equal(ql,1);assert.equal(p.audio,pa);assert.equal(q.audio,qa);assert.equal(p.playing,true);assert.equal(q.audio.paused,true);assert.match(q.status,/失败/);p.pause();assert.equal(pa.paused,true);}finally{clearInterval(ticker);}
+ const p=make(),q=make();p.setLoop('sentence');q.setLoop('sentence');metadata(p);metadata(q);let pl=0,ql=0,pc=0,qc=0;const pa=p.audio,qa=q.audio,pPlay=pa.play.bind(pa),qPlay=qa.play.bind(qa);pa.load=()=>pl++;qa.load=()=>ql++;pa.play=()=>{pc++;return pPlay();};qa.play=()=>{qc++;return qPlay();};await p.play();await q.play();await waitUntil(()=>pc===2&&qc===2);const ticker=setInterval(()=>{pa.currentTime+=.1;},80);try{await waitUntil(()=>!q.playing);assert.equal(pl,0);assert.equal(ql,0);assert.equal(pc,2);assert.equal(qc,2);assert.equal(p.audio,pa);assert.equal(q.audio,qa);assert.equal(p.playing,true);assert.equal(q.audio.paused,true);assert.match(q.status,/失败/);p.pause();assert.equal(pa.paused,true);}finally{clearInterval(ticker);}
 });
 test('partial data is never blindly reloaded and user pause cancels startup recovery',async()=>{
  const p=make();let loads=0;const load=p.audio.load.bind(p.audio);p.audio.load=()=>{loads++;load();};p.audio.readyState=2;await p.play();await new Promise(r=>setTimeout(r,1500));assert.equal(loads,0);p.pause();p.audio.readyState=4;await new Promise(r=>setTimeout(r,1500));assert.equal(loads,0);assert.equal(p.audio.paused,true);assert.equal(p.playing,false);
@@ -109,8 +109,8 @@ test('changing chapters invalidates an unfulfilled metadata sentence target',()=
 test('a pending native play promise cannot disable buffered startup recovery',async()=>{
  const p=make(),a=p.audio;metadata(p);let calls=0,loads=0;const load=a.load.bind(a);
  a.load=()=>{loads++;load();};a.play=()=>{calls++;a.paused=false;a.dispatchEvent(new Event('play'));return calls===1?new Promise(()=>{}):Promise.resolve();};
- void p.play();await waitUntil(()=>loads===1);const ticker=setInterval(()=>a.currentTime+=.1,80);
- try{await waitUntil(()=>a.currentTime>.3);assert.equal(p.audio,a);assert.equal(loads,1);assert.equal(calls,2);assert.equal(p.playing,true);}finally{clearInterval(ticker);}
+ void p.play();await waitUntil(()=>calls===2);const ticker=setInterval(()=>a.currentTime+=.1,80);
+ try{await waitUntil(()=>a.currentTime>.3);assert.equal(p.audio,a);assert.equal(loads,0);assert.equal(calls,2);assert.equal(p.playing,true);}finally{clearInterval(ticker);}
 });
 
 test('explicit pause cancels recovery even while native play remains pending',async()=>{
@@ -120,8 +120,8 @@ test('explicit pause cancels recovery even while native play remains pending',as
 
 
 test('complete buffered audio can recover while WebKit still reports NETWORK_LOADING',async()=>{
- const p=make(),a=p.audio;metadata(p);a.readyState=3;a.networkState=2;let loads=0;const load=a.load.bind(a);a.load=()=>{loads++;load();};void p.play();
- await waitUntil(()=>loads===1);const ticker=setInterval(()=>a.currentTime+=.1,80);try{await waitUntil(()=>a.currentTime>.3);assert.equal(p.audio,a);assert.equal(loads,1);assert.equal(p.playing,true);}finally{clearInterval(ticker);}
+ const p=make(),a=p.audio;metadata(p);a.readyState=3;a.networkState=2;let loads=0,calls=0;const play=a.play.bind(a);a.load=()=>loads++;a.play=()=>{calls++;return play();};void p.play();
+ await waitUntil(()=>calls===2);const ticker=setInterval(()=>a.currentTime+=.1,80);try{await waitUntil(()=>a.currentTime>.3);assert.equal(p.audio,a);assert.equal(loads,0);assert.equal(calls,2);assert.equal(p.playing,true);}finally{clearInterval(ticker);}
 });
 
 test('a partially buffered loading stream is never mistaken for a complete resource',async()=>{
@@ -129,7 +129,15 @@ test('a partially buffered loading stream is never mistaken for a complete resou
 });
 
 test('startup monitoring stays armed when full data arrives after the initial six seconds',async()=>{
- const p=make(),a=p.audio;metadata(p);a.readyState=1;a.networkState=2;let loads=0;const load=a.load.bind(a);a.load=()=>{loads++;load();};void p.play();await new Promise(resolve=>setTimeout(resolve,6250));assert.equal(loads,0);a.readyState=3;await waitUntil(()=>loads===1);p.pause();assert.equal(a.paused,true);
+ const p=make(),a=p.audio;metadata(p);a.readyState=1;a.networkState=2;let loads=0,calls=0;const play=a.play.bind(a);a.load=()=>loads++;a.play=()=>{calls++;return play();};void p.play();await new Promise(resolve=>setTimeout(resolve,6250));assert.equal(loads,0);assert.equal(calls,1);a.readyState=3;await waitUntil(()=>calls===2);assert.equal(loads,0);p.pause();assert.equal(a.paused,true);
+});
+
+test('idle incomplete buffered startup can reload once while complete resources stay in place',async()=>{
+ const p=make(),a=p.audio;metadata(p);a.networkState=1;Object.defineProperty(a,'buffered',{get:()=>({length:1,start:()=>0,end:()=>2})});let loads=0,calls=0;const load=a.load.bind(a),play=a.play.bind(a);a.load=()=>{loads++;load();};a.play=()=>{calls++;return play();};void p.play();await waitUntil(()=>loads===1&&calls===2);const ticker=setInterval(()=>a.currentTime+=.1,80);try{await waitUntil(()=>a.currentTime>.3);assert.equal(loads,1);assert.equal(calls,2);assert.equal(p.audio,a);}finally{clearInterval(ticker);p.pause();}
+});
+
+test('a system pause during tiny frozen startup cannot trigger a complete-buffer restart',async()=>{
+ const p=make(),a=p.audio;metadata(p);let calls=0,loads=0;const play=a.play.bind(a);a.play=()=>{calls++;return play();};a.load=()=>loads++;void p.play();a.currentTime=.000750141;a.pause();await new Promise(resolve=>setTimeout(resolve,1600));assert.equal(calls,1);assert.equal(loads,0);assert.equal(a.paused,true);assert.equal(p.playing,false);
 });
 
 function verifiedFixture(p){const bytes=Buffer.from('unit-only content-addressed media');const hash=createHash('sha256').update(bytes).digest('hex').slice(0,16),url='https://example.test/reader/assets/audio/picture-slow.'+hash+'.mp3';Object.defineProperty(p,'audioSource',{get:()=>url});p.audio.src=url;const load=p.audio.load.bind(p.audio);p.audio.load=()=>{load();p.audio.error=null;};return {bytes,url};}
