@@ -99,6 +99,18 @@ test('cold metadata applies only the last clicked sentence and never restores an
 
 test('MP3 seek rounding before a cue cannot flash the previous sentence into focus',async()=>{const p=make();metadata(p);const u=p.current.segments[2].sentences[0];p.selectSentence(u.id);p.audio.currentTime=9.975;p.audio.dispatchEvent(new Event('seeked'));assert.equal(p.activeSentenceId,u.id);p.audio.currentTime=10.1;p.audio.dispatchEvent(new Event('timeupdate'));assert.equal(p.activeSentenceId,u.id);p.audio.currentTime=1;assert.equal(p.activeSentenceId,p.sentences[0].id);});
 test('a paused independent sentence click starts playback and replaces the old file',async()=>{const p=make();p.setLoop('sentence');const id=p.current.segments[3].sentences[0].id;p.selectSentence(id);await Promise.resolve();assert.equal(p.playing,true);assert.match(p.audio.src,new RegExp(id));assert.equal(p.audio.currentTime,0);assert.equal(p.audio.loop,true);});
+
+test('clicking the loaded independent sentence returns to its start without another load',async()=>{
+ const p=make();p.setLoop('sentence');metadata(p);await p.play();const a=p.audio,src=a.src,id=p.selectedSentence.id;let loads=0;a.load=()=>loads++;a.currentTime=2.5;p.selectSentence(id);assert.equal(loads,0);assert.equal(a.src,src);assert.equal(a.currentTime,0);assert.equal(a,p.audio);assert.equal(p.playing,true);assert.equal(a.loop,true);assert.equal(p.settings.manualSentences[p.current.id],true);
+});
+
+test('a repeated independent sentence tap keeps pending metadata and avoids a premature zero seek',async()=>{
+ const p=make();p.setLoop('sentence');const a=p.audio,id=p.selectedSentence.id,src=a.src;let loads=0,writes=0,at=.004103276;a.load=()=>loads++;Object.defineProperty(a,'currentTime',{get:()=>at,set:value=>{writes++;at=value;}});a.readyState=0;a.duration=NaN;p.selectSentence(id);assert.equal(loads,0);assert.equal(writes,0);a.readyState=4;a.duration=100;metadata(p);p.selectSentence(id);assert.equal(loads,0);assert.equal(writes,0);assert.equal(a.src,src);assert.equal(p.playing,true);
+});
+
+test('an errored independent sentence is reloaded even when its URL is unchanged',async()=>{
+ const p=make();p.setLoop('sentence');metadata(p);const a=p.audio,id=p.selectedSentence.id,src=a.src;let loads=0;const load=a.load.bind(a);a.load=()=>{loads++;a.error=null;load();};a.error={code:3};p.selectSentence(id);assert.equal(loads,1);assert.equal(a.src,src);assert.equal(p.playing,true);
+});
 test('TTS lyric clicks cancel old work and start the exact sentence even when paused',async()=>{const p=make();p.setMode('speech');const u=p.sentences[2];p.selectSentence(u.id);assert.equal(spoken.at(-1).text,u.pronunciationText??u.speechText);const old=spoken.at(-1);p.selectSentence(p.sentences[4].id);const latest=spoken.at(-1);old.onend();assert.equal(spoken.at(-1),latest);assert.equal(p.activeSentenceId,p.sentences[4].id);assert.equal(p.playing,true);});
 test('precise lyric jumps keep an imported association but use verified built-in cue timing',async()=>{const p=make();p.importFile('picture',new File(['audio'],'mine.mp3'));metadata(p);p.selectSentence(p.current.segments[2].sentences[0].id);await Promise.resolve();assert.equal(p.imported.has('picture'),true);assert.equal(p.usingImportedAudio,false);assert.match(p.audio.src,/picture-slow/);assert.equal(p.audio.currentTime,10);assert.equal(p.audio.playbackRate,1);});
 

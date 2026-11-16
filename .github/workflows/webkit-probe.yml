@@ -24,7 +24,7 @@ jobs:
       - run: npx playwright install --with-deps webkit
       - run: npm test
       - run: npm run build
-      - run: npm run test:e2e:production -- --project=${{ matrix.profile }} --workers=1 --repeat-each=20 --grep='all four modes click|a whole sentence presses|real sentence boundary follows|settings open and close repeatedly'
+      - run: npm run test:e2e:production -- --project=${{ matrix.profile }} --workers=1 --repeat-each=20 --grep='all four modes click|a whole sentence presses|real sentence boundary follows|settings open and close repeatedly|display templates remain original|repeated current sentence taps'
       - uses: actions/upload-artifact@v4
         if: always()
         with:
