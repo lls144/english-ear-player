@@ -72,6 +72,13 @@ const waitUntil=async(fn,ms=4500)=>{const start=Date.now();while(!fn()&&Date.now
 test('buffered startup stalls retry once on the same element and require real clock movement',async()=>{
  const p=make(),q=make();p.setLoop('sentence');q.setLoop('sentence');metadata(p);metadata(q);let pl=0,ql=0,pc=0,qc=0;const pa=p.audio,qa=q.audio,pPlay=pa.play.bind(pa),qPlay=qa.play.bind(qa);pa.load=()=>pl++;qa.load=()=>ql++;pa.play=()=>{pc++;return pPlay();};qa.play=()=>{qc++;return qPlay();};await p.play();await q.play();await waitUntil(()=>pc===2&&qc===2);const ticker=setInterval(()=>{pa.currentTime+=.1;},80);try{await waitUntil(()=>!q.playing);assert.equal(pl,0);assert.equal(ql,0);assert.equal(pc,2);assert.equal(qc,2);assert.equal(p.audio,pa);assert.equal(q.audio,qa);assert.equal(p.playing,true);assert.equal(q.audio.paused,true);assert.match(q.status,/失败/);p.pause();assert.equal(pa.paused,true);}finally{clearInterval(ticker);}
 });
+
+test('a cold output device can start its fully buffered clock after 1.7 seconds without interruption',async()=>{
+ const p=make(),a=p.audio;metadata(p);let calls=0,loads=0,startTimer,ticker;const pause=a.pause.bind(a);
+ a.load=()=>loads++;a.pause=()=>{clearTimeout(startTimer);clearInterval(ticker);pause();};
+ a.play=async()=>{calls++;a.paused=false;a.dispatchEvent(new Event('play'));clearTimeout(startTimer);startTimer=setTimeout(()=>{if(!a.paused)ticker=setInterval(()=>a.currentTime+=.1,80);},1700);};
+ try{await p.play();await waitUntil(()=>a.currentTime>.3,5000);assert.equal(calls,1);assert.equal(loads,0);assert.equal(p.playing,true);assert.equal(a.paused,false);}finally{clearTimeout(startTimer);clearInterval(ticker);p.pause();}
+});
 test('partial data is never blindly reloaded and user pause cancels startup recovery',async()=>{
  const p=make();let loads=0;const load=p.audio.load.bind(p.audio);p.audio.load=()=>{loads++;load();};Object.defineProperty(p.audio,'buffered',{get:()=>({length:1,start:()=>0,end:()=>2})});p.audio.readyState=2;await p.play();await new Promise(r=>setTimeout(r,1500));assert.equal(loads,0);p.pause();p.audio.readyState=4;await new Promise(r=>setTimeout(r,1500));assert.equal(loads,0);assert.equal(p.audio.paused,true);assert.equal(p.playing,false);
 });

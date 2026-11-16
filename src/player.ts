@@ -304,7 +304,9 @@ export class Player {
       const full=!this.audio.paused&&this.hasBufferedPosition(Math.max(at,this.restoredAt),complete?2:3)&&(stalledSeek||!this.audio.seeking&&(this.audio.networkState===1||complete));
       if(!full)stalledSince=0;
       else if(!stalledSince)stalledSince=now;
-      else if(now-stalledSince>=(stalledSeek?3000:1000)){
+      // Complete data does not mean the output device has finished warming up.
+      // A one-second kick can interrupt a valid cold audio clock before it starts.
+      else if(now-stalledSince>=3000){
         cleanup();
         if(retrying){if(this.audioTimer)clearTimeout(this.audioTimer);this.audioFailed=true;this.wantedPlayback=false;this.token++;this.audio.pause();this.playing=false;this.busy=false;this.status='音频播放失败，请轻点重试。';this.changed();return;}
         const resume=Math.max(at,this.restoredAt),seek=this.sentenceSeek;this.pause();this.settings.audioPositions[this.positionKey]=resume;
