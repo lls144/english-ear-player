@@ -94,7 +94,14 @@ export class Player {
       this.save(); this.changed();
     });
     const observePosition=()=>{if(this.audio.duration>0 && this.audio.currentTime>this.audio.duration-1)this.loopRestartAllowed=true;else if(this.audio.currentTime>1)this.loopRestartAllowed=false;};
-    this.audio.addEventListener('seeking',observePosition);
+    this.audio.addEventListener('seeking',()=>{
+      // Native looping can complete its seek to zero yet leave a buffered clock
+      // frozen. Re-arm observation only at a previously reached loop boundary;
+      // normal progress clears it, and the existing single retry budget applies.
+      const boundary=this.wantedPlayback&&this.audio.loop&&this.loopRestartAllowed&&this.audio.currentTime<.2&&this.audio.currentSrc===this.audioSource&&!this.pauseGuard;
+      observePosition();
+      if(boundary){this.stopStartup?.();this.observeStartup(this.token,this.retryUsed);}
+    });
     this.audio.addEventListener('timeupdate', () => { if(this.settings.mode === 'audio') { this.settleSentenceSeek();observePosition(); this.save(false); this.changed(); } });
     this.audio.addEventListener('ratechange', () => {
       if (this.settings.mode === 'audio') { const requested=this.audio.playbackRate*(this.usingImportedAudio?1:library.referenceRate);this.settings.rate=rates.reduce((a,b)=>Math.abs(b-requested)<Math.abs(a-requested)?b:a);if(Math.abs(this.audio.playbackRate-this.mediaRate)>.0001)this.audio.playbackRate=this.mediaRate;this.save(); this.changed(); }
@@ -420,6 +427,7 @@ export class Player {
   }
   seek(ratio: number) {
     this.sentenceSeek=undefined;
+    this.loopRestartAllowed=false;
     ratio=safeNumber(ratio,0,0,1);
     if(this.settings.mode==='audio') {
       if(this.duration>0) this.audio.currentTime=ratio*this.duration;

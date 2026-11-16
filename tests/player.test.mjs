@@ -79,6 +79,22 @@ test('a cold output device can start its fully buffered clock after 1.7 seconds 
  a.play=async()=>{calls++;a.paused=false;a.dispatchEvent(new Event('play'));clearTimeout(startTimer);startTimer=setTimeout(()=>{if(!a.paused)ticker=setInterval(()=>a.currentTime+=.1,80);},1700);};
  try{await p.play();await waitUntil(()=>a.currentTime>.3,5000);assert.equal(calls,1);assert.equal(loads,0);assert.equal(p.playing,true);assert.equal(a.paused,false);}finally{clearTimeout(startTimer);clearInterval(ticker);p.pause();}
 });
+
+test('a clock frozen after a real native loop boundary gets one same-source restart, then stops if it freezes again',async()=>{
+ const p=make(),a=p.audio;metadata(p);p.setLoop('sentence');let calls=0,loads=0;const play=a.play.bind(a);a.play=()=>{calls++;return play();};a.load=()=>loads++;await p.play();
+ a.currentTime=.5;await new Promise(r=>setTimeout(r,300));a.currentTime=1;await new Promise(r=>setTimeout(r,300));
+ const wrap=()=>{a.currentTime=a.duration-.1;a.dispatchEvent(new Event('timeupdate'));a.currentTime=.0013;a.readyState=2;a.networkState=2;a.seeking=true;a.dispatchEvent(new Event('seeking'));a.seeking=false;a.dispatchEvent(new Event('seeked'));};
+ wrap();await waitUntil(()=>calls===2);assert.equal(loads,0);assert.equal(p.audio,a);assert.equal(a.loop,true);
+ a.currentTime=.5;await new Promise(r=>setTimeout(r,300));a.currentTime=1;await new Promise(r=>setTimeout(r,300));wrap();await waitUntil(()=>!p.playing);assert.equal(calls,2);assert.equal(loads,0);assert.equal(a.paused,true);assert.match(p.status,/失败/);p.pause();
+});
+
+test('explicit pause cancels a pending native loop-boundary recovery',async()=>{
+ const p=make(),a=p.audio;metadata(p);p.setLoop('sentence');let calls=0;const play=a.play.bind(a);a.play=()=>{calls++;return play();};await p.play();a.currentTime=a.duration-.1;a.dispatchEvent(new Event('timeupdate'));a.currentTime=.001;a.dispatchEvent(new Event('seeking'));p.pause();await new Promise(r=>setTimeout(r,3500));assert.equal(calls,1);assert.equal(a.paused,true);assert.equal(p.playing,false);
+});
+
+test('manual seeks clear native loop-boundary recovery eligibility',async()=>{
+ const p=make(),a=p.audio;metadata(p);p.setLoop('sentence');let calls=0;const play=a.play.bind(a);a.play=()=>{calls++;return play();};await p.play();a.currentTime=.5;await new Promise(r=>setTimeout(r,300));a.currentTime=1;await new Promise(r=>setTimeout(r,300));a.currentTime=a.duration-.1;a.dispatchEvent(new Event('timeupdate'));p.seek(0);a.dispatchEvent(new Event('seeking'));await new Promise(r=>setTimeout(r,3500));assert.equal(calls,1);assert.equal(p.playing,true);p.pause();
+});
 test('partial data is never blindly reloaded and user pause cancels startup recovery',async()=>{
  const p=make();let loads=0;const load=p.audio.load.bind(p.audio);p.audio.load=()=>{loads++;load();};Object.defineProperty(p.audio,'buffered',{get:()=>({length:1,start:()=>0,end:()=>2})});p.audio.readyState=2;await p.play();await new Promise(r=>setTimeout(r,1500));assert.equal(loads,0);p.pause();p.audio.readyState=4;await new Promise(r=>setTimeout(r,1500));assert.equal(loads,0);assert.equal(p.audio.paused,true);assert.equal(p.playing,false);
 });
