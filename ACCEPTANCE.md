@@ -1,3 +1,9 @@
+# V1.4.2 continuous reading acceptance
+
+Selected text, source mapping and all 360 MP3 bytes remain unchanged. Four shared local-production/formal-HTTPS checks cover paused symmetric depth and stationary touch versus actual scrolling, continuous gradient transforms under pause/slow-frame/chapter changes, frame-by-frame nonblank chapter replacement and consistent glass, and native touch taps across the full 44px seek hit area plus captured drag/cancel. Depth and coordinate boundaries also have unit regressions. Existing audio-clock, loop, source, touch/momentum, PWA, native-media and publication gates remain mandatory.
+
+Inspect actual iPhone/iPad/Android-sized frames and recordings, including paused and manually browsing states. Measure real background pixel changes as well as animation transforms. Software-port frame costs, existing Windows WebKit direct-network intermittence and physical-device limits are separate from browser functional acceptance. An explicit existing proxy may be used for Windows WebKit formal HTTPS checks; resources, assertions and timeouts remain unchanged. Never present injected WebKit pointer moves as a physical iPhone swipe.
+
 # V1.4.1 refinement acceptance
 
 The original content, neutral speech mapping, audio settings and all 360 MP3 bytes remain unchanged. New checks cover whole-sentence press/release and scroll cancellation, distinct blue/plum layers in each collection and reduced motion, real temporary HTTP media failures, content-prefix verification, one native retry and explicit-pause cancellation. Unit faults additionally cover altered bytes, missing files, imported files, request interruption, stale source events and cue rounding. Playback remains on the same HTML audio element; no blob/Web Audio fallback replaces built-in MP3s.

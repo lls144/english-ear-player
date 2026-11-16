@@ -6,12 +6,13 @@ import {LyricsFollower} from './lyrics';
 import {LyricFeedback} from './lyric-feedback';
 import {shouldReduceEffects} from './lyric-motion';
 import {loopIcon,loopNames} from './loop-icons';
+import {lyricDepth,scrubValue} from './reading-view';
 if('scrollRestoration' in history)history.scrollRestoration='manual';
 const svg=(s:string)=>'<svg viewBox="0 0 24 24" aria-hidden="true">'+s+'</svg>';
 const forward='<path d="M3.8 5.4c-.8-.5-1.8.1-1.8 1v11.2c0 .9 1 1.5 1.8 1l7-5.6c.7-.5.7-1.5 0-2Z"/><path transform="translate(9.5 0)" d="M3.8 5.4c-.8-.5-1.8.1-1.8 1v11.2c0 .9 1 1.5 1.8 1l7-5.6c.7-.5.7-1.5 0-2Z"/>';
 const icons={play:svg('<path d="M7.4 3.3C6.3 2.7 5 3.5 5 4.8v14.4c0 1.3 1.3 2.1 2.4 1.5l12.7-7.2c1.2-.7 1.2-2.3 0-3Z"/>'),pause:svg('<rect x="6" y="3" width="4.5" height="18" rx="1.2"/><rect x="13.5" y="3" width="4.5" height="18" rx="1.2"/>'),prev:svg('<g transform="translate(24 0) scale(-1 1)">'+forward+'</g>'),next:svg(forward)};
 document.querySelector('#app')!.innerHTML=`
- <div class="ambient" aria-hidden="true"><div class="ambient-field"><div class="ambient-scene"></div><div class="ambient-scene"></div></div></div>
+ <div class="ambient" aria-hidden="true"><div class="ambient-field"><div class="ambient-scene"></div></div></div>
  <header class="app-header"><a class="brand" href="#main">听一遍</a><button id="more-open" aria-haspopup="dialog" aria-controls="more-settings" aria-label="更多设置">${svg('<circle cx="5" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="19" cy="12" r="1.7"/>')}</button></header>
  <main id="main" class="layout"><nav id="chapters" aria-label="作文章节"></nav><section class="reader" aria-labelledby="chapter-title"><h1 id="chapter-title" class="sr-only"></h1><div id="transcript" aria-label="英文原文"></div><details id="source-info"><summary>原文与模板说明</summary><p>只保留笔记已有英文。展示保留原模板；朗读使用中性占位词和一项备选，不添加作文事实。点击正文选句，可开启单句循环。短语与连接词单独归组，默认不进入主循环，可手动选择或单章循环。</p><div id="source-lines"></div></details><footer></footer></section></main>
  <section class="player-dock" aria-label="播放器"><div class="dock-inner"><div class="dock-top"><div class="seek-area"><div class="seek-track" aria-hidden="true"><span class="seek-fill"></span></div><span id="elapsed" aria-hidden="true"></span><span id="remaining" aria-hidden="true"></span><span id="total" class="sr-only"></span><input id="progress" type="range" min="0" max="1000" step="1" value="0" aria-label="播放进度"></div></div><div class="transport"><div class="main-controls"><button id="previous" aria-label="上一章">${icons.prev}</button><button id="play" aria-label="播放">${icons.play}</button><button id="next" aria-label="下一章">${icons.next}</button></div><button id="loop-button" aria-label="循环方式" aria-describedby="loop-toast">${loopIcon('all')}</button></div></div><span id="loop-toast" role="status" hidden></span></section>
@@ -23,22 +24,19 @@ const dialog=el<HTMLDialogElement>('more-settings');
 const player=new Player(()=>queueMicrotask(render));el('native-audio').append(player.audio);
 const chapterButtons=new Map<string,HTMLButtonElement>(),rows=new Map<string,{file:HTMLElement;remove:HTMLButtonElement}>();
 let renderedChapter='',voicesSignature='',previousStatus='',noticeTimer:ReturnType<typeof setTimeout>,dragging=false,importTarget=chapters[0].id;
-let lastActiveSentence='',lyricViewKey='',motionFrame=0,chapterSerial=0,pendingChapter='',chapterFade:Animation|undefined;
+let lastActiveSentence='',lyricViewKey='',motionFrame=0;
 const follower=new LyricsFollower(el('transcript'),()=>({top:matchMedia('(max-width:760px), (max-height:500px) and (orientation:landscape)').matches?el('chapters').getBoundingClientRect().bottom+18:Math.max(50,document.querySelector('.app-header')!.getBoundingClientRect().bottom+12),bottom:document.querySelector('.player-dock')!.getBoundingClientRect().top-22}));
 const feedback=new LyricFeedback(el('transcript'));
 el('more-settings').querySelector('.settings-content')!.append(el('source-info'),document.querySelector('footer')!);
 const candidateTheme=new URLSearchParams(location.search).get('design');document.documentElement.dataset.theme=candidateTheme==='graphite'?'graphite':'indigo';
-const palettes=[['#3b6091','#895070','#23243c'],['#3e658e','#814875','#24243d'],['#405c91','#8a4b71','#24243b'],['#355f8c','#805179','#22253c'],['#405e8d','#91506d','#27243c'],['#3d638d','#864c79','#24243d'],['#385e88','#8a4d76','#23253c'],['#3d5e91','#8b5278','#26243e'],['#3c658b','#854c75','#24253b']];
-let ambientIndex=0,ambientReady=false;
-function setAtmosphere(index:number){
- const fields=[...document.querySelectorAll<HTMLElement>('.ambient-scene')],colors=candidateTheme==='graphite'?['#4b6074','#725a71','#252b36']:palettes[index%palettes.length];
- const paint=(field:HTMLElement)=>{for(const [i,key]of ['--ambient-blue','--ambient-plum','--ambient-base'].entries())field.style.setProperty(key,colors[i]);};
- if(!ambientReady){ambientReady=true;paint(fields[0]);return;}
- const next=fields[1-ambientIndex];paint(next);next.style.opacity='1';fields[ambientIndex].style.opacity='0';ambientIndex=1-ambientIndex;
+// A single persistent field does not restart or cross-fade on chapter changes.
+function setAtmosphere(){
+ const field=document.querySelector<HTMLElement>('.ambient-scene')!,colors=candidateTheme==='graphite'?['#4b6074','#725a71','#252b36']:['#3b6091','#895070','#23243c'];
+ for(const [i,key]of ['--ambient-blue','--ambient-plum','--ambient-base'].entries())field.style.setProperty(key,colors[i]);
 }
 
 for(const c of chapters){
- const button=document.createElement('button');button.dataset.chapter=c.id;button.textContent=c.title;button.addEventListener('click',()=>{follower.reset();player.select(c.id);window.scrollTo({top:0,behavior:'instant'});});el('chapters').append(button);chapterButtons.set(c.id,button);
+ const button=document.createElement('button');button.dataset.chapter=c.id;button.textContent=c.title;button.addEventListener('click',()=>{follower.reset();player.select(c.id);});el('chapters').append(button);chapterButtons.set(c.id,button);
  const row=document.createElement('div');row.className='import-row';const label=document.createElement('div'),title=document.createElement('strong'),file=document.createElement('small');title.textContent=c.title;label.append(title,file);
  const choose=document.createElement('button');choose.textContent='导入';choose.setAttribute('aria-label','为'+c.title+'导入 MP3');choose.addEventListener('click',()=>{importTarget=c.id;el<HTMLInputElement>('file-input').click();});
  const remove=document.createElement('button');remove.textContent='移除';remove.setAttribute('aria-label','移除'+c.title+'本地音频');remove.addEventListener('click',()=>player.removeFile(c.id));
@@ -53,25 +51,23 @@ function mountChapter(){
  feedback.clear();lyricViewKey='';
  lyricVisibility.disconnect();
  const c=player.current;
-  window.scrollTo({top:0,behavior:'instant'});renderedChapter=c.id;el('transcript').dataset.lyricChapter=c.id;pendingChapter='';lastActiveSentence='';follower.reset();setAtmosphere(player.index);el('chapter-title').textContent=c.title;el('transcript').replaceChildren();el('source-lines').replaceChildren();let group='';
-  c.segments.forEach(s=>{if((c.id==='connectors'||c.id==='phrases')&&group!==s.category){group=s.category;const h=document.createElement('h2');h.textContent=group;h.className='lyric-heading';el('transcript').append(h);lyricVisibility.observe(h);}const article=document.createElement('div');article.className='passage';article.dataset.segment=s.id;const p=document.createElement('p');let textAt=0;s.sentences.forEach(u=>{const start=s.displayText.indexOf(u.displayText,textAt);p.append(document.createTextNode(s.displayText.slice(textAt,start)));textAt=start+u.displayText.length;const span=document.createElement('span');span.className='sentence';span.dataset.sentence=u.id;span.tabIndex=0;span.setAttribute('role','button');span.title='选中此句';const body=document.createElement('span');body.className='lyric-body';sourceText(body,u.displayText);span.append(body);const choose=()=>{if(!follower.canChoose())return;feedback.activate(span);follower.select(u.id);player.selectSentence(u.id);};span.addEventListener('click',choose);span.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();feedback.activate(span);follower.select(u.id);player.selectSentence(u.id);}});p.append(span);lyricVisibility.observe(span);});p.append(document.createTextNode(s.displayText.slice(textAt)));article.append(p);el('transcript').append(article);const info=document.createElement('p');info.textContent=(s.kind==='source-template'?'原文模板':s.kind==='source-example'?'原文例句':'原文短语')+' · '+s.category+(s.tier?' · '+s.tier:'');el('source-lines').append(info);});
+  renderedChapter=c.id;el('transcript').dataset.lyricChapter=c.id;lastActiveSentence='';setAtmosphere();el('chapter-title').textContent=c.title;const content=document.createDocumentFragment(),sources=document.createDocumentFragment();let group='';
+  c.segments.forEach(s=>{if((c.id==='connectors'||c.id==='phrases')&&group!==s.category){group=s.category;const h=document.createElement('h2');h.textContent=group;h.className='lyric-heading';content.append(h);lyricVisibility.observe(h);}const article=document.createElement('div');article.className='passage';article.dataset.segment=s.id;const p=document.createElement('p');let textAt=0;s.sentences.forEach(u=>{const start=s.displayText.indexOf(u.displayText,textAt);p.append(document.createTextNode(s.displayText.slice(textAt,start)));textAt=start+u.displayText.length;const span=document.createElement('span');span.className='sentence';span.dataset.sentence=u.id;span.tabIndex=0;span.setAttribute('role','button');span.title='选中此句';const body=document.createElement('span');body.className='lyric-body';sourceText(body,u.displayText);span.append(body);const choose=()=>{if(!follower.canChoose())return;feedback.activate(span);follower.select(u.id);player.selectSentence(u.id);};span.addEventListener('click',choose);span.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();feedback.activate(span);follower.select(u.id);player.selectSentence(u.id);}});p.append(span);lyricVisibility.observe(span);});p.append(document.createTextNode(s.displayText.slice(textAt)));article.append(p);content.append(article);const info=document.createElement('p');info.textContent=(s.kind==='source-template'?'原文模板':s.kind==='source-example'?'原文例句':'原文短语')+' · '+s.category+(s.tier?' · '+s.tier:'');sources.append(info);});
+  el('transcript').replaceChildren(content);el('source-lines').replaceChildren(sources);window.scrollTo({top:0,behavior:'instant'});follower.reset();
  }
 function render(){
  const c=player.current;
- if(renderedChapter!==c.id&&pendingChapter!==c.id){
-  const serial=++chapterSerial;pendingChapter=c.id;chapterFade?.cancel();
-  if(!renderedChapter||follower.reduced.matches){mountChapter();}
-  else{chapterFade=el('transcript').animate([{opacity:1},{opacity:0}],{duration:90,easing:'ease-out',fill:'forwards'});void chapterFade.finished.catch(()=>{}).then(()=>{if(serial!==chapterSerial)return;mountChapter();chapterFade?.cancel();chapterFade=el('transcript').animate([{opacity:0,transform:'translateY(9px)'},{opacity:1,transform:'translateY(0)'}],{duration:260,easing:'cubic-bezier(.2,.7,.3,1)'});render();});}
- }
+ if(renderedChapter!==c.id)mountChapter();
  const active=player.activeSegment,activeId=player.activeSentenceId;
- const viewKey=[c.id,activeId,player.settings.selectedSentences[c.id],player.playing,player.busy].join('|');
+ const viewKey=[c.id,activeId,player.settings.selectedSentences[c.id],player.playing,player.busy,dragging].join('|');
  if(renderedChapter===c.id&&viewKey!==lyricViewKey){
   const units=player.sentences,activeIndex=units.findIndex(u=>u.id===activeId);
-  document.querySelectorAll<HTMLElement>('.sentence').forEach((row,i)=>{const selected=row.dataset.sentence===player.settings.selectedSentences[c.id],current=row.dataset.sentence===activeId;row.classList.toggle('selected',selected);row.classList.toggle('current-sentence',current);row.classList.toggle('past-sentence',i<activeIndex);row.classList.toggle('next-sentence',i===activeIndex+1);const distance=i<activeIndex?'past':i===activeIndex+1?'next':i<=activeIndex+3?'near':'far';if(row.dataset.distance!==distance)row.dataset.distance=distance;if(row.getAttribute('aria-pressed')!==String(selected))row.setAttribute('aria-pressed',String(selected));if(current){if(row.getAttribute('aria-current')!=='true')row.setAttribute('aria-current','true');}else if(row.hasAttribute('aria-current'))row.removeAttribute('aria-current');});
-  el('transcript').classList.toggle('playing',(player.playing||player.busy)&&!!activeId);
+  document.querySelectorAll<HTMLElement>('.sentence').forEach((row,i)=>{const selected=row.dataset.sentence===player.settings.selectedSentences[c.id],current=row.dataset.sentence===activeId;row.classList.toggle('selected',selected);row.classList.toggle('current-sentence',current);row.classList.toggle('past-sentence',i<activeIndex);row.classList.toggle('next-sentence',i===activeIndex+1);const distance=i<activeIndex?'past':i===activeIndex+1?'next':i<=activeIndex+3?'near':'far';if(row.dataset.distance!==distance)row.dataset.distance=distance;const depth=lyricDepth(i-activeIndex);row.style.setProperty('--lyric-blur',depth.blur.toFixed(3)+'px');row.style.setProperty('--lyric-opacity',depth.opacity.toFixed(3));if(row.getAttribute('aria-pressed')!==String(selected))row.setAttribute('aria-pressed',String(selected));if(current){if(row.getAttribute('aria-current')!=='true')row.setAttribute('aria-current','true');}else if(row.hasAttribute('aria-current'))row.removeAttribute('aria-current');});
+  el('transcript').classList.toggle('playing',(player.playing||player.busy)&&!!activeId);el('transcript').classList.toggle('focused',!!activeId);
   el('transcript').querySelectorAll<HTMLElement>('.passage').forEach((p,i)=>{p.classList.toggle('speaking',i===active&&player.playing);if(i===active&&player.playing)p.setAttribute('aria-current','true');else p.removeAttribute('aria-current');});
-  follower.update(activeId,player.playing);lastActiveSentence=activeId??'';lyricViewKey=viewKey;
+  follower.update(activeId,player.playing&&!dragging);lastActiveSentence=activeId??'';lyricViewKey=viewKey;
  }
+ document.documentElement.dataset.visible=String(!document.hidden);
  const visiblePlaying=String(player.playing&&!document.hidden);if(document.documentElement.dataset.playing!==visiblePlaying)document.documentElement.dataset.playing=visiblePlaying;
  if(player.playing&&!document.hidden&&!motionFrame)motionFrame=requestAnimationFrame(tickProgress);
  if(!player.playing||document.hidden){if(motionFrame)cancelAnimationFrame(motionFrame);motionFrame=0;lastFrame=0;intervals.length=0;}
@@ -106,12 +102,17 @@ function paintProgress(){
 let lastFrame=0;const intervals:number[]=[];
 function tickProgress(now:number){if(lastFrame&&now-lastFrame<500){intervals.push(now-lastFrame);if(intervals.length>120)intervals.shift();if(shouldReduceEffects(intervals))document.documentElement.dataset.effects='quiet';}lastFrame=now;motionFrame=0;if(!player.playing||document.hidden)return;paintProgress();if((player.activeSentenceId??'')!==lastActiveSentence&&!dragging)render();if(!motionFrame)motionFrame=requestAnimationFrame(tickProgress);}
 function commitSeek(){const value=progress.value;if(value===lastSeekValue&&performance.now()-lastSeekAt<100)return;lastSeekAt=performance.now();lastSeekValue=value;follower.resume();player.seek(Number(value)/1000);queueMicrotask(()=>follower.returnToCurrent());}
-function finishDrag(commit:boolean){if(!dragging)return;dragging=false;el('progress').parentElement!.dataset.seeking='false';if(commit)commitSeek();else paintProgress();ignoreRangeEventsUntil=performance.now()+160;}
-progress.addEventListener('pointerdown',()=>{ignoreRangeEventsUntil=0;dragging=true;el('progress').parentElement!.dataset.seeking='true';});
+let pointerDrag:{id:number;left:number;width:number}|undefined;
+function previewPointer(x:number){if(!pointerDrag)return;progress.value=String(scrubValue(x,pointerDrag.left,pointerDrag.width));paintProgress();}
+function finishDrag(commit:boolean){if(!dragging)return;dragging=false;const pointer=pointerDrag;pointerDrag=undefined;if(pointer&&progress.hasPointerCapture(pointer.id))progress.releasePointerCapture(pointer.id);progress.parentElement!.dataset.seeking='false';if(commit)commitSeek();else paintProgress();ignoreRangeEventsUntil=performance.now()+160;render();}
+progress.addEventListener('pointerdown',e=>{if(progress.disabled||e.button>0||pointerDrag)return;e.preventDefault();ignoreRangeEventsUntil=0;const box=progress.getBoundingClientRect();pointerDrag={id:e.pointerId,left:box.left,width:box.width};dragging=true;follower.hold();progress.parentElement!.dataset.seeking='true';progress.focus({preventScroll:true});try{progress.setPointerCapture(e.pointerId);}catch{/* Window listeners also cover synthetic events and older capture implementations. */}previewPointer(e.clientX);render();});
+window.addEventListener('pointermove',e=>{if(pointerDrag?.id===e.pointerId){e.preventDefault();previewPointer(e.clientX);}},{passive:false});
+progress.addEventListener('lostpointercapture',e=>{if(pointerDrag?.id===e.pointerId)finishDrag(false);});
+window.addEventListener('blur',()=>finishDrag(false));
 progress.addEventListener('input',()=>{if(performance.now()<ignoreRangeEventsUntil){paintProgress();return;}if(dragging)paintProgress();else commitSeek();});
 progress.addEventListener('change',()=>{if(performance.now()<ignoreRangeEventsUntil){paintProgress();return;}if(dragging)finishDrag(true);else commitSeek();});
 progress.addEventListener('keydown',()=>{ignoreRangeEventsUntil=0;});
-window.addEventListener('pointerup',()=>finishDrag(true));window.addEventListener('pointercancel',()=>finishDrag(false));
+window.addEventListener('pointerup',e=>{if(pointerDrag?.id===e.pointerId)finishDrag(true);});window.addEventListener('pointercancel',e=>{if(pointerDrag?.id===e.pointerId)finishDrag(false);});
 document.addEventListener('visibilitychange',()=>{if(document.hidden){finishDrag(false);if(motionFrame)cancelAnimationFrame(motionFrame);motionFrame=0;}render();if(!document.hidden)queueMicrotask(()=>follower.reveal());});
 el<HTMLInputElement>('file-input').addEventListener('change',e=>{const input=e.target as HTMLInputElement,file=input.files?.[0];if(file)try{player.importFile(importTarget,file);}catch(error){player.status=String(error);render();}input.value='';});el('batch-import').addEventListener('click',()=>el<HTMLInputElement>('batch-input').click());el<HTMLInputElement>('batch-input').addEventListener('change',e=>{const input=e.target as HTMLInputElement;let count=0;for(const file of input.files??[]){const id=file.name.replace(/\.mp3$/i,'').replace(/-(slow|recite)$/,'');if(chapters.some(c=>c.id===id))try{player.importFile(id,file);count++;}catch{}}player.status='已关联 '+count+' 个本机文件，刷新后需重新导入。';input.value='';render();});
 new ResizeObserver(entries=>{document.documentElement.style.setProperty('--dock-height',entries[0].target.getBoundingClientRect().height+'px');}).observe(document.querySelector('.player-dock')!);

@@ -1,7 +1,7 @@
 import {focusDestination,springFrame,cascadeOffset,isScrollGesture,motionStep,FollowMachine,type ViewBounds} from './lyric-motion';
 /** Native scrolling remains in charge during touch and momentum. Audio cues own focus. */
 export class LyricsFollower{
- private machine=new FollowMachine();private frame=0;private serial=0;private target='';private playing=false;private velocity=0;
+ private machine=new FollowMachine();private frame=0;private serial=0;private target='';private playing=false;private velocity=0;private clearFocus=false;
  private pointer?:{id:number;x:number;y:number;moved:boolean};private pointers=new Set<number>();private touches=0;
  private ignoredClickUntil=0;private expectedScroll=scrollY;private settleTimer?:ReturnType<typeof setTimeout>;private layoutUntil=performance.now()+220;private shifted=new Set<HTMLElement>();
  readonly reduced=matchMedia('(prefers-reduced-motion: reduce)');
@@ -23,15 +23,16 @@ export class LyricsFollower{
   this.paintState();
  }
  private get held(){return this.pointers.size>0||this.touches>0;}
- private paintState(){if(this.transcript.dataset.follow!==this.machine.state)this.transcript.dataset.follow=this.machine.state;const motion=this.machine.state==='ANIMATING_TO_LINE'?'moving':'still';if(document.documentElement.dataset.lyricMotion!==motion)document.documentElement.dataset.lyricMotion=motion;if(motion==='still')delete document.documentElement.dataset.motionBudget;}
+ private paintState(){if(this.transcript.dataset.follow!==this.machine.state)this.transcript.dataset.follow=this.machine.state;this.transcript.dataset.browsing=String(this.clearFocus);const motion=this.machine.state==='ANIMATING_TO_LINE'?'moving':'still';if(document.documentElement.dataset.lyricMotion!==motion)document.documentElement.dataset.lyricMotion=motion;if(motion==='still')delete document.documentElement.dataset.motionBudget;}
  private clearCascade(){for(const row of this.shifted)row.style.removeProperty('--flow-offset');this.shifted.clear();}
  private cancel(clear=true){this.serial++;cancelAnimationFrame(this.frame);this.frame=0;this.velocity=0;if(clear)this.clearCascade();}
- private manual(held:boolean){this.cancel();this.machine.move(performance.now(),held);this.paintState();this.settle();}
+ private manual(held:boolean){this.clearFocus=true;this.cancel();this.machine.move(performance.now(),held);this.paintState();this.settle();}
  private settle(){clearTimeout(this.settleTimer);this.settleTimer=setTimeout(()=>{if(this.held)return;const resume=this.machine.settle(performance.now());this.paintState();if(resume&&this.playing)this.position(true);else if(this.machine.state==='MOMENTUM_SCROLLING')this.settle();},190);}
  canChoose(){return performance.now()>this.ignoredClickUntil&&!this.pointer?.moved;}
- reset(){clearTimeout(this.settleTimer);this.cancel();this.expectedScroll=scrollY;this.machine.reset();this.target='';this.paintState();}
+ reset(){clearTimeout(this.settleTimer);this.cancel();this.expectedScroll=scrollY;this.machine.reset();this.target='';this.clearFocus=false;this.paintState();}
  reveal(){this.layoutUntil=performance.now()+120;this.expectedScroll=scrollY;if(!this.machine.browsing)this.position(false);}
- resume(){this.machine.reset();this.paintState();}
+ hold(){this.cancel();this.machine.finish();this.paintState();}
+ resume(){this.machine.reset();this.clearFocus=false;this.paintState();}
  returnToCurrent(){this.machine.reset();this.position(true);}
  select(id:string){clearTimeout(this.settleTimer);this.expectedScroll=scrollY;this.target=id;this.machine.reset();this.position(true);}
  update(id:string|undefined,playing:boolean){
@@ -51,7 +52,7 @@ export class LyricsFollower{
   const distance=to-from,velocity=distance*this.velocity>0?Math.max(-1800,Math.min(1800,this.velocity)):0;
   const entries=[...this.transcript.querySelectorAll<HTMLElement>('.lyric-visible')].map(el=>({el,initial:offset(el),bottom:el.getBoundingClientRect().bottom}));
   const first=Math.max(0,entries.findIndex(e=>e.bottom>bounds.top));
-  this.cancel(false);this.machine.animate();this.paintState();
+  this.cancel(false);this.clearFocus=false;this.machine.animate();this.paintState();
   const cascade=entries.map((e,i)=>({...e,delay:Math.min(.084,Math.max(0,i-first)*.014),cap:Math.min(24,Math.max(0,i-first)*6)}));
   const scroll=(top:number)=>{this.expectedScroll=Math.max(0,Math.min(maxScroll,top));window.scrollTo({top:this.expectedScroll,behavior:'instant'});};
   if(Math.abs(distance)<2||!animate||this.reduced.matches){this.clearCascade();scroll(to);this.machine.finish();this.paintState();return;}
