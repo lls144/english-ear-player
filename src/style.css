@@ -18,7 +18,7 @@ html[data-effects=quiet] .sentence{text-shadow:none}
 
 /* A painted scroll edge protects controls without repeatedly blurring a full-width layer. */
 .app-header::before{content:"";position:fixed;top:0;left:0;right:0;height:calc(170px + var(--safe-top));background:linear-gradient(180deg,rgba(20,23,42,.74),rgba(22,25,45,.64) 50%,rgba(24,27,46,.3) 78%,rgba(24,27,46,0));z-index:-2;pointer-events:none}
-.app-header::after{content:"";position:fixed;top:0;left:0;right:0;height:calc(130px + var(--safe-top));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);-webkit-mask-image:linear-gradient(#000 0%,#000 55%,transparent 100%);mask-image:linear-gradient(#000 0%,#000 55%,transparent 100%);z-index:-1;pointer-events:none}
+.app-header::after{content:"";position:fixed;top:0;left:0;right:0;height:calc(130px + var(--safe-top));-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);-webkit-mask-image:linear-gradient(#000 0%,#000 55%,transparent 100%);mask-image:linear-gradient(#000 0%,#000 55%,transparent 100%);z-index:-1;pointer-events:none}
 @media(max-width:760px){.app-header::before{height:calc(180px + var(--safe-top))}#chapters{z-index:7;background:transparent}}
 @media(max-width:350px){.app-header::before{height:calc(160px + var(--safe-top))}}
 @media(max-height:500px) and (orientation:landscape){.app-header::before{height:calc(132px + var(--safe-top))}.layout{display:block}#chapters{z-index:7;flex-direction:row;gap:4px;overflow-x:auto;scrollbar-width:none;padding:4px 0 8px;background:transparent}#chapters button{flex-shrink:0;padding:0 12px}#chapters::-webkit-scrollbar{display:none}}
@@ -44,9 +44,9 @@ select{-webkit-appearance:none;appearance:none;padding-right:32px;background-ima
 .seek-area:has(#progress:disabled) .seek-track{opacity:.45}
 /* Foreground text scales inside stable layout boxes; visible rows share a restrained cascade. */
 .sentence,.sentence.current-sentence{transform:translate3d(0,var(--flow-offset,0px),0);transition:transform 120ms ease-out,color 300ms ease,filter 230ms ease,opacity 230ms ease,text-shadow 300ms}
-#transcript[data-follow=ANIMATING_TO_LINE] .sentence{transition:color 300ms ease,filter 230ms ease,opacity 230ms ease,text-shadow 300ms}
+#transcript[data-follow=ANIMATING_TO_LINE] .sentence{transition:color 300ms ease,opacity 230ms ease,text-shadow 300ms}
 .lyric-body{display:block;transform:scale(.99);transform-origin:0 0;transition:transform 380ms cubic-bezier(.2,.8,.25,1)}.sentence.current-sentence .lyric-body{transform:scale(1.03)}.sentence.past-sentence .lyric-body{transform:scale(.985)}
-html[data-effects=quiet] .sentence{transform:none!important}html[data-effects=quiet] .sentence:not(.current-sentence):not(.is-pressing):not(.is-picked) .lyric-body{transform:none}
+html[data-effects=quiet] .sentence{transform:translate3d(0,0,0)!important}html[data-effects=quiet] .sentence:not(.current-sentence):not(.is-pressing):not(.is-picked) .lyric-body{transform:none}
 @media(prefers-reduced-motion:reduce){#transcript .sentence,#transcript .lyric-body{transform:none!important}}
 .lyric-heading{transform:translate3d(0,var(--flow-offset,0px),0);transition:transform 120ms ease-out}#transcript[data-follow=ANIMATING_TO_LINE] .lyric-heading{transition:none}html[data-effects=quiet] .lyric-heading{transform:none!important}#loop-button[data-mode=all]{color:#edf2ff}
 @media(prefers-reduced-motion:reduce){#transcript .lyric-heading{transform:none!important}}
@@ -75,7 +75,7 @@ html:is([data-effects=quiet],[data-motion-budget=quiet]) .player-dock{-webkit-ba
 html:is([data-effects=quiet],[data-motion-budget=quiet]) .app-header::after{-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
 
 /* Consistent frosted glass avoids an opaque flash on every lyric transition. */
-.player-dock{background:linear-gradient(130deg,rgba(236,240,255,.075),rgba(255,255,255,.015) 70%),rgba(26,28,47,.5);-webkit-backdrop-filter:blur(12px) saturate(125%);backdrop-filter:blur(12px) saturate(125%);border-color:rgba(235,241,255,.15);box-shadow:0 8px 32px rgba(3,7,18,.12),inset 0 1px 0 rgba(255,255,255,.05)}
+.player-dock{background:linear-gradient(130deg,rgba(236,240,255,.075),rgba(255,255,255,.015) 70%),rgba(26,28,47,.5);-webkit-backdrop-filter:blur(6px) saturate(125%);backdrop-filter:blur(6px) saturate(125%);border-color:rgba(235,241,255,.15);box-shadow:0 8px 32px rgba(3,7,18,.12),inset 0 1px 0 rgba(255,255,255,.05)}
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.player-dock{background:rgba(30,33,51,.93)}}
 @media(prefers-contrast:more){.player-dock{background:#192238;-webkit-backdrop-filter:none;backdrop-filter:none}}
 
@@ -88,6 +88,7 @@ html:is([data-effects=quiet],[data-motion-budget=quiet]) .app-header::after{-web
 /* Blur is restored after travel; filtered text is not repainted on every scroll frame. */
 #transcript[data-follow=ANIMATING_TO_LINE] .sentence.lyric-visible{transition:color 260ms ease,filter 230ms ease,opacity 260ms ease,text-shadow 260ms ease}
 #transcript[data-follow=ANIMATING_TO_LINE] .lyric-visible{will-change:transform;text-shadow:none}
-html[data-motion-budget=quiet] .sentence,html[data-motion-budget=quiet] .lyric-heading{transform:none!important;will-change:auto!important}
+html[data-motion-budget=quiet] .sentence{transform:translate3d(0,0,0)!important}html[data-motion-budget=quiet] .lyric-heading{transform:none!important;will-change:auto!important}
 html[data-motion-budget=quiet] .sentence:not(.current-sentence):not(.is-pressing):not(.is-picked) .lyric-body{transform:none}
 @media(prefers-reduced-motion:reduce){.ambient-scene::before,.ambient-scene::after{animation:none!important;will-change:auto}.sentence::before{transition:none}.sentence.is-pressing .lyric-body{transform:none}}
+@media(prefers-reduced-motion:no-preference){#transcript.focused:not([data-browsing=true]) .sentence.lyric-visible{will-change:transform}}
