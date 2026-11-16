@@ -73,11 +73,19 @@ test('buffered startup stalls retry once on the same element and require real cl
  const p=make(),q=make();p.setLoop('sentence');q.setLoop('sentence');metadata(p);metadata(q);let pl=0,ql=0,pc=0,qc=0;const pa=p.audio,qa=q.audio,pPlay=pa.play.bind(pa),qPlay=qa.play.bind(qa);pa.load=()=>pl++;qa.load=()=>ql++;pa.play=()=>{pc++;return pPlay();};qa.play=()=>{qc++;return qPlay();};await p.play();await q.play();await waitUntil(()=>pc===2&&qc===2);const ticker=setInterval(()=>{pa.currentTime+=.1;},80);try{await waitUntil(()=>!q.playing);assert.equal(pl,0);assert.equal(ql,0);assert.equal(pc,2);assert.equal(qc,2);assert.equal(p.audio,pa);assert.equal(q.audio,qa);assert.equal(p.playing,true);assert.equal(q.audio.paused,true);assert.match(q.status,/失败/);p.pause();assert.equal(pa.paused,true);}finally{clearInterval(ticker);}
 });
 test('partial data is never blindly reloaded and user pause cancels startup recovery',async()=>{
- const p=make();let loads=0;const load=p.audio.load.bind(p.audio);p.audio.load=()=>{loads++;load();};p.audio.readyState=2;await p.play();await new Promise(r=>setTimeout(r,1500));assert.equal(loads,0);p.pause();p.audio.readyState=4;await new Promise(r=>setTimeout(r,1500));assert.equal(loads,0);assert.equal(p.audio.paused,true);assert.equal(p.playing,false);
+ const p=make();let loads=0;const load=p.audio.load.bind(p.audio);p.audio.load=()=>{loads++;load();};Object.defineProperty(p.audio,'buffered',{get:()=>({length:1,start:()=>0,end:()=>2})});p.audio.readyState=2;await p.play();await new Promise(r=>setTimeout(r,1500));assert.equal(loads,0);p.pause();p.audio.readyState=4;await new Promise(r=>setTimeout(r,1500));assert.equal(loads,0);assert.equal(p.audio.paused,true);assert.equal(p.playing,false);
 });
 
 test('a complete buffered pending seek gets one native restart without reload or a second seek',async()=>{
  const p=make(),a=p.audio;metadata(p);a.seeking=true;a.networkState=2;a.currentTime=42.875;let calls=0,loads=0;const play=a.play.bind(a);a.load=()=>loads++;a.play=()=>{calls++;if(calls===2)a.seeking=false;return play();};void p.play();await waitUntil(()=>calls===2);const ticker=setInterval(()=>a.currentTime+=.1,80);try{await waitUntil(()=>a.currentTime>43.1);assert.equal(p.audio,a);assert.equal(loads,0);assert.equal(calls,2);assert.equal(p.playing,true);}finally{clearInterval(ticker);p.pause();}
+});
+
+test('complete buffered HAVE_CURRENT_DATA can recover a frozen clock without a reload',async()=>{
+ const p=make(),a=p.audio;metadata(p);a.readyState=2;a.networkState=2;a.currentTime=.004103276;let calls=0,loads=0;const play=a.play.bind(a);a.play=()=>{calls++;return play();};a.load=()=>loads++;void p.play();await waitUntil(()=>calls===2);const ticker=setInterval(()=>a.currentTime+=.1,80);try{await waitUntil(()=>a.currentTime>.3);assert.equal(loads,0);assert.equal(calls,2);assert.equal(p.playing,true);}finally{clearInterval(ticker);p.pause();}
+});
+
+test('complete buffered HAVE_CURRENT_DATA also admits the bounded pending-seek restart',async()=>{
+ const p=make(),a=p.audio;metadata(p);a.readyState=2;a.networkState=2;a.seeking=true;a.currentTime=42.875;let calls=0,loads=0;const play=a.play.bind(a);a.play=()=>{calls++;if(calls===2)a.seeking=false;return play();};a.load=()=>loads++;void p.play();await waitUntil(()=>calls===2);const ticker=setInterval(()=>a.currentTime+=.1,80);try{await waitUntil(()=>a.currentTime>43.1);assert.equal(loads,0);assert.equal(calls,2);assert.equal(p.playing,true);}finally{clearInterval(ticker);p.pause();}
 });
 test('a partial buffered pending seek is not restarted as though its file were complete',async()=>{
  const p=make(),a=p.audio;metadata(p);a.seeking=true;a.networkState=2;Object.defineProperty(a,'buffered',{get:()=>({length:1,start:()=>0,end:()=>2})});let calls=0;const play=a.play.bind(a);a.play=()=>{calls++;return play();};void p.play();await new Promise(r=>setTimeout(r,3500));assert.equal(calls,1);p.pause();
