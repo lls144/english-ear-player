@@ -6,11 +6,12 @@ permissions:
   contents: read
 jobs:
   probe:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
         profile: [ipad-webkit, landscape-webkit]
+        os: [ubuntu-24.04, ubuntu-latest]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -28,7 +29,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: diagnostic-${{ matrix.profile }}
+          name: diagnostic-${{ matrix.profile }}-${{ matrix.os }}
           retention-days: 1
           path: |
             .local/qa/*.json
