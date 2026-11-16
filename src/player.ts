@@ -379,7 +379,13 @@ export class Player {
       this.speechOffset=this.settings.loop==='sentence'?0:this.sentences.slice(0,index).reduce((n,u)=>n+(u.pronunciationText??u.speechText).length+2,0);
       this.speechActiveIndex=index;
     }else if(this.settings.loop==='sentence'){
-      this.settings.audioPositions[this.positionKey]=0;this.loadAudio();
+      this.settings.audioPositions[this.positionKey]=0;
+      if(this.audio.getAttribute('src')===this.audioSource&&!this.audio.error&&!this.audioFailed){
+        // A chapter/preset may already have started this very sentence. Keep
+        // its decoder and pending download instead of loading the same file twice.
+        this.sentenceSeek=undefined;this.restorePending=false;this.restoredAt=0;this.loopRestartAllowed=false;
+        if(this.audio.currentSrc===this.audioSource&&this.audio.readyState>=1&&(this.audio.currentTime>.03||this.audio.ended))this.audio.currentTime=0;
+      }else this.loadAudio();
     }else{
       // Imported files have no verified cue map. Preserve their association,
       // but use the corresponding built-in chapter for an exact lyric jump.
