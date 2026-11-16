@@ -75,6 +75,19 @@ test('buffered startup stalls retry once on the same element and require real cl
 test('partial data is never blindly reloaded and user pause cancels startup recovery',async()=>{
  const p=make();let loads=0;const load=p.audio.load.bind(p.audio);p.audio.load=()=>{loads++;load();};p.audio.readyState=2;await p.play();await new Promise(r=>setTimeout(r,1500));assert.equal(loads,0);p.pause();p.audio.readyState=4;await new Promise(r=>setTimeout(r,1500));assert.equal(loads,0);assert.equal(p.audio.paused,true);assert.equal(p.playing,false);
 });
+
+test('a complete buffered pending seek gets one native restart without reload or a second seek',async()=>{
+ const p=make(),a=p.audio;metadata(p);a.seeking=true;a.networkState=2;a.currentTime=42.875;let calls=0,loads=0;const play=a.play.bind(a);a.load=()=>loads++;a.play=()=>{calls++;if(calls===2)a.seeking=false;return play();};void p.play();await waitUntil(()=>calls===2);const ticker=setInterval(()=>a.currentTime+=.1,80);try{await waitUntil(()=>a.currentTime>43.1);assert.equal(p.audio,a);assert.equal(loads,0);assert.equal(calls,2);assert.equal(p.playing,true);}finally{clearInterval(ticker);p.pause();}
+});
+test('a partial buffered pending seek is not restarted as though its file were complete',async()=>{
+ const p=make(),a=p.audio;metadata(p);a.seeking=true;a.networkState=2;Object.defineProperty(a,'buffered',{get:()=>({length:1,start:()=>0,end:()=>2})});let calls=0;const play=a.play.bind(a);a.play=()=>{calls++;return play();};void p.play();await new Promise(r=>setTimeout(r,3500));assert.equal(calls,1);p.pause();
+});
+test('explicit pause cancels even a complete buffered pending seek restart',async()=>{
+ const p=make(),a=p.audio;metadata(p);a.seeking=true;let calls=0;const play=a.play.bind(a);a.play=()=>{calls++;return play();};void p.play();p.pause();await new Promise(r=>setTimeout(r,3500));assert.equal(calls,1);assert.equal(a.paused,true);assert.equal(p.playing,false);
+});
+test('a native seek restart that never advances stops after the single retry',async()=>{
+ const p=make(),a=p.audio;metadata(p);a.seeking=true;let calls=0;const play=a.play.bind(a);a.play=()=>{calls++;return play();};void p.play();await waitUntil(()=>calls===2);await waitUntil(()=>!p.playing);assert.equal(calls,2);assert.equal(a.paused,true);assert.match(p.status,/失败/);
+});
 test('a queued stale play event cannot undo an explicit pause',async()=>{const p=make();await p.play();p.pause();p.audio.dispatchEvent(new Event('play'));assert.equal(p.playing,false);assert.equal(p.audio.paused,true);});
 
 test('a queued ended event cannot restart a sentence after explicit pause',async()=>{const p=make();p.setLoop('sentence');await p.play();p.pause();p.audio.dispatchEvent(new Event('ended'));assert.equal(p.playing,false);assert.equal(p.audio.paused,true);});
