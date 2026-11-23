@@ -55,3 +55,44 @@ test('published paragraphs contain no standalone source phrases and moved V1.2 u
  const {execFileSync}=await import('node:child_process');const prior=JSON.parse(execFileSync('git',['show','v1.2.0:content/materials.json'],{encoding:'utf8'}));
  const old=prior.chapters.flatMap(c=>c.segments);for(const s of m.chapters.find(c=>c.id==='phrases').segments){const before=old.find(o=>o.text===s.text);if(before){assert.equal(s.id,before.id);assert.deepEqual(s.sentences.map(u=>u.id),before.sentences.map(u=>u.id));}}
 });
+test('chart and notice vocabulary stay in phrases while their templates stay in their own chapters',()=>{
+ const raw=`# 大作文
+## 一段（图画）
+A girl smiles.
+## 一段（图表）
+### 三年及以上（单组数据）
+The number of [主题词1] rose from [起始值] to [结束值].
+| 年级 | 英文 |
+|---|---|
+| 大一 | freshmen |
+# 小作文
+## 一段
+### 通知公告
+- 举办活动：The meeting begins at noon.
+#### 格式
+<p style="text-align: center">Notice</p>
+## 二段
+### 第二段（通知公告）
+#### 志愿者要求
+Selected volunteers will assist visitors.
+|中文|英文|
+|---|---|
+|引导参赛者|guiding participants|
+#### 结尾（呼吁参加）
+1. 志愿者：Your participation will be greatly appreciated.`;
+ const {materials}=bootstrap(raw),lookup=id=>materials.chapters.find(c=>c.id===id).segments.map(s=>s.displayText);
+ assert.deepEqual(lookup('chart-opening'),['The number of [主题词1] rose from [起始值] to [结束值].']);
+ assert.deepEqual(lookup('letter-opening'),['The meeting begins at noon.']);
+ assert.deepEqual(lookup('letter-body'),['Selected volunteers will assist visitors.']);
+ assert.deepEqual(lookup('letter-ending'),['Your participation will be greatly appreciated.']);
+ assert.deepEqual(lookup('phrases'),['freshmen','guiding participants']);
+});
+
+test('adjacent caption insertions preserve distinct source IDs when a new template is also added',()=>{
+ const old='## 一段\n### 图里有标题\nThe caption indicates/reads/says “...”\nThe caption reads: “Trees provide shade.”';
+ const baseline=bootstrap(old),next=old.replaceAll('The caption ','The caption beneath the drawing ')+'\n或：At the bottom of the drawing is the caption: ...';
+ const result=synchronize(baseline.state,next,baseline.materials);
+ assert.deepEqual(result.conflicts,[]);
+ assert.deepEqual(result.materials.chapters[0].segments.slice(0,2).map(s=>s.id),baseline.materials.chapters[0].segments.map(s=>s.id));
+ assert.deepEqual(result.changes.map(c=>c.type),['updated','updated','added']);
+});

@@ -10,6 +10,7 @@ export function audioSettingsFor(settings,preset,unitIds){
 export function splitSentences(text){
  const dot='\uE000';
  const protectedText=text.replace(/\.{3,}|…+/g,s=>s.replace(/\./g,dot))
+  .replace(/(?:^|\s|\/\/)[1-9]\.(?=[a-z])/gi,s=>s.replace('.',dot))
   .replace(/\b(?:Mr|Mrs|Ms|Dr|Prof|Sr|Jr|vs|etc)\./gi,s=>s.replaceAll('.',dot))
   .replace(/\b(?:[A-Za-z]\.){2,}/g,s=>s.replaceAll('.',dot))
   .replace(/\b(?:sth|sb)\.(?=\s+[a-z])/g,s=>s.replace('.',dot));
@@ -20,7 +21,16 @@ export function splitSentences(text){
 }
 export function pronunciation(displayText){
  let text=displayText;const substitutions=[];
- const replace=(pattern,fn)=>{text=text.replace(pattern,(...args)=>{const original=args[0],replacement=typeof fn==='function'?fn(...args):fn;substitutions.push({original,replacement});return replacement.replace(/\b([A-Z])\b/g,'\uE001$1\uE002');});};
+ const replace=(pattern,fn)=>{text=text.replace(pattern,(...args)=>{const original=args[0],replacement=typeof fn==='function'?fn(...args):fn;if(replacement===undefined)return original;substitutions.push({original,replacement});return replacement.replace(/\b([A-Z])\b/g,'\uE001$1\uE002');});};
+ const slots={
+  '开始年':'year A','对比年':'year B','开始年数值':'value A','结束年数值':'value B','差值':'a certain amount',
+  '最大值的名词 B':'category B','另一种变化的名词 A':'category A','数据没怎么变动的 C':'category C','对应数值':'a given value',
+  '表头标题':'a particular topic','主题词1':'items in group A','主题词2':'items in group B',
+  '起始值':'value A','结束值':'value B','起始时间或群体':'year A','结束时间或群体':'year B',
+  '年份':'a certain year','特色内容':'a particular topic','具体职责':'a set of duties',
+  '具体任务1':'task A','具体任务2':'task B','日期':'a certain date','活动':'event','n':'something',
+  '目的':'achieve a goal','能力':'skills','雇主':'an organization'
+ };
  // Reviewed neutral mappings; alternatives stay visible, never create a topic fact.
  if(/^Were it not for/.test(text)&&text.includes('[句子]/disregard')){
   replace(/that\s*\+?\s*\[句子\]\/disregard/,'to disregard');
@@ -28,10 +38,30 @@ export function pronunciation(displayText){
   text=text.replace(/we would neglect the common phenomenon to disregard/,'we would disregard');
   substitutions.push({original:displayText,replacement:text});
  }
- if(/\[(?:完整句子|句子)\]/.test(text)){
+ replace(/^the phenomenon that \[句子\]$/i,'the phenomenon');
+ replace(/^the organization of$/i,'the organization of something');
+ if(/\[(?:完整句子|句子|具体规定)\]/.test(text)){
   const colon=text.search(/[:：]/);if(colon<0)throw Error('Whole-sentence placeholder needs a reviewed complete introduction');
   const original=text.slice(colon);text=text.slice(0,colon).trim().replace(/[.!?]$/,'')+'.';substitutions.push({original,replacement:'.'});
  }
+ // These source choices span more than one word. Keep the full display text.
+ replace(/^(To \[目的\]) \(\*?improve students' \[能力\] and enrich their extracurricular life\*?\), \[雇主\] \(\*?our university\*?\)(?= is recruiting)/,'To achieve a goal, an organization');
+ replace(/the three\s*\[主题词\]/g,'the three categories');
+ replace(/(?<=is recruiting volunteers for )\[主题\]/g,'an activity');
+ replace(/(?<=the idea of )\(environmental protection\)/g,'something');
+ replace(/(?<=over )sth(?=,)/g,'something');
+ replace(/(?<=an exhibition) \/ a series of exhibitions/g,'');
+ replace(/(?<=regarding the upcoming \[活动\])\s*\/\s*the organization of$/i,'');
+ if(/^Their improper conduct stems from self-interest, coupled with 1\./.test(text)){
+  replace(/1\.(an obsession with[^/]+)(?:\/\/.*)?$/,(_,first)=>first);
+ }
+ replace(/(?<=the )amount\/number(?= of \[主题词2\])/g,'number');
+ if(/^By contrast, there was a noticeable /.test(text)||text.includes('[主题词2]')){
+  replace(/\[(?:开始年数值|起始值)\]/g,'value C');
+  replace(/\[(?:结束年数值|结束值)\]/g,'value D');
+ }
+ replace(/^Coincident with the rapid development of A is the increasing popularity of B(?=,)/g,'Coincident with the rapid development of A is the increasing popularity of B');
+ replace(/\[([^\]]+)\]/g,(_,key)=>Object.hasOwn(slots,key.trim())?slots[key.trim()]:undefined);
  replace(/\[趋势\s*([A-Z])\]/g,(_,letter)=>'trend '+letter);
  replace(/\[(?:主题词|主题|某种观念|核心价值|片面追求|具体帮助|核心论述对象\/主人公，非谓语\/介词短语)\]/g,'something');
  replace(/a \[身份\]/g,'somebody');
@@ -50,7 +80,7 @@ export function pronunciation(displayText){
  if(/\b(?:sth|sb)\.$/i.test(displayText)&&!/[.!?]$/.test(text))text+='.';
  if(/\bNot only\.{3,}but also\.{3,}/i.test(text))replace(/Not only\.{3,}but also\.{3,}/gi,'Not only A, but also B.');
  replace(/\.{3,}|…+/g,'something');
- if(text.includes('//')){const original=text; text=text.split('//')[0].replace(/[.!?]$/,'')+'.';substitutions.push({original,replacement:text});}
+ if(text.includes('//')){const original=text; text=text.split('//')[0].trimEnd().replace(/[.!?]$/,'')+'.';substitutions.push({original,replacement:text});}
  replace(/([A-Za-z]+)(?:\/[A-Za-z]+)+/g,match=>match.split('/')[0]);
  text=text.replace(/\s*\+\s*/g,' ').replace(/\s+/g,' ').trim();
  if(/[\u3400-\u9fff\[\]×/]|\b(?:sth|sb)\.|\.{3}/.test(text))throw Error('Unreviewed speech placeholder: '+displayText);
