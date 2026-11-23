@@ -80,6 +80,16 @@
         "modelSpeed": 0.85,
         "styleLength": 32
       }
+    },
+    "source-cad6f5c6bc400202-s-fbfff86e9fe9": {
+      "continuous": {
+        "modelSpeed": 0.8
+      }
+    },
+    "source-c6d66f1fba515a5b-s-e5411774a275": {
+      "all": {
+        "modelSpeed": 1
+      }
     }
   }
 }

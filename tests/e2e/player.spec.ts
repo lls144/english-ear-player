@@ -10,6 +10,7 @@ const fault=(p:Page,data:object)=>p.request.post('/__e2e_control/'+cases.get(p),
 const published=JSON.parse(fs.readFileSync('src/library.generated.json','utf8'));
 const ids=published.chapters.map((c:any)=>c.id);
 const titles=published.chapters.map((c:any)=>c.title);
+const titleFor=(id:string):string=>published.chapters.find((c:any)=>c.id===id).title;
 const audio=(p:Page)=>p.locator('audio');
 const state=(p:Page)=>audio(p).evaluate((a:HTMLAudioElement)=>({time:a.currentTime,duration:a.duration,paused:a.paused,rate:a.playbackRate,loop:a.loop,src:a.currentSrc,ready:a.readyState,error:a.error?.code}));
 async function start(p:Page){await p.locator('#play').click();await expect.poll(async()=>(await state(p)).paused).toBe(false);await expect.poll(async()=>(await state(p)).time).toBeGreaterThan(.1);}
@@ -128,7 +129,7 @@ test('progress seeks actual media and keeps updating after touch or focus',async
 test('reload restores mode speed loop position without autoplay',async({page})=>{
  await page.locator('[data-chapter=reasons]').click();await rate(page,'0.9');await loop(page,'one');
  await start(page);await audio(page).evaluate((a:HTMLAudioElement)=>{a.currentTime=3;});await page.locator('#play').click();
- await page.reload();await expect(page.locator('#chapter-title')).toHaveText(titles[2]);await expect.poll(async()=>(await state(page)).duration).toBeGreaterThan(0);
+ await page.reload();await expect(page.locator('#chapter-title')).toHaveText(titleFor('reasons'));await expect.poll(async()=>(await state(page)).duration).toBeGreaterThan(0);
  expect((await state(page)).paused).toBe(true);expect((await state(page)).rate).toBeCloseTo(.9/published.referenceRate,5);expect((await state(page)).loop).toBe(true);expect((await state(page)).time).toBeGreaterThan(2.7);
 });
 test('rapid play pause and chapter changes settle to one correct real player',async({page})=>{
@@ -136,13 +137,13 @@ test('rapid play pause and chapter changes settle to one correct real player',as
  for(const id of ['reasons','theme-trends','conclusion','picture','connectors'])await page.locator('[data-chapter="'+id+'"]').click({delay:0});
  if((await state(page)).paused)await start(page);
  await expect.poll(async()=>(await state(page)).paused).toBe(false);expect(await audio(page).count()).toBe(1);
- expect((await state(page)).src).toMatch(/connectors-slow(?:\.[a-f0-9]+)?\.mp3$/);await expect(page.locator('#chapter-title')).toHaveText(titles[3]);
+ expect((await state(page)).src).toMatch(/connectors-slow(?:\.[a-f0-9]+)?\.mp3$/);await expect(page.locator('#chapter-title')).toHaveText(titleFor('connectors'));
 });
 test('slow source switch ignores superseded request',async({page})=>{
  await fault(page,{delayFile:'theme-trends-slow.mp3',delayMs:1200});
  await start(page);await page.locator('[data-chapter=theme-trends]').click();await page.locator('[data-chapter=reasons]').click();
  await expect.poll(async()=>(await state(page)).src).toMatch(/reasons-slow(?:\.[a-f0-9]+)?\.mp3$/);await page.waitForTimeout(1400);
- await expect(page.locator('#chapter-title')).toHaveText(titles[2]);expect((await state(page)).paused).toBe(false);expect((await state(page)).src).toMatch(/reasons-slow(?:\.[a-f0-9]+)?\.mp3$/);
+ await expect(page.locator('#chapter-title')).toHaveText(titleFor('reasons'));expect((await state(page)).paused).toBe(false);expect((await state(page)).src).toMatch(/reasons-slow(?:\.[a-f0-9]+)?\.mp3$/);
 });
 test('missing audio shows failure and retry recovers',async({page})=>{
  await fault(page,{failFile:'reasons-slow.mp3',status:404});await page.locator('[data-chapter=reasons]').click();await page.locator('#play').click();
@@ -174,7 +175,7 @@ test('wrong extension empty corrupt MP3 fail safely and valid import recovers',a
  }else{await page.locator('#file-input').setInputFiles(path.resolve('public/assets/audio/picture.mp3'));await start(page);}
 });
 test('long text settings touch scrolling and dock fit viewport',async({page,browserName})=>{
- await page.locator('[data-chapter=connectors]').click();await expect(page.locator('#chapter-title')).toHaveText(titles[3]);
+ await page.locator('[data-chapter=connectors]').click();await expect(page.locator('#chapter-title')).toHaveText(titleFor('connectors'));
  await expect(page.locator('#more-settings')).not.toBeVisible();
  await expect(page.locator('#source-info')).not.toHaveAttribute('open');
  await page.locator('#transcript .passage').last().scrollIntoViewIfNeeded();
@@ -193,7 +194,7 @@ test('long text settings touch scrolling and dock fit viewport',async({page,brow
   await cdp.send('Emulation.setSafeAreaInsetsOverride',{insets:{}});await page.setViewportSize(original);await cdp.detach();
  }
  await settings(page);await expect(page.locator('#voice')).toBeVisible();await close(page);
- await page.locator('#next').click();await expect(page.locator('#chapter-title')).toHaveText(titles[4]);
+ await page.locator('#next').click();await expect(page.locator('#chapter-title')).toHaveText(titleFor('conclusion'));
 });
 test('native Media Session handlers control actual audio and metadata',async({page})=>{
  if(!await page.evaluate(()=>'mediaSession' in navigator)){test.info().annotations.push({type:'limitation',description:'No native Media Session API'});return;}

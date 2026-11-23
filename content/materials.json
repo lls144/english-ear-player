@@ -129,11 +129,11 @@
         {
           "id": "source-6e4c1909ea887b08",
           "kind": "source-template",
-          "text": "The caption indicates/reads/says “...”",
+          "text": "The caption beneath the drawing indicates/reads/says “...”",
           "category": "图里有标题",
           "parts": [
             {
-              "text": "The caption reads “something”"
+              "text": "The caption beneath the drawing reads “something”"
             }
           ],
           "sourceIds": [
@@ -146,15 +146,15 @@
             ]
           ],
           "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
-          "displayText": "The caption indicates/reads/says “...”",
-          "speechText": "The caption reads “something”",
+          "displayText": "The caption beneath the drawing indicates/reads/says “...”",
+          "speechText": "The caption beneath the drawing reads “something”",
           "speechPolicy": "neutral-placeholders-v1.2",
           "sentences": [
             {
-              "id": "source-6e4c1909ea887b08-s-7aa24586d341",
-              "displayText": "The caption indicates/reads/says “...”",
-              "speechText": "The caption reads “something”",
-              "pronunciationText": "The caption reads “something”",
+              "id": "source-6e4c1909ea887b08-s-e8927e551d8e",
+              "displayText": "The caption beneath the drawing indicates/reads/says “...”",
+              "speechText": "The caption beneath the drawing reads “something”",
+              "pronunciationText": "The caption beneath the drawing reads “something”",
               "substitutions": [
                 {
                   "original": "indicates/reads/says",
@@ -174,11 +174,11 @@
         {
           "id": "source-cad6f5c6bc400202",
           "kind": "source-example",
-          "text": "The caption reads: “A hotpot contains elements such as ‘Kung Fu,’ ‘Lao She,’ and ‘Shakespeare.’ ”",
+          "text": "The caption beneath the drawing reads: “A hotpot contains elements such as ‘Kung Fu,’ ‘Lao She,’ and ‘Shakespeare.’ ”",
           "category": "图里有标题",
           "parts": [
             {
-              "text": "The caption reads: “A hotpot contains elements such as ‘Kung Fu,’ ‘Lao She,’ and ‘Shakespeare.’ ”"
+              "text": "The caption beneath the drawing reads: “A hotpot contains elements such as ‘Kung Fu,’ ‘Lao She,’ and ‘Shakespeare.’ ”"
             }
           ],
           "sourceIds": [
@@ -191,15 +191,15 @@
             ]
           ],
           "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
-          "displayText": "The caption reads: “A hotpot contains elements such as ‘Kung Fu,’ ‘Lao She,’ and ‘Shakespeare.’ ”",
-          "speechText": "The caption reads: “A hotpot contains elements such as ‘Kung Fu,’ ‘Lao She,’ and ‘Shakespeare.’ ”",
+          "displayText": "The caption beneath the drawing reads: “A hotpot contains elements such as ‘Kung Fu,’ ‘Lao She,’ and ‘Shakespeare.’ ”",
+          "speechText": "The caption beneath the drawing reads: “A hotpot contains elements such as ‘Kung Fu,’ ‘Lao She,’ and ‘Shakespeare.’ ”",
           "speechPolicy": "neutral-placeholders-v1.2",
           "sentences": [
             {
-              "id": "source-cad6f5c6bc400202-s-b9eff458ec13",
-              "displayText": "The caption reads: “A hotpot contains elements such as ‘Kung Fu,’ ‘Lao She,’ and ‘Shakespeare.’ ”",
-              "speechText": "The caption reads: “A hotpot contains elements such as ‘Kung Fu,’ ‘Lao She,’ and ‘Shakespeare.’ ”",
-              "pronunciationText": "The caption reads: “A hotpot contains elements such as ‘Kung Fu,’ ‘Lao She,’ and ‘Shakespeare.’ ”",
+              "id": "source-cad6f5c6bc400202-s-fbfff86e9fe9",
+              "displayText": "The caption beneath the drawing reads: “A hotpot contains elements such as ‘Kung Fu,’ ‘Lao She,’ and ‘Shakespeare.’ ”",
+              "speechText": "The caption beneath the drawing reads: “A hotpot contains elements such as ‘Kung Fu,’ ‘Lao She,’ and ‘Shakespeare.’ ”",
+              "pronunciationText": "The caption beneath the drawing reads: “A hotpot contains elements such as ‘Kung Fu,’ ‘Lao She,’ and ‘Shakespeare.’ ”",
               "substitutions": [],
               "sourceIds": [
                 "note-cad6f5c6bc400202"
@@ -208,13 +208,54 @@
           ]
         },
         {
+          "id": "source-f08c0014cbe142b9",
+          "kind": "source-template",
+          "text": "At the bottom of the drawing is the caption: ...",
+          "category": "图里有标题",
+          "parts": [
+            {
+              "text": "At the bottom of the drawing is the caption: something"
+            }
+          ],
+          "sourceIds": [
+            "note-f08c0014cbe142b9"
+          ],
+          "sourceLines": [
+            [
+              32,
+              32
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "At the bottom of the drawing is the caption: ...",
+          "speechText": "At the bottom of the drawing is the caption: something",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-f08c0014cbe142b9-s-68b30bfa7433",
+              "displayText": "At the bottom of the drawing is the caption: ...",
+              "speechText": "At the bottom of the drawing is the caption: something",
+              "pronunciationText": "At the bottom of the drawing is the caption: something",
+              "substitutions": [
+                {
+                  "original": "...",
+                  "replacement": "something"
+                }
+              ],
+              "sourceIds": [
+                "note-f08c0014cbe142b9"
+              ]
+            }
+          ]
+        },
+        {
           "id": "source-034abf726486f06b",
           "kind": "source-template",
-          "text": "Were it not for [核心论述对象/主人公，非谓语/介词短语],we would neglect the common phenomenon that [句子]/disregard the significance of [主题词]",
+          "text": "Were it not for [核心论述对象/主人公，非谓语/介词短语], we would neglect the common phenomenon that [句子]/disregard the significance of [主题词]",
           "category": "extra 图里内容少需凑字数（较少使用）",
           "parts": [
             {
-              "text": "Were it not for something,we would disregard the significance of something"
+              "text": "Were it not for something, we would disregard the significance of something"
             }
           ],
           "sourceIds": [
@@ -227,23 +268,23 @@
             ]
           ],
           "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
-          "displayText": "Were it not for [核心论述对象/主人公，非谓语/介词短语],we would neglect the common phenomenon that [句子]/disregard the significance of [主题词]",
-          "speechText": "Were it not for something,we would disregard the significance of something",
+          "displayText": "Were it not for [核心论述对象/主人公，非谓语/介词短语], we would neglect the common phenomenon that [句子]/disregard the significance of [主题词]",
+          "speechText": "Were it not for something, we would disregard the significance of something",
           "speechPolicy": "neutral-placeholders-v1.2",
           "sentences": [
             {
-              "id": "source-034abf726486f06b-s-65a5eb6ee5ac",
-              "displayText": "Were it not for [核心论述对象/主人公，非谓语/介词短语],we would neglect the common phenomenon that [句子]/disregard the significance of [主题词]",
-              "speechText": "Were it not for something,we would disregard the significance of something",
-              "pronunciationText": "Were it not for something,we would disregard the significance of something",
+              "id": "source-034abf726486f06b-s-26e762d89808",
+              "displayText": "Were it not for [核心论述对象/主人公，非谓语/介词短语], we would neglect the common phenomenon that [句子]/disregard the significance of [主题词]",
+              "speechText": "Were it not for something, we would disregard the significance of something",
+              "pronunciationText": "Were it not for something, we would disregard the significance of something",
               "substitutions": [
                 {
                   "original": "that [句子]/disregard",
                   "replacement": "to disregard"
                 },
                 {
-                  "original": "Were it not for [核心论述对象/主人公，非谓语/介词短语],we would neglect the common phenomenon that [句子]/disregard the significance of [主题词]",
-                  "replacement": "Were it not for [核心论述对象/主人公，非谓语/介词短语],we would disregard the significance of [主题词]"
+                  "original": "Were it not for [核心论述对象/主人公，非谓语/介词短语], we would neglect the common phenomenon that [句子]/disregard the significance of [主题词]",
+                  "replacement": "Were it not for [核心论述对象/主人公，非谓语/介词短语], we would disregard the significance of [主题词]"
                 },
                 {
                   "original": "[核心论述对象/主人公，非谓语/介词短语]",
@@ -256,6 +297,288 @@
               ],
               "sourceIds": [
                 "note-034abf726486f06b"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chart-opening",
+      "title": "首段图表",
+      "inMainLoop": true,
+      "subtitle": "首段图表",
+      "segments": [
+        {
+          "id": "source-807fe22b66c03a5a",
+          "kind": "source-template",
+          "text": "In [开始年], [最大值的名词 B] topped the three[主题词], while in [对比年], a remarkable decline/increase of [差值] occurred, from [开始年数值] to [结束年数值]. By contrast, there was a noticeable jump/decrease of [差值] from [开始年数值] to [结束年数值] during the same period in [另一种变化的名词 A ], and [数据没怎么变动的 C ] stayed at the same level of [对应数值].",
+          "category": "仅两年，图表变化分析（考频低）",
+          "parts": [
+            {
+              "text": "In year A, category B topped the three categories, while in year B, a remarkable decline of a certain amount occurred, from value A to value B."
+            },
+            {
+              "text": "By contrast, there was a noticeable jump of a certain amount from value C to value D during the same period in category A, and category C stayed at the same level of a given value."
+            }
+          ],
+          "sourceIds": [
+            "note-807fe22b66c03a5a"
+          ],
+          "sourceLines": [
+            [
+              37,
+              37
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "In [开始年], [最大值的名词 B] topped the three[主题词], while in [对比年], a remarkable decline/increase of [差值] occurred, from [开始年数值] to [结束年数值]. By contrast, there was a noticeable jump/decrease of [差值] from [开始年数值] to [结束年数值] during the same period in [另一种变化的名词 A ], and [数据没怎么变动的 C ] stayed at the same level of [对应数值].",
+          "speechText": "In year A, category B topped the three categories, while in year B, a remarkable decline of a certain amount occurred, from value A to value B. By contrast, there was a noticeable jump of a certain amount from value C to value D during the same period in category A, and category C stayed at the same level of a given value.",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-807fe22b66c03a5a-s-3f481e915a1e",
+              "displayText": "In [开始年], [最大值的名词 B] topped the three[主题词], while in [对比年], a remarkable decline/increase of [差值] occurred, from [开始年数值] to [结束年数值].",
+              "speechText": "In year A, category B topped the three categories, while in year B, a remarkable decline of a certain amount occurred, from value A to value B.",
+              "pronunciationText": "In year eigh, category bee topped the three categories, while in year bee, a remarkable decline of a certain amount occurred, from value eigh to value bee.",
+              "substitutions": [
+                {
+                  "original": "the three[主题词]",
+                  "replacement": "the three categories"
+                },
+                {
+                  "original": "[开始年]",
+                  "replacement": "year A"
+                },
+                {
+                  "original": "[最大值的名词 B]",
+                  "replacement": "category B"
+                },
+                {
+                  "original": "[对比年]",
+                  "replacement": "year B"
+                },
+                {
+                  "original": "[差值]",
+                  "replacement": "a certain amount"
+                },
+                {
+                  "original": "[开始年数值]",
+                  "replacement": "value A"
+                },
+                {
+                  "original": "[结束年数值]",
+                  "replacement": "value B"
+                },
+                {
+                  "original": "decline/increase",
+                  "replacement": "decline"
+                }
+              ],
+              "sourceIds": [
+                "note-807fe22b66c03a5a"
+              ]
+            },
+            {
+              "id": "source-807fe22b66c03a5a-s-47c4b131dabd",
+              "displayText": "By contrast, there was a noticeable jump/decrease of [差值] from [开始年数值] to [结束年数值] during the same period in [另一种变化的名词 A ], and [数据没怎么变动的 C ] stayed at the same level of [对应数值].",
+              "speechText": "By contrast, there was a noticeable jump of a certain amount from value C to value D during the same period in category A, and category C stayed at the same level of a given value.",
+              "pronunciationText": "By contrast, there was a noticeable jump of a certain amount from value see to value dee during the same period in category eigh, and category see stayed at the same level of a given value.",
+              "substitutions": [
+                {
+                  "original": "[开始年数值]",
+                  "replacement": "value C"
+                },
+                {
+                  "original": "[结束年数值]",
+                  "replacement": "value D"
+                },
+                {
+                  "original": "[差值]",
+                  "replacement": "a certain amount"
+                },
+                {
+                  "original": "[另一种变化的名词 A ]",
+                  "replacement": "category A"
+                },
+                {
+                  "original": "[数据没怎么变动的 C ]",
+                  "replacement": "category C"
+                },
+                {
+                  "original": "[对应数值]",
+                  "replacement": "a given value"
+                },
+                {
+                  "original": "jump/decrease",
+                  "replacement": "jump"
+                }
+              ],
+              "sourceIds": [
+                "note-807fe22b66c03a5a"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "source-56166b32c086f792",
+          "kind": "source-template",
+          "text": "Emerging from the chart above are these statistics: the chart illustrates [表头标题].",
+          "category": "多年（图表）",
+          "parts": [
+            {
+              "text": "Emerging from the chart above are these statistics: the chart illustrates a particular topic."
+            }
+          ],
+          "sourceIds": [
+            "note-56166b32c086f792"
+          ],
+          "sourceLines": [
+            [
+              39,
+              39
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Emerging from the chart above are these statistics: the chart illustrates [表头标题].",
+          "speechText": "Emerging from the chart above are these statistics: the chart illustrates a particular topic.",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-56166b32c086f792-s-130a7fa43f4f",
+              "displayText": "Emerging from the chart above are these statistics: the chart illustrates [表头标题].",
+              "speechText": "Emerging from the chart above are these statistics: the chart illustrates a particular topic.",
+              "pronunciationText": "Emerging from the chart above are these statistics: the chart illustrates a particular topic.",
+              "substitutions": [
+                {
+                  "original": "[表头标题]",
+                  "replacement": "a particular topic"
+                }
+              ],
+              "sourceIds": [
+                "note-56166b32c086f792"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "source-cbf67375560b05bc",
+          "kind": "source-template",
+          "text": "The number/percentage of [主题词1] witnessed a remarkable increase, rising from about [起始值] in/among [起始时间或群体] to [结束值] in/among [结束时间或群体].",
+          "category": "三年及以上（单组数据）",
+          "parts": [
+            {
+              "text": "The number of items in group A witnessed a remarkable increase, rising from about value A in year A to value B in year B."
+            }
+          ],
+          "sourceIds": [
+            "note-cbf67375560b05bc"
+          ],
+          "sourceLines": [
+            [
+              41,
+              41
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "The number/percentage of [主题词1] witnessed a remarkable increase, rising from about [起始值] in/among [起始时间或群体] to [结束值] in/among [结束时间或群体].",
+          "speechText": "The number of items in group A witnessed a remarkable increase, rising from about value A in year A to value B in year B.",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-cbf67375560b05bc-s-27e2b77aca98",
+              "displayText": "The number/percentage of [主题词1] witnessed a remarkable increase, rising from about [起始值] in/among [起始时间或群体] to [结束值] in/among [结束时间或群体].",
+              "speechText": "The number of items in group A witnessed a remarkable increase, rising from about value A in year A to value B in year B.",
+              "pronunciationText": "The number of items in group eigh witnessed a remarkable increase, rising from about value eigh in year eigh to value bee in year bee.",
+              "substitutions": [
+                {
+                  "original": "[主题词1]",
+                  "replacement": "items in group A"
+                },
+                {
+                  "original": "[起始值]",
+                  "replacement": "value A"
+                },
+                {
+                  "original": "[起始时间或群体]",
+                  "replacement": "year A"
+                },
+                {
+                  "original": "[结束值]",
+                  "replacement": "value B"
+                },
+                {
+                  "original": "[结束时间或群体]",
+                  "replacement": "year B"
+                },
+                {
+                  "original": "number/percentage",
+                  "replacement": "number"
+                },
+                {
+                  "original": "in/among",
+                  "replacement": "in"
+                },
+                {
+                  "original": "in/among",
+                  "replacement": "in"
+                }
+              ],
+              "sourceIds": [
+                "note-cbf67375560b05bc"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "source-b4459d234d5e3356",
+          "kind": "source-template",
+          "text": "Meanwhile, the amount/number of [主题词2], surpassing expectations, dipped dramatically from [起始值] to [结束值].",
+          "category": "三年及以上（2组数据比较）",
+          "parts": [
+            {
+              "text": "Meanwhile, the number of items in group B, surpassing expectations, dipped dramatically from value C to value D."
+            }
+          ],
+          "sourceIds": [
+            "note-b4459d234d5e3356"
+          ],
+          "sourceLines": [
+            [
+              50,
+              50
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Meanwhile, the amount/number of [主题词2], surpassing expectations, dipped dramatically from [起始值] to [结束值].",
+          "speechText": "Meanwhile, the number of items in group B, surpassing expectations, dipped dramatically from value C to value D.",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-b4459d234d5e3356-s-2c11d0eabaf9",
+              "displayText": "Meanwhile, the amount/number of [主题词2], surpassing expectations, dipped dramatically from [起始值] to [结束值].",
+              "speechText": "Meanwhile, the number of items in group B, surpassing expectations, dipped dramatically from value C to value D.",
+              "pronunciationText": "Meanwhile, the number of items in group bee, surpassing expectations, dipped dramatically from value see to value dee.",
+              "substitutions": [
+                {
+                  "original": "amount/number",
+                  "replacement": "number"
+                },
+                {
+                  "original": "[起始值]",
+                  "replacement": "value C"
+                },
+                {
+                  "original": "[结束值]",
+                  "replacement": "value D"
+                },
+                {
+                  "original": "[主题词2]",
+                  "replacement": "items in group B"
+                }
+              ],
+              "sourceIds": [
+                "note-b4459d234d5e3356"
               ]
             }
           ]
@@ -396,9 +719,45 @@
           ]
         },
         {
+          "id": "source-3d2be7fbe9811bd0",
+          "kind": "source-example",
+          "text": "The major determinants can be summarized in at least three aspects as follows.",
+          "category": "图表趋势分析",
+          "parts": [
+            {
+              "text": "The major determinants can be summarized in at least three aspects as follows."
+            }
+          ],
+          "sourceIds": [
+            "note-3d2be7fbe9811bd0"
+          ],
+          "sourceLines": [
+            [
+              60,
+              60
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "The major determinants can be summarized in at least three aspects as follows.",
+          "speechText": "The major determinants can be summarized in at least three aspects as follows.",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-3d2be7fbe9811bd0-s-508fb5f7fc96",
+              "displayText": "The major determinants can be summarized in at least three aspects as follows.",
+              "speechText": "The major determinants can be summarized in at least three aspects as follows.",
+              "pronunciationText": "The major determinants can be summarized in at least three aspects as follows.",
+              "substitutions": [],
+              "sourceIds": [
+                "note-3d2be7fbe9811bd0"
+              ]
+            }
+          ]
+        },
+        {
           "id": "source-52b65c3aa95b9e9e",
           "kind": "source-template",
-          "text": "Modern society having entered an era marked by [趋势 A] and [趋势 B], the significance of [主题词] has come into sharper focus.",
+          "text": "Modern society having entered an era marked by [趋势 A] and [趋势 B], the significance/issue/problem of [主题词] has come into sharper focus.",
           "category": "社会进入新纪元",
           "parts": [
             {
@@ -415,13 +774,13 @@
             ]
           ],
           "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
-          "displayText": "Modern society having entered an era marked by [趋势 A] and [趋势 B], the significance of [主题词] has come into sharper focus.",
+          "displayText": "Modern society having entered an era marked by [趋势 A] and [趋势 B], the significance/issue/problem of [主题词] has come into sharper focus.",
           "speechText": "Modern society having entered an era marked by trend A and trend B, the significance of something has come into sharper focus.",
           "speechPolicy": "neutral-placeholders-v1.2",
           "sentences": [
             {
-              "id": "source-52b65c3aa95b9e9e-s-15dd40e24d54",
-              "displayText": "Modern society having entered an era marked by [趋势 A] and [趋势 B], the significance of [主题词] has come into sharper focus.",
+              "id": "source-52b65c3aa95b9e9e-s-58c30827cfe7",
+              "displayText": "Modern society having entered an era marked by [趋势 A] and [趋势 B], the significance/issue/problem of [主题词] has come into sharper focus.",
               "speechText": "Modern society having entered an era marked by trend A and trend B, the significance of something has come into sharper focus.",
               "pronunciationText": "Modern society having entered an era marked by trend eigh and trend bee, the significance of something has come into sharper focus.",
               "substitutions": [
@@ -436,6 +795,10 @@
                 {
                   "original": "[主题词]",
                   "replacement": "something"
+                },
+                {
+                  "original": "significance/issue/problem",
+                  "replacement": "significance"
                 }
               ],
               "sourceIds": [
@@ -456,7 +819,7 @@
           "id": "source-ddf227447b28dbdd",
           "kind": "source-template",
           "text": "The strain of modern life has opened a Pandora’s box of problems, as people become increasingly profit-oriented and thus tend to disregard [主题词].",
-          "category": "不好现象",
+          "category": "①社会压力让人忽略xx",
           "parts": [
             {
               "text": "The strain of modern life has opened a Pandora’s box of problems, as people become increasingly profit-oriented and thus tend to disregard something."
@@ -489,6 +852,47 @@
               ],
               "sourceIds": [
                 "note-ddf227447b28dbdd"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "source-bd62f1afafda9f28",
+          "kind": "source-example",
+          "text": "Their improper conduct stems from self-interest, coupled with 1.an obsession with the huge profits they reap//2.a desire for personal convenience//3.a lack of environmental awareness",
+          "category": "②自私导致",
+          "parts": [
+            {
+              "text": "Their improper conduct stems from self-interest, coupled with an obsession with the huge profits they reap"
+            }
+          ],
+          "sourceIds": [
+            "note-bd62f1afafda9f28"
+          ],
+          "sourceLines": [
+            [
+              106,
+              106
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Their improper conduct stems from self-interest, coupled with 1.an obsession with the huge profits they reap//2.a desire for personal convenience//3.a lack of environmental awareness",
+          "speechText": "Their improper conduct stems from self-interest, coupled with an obsession with the huge profits they reap",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-bd62f1afafda9f28-s-f07e36ba17dc",
+              "displayText": "Their improper conduct stems from self-interest, coupled with 1.an obsession with the huge profits they reap//2.a desire for personal convenience//3.a lack of environmental awareness",
+              "speechText": "Their improper conduct stems from self-interest, coupled with an obsession with the huge profits they reap",
+              "pronunciationText": "Their improper conduct stems from self-interest, coupled with an obsession with the huge profits they reap",
+              "substitutions": [
+                {
+                  "original": "1.an obsession with the huge profits they reap//2.a desire for personal convenience//3.a lack of environmental awareness",
+                  "replacement": "an obsession with the huge profits they reap"
+                }
+              ],
+              "sourceIds": [
+                "note-bd62f1afafda9f28"
               ]
             }
           ]
@@ -675,7 +1079,7 @@
         {
           "id": "source-f6eb8d8053cc9b62",
           "kind": "source-template",
-          "text": "This phenomenon is closely linked to a shift in people's attitudes toward [主题词]. Put differently, people are increasingly recognizing the importance of [核心价值], rather than merely focusing on [片面追求].",
+          "text": "This phenomenon/trend is closely linked to a shift in people's attitudes toward [主题词]. Put differently, people are increasingly recognizing the importance of [核心价值], rather than merely focusing on [片面追求].",
           "category": "社会思想转变",
           "parts": [
             {
@@ -695,19 +1099,23 @@
             ]
           ],
           "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
-          "displayText": "This phenomenon is closely linked to a shift in people's attitudes toward [主题词]. Put differently, people are increasingly recognizing the importance of [核心价值], rather than merely focusing on [片面追求].",
+          "displayText": "This phenomenon/trend is closely linked to a shift in people's attitudes toward [主题词]. Put differently, people are increasingly recognizing the importance of [核心价值], rather than merely focusing on [片面追求].",
           "speechText": "This phenomenon is closely linked to a shift in people's attitudes toward something. Put differently, people are increasingly recognizing the importance of something, rather than merely focusing on something.",
           "speechPolicy": "neutral-placeholders-v1.2",
           "sentences": [
             {
-              "id": "source-f6eb8d8053cc9b62-s-ed481753eaf5",
-              "displayText": "This phenomenon is closely linked to a shift in people's attitudes toward [主题词].",
+              "id": "source-f6eb8d8053cc9b62-s-bf0aafcbecc0",
+              "displayText": "This phenomenon/trend is closely linked to a shift in people's attitudes toward [主题词].",
               "speechText": "This phenomenon is closely linked to a shift in people's attitudes toward something.",
               "pronunciationText": "This phenomenon is closely linked to a shift in people's attitudes toward something.",
               "substitutions": [
                 {
                   "original": "[主题词]",
                   "replacement": "something"
+                },
+                {
+                  "original": "phenomenon/trend",
+                  "replacement": "phenomenon"
                 }
               ],
               "sourceIds": [
@@ -780,6 +1188,96 @@
               "substitutions": [],
               "sourceIds": [
                 "note-07e1e2208c8904c5"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "source-f51ce03de3229f81",
+          "kind": "source-template",
+          "text": "The local administrations/schools/universities fail to carry out effective and strict supervision over sth,making it harder to put the idea of (environmental protection) into practice.",
+          "category": "政府没制定好措施",
+          "parts": [
+            {
+              "text": "The local administrations fail to carry out effective and strict supervision over something,making it harder to put the idea of something into practice."
+            }
+          ],
+          "sourceIds": [
+            "note-f51ce03de3229f81"
+          ],
+          "sourceLines": [
+            [
+              116,
+              116
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "The local administrations/schools/universities fail to carry out effective and strict supervision over sth,making it harder to put the idea of (environmental protection) into practice.",
+          "speechText": "The local administrations fail to carry out effective and strict supervision over something,making it harder to put the idea of something into practice.",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-f51ce03de3229f81-s-5aab0ecfea9c",
+              "displayText": "The local administrations/schools/universities fail to carry out effective and strict supervision over sth,making it harder to put the idea of (environmental protection) into practice.",
+              "speechText": "The local administrations fail to carry out effective and strict supervision over something,making it harder to put the idea of something into practice.",
+              "pronunciationText": "The local administrations fail to carry out effective and strict supervision over something,making it harder to put the idea of something into practice.",
+              "substitutions": [
+                {
+                  "original": "(environmental protection)",
+                  "replacement": "something"
+                },
+                {
+                  "original": "sth",
+                  "replacement": "something"
+                },
+                {
+                  "original": "administrations/schools/universities",
+                  "replacement": "administrations"
+                }
+              ],
+              "sourceIds": [
+                "note-f51ce03de3229f81"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "source-c3b1a4384706981d",
+          "kind": "source-template",
+          "text": "Coincident with the rapid development of A is the increasing popularity of B, which has brought about profound changes in modern society.",
+          "category": "随着A的发展，B开始日益普及",
+          "parts": [
+            {
+              "text": "Coincident with the rapid development of A is the increasing popularity of B, which has brought about profound changes in modern society."
+            }
+          ],
+          "sourceIds": [
+            "note-c3b1a4384706981d"
+          ],
+          "sourceLines": [
+            [
+              118,
+              118
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Coincident with the rapid development of A is the increasing popularity of B, which has brought about profound changes in modern society.",
+          "speechText": "Coincident with the rapid development of A is the increasing popularity of B, which has brought about profound changes in modern society.",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-c3b1a4384706981d-s-e9ffd8870a25",
+              "displayText": "Coincident with the rapid development of A is the increasing popularity of B, which has brought about profound changes in modern society.",
+              "speechText": "Coincident with the rapid development of A is the increasing popularity of B, which has brought about profound changes in modern society.",
+              "pronunciationText": "Coincident with the rapid development of eigh is the increasing popularity of bee, which has brought about profound changes in modern society.",
+              "substitutions": [
+                {
+                  "original": "Coincident with the rapid development of A is the increasing popularity of B",
+                  "replacement": "Coincident with the rapid development of A is the increasing popularity of B"
+                }
+              ],
+              "sourceIds": [
+                "note-c3b1a4384706981d"
               ]
             }
           ]
@@ -2144,6 +2642,42 @@
           ]
         },
         {
+          "id": "source-fa7ed57ff596d1e7",
+          "kind": "source-example",
+          "text": "We must strive to foster a climate that encourages people to put down their mobile phones and engage in positive communication.",
+          "category": "必须努力营造重视XX精神的氛围",
+          "parts": [
+            {
+              "text": "We must strive to foster a climate that encourages people to put down their mobile phones and engage in positive communication."
+            }
+          ],
+          "sourceIds": [
+            "note-fa7ed57ff596d1e7"
+          ],
+          "sourceLines": [
+            [
+              135,
+              135
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "We must strive to foster a climate that encourages people to put down their mobile phones and engage in positive communication.",
+          "speechText": "We must strive to foster a climate that encourages people to put down their mobile phones and engage in positive communication.",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-fa7ed57ff596d1e7-s-f1ce224efb92",
+              "displayText": "We must strive to foster a climate that encourages people to put down their mobile phones and engage in positive communication.",
+              "speechText": "We must strive to foster a climate that encourages people to put down their mobile phones and engage in positive communication.",
+              "pronunciationText": "We must strive to foster a climate that encourages people to put down their mobile phones and engage in positive communication.",
+              "substitutions": [],
+              "sourceIds": [
+                "note-fa7ed57ff596d1e7"
+              ]
+            }
+          ]
+        },
+        {
           "id": "source-b2841f8647cc35b0",
           "kind": "source-example",
           "text": "Let’s get prepared and embrace the harmonious and (disciplined/vibrant/culturally inclusive) society built by our joint efforts.",
@@ -2183,6 +2717,83 @@
               ]
             }
           ]
+        },
+        {
+          "id": "source-566d5baf8236f914",
+          "kind": "source-example",
+          "text": "If handled carelessly or without restraints—despite its widespread prevalence—might prove to be a double-edged sword.",
+          "category": "有利有弊需限制（双刃剑）",
+          "parts": [
+            {
+              "text": "If handled carelessly or without restraints—despite its widespread prevalence—might prove to be a double-edged sword."
+            }
+          ],
+          "sourceIds": [
+            "note-566d5baf8236f914"
+          ],
+          "sourceLines": [
+            [
+              139,
+              139
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "If handled carelessly or without restraints—despite its widespread prevalence—might prove to be a double-edged sword.",
+          "speechText": "If handled carelessly or without restraints—despite its widespread prevalence—might prove to be a double-edged sword.",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-566d5baf8236f914-s-e426bf66cce9",
+              "displayText": "If handled carelessly or without restraints—despite its widespread prevalence—might prove to be a double-edged sword.",
+              "speechText": "If handled carelessly or without restraints—despite its widespread prevalence—might prove to be a double-edged sword.",
+              "pronunciationText": "If handled carelessly or without restraints—despite its widespread prevalence—might prove to be a double-edged sword.",
+              "substitutions": [],
+              "sourceIds": [
+                "note-566d5baf8236f914"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "source-e176f6da258e5004",
+          "kind": "source-example",
+          "text": "This trend, against the backdrop of the economic boom in China, will probably become dominant in the foreseeable future // is likely to persist in the foreseeable future.",
+          "category": "经济发展背景下，趋势会继续",
+          "parts": [
+            {
+              "text": "This trend, against the backdrop of the economic boom in China, will probably become dominant in the foreseeable future."
+            }
+          ],
+          "sourceIds": [
+            "note-e176f6da258e5004"
+          ],
+          "sourceLines": [
+            [
+              142,
+              142
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "This trend, against the backdrop of the economic boom in China, will probably become dominant in the foreseeable future // is likely to persist in the foreseeable future.",
+          "speechText": "This trend, against the backdrop of the economic boom in China, will probably become dominant in the foreseeable future.",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-e176f6da258e5004-s-7da2b004b48e",
+              "displayText": "This trend, against the backdrop of the economic boom in China, will probably become dominant in the foreseeable future // is likely to persist in the foreseeable future.",
+              "speechText": "This trend, against the backdrop of the economic boom in China, will probably become dominant in the foreseeable future.",
+              "pronunciationText": "This trend, against the backdrop of the economic boom in China, will probably become dominant in the foreseeable future.",
+              "substitutions": [
+                {
+                  "original": "This trend, against the backdrop of the economic boom in China, will probably become dominant in the foreseeable future // is likely to persist in the foreseeable future.",
+                  "replacement": "This trend, against the backdrop of the economic boom in China, will probably become dominant in the foreseeable future."
+                }
+              ],
+              "sourceIds": [
+                "note-e176f6da258e5004"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -2196,7 +2807,7 @@
           "id": "source-813b1973de92714f",
           "kind": "source-template",
           "text": "Regarding [主题], I, as a [身份], am writing this letter with the aim of [doing sth].",
-          "category": "一段",
+          "category": "书信",
           "parts": [
             {
               "text": "Regarding something, I, as somebody, am writing this letter with the aim of doing something."
@@ -2240,6 +2851,92 @@
               ]
             }
           ]
+        },
+        {
+          "id": "source-4c436e34246f0c80",
+          "kind": "source-template",
+          "text": "To [目的] (improve students' [能力] and enrich their extracurricular life), [雇主] (our university) is recruiting volunteers for [主题].",
+          "category": "通知公告",
+          "parts": [
+            {
+              "text": "To achieve a goal, an organization is recruiting volunteers for an activity."
+            }
+          ],
+          "sourceIds": [
+            "note-4c436e34246f0c80"
+          ],
+          "sourceLines": [
+            [
+              150,
+              150
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "To [目的] (improve students' [能力] and enrich their extracurricular life), [雇主] (our university) is recruiting volunteers for [主题].",
+          "speechText": "To achieve a goal, an organization is recruiting volunteers for an activity.",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-4c436e34246f0c80-s-2849b4e61018",
+              "displayText": "To [目的] (improve students' [能力] and enrich their extracurricular life), [雇主] (our university) is recruiting volunteers for [主题].",
+              "speechText": "To achieve a goal, an organization is recruiting volunteers for an activity.",
+              "pronunciationText": "To achieve a goal, an organization is recruiting volunteers for an activity.",
+              "substitutions": [
+                {
+                  "original": "To [目的] (improve students' [能力] and enrich their extracurricular life), [雇主] (our university)",
+                  "replacement": "To achieve a goal, an organization"
+                },
+                {
+                  "original": "[主题]",
+                  "replacement": "an activity"
+                }
+              ],
+              "sourceIds": [
+                "note-4c436e34246f0c80"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "source-888bab711a498d73",
+          "kind": "source-example",
+          "text": "To promote traditional Chinese virtues, our university will hold an exhibition / a series of exhibitions.",
+          "category": "通知公告",
+          "parts": [
+            {
+              "text": "To promote traditional Chinese virtues, our university will hold an exhibition."
+            }
+          ],
+          "sourceIds": [
+            "note-888bab711a498d73"
+          ],
+          "sourceLines": [
+            [
+              151,
+              151
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "To promote traditional Chinese virtues, our university will hold an exhibition / a series of exhibitions.",
+          "speechText": "To promote traditional Chinese virtues, our university will hold an exhibition.",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-888bab711a498d73-s-f0c2ff447806",
+              "displayText": "To promote traditional Chinese virtues, our university will hold an exhibition / a series of exhibitions.",
+              "speechText": "To promote traditional Chinese virtues, our university will hold an exhibition.",
+              "pronunciationText": "To promote traditional Chinese virtues, our university will hold an exhibition.",
+              "substitutions": [
+                {
+                  "original": " / a series of exhibitions",
+                  "replacement": ""
+                }
+              ],
+              "sourceIds": [
+                "note-888bab711a498d73"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -2249,6 +2946,42 @@
       "inMainLoop": true,
       "subtitle": "小作文正文",
       "segments": [
+        {
+          "id": "source-60809de59fa325db",
+          "kind": "source-example",
+          "text": "China has been known as a nation full of virtues, with the traditional moral ethic of taking pleasure in helping others.",
+          "category": "通知例句",
+          "parts": [
+            {
+              "text": "China has been known as a nation full of virtues, with the traditional moral ethic of taking pleasure in helping others."
+            }
+          ],
+          "sourceIds": [
+            "note-60809de59fa325db"
+          ],
+          "sourceLines": [
+            [
+              161,
+              161
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "China has been known as a nation full of virtues, with the traditional moral ethic of taking pleasure in helping others.",
+          "speechText": "China has been known as a nation full of virtues, with the traditional moral ethic of taking pleasure in helping others.",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-60809de59fa325db-s-b1ba0235c9a0",
+              "displayText": "China has been known as a nation full of virtues, with the traditional moral ethic of taking pleasure in helping others.",
+              "speechText": "China has been known as a nation full of virtues, with the traditional moral ethic of taking pleasure in helping others.",
+              "pronunciationText": "China has been known as a nation full of virtues, with the traditional moral ethic of taking pleasure in helping others.",
+              "substitutions": [],
+              "sourceIds": [
+                "note-60809de59fa325db"
+              ]
+            }
+          ]
+        },
         {
           "id": "source-63e1a10445e86948",
           "kind": "source-example",
@@ -2322,6 +3055,42 @@
               "substitutions": [],
               "sourceIds": [
                 "note-cc1bbc8a11d886ae"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "source-e44765bb5d550144",
+          "kind": "source-example",
+          "text": "Above all, what you have to keep in mind is a person's diligence, enthusiasm, and vigor leave the strongest impression on others.",
+          "category": "建议",
+          "parts": [
+            {
+              "text": "Above all, what you have to keep in mind is a person's diligence, enthusiasm, and vigor leave the strongest impression on others."
+            }
+          ],
+          "sourceIds": [
+            "note-e44765bb5d550144"
+          ],
+          "sourceLines": [
+            [
+              173,
+              173
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Above all, what you have to keep in mind is a person's diligence, enthusiasm, and vigor leave the strongest impression on others.",
+          "speechText": "Above all, what you have to keep in mind is a person's diligence, enthusiasm, and vigor leave the strongest impression on others.",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-e44765bb5d550144-s-c4bf7ebdb74d",
+              "displayText": "Above all, what you have to keep in mind is a person's diligence, enthusiasm, and vigor leave the strongest impression on others.",
+              "speechText": "Above all, what you have to keep in mind is a person's diligence, enthusiasm, and vigor leave the strongest impression on others.",
+              "pronunciationText": "Above all, what you have to keep in mind is a person's diligence, enthusiasm, and vigor leave the strongest impression on others.",
+              "substitutions": [],
+              "sourceIds": [
+                "note-e44765bb5d550144"
               ]
             }
           ]
@@ -2759,6 +3528,69 @@
           ]
         },
         {
+          "id": "source-47e73e62f9e14f86",
+          "kind": "source-template",
+          "text": "The contest, launched in [年份], centers on [特色内容]. Under the theme \"[主题]\", this event is held every 2 years, drawing over 1000 participants from various fields.",
+          "category": "活动意义",
+          "parts": [
+            {
+              "text": "The contest, launched in a certain year, centers on a particular topic."
+            },
+            {
+              "text": "Under the theme \"something\", this event is held every 2 years, drawing over 1000 participants from various fields."
+            }
+          ],
+          "sourceIds": [
+            "note-47e73e62f9e14f86"
+          ],
+          "sourceLines": [
+            [
+              204,
+              204
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "The contest, launched in [年份], centers on [特色内容]. Under the theme \"[主题]\", this event is held every 2 years, drawing over 1000 participants from various fields.",
+          "speechText": "The contest, launched in a certain year, centers on a particular topic. Under the theme \"something\", this event is held every 2 years, drawing over 1000 participants from various fields.",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-47e73e62f9e14f86-s-f3a2e846413e",
+              "displayText": "The contest, launched in [年份], centers on [特色内容].",
+              "speechText": "The contest, launched in a certain year, centers on a particular topic.",
+              "pronunciationText": "The contest, launched in a certain year, centers on a particular topic.",
+              "substitutions": [
+                {
+                  "original": "[年份]",
+                  "replacement": "a certain year"
+                },
+                {
+                  "original": "[特色内容]",
+                  "replacement": "a particular topic"
+                }
+              ],
+              "sourceIds": [
+                "note-47e73e62f9e14f86"
+              ]
+            },
+            {
+              "id": "source-47e73e62f9e14f86-s-872cca2cb114",
+              "displayText": "Under the theme \"[主题]\", this event is held every 2 years, drawing over 1000 participants from various fields.",
+              "speechText": "Under the theme \"something\", this event is held every 2 years, drawing over 1000 participants from various fields.",
+              "pronunciationText": "Under the theme \"something\", this event is held every 2 years, drawing over 1000 participants from various fields.",
+              "substitutions": [
+                {
+                  "original": "[主题]",
+                  "replacement": "something"
+                }
+              ],
+              "sourceIds": [
+                "note-47e73e62f9e14f86"
+              ]
+            }
+          ]
+        },
+        {
           "id": "source-daf9e4e1d59663b8",
           "kind": "source-example",
           "text": "All students, their families, teachers, and staff are welcome to join.",
@@ -2870,6 +3702,186 @@
               ]
             }
           ]
+        },
+        {
+          "id": "source-bcb6083b563601ae",
+          "kind": "source-template",
+          "text": "We are seeking candidates with fluent English communication skills, a warm-hearted disposition, and a strong sense of teamwork. Selected volunteers will be responsible for [具体职责], including [具体任务1] and [具体任务2].",
+          "category": "志愿者要求",
+          "parts": [
+            {
+              "text": "We are seeking candidates with fluent English communication skills, a warm-hearted disposition, and a strong sense of teamwork."
+            },
+            {
+              "text": "Selected volunteers will be responsible for a set of duties, including task A and task B."
+            }
+          ],
+          "sourceIds": [
+            "note-bcb6083b563601ae"
+          ],
+          "sourceLines": [
+            [
+              213,
+              213
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "We are seeking candidates with fluent English communication skills, a warm-hearted disposition, and a strong sense of teamwork. Selected volunteers will be responsible for [具体职责], including [具体任务1] and [具体任务2].",
+          "speechText": "We are seeking candidates with fluent English communication skills, a warm-hearted disposition, and a strong sense of teamwork. Selected volunteers will be responsible for a set of duties, including task A and task B.",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-bcb6083b563601ae-s-da1cf3701e64",
+              "displayText": "We are seeking candidates with fluent English communication skills, a warm-hearted disposition, and a strong sense of teamwork.",
+              "speechText": "We are seeking candidates with fluent English communication skills, a warm-hearted disposition, and a strong sense of teamwork.",
+              "pronunciationText": "We are seeking candidates with fluent English communication skills, a warm-hearted disposition, and a strong sense of teamwork.",
+              "substitutions": [],
+              "sourceIds": [
+                "note-bcb6083b563601ae"
+              ]
+            },
+            {
+              "id": "source-bcb6083b563601ae-s-0a5279cd6005",
+              "displayText": "Selected volunteers will be responsible for [具体职责], including [具体任务1] and [具体任务2].",
+              "speechText": "Selected volunteers will be responsible for a set of duties, including task A and task B.",
+              "pronunciationText": "Selected volunteers will be responsible for a set of duties, including task eigh and task bee.",
+              "substitutions": [
+                {
+                  "original": "[具体职责]",
+                  "replacement": "a set of duties"
+                },
+                {
+                  "original": "[具体任务1]",
+                  "replacement": "task A"
+                },
+                {
+                  "original": "[具体任务2]",
+                  "replacement": "task B"
+                }
+              ],
+              "sourceIds": [
+                "note-bcb6083b563601ae"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "source-a9f795e784975e6a",
+          "kind": "source-example",
+          "text": "Three industry experts and the reigning champion will serve as judges, with the top ten participants receiving official awards.",
+          "category": "具体内容",
+          "parts": [
+            {
+              "text": "Three industry experts and the reigning champion will serve as judges, with the top ten participants receiving official awards."
+            }
+          ],
+          "sourceIds": [
+            "note-a9f795e784975e6a"
+          ],
+          "sourceLines": [
+            [
+              224,
+              224
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Three industry experts and the reigning champion will serve as judges, with the top ten participants receiving official awards.",
+          "speechText": "Three industry experts and the reigning champion will serve as judges, with the top ten participants receiving official awards.",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-a9f795e784975e6a-s-d07c666df4fe",
+              "displayText": "Three industry experts and the reigning champion will serve as judges, with the top ten participants receiving official awards.",
+              "speechText": "Three industry experts and the reigning champion will serve as judges, with the top ten participants receiving official awards.",
+              "pronunciationText": "Three industry experts and the reigning champion will serve as judges, with the top ten participants receiving official awards.",
+              "substitutions": [],
+              "sourceIds": [
+                "note-a9f795e784975e6a"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "source-9f08fa705eb47e18",
+          "kind": "source-template",
+          "text": "All contestants must strictly adhere to the following regulations: [具体规定].",
+          "category": "参赛要求",
+          "parts": [
+            {
+              "text": "All contestants must strictly adhere to the following regulations."
+            }
+          ],
+          "sourceIds": [
+            "note-9f08fa705eb47e18"
+          ],
+          "sourceLines": [
+            [
+              226,
+              226
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "All contestants must strictly adhere to the following regulations: [具体规定].",
+          "speechText": "All contestants must strictly adhere to the following regulations.",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-9f08fa705eb47e18-s-e341851ce6c9",
+              "displayText": "All contestants must strictly adhere to the following regulations: [具体规定].",
+              "speechText": "All contestants must strictly adhere to the following regulations.",
+              "pronunciationText": "All contestants must strictly adhere to the following regulations.",
+              "substitutions": [
+                {
+                  "original": ": [具体规定].",
+                  "replacement": "."
+                }
+              ],
+              "sourceIds": [
+                "note-9f08fa705eb47e18"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "source-74d15dd4ca115759",
+          "kind": "source-template",
+          "text": "Those students who are interested in taking part may sign up with the monitor of their classes before [日期].",
+          "category": "报名方法",
+          "parts": [
+            {
+              "text": "Those students who are interested in taking part may sign up with the monitor of their classes before a certain date."
+            }
+          ],
+          "sourceIds": [
+            "note-74d15dd4ca115759"
+          ],
+          "sourceLines": [
+            [
+              228,
+              228
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Those students who are interested in taking part may sign up with the monitor of their classes before [日期].",
+          "speechText": "Those students who are interested in taking part may sign up with the monitor of their classes before a certain date.",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-74d15dd4ca115759-s-bcaf4ec06651",
+              "displayText": "Those students who are interested in taking part may sign up with the monitor of their classes before [日期].",
+              "speechText": "Those students who are interested in taking part may sign up with the monitor of their classes before a certain date.",
+              "pronunciationText": "Those students who are interested in taking part may sign up with the monitor of their classes before a certain date.",
+              "substitutions": [
+                {
+                  "original": "[日期]",
+                  "replacement": "a certain date"
+                }
+              ],
+              "sourceIds": [
+                "note-74d15dd4ca115759"
+              ]
+            }
+          ]
         }
       ]
     },
@@ -2879,6 +3891,114 @@
       "inMainLoop": true,
       "subtitle": "小作文结尾",
       "segments": [
+        {
+          "id": "source-2858b007d8ae2618",
+          "kind": "source-example",
+          "text": "Given all of this, we sincerely ask you to participate in this activity, offering your assistance, love and support.",
+          "category": "通知例句",
+          "parts": [
+            {
+              "text": "Given all of this, we sincerely ask you to participate in this activity, offering your assistance, love and support."
+            }
+          ],
+          "sourceIds": [
+            "note-2858b007d8ae2618"
+          ],
+          "sourceLines": [
+            [
+              162,
+              162
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Given all of this, we sincerely ask you to participate in this activity, offering your assistance, love and support.",
+          "speechText": "Given all of this, we sincerely ask you to participate in this activity, offering your assistance, love and support.",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-2858b007d8ae2618-s-22b84962e854",
+              "displayText": "Given all of this, we sincerely ask you to participate in this activity, offering your assistance, love and support.",
+              "speechText": "Given all of this, we sincerely ask you to participate in this activity, offering your assistance, love and support.",
+              "pronunciationText": "Given all of this, we sincerely ask you to participate in this activity, offering your assistance, love and support.",
+              "substitutions": [],
+              "sourceIds": [
+                "note-2858b007d8ae2618"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "source-cd85f0e891828756",
+          "kind": "source-example",
+          "text": "We sincerely hope that you will join us as a contributing member, bringing your expertise to the team.",
+          "category": "结尾（呼吁参加）",
+          "parts": [
+            {
+              "text": "We sincerely hope that you will join us as a contributing member, bringing your expertise to the team."
+            }
+          ],
+          "sourceIds": [
+            "note-cd85f0e891828756"
+          ],
+          "sourceLines": [
+            [
+              230,
+              230
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "We sincerely hope that you will join us as a contributing member, bringing your expertise to the team.",
+          "speechText": "We sincerely hope that you will join us as a contributing member, bringing your expertise to the team.",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-cd85f0e891828756-s-dd237b45bfac",
+              "displayText": "We sincerely hope that you will join us as a contributing member, bringing your expertise to the team.",
+              "speechText": "We sincerely hope that you will join us as a contributing member, bringing your expertise to the team.",
+              "pronunciationText": "We sincerely hope that you will join us as a contributing member, bringing your expertise to the team.",
+              "substitutions": [],
+              "sourceIds": [
+                "note-cd85f0e891828756"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "source-df11cc776889c7e4",
+          "kind": "source-example",
+          "text": "Your participation will be greatly appreciated.",
+          "category": "结尾（呼吁参加）",
+          "parts": [
+            {
+              "text": "Your participation will be greatly appreciated."
+            }
+          ],
+          "sourceIds": [
+            "note-df11cc776889c7e4"
+          ],
+          "sourceLines": [
+            [
+              231,
+              231
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Your participation will be greatly appreciated.",
+          "speechText": "Your participation will be greatly appreciated.",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-df11cc776889c7e4-s-cc9bdf36175a",
+              "displayText": "Your participation will be greatly appreciated.",
+              "speechText": "Your participation will be greatly appreciated.",
+              "pronunciationText": "Your participation will be greatly appreciated.",
+              "substitutions": [],
+              "sourceIds": [
+                "note-df11cc776889c7e4"
+              ]
+            }
+          ]
+        },
         {
           "id": "source-a72d3bce74455410",
           "kind": "source-example",
@@ -2955,7 +4075,7 @@
           "id": "source-176d7c860b66269d",
           "kind": "source-template",
           "text": "Words fail me when I want to express my sincere gratitude to you for [具体帮助].",
-          "category": "邀请信或者荣幸回答对方的问题",
+          "category": "邀请信或者荣幸回答对方的问题⭐",
           "parts": [
             {
               "text": "Words fail me when I want to express my sincere gratitude to you for something."
@@ -3221,6 +4341,232 @@
               ],
               "sourceIds": [
                 "note-db2b29abe006b6c8"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "source-b7ee7ffe3909b988",
+          "kind": "source-phrase",
+          "text": "freshmen",
+          "category": "短语 · 年级表达",
+          "parts": [
+            {
+              "text": "freshmen"
+            }
+          ],
+          "sourceIds": [
+            "note-b7ee7ffe3909b988"
+          ],
+          "sourceLines": [
+            [
+              45,
+              45
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "freshmen",
+          "speechText": "freshmen",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-b7ee7ffe3909b988-s-76c1aae357b3",
+              "displayText": "freshmen",
+              "speechText": "freshmen",
+              "pronunciationText": "freshmen",
+              "substitutions": [],
+              "sourceIds": [
+                "note-b7ee7ffe3909b988"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "source-c6d66f1fba515a5b",
+          "kind": "source-phrase",
+          "text": "sophomores",
+          "category": "短语 · 年级表达",
+          "parts": [
+            {
+              "text": "sophomores"
+            }
+          ],
+          "sourceIds": [
+            "note-c6d66f1fba515a5b"
+          ],
+          "sourceLines": [
+            [
+              46,
+              46
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "sophomores",
+          "speechText": "sophomores",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-c6d66f1fba515a5b-s-e5411774a275",
+              "displayText": "sophomores",
+              "speechText": "sophomores",
+              "pronunciationText": "sophomores",
+              "substitutions": [],
+              "sourceIds": [
+                "note-c6d66f1fba515a5b"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "source-fcb0ed56db1155fa",
+          "kind": "source-phrase",
+          "text": "juniors",
+          "category": "短语 · 年级表达",
+          "parts": [
+            {
+              "text": "juniors"
+            }
+          ],
+          "sourceIds": [
+            "note-fcb0ed56db1155fa"
+          ],
+          "sourceLines": [
+            [
+              47,
+              47
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "juniors",
+          "speechText": "juniors",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-fcb0ed56db1155fa-s-2dda6dc987d9",
+              "displayText": "juniors",
+              "speechText": "juniors",
+              "pronunciationText": "juniors",
+              "substitutions": [],
+              "sourceIds": [
+                "note-fcb0ed56db1155fa"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "source-7030c7c964e351d0",
+          "kind": "source-phrase",
+          "text": "seniors",
+          "category": "短语 · 年级表达",
+          "parts": [
+            {
+              "text": "seniors"
+            }
+          ],
+          "sourceIds": [
+            "note-7030c7c964e351d0"
+          ],
+          "sourceLines": [
+            [
+              48,
+              48
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "seniors",
+          "speechText": "seniors",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-7030c7c964e351d0-s-51cf1f388213",
+              "displayText": "seniors",
+              "speechText": "seniors",
+              "pronunciationText": "seniors",
+              "substitutions": [],
+              "sourceIds": [
+                "note-7030c7c964e351d0"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "source-69ca1496a1472a54",
+          "kind": "source-template",
+          "text": "the problem of [主题词]",
+          "category": "短语 · 问题与现象",
+          "parts": [
+            {
+              "text": "the problem of something"
+            }
+          ],
+          "sourceIds": [
+            "note-69ca1496a1472a54"
+          ],
+          "sourceLines": [
+            [
+              63,
+              63
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "the problem of [主题词]",
+          "speechText": "the problem of something",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-69ca1496a1472a54-s-4f1c71f1afb3",
+              "displayText": "the problem of [主题词]",
+              "speechText": "the problem of something",
+              "pronunciationText": "the problem of something",
+              "substitutions": [
+                {
+                  "original": "[主题词]",
+                  "replacement": "something"
+                }
+              ],
+              "sourceIds": [
+                "note-69ca1496a1472a54"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "source-63d8660856a88d91",
+          "kind": "source-template",
+          "text": "the phenomenon that [句子]",
+          "category": "短语 · 问题与现象",
+          "parts": [
+            {
+              "text": "the phenomenon"
+            }
+          ],
+          "sourceIds": [
+            "note-63d8660856a88d91"
+          ],
+          "sourceLines": [
+            [
+              63,
+              63
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "the phenomenon that [句子]",
+          "speechText": "the phenomenon",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-63d8660856a88d91-s-a4b01813b121",
+              "displayText": "the phenomenon that [句子]",
+              "speechText": "the phenomenon",
+              "pronunciationText": "the phenomenon",
+              "substitutions": [
+                {
+                  "original": "the phenomenon that [句子]",
+                  "replacement": "the phenomenon"
+                }
+              ],
+              "sourceIds": [
+                "note-63d8660856a88d91"
               ]
             }
           ]
@@ -3863,6 +5209,47 @@
           ]
         },
         {
+          "id": "source-3c37d282af2e57f9",
+          "kind": "source-template",
+          "text": "accelerating [n]",
+          "category": "社会趋势 · 替换结构",
+          "parts": [
+            {
+              "text": "accelerating something"
+            }
+          ],
+          "sourceIds": [
+            "note-3c37d282af2e57f9"
+          ],
+          "sourceLines": [
+            [
+              98,
+              98
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "accelerating [n]",
+          "speechText": "accelerating something",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-3c37d282af2e57f9-s-491242595cb7",
+              "displayText": "accelerating [n]",
+              "speechText": "accelerating something",
+              "pronunciationText": "accelerating something",
+              "substitutions": [
+                {
+                  "original": "[n]",
+                  "replacement": "something"
+                }
+              ],
+              "sourceIds": [
+                "note-3c37d282af2e57f9"
+              ]
+            }
+          ]
+        },
+        {
           "id": "source-9c45eef57ecf6e8e",
           "kind": "source-template",
           "text": "Altogether,...",
@@ -3899,6 +5286,88 @@
               ],
               "sourceIds": [
                 "note-9c45eef57ecf6e8e"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "source-4c1908f7aae6cedb",
+          "kind": "source-template",
+          "text": "regarding the upcoming [活动]",
+          "category": "小作文身份 · 开头表达",
+          "parts": [
+            {
+              "text": "regarding the upcoming event"
+            }
+          ],
+          "sourceIds": [
+            "note-4c1908f7aae6cedb"
+          ],
+          "sourceLines": [
+            [
+              147,
+              147
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "regarding the upcoming [活动]",
+          "speechText": "regarding the upcoming event",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-4c1908f7aae6cedb-s-bc2b7db26076",
+              "displayText": "regarding the upcoming [活动]",
+              "speechText": "regarding the upcoming event",
+              "pronunciationText": "regarding the upcoming event",
+              "substitutions": [
+                {
+                  "original": "[活动]",
+                  "replacement": "event"
+                }
+              ],
+              "sourceIds": [
+                "note-4c1908f7aae6cedb"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "source-ab1853c0e4a791ec",
+          "kind": "source-phrase",
+          "text": "the organization of",
+          "category": "小作文身份 · 开头表达",
+          "parts": [
+            {
+              "text": "the organization of something"
+            }
+          ],
+          "sourceIds": [
+            "note-ab1853c0e4a791ec"
+          ],
+          "sourceLines": [
+            [
+              147,
+              147
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "the organization of",
+          "speechText": "the organization of something",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-ab1853c0e4a791ec-s-b8c6321502d2",
+              "displayText": "the organization of",
+              "speechText": "the organization of something",
+              "pronunciationText": "the organization of something",
+              "substitutions": [
+                {
+                  "original": "the organization of",
+                  "replacement": "the organization of something"
+                }
+              ],
+              "sourceIds": [
+                "note-ab1853c0e4a791ec"
               ]
             }
           ]
@@ -3971,6 +5440,78 @@
               "substitutions": [],
               "sourceIds": [
                 "note-eaff373633e598e7"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "source-79feeaf608143db9",
+          "kind": "source-phrase",
+          "text": "Postgraduate",
+          "category": "小作文身份 · 小作文词汇",
+          "parts": [
+            {
+              "text": "Postgraduate"
+            }
+          ],
+          "sourceIds": [
+            "note-79feeaf608143db9"
+          ],
+          "sourceLines": [
+            [
+              165,
+              165
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Postgraduate",
+          "speechText": "Postgraduate",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-79feeaf608143db9-s-2935445591ba",
+              "displayText": "Postgraduate",
+              "speechText": "Postgraduate",
+              "pronunciationText": "Postgraduate",
+              "substitutions": [],
+              "sourceIds": [
+                "note-79feeaf608143db9"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "source-3988224a622be89a",
+          "kind": "source-phrase",
+          "text": "Students' Union",
+          "category": "小作文身份 · 小作文词汇",
+          "parts": [
+            {
+              "text": "Students' Union"
+            }
+          ],
+          "sourceIds": [
+            "note-3988224a622be89a"
+          ],
+          "sourceLines": [
+            [
+              165,
+              165
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "Students' Union",
+          "speechText": "Students' Union",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-3988224a622be89a-s-1ab8d759149d",
+              "displayText": "Students' Union",
+              "speechText": "Students' Union",
+              "pronunciationText": "Students' Union",
+              "substitutions": [],
+              "sourceIds": [
+                "note-3988224a622be89a"
               ]
             }
           ]
@@ -4161,8 +5702,260 @@
           ]
         },
         {
+          "id": "source-3798fc6fa68b5dd9",
+          "kind": "source-phrase",
+          "text": "guiding participants",
+          "category": "小作文建议 · 志愿者职责",
+          "parts": [
+            {
+              "text": "guiding participants"
+            }
+          ],
+          "sourceIds": [
+            "note-3798fc6fa68b5dd9"
+          ],
+          "sourceLines": [
+            [
+              217,
+              217
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "guiding participants",
+          "speechText": "guiding participants",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-3798fc6fa68b5dd9-s-eaf9068e8426",
+              "displayText": "guiding participants",
+              "speechText": "guiding participants",
+              "pronunciationText": "guiding participants",
+              "substitutions": [],
+              "sourceIds": [
+                "note-3798fc6fa68b5dd9"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "source-644674bb44a3b19b",
+          "kind": "source-phrase",
+          "text": "maintaining order",
+          "category": "小作文建议 · 志愿者职责",
+          "parts": [
+            {
+              "text": "maintaining order"
+            }
+          ],
+          "sourceIds": [
+            "note-644674bb44a3b19b"
+          ],
+          "sourceLines": [
+            [
+              218,
+              218
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "maintaining order",
+          "speechText": "maintaining order",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-644674bb44a3b19b-s-50a10a02aa9a",
+              "displayText": "maintaining order",
+              "speechText": "maintaining order",
+              "pronunciationText": "maintaining order",
+              "substitutions": [],
+              "sourceIds": [
+                "note-644674bb44a3b19b"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "source-38f4fc9123af01ab",
+          "kind": "source-phrase",
+          "text": "providing necessary assistance",
+          "category": "小作文建议 · 志愿者职责",
+          "parts": [
+            {
+              "text": "providing necessary assistance"
+            }
+          ],
+          "sourceIds": [
+            "note-38f4fc9123af01ab"
+          ],
+          "sourceLines": [
+            [
+              219,
+              219
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "providing necessary assistance",
+          "speechText": "providing necessary assistance",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-38f4fc9123af01ab-s-e8f9d4dec318",
+              "displayText": "providing necessary assistance",
+              "speechText": "providing necessary assistance",
+              "pronunciationText": "providing necessary assistance",
+              "substitutions": [],
+              "sourceIds": [
+                "note-38f4fc9123af01ab"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "source-3ff98e68edd6d849",
+          "kind": "source-phrase",
+          "text": "answering questions",
+          "category": "小作文建议 · 志愿者职责",
+          "parts": [
+            {
+              "text": "answering questions"
+            }
+          ],
+          "sourceIds": [
+            "note-3ff98e68edd6d849"
+          ],
+          "sourceLines": [
+            [
+              220,
+              220
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "answering questions",
+          "speechText": "answering questions",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-3ff98e68edd6d849-s-71193e1bfa61",
+              "displayText": "answering questions",
+              "speechText": "answering questions",
+              "pronunciationText": "answering questions",
+              "substitutions": [],
+              "sourceIds": [
+                "note-3ff98e68edd6d849"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "source-e03c039aaba86305",
+          "kind": "source-phrase",
+          "text": "assisting with event organization",
+          "category": "小作文建议 · 志愿者职责",
+          "parts": [
+            {
+              "text": "assisting with event organization"
+            }
+          ],
+          "sourceIds": [
+            "note-e03c039aaba86305"
+          ],
+          "sourceLines": [
+            [
+              221,
+              221
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "assisting with event organization",
+          "speechText": "assisting with event organization",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-e03c039aaba86305-s-c1635b98f8de",
+              "displayText": "assisting with event organization",
+              "speechText": "assisting with event organization",
+              "pronunciationText": "assisting with event organization",
+              "substitutions": [],
+              "sourceIds": [
+                "note-e03c039aaba86305"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "source-bdbbe5735e96ee01",
+          "kind": "source-phrase",
+          "text": "welcoming international guests",
+          "category": "小作文建议 · 志愿者职责",
+          "parts": [
+            {
+              "text": "welcoming international guests"
+            }
+          ],
+          "sourceIds": [
+            "note-bdbbe5735e96ee01"
+          ],
+          "sourceLines": [
+            [
+              222,
+              222
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "welcoming international guests",
+          "speechText": "welcoming international guests",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-bdbbe5735e96ee01-s-3a032ef87b55",
+              "displayText": "welcoming international guests",
+              "speechText": "welcoming international guests",
+              "pronunciationText": "welcoming international guests",
+              "substitutions": [],
+              "sourceIds": [
+                "note-bdbbe5735e96ee01"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "source-56231ce3be2fb2a8",
+          "kind": "source-phrase",
+          "text": "punctual rehearsal attendance, timely task completion, and strict prohibition of smoking in specific areas.",
+          "category": "小作文建议 · 参赛规定示例",
+          "parts": [
+            {
+              "text": "punctual rehearsal attendance, timely task completion, and strict prohibition of smoking in specific areas."
+            }
+          ],
+          "sourceIds": [
+            "note-56231ce3be2fb2a8"
+          ],
+          "sourceLines": [
+            [
+              226,
+              226
+            ]
+          ],
+          "change": "展示保留原文；朗读仅作中性占位替换，不添加作文事实。",
+          "displayText": "punctual rehearsal attendance, timely task completion, and strict prohibition of smoking in specific areas.",
+          "speechText": "punctual rehearsal attendance, timely task completion, and strict prohibition of smoking in specific areas.",
+          "speechPolicy": "neutral-placeholders-v1.2",
+          "sentences": [
+            {
+              "id": "source-56231ce3be2fb2a8-s-d9f0277df7a1",
+              "displayText": "punctual rehearsal attendance, timely task completion, and strict prohibition of smoking in specific areas.",
+              "speechText": "punctual rehearsal attendance, timely task completion, and strict prohibition of smoking in specific areas.",
+              "pronunciationText": "punctual rehearsal attendance, timely task completion, and strict prohibition of smoking in specific areas.",
+              "substitutions": [],
+              "sourceIds": [
+                "note-56231ce3be2fb2a8"
+              ]
+            }
+          ]
+        },
+        {
           "id": "source-cac3311174acff0f",
-          "kind": "source-example",
+          "kind": "source-phrase",
           "text": "for your attention to my letter",
           "category": "短语 · 可选表达",
           "parts": [

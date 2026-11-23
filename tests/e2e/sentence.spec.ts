@@ -10,6 +10,20 @@ async function loop(p:Page,value:string){await p.locator('#more-open').click();a
 async function choose(p:Page,id:string){const row=p.locator('[data-sentence="'+id+'"]');await row.evaluate(e=>e.scrollIntoView({block:'center',behavior:'instant'}));await p.waitForTimeout(150);const before=await p.evaluate(()=>scrollY);await row.click();expect(Math.abs(await p.evaluate(()=>scrollY)-before)).toBeLessThan(await p.evaluate(()=>innerHeight*.3));await expect(row).toHaveAttribute('aria-pressed','true');}
 test.beforeEach(async({page})=>{await installMediaDiagnostics(page);await page.goto('./');await expect(page.locator('.sentence')).not.toHaveCount(0);});
 test.afterEach(async({page},info)=>{await attachFailedMedia(page,info);});
+test('chart blanks stay visible while the matching independent MP3 plays',async({page})=>{
+ const chapter=lib.chapters.find((chapter:any)=>chapter.id==='chart-opening');
+ const sentence=units(chapter)[0];
+ await page.locator('[data-chapter="chart-opening"]').click();
+ const row=page.locator('[data-sentence="'+sentence.id+'"]');
+ await expect(row.locator('.slot').first()).toHaveText('[开始年]');
+ await expect(row).toHaveText(sentence.displayText);
+ await loop(page,'sentence');
+ await choose(page,sentence.id);
+ await expect.poll(async()=>(await state(page)).src).toContain(lib.sentenceAudio.slow[sentence.id]);
+ await expect.poll(async()=>(await state(page)).time).toBeGreaterThan(.1);
+ expect((await state(page)).loop).toBe(true);
+ expect((await state(page)).paused).toBe(false);
+});
 test('display templates remain original while sentence files select first middle last and real clauses',async({page})=>{
  test.setTimeout(180000);
  const errors:string[]=[];page.on('pageerror',e=>errors.push(String(e)));

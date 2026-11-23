@@ -1,3 +1,9 @@
+## 1.4.3
+
+Sync chart openings, notices and other source sentences. Preserve visible blanks and pronounce chart years, categories and values with distinct neutral labels. Keep vocabulary in the phrase collection.
+
+Chapters 9 → 10; entries 105 → 147; generated 177 MP3s and reused 321.
+
 ## 1.4.2
 
 Keep the ambient colors flowing while paused, retain distance blur until actual browsing, soften the layered header and frosted dock, and center the wide tablet transport on the screen. The entire 44px seek area accepts touch; sentence press feedback survives a delayed frame. Preserve loaded sentence audio and allow cold-device startup before bounded recovery.
