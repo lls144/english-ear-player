@@ -2,7 +2,7 @@
 from pathlib import Path
 import json,subprocess,array,math,hashlib,sys
 import imageio_ffmpeg
-from audio_metrics import measure
+from audio_metrics import measure,onset_limits
 def scoped_settings(settings,preset,items):
  base={k:v for k,v in settings.items() if k!='sentenceOverrides'};matched={}
  for u in items:
@@ -34,14 +34,14 @@ for r in receipts:
  assert sha((chr(10)*2).join(u['displayText'] for u in items).encode())==r['textSha256']
  assert sha(' '.join(u['speechText'] for u in items).encode())==r['speechTextSha256']
  assert digest([{'id':u['id'],'segmentId':u['segmentId'],'displayText':u['displayText'],'speechText':u['speechText'],'pronunciationText':u['pronunciationText'],'kind':u['kind']} for u in items])==r['readingPlanSha256']
- assert digest(scoped_settings(settings,r['preset'],items))==r['settingsSha256']
+ assert digest(scoped_settings(settings,r['preset'],items))==r['settingsSha256'],('synthesis settings',r['id'])
  assert r['engine']=='kokoro-onnx' and r['modelSha256']==settings['modelSha256'] and r['voice']==settings['voice']
  assert digest(cue)==r['timingsSha256'] and abs(duration-cue[-1]['end'])<.15 and len(cue)==len(items)
  for t,segment in zip(cue,items):
   assert t['sentenceId']==segment['id'] and t['segmentId']==segment['segmentId'] and 0<=t['start']<t['speechEnd']<=t['end']+.01
   gap=s[round((t['speechEnd']+.10)*16000):round((t['end']-.10)*16000)]
   if gap:assert math.sqrt(sum(v*v for v in gap)/len(gap))<.004,('gap',r['id'],segment['id'])
- acoustic=measure(file,cue, imageio_ffmpeg.get_ffmpeg_exe());assert acoustic['passed'],(r['id'],acoustic)
+ acoustic=measure(file,cue,imageio_ffmpeg.get_ffmpeg_exe(),onset_limits(settings,r['preset'],cue));assert acoustic['passed'],(r['id'],acoustic)
  q=next(q for q in quality if q['id']==r['id']);assert q['passed'] and all(q[k]==r[k] for k in ['mp3Sha256','readingPlanSha256','settingsSha256'])
- result.append(dict(id=r['id'],durationSeconds=round(duration,3),rmsDb=round(20*math.log10(rms),2),peak=round(peak,4),voicedPercent=round(voiced*100,2),sourceVoiceTimingsAndASRHashesMatch=True))
+ result.append(dict(id=r['id'],durationSeconds=round(duration,3),rmsDb=round(20*math.log10(rms),2),peak=round(peak,4),voicedPercent=round(voiced*100,2),sourceVoiceTimingsAndASRHashesMatch=True,**({'onsetHissMs':acoustic['onsetHissMs']} if 'onsetHissMs' in acoustic else {})))
 out=ROOT/'.local/qa/audio-analysis.json';out.parent.mkdir(parents=True,exist_ok=True);out.write_text(json.dumps(result,indent=2),encoding='utf8');print(json.dumps({'passed':len(result),'truePeakAndEdges':'passed','allMP3Decoded':True}))

@@ -4,7 +4,7 @@ from pathlib import Path
 import numpy as np
 import imageio_ffmpeg
 from faster_whisper import WhisperModel
-from audio_metrics import measure
+from audio_metrics import measure,onset_limits
 ROOT=Path(__file__).resolve().parents[1]
 AUDIT='sentence-mp3-acoustic-and-asr-v1.2'
 def load(p,default=None):return json.loads(p.read_text(encoding='utf8')) if p.exists() else default
@@ -19,12 +19,12 @@ def distance(a,b):
  return d[-1]
 def main():
  p=argparse.ArgumentParser();p.add_argument('--force',action='store_true');a=p.parse_args()
- receipts=load(ROOT/'content/audio-provenance.json');manifest=load(ROOT/'content/audio-manifest.json');materials=load(ROOT/'content/materials.json');cues=load(ROOT/'content/audio-timings.json');prior=load(ROOT/'content/audio-quality.json',{}).get('entries',[])+load(ROOT/'.local/qa/audio-quality-candidate.json',{}).get('entries',[]);asr=None;rows=[];detail=[]
+ receipts=load(ROOT/'content/audio-provenance.json');manifest=load(ROOT/'content/audio-manifest.json');materials=load(ROOT/'content/materials.json');settings=load(ROOT/'content/audio-settings.json');cues=load(ROOT/'content/audio-timings.json');prior=load(ROOT/'content/audio-quality.json',{}).get('entries',[])+load(ROOT/'.local/qa/audio-quality-candidate.json',{}).get('entries',[]);asr=None;rows=[];detail=[]
  for r in receipts:
   old=next((x for x in reversed(prior) if x['id']==r['id'] and x.get('passed')),None);file=ROOT/'public'/manifest[r['id']]
   if sha(file.read_bytes())!=r['mp3Sha256']:raise ValueError('Audio changed before quality audit')
   if old and old.get('audit')==AUDIT and not a.force and all(old.get(k)==r.get(k) for k in ['mp3Sha256','readingPlanSha256','settingsSha256']):rows.append(old);continue
-  metrics=measure(file,cues[r['id']],imageio_ffmpeg.get_ffmpeg_exe())
+  metrics=measure(file,cues[r['id']],imageio_ffmpeg.get_ffmpeg_exe(),onset_limits(settings,r['preset'],cues[r['id']]))
   if not metrics['passed']:raise ValueError('Acoustic risk '+r['id']+': '+json.dumps(metrics))
   if asr is None:asr=WhisperModel(os.environ.get('EAR_ASR_MODEL_DIR',str(ROOT/'.local/models/whisper-base-en')),device='cpu',compute_type='int8',cpu_threads=4)
   raw=subprocess.run([imageio_ffmpeg.get_ffmpeg_exe(),'-v','error','-i',str(file),'-f','f32le','-ar','16000','-ac','1','-'],capture_output=True,check=True).stdout;audio=np.frombuffer(raw,dtype='<f4').copy()
@@ -62,7 +62,7 @@ def main():
  out=ROOT/'.local/qa/audio-asr-full.json';out.parent.mkdir(parents=True,exist_ok=True)
  if detail:
   previous=load(out,[]);updated={d['id']:d for d in previous};updated.update({d['id']:d for d in detail});out.write_text(json.dumps(list(updated.values()),ensure_ascii=False,indent=2),encoding='utf8')
- report={'schemaVersion':1,'method':'Every MP3 decoded at 96kHz for true peak, clipping, seam energy and active RMS. Prompt-free English ASR excludes only post-sentence recall gaps. Failed short units are also checked as repeated audio without a text prompt; raw transcripts retained privately. Homophones explicitly normalized. Neither acoustic gates nor ASR prove subjective naturalness.','asrModel':'Systran/faster-whisper-base.en','entries':rows}
+ report={'schemaVersion':1,'method':'Every MP3 decoded at 96kHz for true peak, clipping, seam energy and active RMS. Watched sentence onsets also have a limit on sustained high-frequency noise before voicing. Prompt-free English ASR excludes only post-sentence recall gaps. Failed short units are also checked as repeated audio without a text prompt; raw transcripts retained privately. Homophones explicitly normalized. Neither acoustic gates nor ASR prove subjective naturalness.','asrModel':'Systran/faster-whisper-base.en','entries':rows}
  (ROOT/'.local/qa/audio-quality-candidate.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf8')
  if not all(r['passed'] for r in rows):raise ValueError('Audio ASR needs investigation; see private detailed report')
  (ROOT/'content/audio-quality.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf8',newline='\n')

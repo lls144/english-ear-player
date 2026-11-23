@@ -36,6 +36,8 @@ npm run sync:notes 通过本机已授权 gh 读取指定文件最新 master。�
 
 隔离环境在 .local/ai-venv；Python 3.12，依赖锁在 scripts/requirements-ai.txt。scripts/prepare_kokoro.py 获取固定版本、验哈希并准备本机模型，模型不提交。npm run audio:update 生成增量 MP3；npm run audio:quality 执行本机离线英语 ASR 审核。仓库 content/audio-settings.json 记录模型、音色、速度、停顿及处理版本；任何参数变化使缓存失效，旧 SAPI 文件永不复用。
 
+句首异常按句子 ID 和预设用同一音色重合成整句。已确认出现额外嘶声的句子可设置 `maxOnsetHissMs`，本机审核和 CI 都在解码后的整章及单句 MP3 上检查发声前的高频噪声。这个检查只适用于经对照确认的句首，正常摩擦音和爆破辅音按原音保留。
+
 按章和独立句子、按预设生成；未变的文件保持字节不变。全部候选先完成解码、时长、非静音、时间表和静音检查再登记；失败回滚本地文件。audio-quality.json 绑定实际字节和参数。GitHub Linux runner 只验证提交的素材和质量记录，不安装 AI 模型、不合成、不访问私有源。
 
 ## 更新、发布和回滚

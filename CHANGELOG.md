@@ -1,3 +1,9 @@
+## 1.4.4
+
+Re-synthesize affected sentence openings with Kokoro af_heart and add a decoded-audio onset regression check. Preserve the source text, template slots, presets and recall gaps.
+
+Regenerated 89 MP3s and reused 409.
+
 ## 1.4.3
 
 Sync chart openings, notices and other source sentences. Preserve visible blanks and pronounce chart years, categories and values with distinct neutral labels. Keep vocabulary in the phrase collection.

@@ -49,10 +49,283 @@
   "activeRmsTarget": 0.085,
   "peakCeiling": 0.7,
   "sentenceOverrides": {
-    "source-fdc17899e263456e-s-735730f52e5c": {
+    "source-00d2169fce4e76d5-s-163ffd7c144d": {
+      "slow": {
+        "modelSpeed": 0.72
+      }
+    },
+    "source-07e1e2208c8904c5-s-4c38008cc4b4": {
+      "slow": {
+        "modelSpeed": 0.72
+      }
+    },
+    "source-0830c8dc1c22d4d0-s-24433c531d00": {
+      "slow": {
+        "modelSpeed": 0.7
+      },
+      "recite": {
+        "modelSpeed": 0.72
+      }
+    },
+    "source-09a7b66c81b21112-s-8e12cad9fd6d": {
+      "continuous": {
+        "modelSpeed": 0.8
+      },
+      "slow": {
+        "modelSpeed": 0.8
+      },
+      "recite": {
+        "modelSpeed": 0.8
+      }
+    },
+    "source-1ac8c60f4db4d7c5-s-2b5d10b90326": {
+      "continuous": {
+        "modelSpeed": 0.8,
+        "maxOnsetHissMs": 20
+      },
+      "slow": {
+        "modelSpeed": 0.78,
+        "maxOnsetHissMs": 20
+      },
+      "recite": {
+        "modelSpeed": 0.8,
+        "maxOnsetHissMs": 20
+      }
+    },
+    "source-1d952d59ce7e23ad-s-0ddf14f22323": {
+      "slow": {
+        "modelSpeed": 0.72
+      }
+    },
+    "source-2349f33cbbf1b3af-s-2b93ad3cae84": {
+      "slow": {
+        "modelSpeed": 0.72
+      }
+    },
+    "source-2492142cc3f57878-s-3f052bbef738": {
+      "slow": {
+        "modelSpeed": 0.72
+      }
+    },
+    "source-2b1811aba4f2613c-s-f7f25db08139": {
+      "slow": {
+        "modelSpeed": 0.72
+      }
+    },
+    "source-314b88970023ea7c-s-be5005ded8f9": {
+      "slow": {
+        "modelSpeed": 0.72
+      },
+      "recite": {
+        "modelSpeed": 0.75
+      }
+    },
+    "source-4c436e34246f0c80-s-2849b4e61018": {
+      "slow": {
+        "modelSpeed": 0.85
+      }
+    },
+    "source-5141ab4f3bcf4c10-s-a469b837cab7": {
+      "slow": {
+        "modelSpeed": 0.72
+      },
+      "recite": {
+        "modelSpeed": 0.78
+      }
+    },
+    "source-5146cb26f9e66bb8-s-48d25ba79f18": {
+      "slow": {
+        "modelSpeed": 0.72
+      }
+    },
+    "source-51b3aac1dd6c4cd0-s-03ea3ff7952f": {
       "all": {
-        "styleLength": 16,
-        "modelSpeed": 0.9
+        "modelSpeed": 0.85,
+        "styleLength": 32
+      }
+    },
+    "source-52b65c3aa95b9e9e-s-58c30827cfe7": {
+      "slow": {
+        "modelSpeed": 0.72
+      }
+    },
+    "source-56231ce3be2fb2a8-s-d9f0277df7a1": {
+      "slow": {
+        "modelSpeed": 0.72
+      },
+      "recite": {
+        "modelSpeed": 0.78
+      }
+    },
+    "source-60809de59fa325db-s-b1ba0235c9a0": {
+      "slow": {
+        "modelSpeed": 0.72
+      }
+    },
+    "source-6e4c1909ea887b08-s-e8927e551d8e": {
+      "slow": {
+        "modelSpeed": 0.72
+      },
+      "recite": {
+        "modelSpeed": 0.75
+      }
+    },
+    "source-72878cb5b5ee5e93-s-3781906c1cf2": {
+      "continuous": {
+        "modelSpeed": 0.85,
+        "maxOnsetHissMs": 20
+      },
+      "slow": {
+        "modelSpeed": 0.78,
+        "maxOnsetHissMs": 20
+      },
+      "recite": {
+        "modelSpeed": 0.8,
+        "maxOnsetHissMs": 20
+      }
+    },
+    "source-7289e7c3a1a6fab4-s-4c6d9deb0e61": {
+      "continuous": {
+        "modelSpeed": 0.8
+      },
+      "slow": {
+        "modelSpeed": 0.78
+      },
+      "recite": {
+        "modelSpeed": 0.8
+      }
+    },
+    "source-807fe22b66c03a5a-s-3f481e915a1e": {
+      "continuous": {
+        "modelSpeed": 0.8,
+        "maxOnsetHissMs": 20
+      },
+      "slow": {
+        "modelSpeed": 0.75,
+        "maxOnsetHissMs": 20
+      },
+      "recite": {
+        "modelSpeed": 0.78,
+        "maxOnsetHissMs": 20
+      }
+    },
+    "source-813b1973de92714f-s-a88e73c109c5": {
+      "continuous": {
+        "modelSpeed": 0.65
+      }
+    },
+    "source-8515509bf5659fd1-s-4a79efd05ce6": {
+      "slow": {
+        "modelSpeed": 0.75
+      }
+    },
+    "source-888bab711a498d73-s-f0c2ff447806": {
+      "slow": {
+        "modelSpeed": 0.75
+      },
+      "recite": {
+        "modelSpeed": 0.78
+      }
+    },
+    "source-8bb1fa8285570ad2-s-c708417cc9a9": {
+      "slow": {
+        "modelSpeed": 0.72
+      }
+    },
+    "source-9843a763e6ce521f-s-89fee639a60f": {
+      "slow": {
+        "modelSpeed": 0.72
+      }
+    },
+    "source-98465588330f8d17-s-b901287274c3": {
+      "slow": {
+        "modelSpeed": 0.72
+      }
+    },
+    "source-9f08fa705eb47e18-s-e341851ce6c9": {
+      "slow": {
+        "modelSpeed": 0.72
+      }
+    },
+    "source-a40b38ad9494459e-s-a370485394ea": {
+      "slow": {
+        "modelSpeed": 0.72
+      }
+    },
+    "source-a9f795e784975e6a-s-d07c666df4fe": {
+      "slow": {
+        "modelSpeed": 0.85
+      },
+      "recite": {
+        "modelSpeed": 0.85
+      }
+    },
+    "source-aac688a38e9875b9-s-b3aa9b37d308": {
+      "slow": {
+        "modelSpeed": 0.72
+      }
+    },
+    "source-ab1853c0e4a791ec-s-b8c6321502d2": {
+      "slow": {
+        "modelSpeed": 0.78
+      }
+    },
+    "source-acfd65423ad828e1-s-da7e5e358ab0": {
+      "continuous": {
+        "modelSpeed": 0.8
+      },
+      "slow": {
+        "modelSpeed": 0.78
+      },
+      "recite": {
+        "modelSpeed": 0.8
+      }
+    },
+    "source-bcb6083b563601ae-s-0a5279cd6005": {
+      "slow": {
+        "modelSpeed": 0.75
+      },
+      "recite": {
+        "modelSpeed": 0.78
+      }
+    },
+    "source-c3b1a4384706981d-s-e9ffd8870a25": {
+      "slow": {
+        "modelSpeed": 0.72
+      },
+      "recite": {
+        "modelSpeed": 0.75
+      }
+    },
+    "source-c6d66f1fba515a5b-s-e5411774a275": {
+      "all": {
+        "modelSpeed": 1
+      }
+    },
+    "source-cac3311174acff0f-s-3f5c1eeac652": {
+      "slow": {
+        "modelSpeed": 0.78
+      }
+    },
+    "source-cad6f5c6bc400202-s-fbfff86e9fe9": {
+      "continuous": {
+        "modelSpeed": 0.8
+      },
+      "slow": {
+        "modelSpeed": 0.72
+      }
+    },
+    "source-dabc0d7f1b0e73da-s-428dc10ed6cf": {
+      "slow": {
+        "modelSpeed": 0.75
+      },
+      "recite": {
+        "modelSpeed": 0.78
+      }
+    },
+    "source-daf9e4e1d59663b8-s-2545832912b4": {
+      "slow": {
+        "modelSpeed": 0.72
       }
     },
     "source-db2b29abe006b6c8-s-d97dc8b7b32c": {
@@ -65,30 +338,52 @@
         "modelSpeed": 0.8
       }
     },
-    "source-0830c8dc1c22d4d0-s-24433c531d00": {
+    "source-ddf227447b28dbdd-s-829cccddb6ec": {
       "slow": {
-        "modelSpeed": 0.7
+        "modelSpeed": 0.72
       }
     },
-    "source-813b1973de92714f-s-a88e73c109c5": {
+    "source-e7b1bdbe0b97b567-s-0d3d5c1327ea": {
+      "slow": {
+        "modelSpeed": 0.72
+      }
+    },
+    "source-f08c0014cbe142b9-s-68b30bfa7433": {
+      "slow": {
+        "modelSpeed": 0.72
+      },
+      "recite": {
+        "modelSpeed": 0.75
+      }
+    },
+    "source-f3ee84c550f70184-s-a94bd59a5823": {
+      "slow": {
+        "modelSpeed": 0.72
+      }
+    },
+    "source-f684c08fd230bbef-s-64a27c2e7c66": {
       "continuous": {
-        "modelSpeed": 0.65
+        "modelSpeed": 0.8,
+        "maxOnsetHissMs": 20
+      },
+      "slow": {
+        "modelSpeed": 0.72,
+        "maxOnsetHissMs": 20
+      },
+      "recite": {
+        "modelSpeed": 0.78,
+        "maxOnsetHissMs": 20
       }
     },
-    "source-51b3aac1dd6c4cd0-s-03ea3ff7952f": {
+    "source-f6eb8d8053cc9b62-s-2829449032ef": {
+      "slow": {
+        "modelSpeed": 0.72
+      }
+    },
+    "source-fdc17899e263456e-s-735730f52e5c": {
       "all": {
-        "modelSpeed": 0.85,
-        "styleLength": 32
-      }
-    },
-    "source-cad6f5c6bc400202-s-fbfff86e9fe9": {
-      "continuous": {
-        "modelSpeed": 0.8
-      }
-    },
-    "source-c6d66f1fba515a5b-s-e5411774a275": {
-      "all": {
-        "modelSpeed": 1
+        "styleLength": 16,
+        "modelSpeed": 0.9
       }
     }
   }

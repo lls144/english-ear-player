@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "method": "Every MP3 decoded at 96kHz for true peak, clipping, seam energy and active RMS. Prompt-free English ASR excludes only post-sentence recall gaps. Failed short units are also checked as repeated audio without a text prompt; raw transcripts retained privately. Homophones explicitly normalized. Neither acoustic gates nor ASR prove subjective naturalness.",
+  "method": "Every MP3 decoded at 96kHz for true peak, clipping, seam energy and active RMS. Watched sentence onsets also have a limit on sustained high-frequency noise before voicing. Prompt-free English ASR excludes only post-sentence recall gaps. Failed short units are also checked as repeated audio without a text prompt; raw transcripts retained privately. Homophones explicitly normalized. Neither acoustic gates nor ASR prove subjective naturalness.",
   "asrModel": "Systran/faster-whisper-base.en",
   "entries": [
     {
@@ -39,27 +39,27 @@
     },
     {
       "id": "picture-slow",
-      "mp3Sha256": "9b58e49440ab4b76d75b0977b28ebc085cc9d2605a344d1b891657dc20898012",
+      "mp3Sha256": "e098681a96a32008bd4742b426eff0fbff5974a8cdc92e7394c92c8284f3b091",
       "readingPlanSha256": "82631d48a22b9d6274e8d8037a78665672282ccbfc9781bd72390135be0ba3e1",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "22997875f06aaf5917b8be521afee4b271faee24d2b6e664f4617e4751598695",
       "referenceWords": 100,
-      "rawWordErrorRate": 0.08,
-      "normalizedWordErrorRate": 0.04,
+      "rawWordErrorRate": 0.05,
+      "normalizedWordErrorRate": 0.03,
       "acoustics": {
-        "durationSeconds": 74.9,
-        "truePeakDbTP": -4.91,
-        "rmsDb": -25.3,
+        "durationSeconds": 70.75,
+        "truePeakDbTP": -5.15,
+        "rmsDb": -25.35,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.1935,
+        "maxStep4x": 0.18426,
         "speechActiveRmsDb": [
-          -22.68,
+          -22.65,
           -22.71,
           -22.62,
-          -22.62,
-          -22.64,
-          -22.59,
-          -22.73
+          -22.55,
+          -22.72,
+          -22.56,
+          -22.72
         ],
         "spikeFlags": [],
         "clipped": false,
@@ -68,21 +68,20 @@
       "passed": true,
       "audit": "sentence-mp3-acoustic-and-asr-v1.2",
       "orthographicNormalizations": [
-        "hotpot",
-        "shakespeare"
+        "hotpot"
       ]
     },
     {
       "id": "picture-recite",
-      "mp3Sha256": "d85943479c61e556c5977810cdcd8bfea5a8ad8d39540534d4532b6f9450eb3f",
+      "mp3Sha256": "daa6d56c44e6aa4c461419c91199fdb069931bd3f06fa01b99ad51dc62eb0f0d",
       "readingPlanSha256": "82631d48a22b9d6274e8d8037a78665672282ccbfc9781bd72390135be0ba3e1",
-      "settingsSha256": "0c8b1fdececda20f6fa7454c496602d575ca1d6e88bde8a8e03b6a3bc5fdb7e1",
+      "settingsSha256": "b4b4773d2e20d02de6c3fcd17f57c348cdbdc45c86424f376645d82bb07b4276",
       "referenceWords": 100,
-      "rawWordErrorRate": 0.06,
-      "normalizedWordErrorRate": 0.02,
+      "rawWordErrorRate": 0.05,
+      "normalizedWordErrorRate": 0.01,
       "acoustics": {
-        "durationSeconds": 113.9988,
-        "truePeakDbTP": -4.77,
+        "durationSeconds": 111.1775,
+        "truePeakDbTP": -4.73,
         "rmsDb": -27.34,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
@@ -91,9 +90,9 @@
           -22.77,
           -22.71,
           -22.67,
-          -22.66,
+          -22.59,
           -22.76,
-          -22.54,
+          -22.62,
           -22.55
         ],
         "spikeFlags": [],
@@ -134,28 +133,29 @@
     },
     {
       "id": "sentence-source-a40b38ad9494459e-s-a370485394ea-slow",
-      "mp3Sha256": "c8534df5abe56e5e806af867917aabe1b53343af701316df372faafdf08b6938",
+      "mp3Sha256": "56058eef7a2ee78a9e741f86401af31c2c33a91788ceef7fc4c118187d0c0a2b",
       "readingPlanSha256": "df27b11ba7bea8a9a317bb143009078772868662717f31888773c18c12a814ab",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "b7a1038b2cdabb92cdf1f4bdf1cf83ee5893ea147bd23c0e5243db53aaa7c1ab",
       "referenceWords": 10,
-      "rawWordErrorRate": 0.3,
-      "normalizedWordErrorRate": 0.1,
+      "rawWordErrorRate": 0.0,
+      "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 8.375,
-        "truePeakDbTP": -5.98,
-        "rmsDb": -26.0,
+        "durationSeconds": 7.6,
+        "truePeakDbTP": -6.3,
+        "rmsDb": -26.15,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.1935,
+        "maxStep4x": 0.1804,
         "speechActiveRmsDb": [
-          -22.68
+          -22.65
         ],
         "spikeFlags": [],
         "clipped": false,
         "passed": true
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-a40b38ad9494459e-s-a370485394ea-recite",
@@ -360,21 +360,21 @@
     },
     {
       "id": "sentence-source-6e4c1909ea887b08-s-e8927e551d8e-slow",
-      "mp3Sha256": "70026c6eb512f54d51130034cb1556b15c60383747979ff0d56a4865bf9eb4cb",
+      "mp3Sha256": "61540e8ae859db204f2a91e2ca24bf98dcb89ee190c314df974e9cf2898ec3fd",
       "readingPlanSha256": "56555488472e9c6a3a3a6840a6bbc56d19fee96b254905eef73e16c502d0f39f",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "2fe6420dabddc3fc58af3d8e642d91bd225180f3c2a8539118e945f78feda776",
       "referenceWords": 7,
-      "rawWordErrorRate": 0.1429,
-      "normalizedWordErrorRate": 0.1429,
+      "rawWordErrorRate": 0.0,
+      "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 7.275,
-        "truePeakDbTP": -5.62,
-        "rmsDb": -26.19,
+        "durationSeconds": 6.55,
+        "truePeakDbTP": -6.23,
+        "rmsDb": -26.32,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.15046,
+        "maxStep4x": 0.17509,
         "speechActiveRmsDb": [
-          -22.62
+          -22.55
         ],
         "spikeFlags": [],
         "clipped": false,
@@ -386,21 +386,21 @@
     },
     {
       "id": "sentence-source-6e4c1909ea887b08-s-e8927e551d8e-recite",
-      "mp3Sha256": "00cfafc13f8b778989ff1e531df7d6b1b19c89713b8dbeab00f8224db71814f9",
+      "mp3Sha256": "f79a22dc99fc7e12a9d57d50bc7040ded0a799adefb615f4d7e7d8eb891b6e65",
       "readingPlanSha256": "56555488472e9c6a3a3a6840a6bbc56d19fee96b254905eef73e16c502d0f39f",
-      "settingsSha256": "0c8b1fdececda20f6fa7454c496602d575ca1d6e88bde8a8e03b6a3bc5fdb7e1",
+      "settingsSha256": "01f25900542293b2544c4095fbaa5b50458e74a1d58930a7e4c57721c849b265",
       "referenceWords": 7,
       "rawWordErrorRate": 0.0,
       "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 10.2212,
-        "truePeakDbTP": -5.41,
+        "durationSeconds": 9.0188,
+        "truePeakDbTP": -5.87,
         "rmsDb": -27.91,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.1648,
+        "maxStep4x": 0.17694,
         "speechActiveRmsDb": [
-          -22.66
+          -22.59
         ],
         "spikeFlags": [],
         "clipped": false,
@@ -440,21 +440,21 @@
     },
     {
       "id": "sentence-source-cad6f5c6bc400202-s-fbfff86e9fe9-slow",
-      "mp3Sha256": "3bcb692d5e7f0a97c92de74a7835aada4f61c2a62c008b99b8328d19b1e58621",
+      "mp3Sha256": "bee5a123e6073a59967db02f0d657442351f0231374c87c6c8228f63c3a900a8",
       "readingPlanSha256": "317ab05b29da6453034e8ee421f20666b49fc58a6039cc2d917a87d63a649248",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "d65ebe4de2a9c790f247cee1af48f814c81e00deb66722fe00fbf4af065ebcea",
       "referenceWords": 18,
-      "rawWordErrorRate": 0.2778,
+      "rawWordErrorRate": 0.1667,
       "normalizedWordErrorRate": 0.0556,
       "acoustics": {
-        "durationSeconds": 14.0,
-        "truePeakDbTP": -5.59,
-        "rmsDb": -25.14,
+        "durationSeconds": 12.275,
+        "truePeakDbTP": -5.46,
+        "rmsDb": -25.3,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.16694,
+        "maxStep4x": 0.16882,
         "speechActiveRmsDb": [
-          -22.65
+          -22.72
         ],
         "spikeFlags": [],
         "clipped": false,
@@ -463,8 +463,7 @@
       "passed": true,
       "audit": "sentence-mp3-acoustic-and-asr-v1.2",
       "orthographicNormalizations": [
-        "hotpot",
-        "shakespeare"
+        "hotpot"
       ]
     },
     {
@@ -524,21 +523,21 @@
     },
     {
       "id": "sentence-source-f08c0014cbe142b9-s-68b30bfa7433-slow",
-      "mp3Sha256": "f2c82e994900aafa21499354afaec8c2b7a4a053420624381d8645260b850929",
+      "mp3Sha256": "9bc2ac87163517b14acc295b93bba0e6349e7e70f733bd69ab8498760d6beae0",
       "readingPlanSha256": "0875a76b4f942c26a50e01cc76ef0429d518dacf380be8a0ba07fad530176cb8",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "897c895e62c5fe51c2da37e5b297edb198ada651851fde95b697a231d1b70b8e",
       "referenceWords": 10,
-      "rawWordErrorRate": 0.1,
-      "normalizedWordErrorRate": 0.1,
+      "rawWordErrorRate": 0.0,
+      "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 7.75,
-        "truePeakDbTP": -6.4,
-        "rmsDb": -26.16,
+        "durationSeconds": 6.825,
+        "truePeakDbTP": -7.07,
+        "rmsDb": -26.37,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.17734,
+        "maxStep4x": 0.1809,
         "speechActiveRmsDb": [
-          -22.6
+          -22.56
         ],
         "spikeFlags": [],
         "clipped": false,
@@ -550,21 +549,21 @@
     },
     {
       "id": "sentence-source-f08c0014cbe142b9-s-68b30bfa7433-recite",
-      "mp3Sha256": "2c6cd0b147da22fbf59384a6a369325f4ecc7b781f3dec5b59a9896856a3d225",
+      "mp3Sha256": "2ddb16397646b9bf369efe15ab6c13d9fcb6597f9ac7c80b27d682725da45b0a",
       "readingPlanSha256": "0875a76b4f942c26a50e01cc76ef0429d518dacf380be8a0ba07fad530176cb8",
-      "settingsSha256": "0c8b1fdececda20f6fa7454c496602d575ca1d6e88bde8a8e03b6a3bc5fdb7e1",
+      "settingsSha256": "82421dd6179b98afd217657c2bfaa1f2d70e36d9871ad68e09839b6f7ae07236",
       "referenceWords": 10,
       "rawWordErrorRate": 0.0,
       "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 11.1925,
-        "truePeakDbTP": -6.84,
-        "rmsDb": -27.87,
+        "durationSeconds": 9.5738,
+        "truePeakDbTP": -6.08,
+        "rmsDb": -28.08,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.17047,
+        "maxStep4x": 0.17145,
         "speechActiveRmsDb": [
-          -22.55
+          -22.62
         ],
         "spikeFlags": [],
         "clipped": false,
@@ -654,29 +653,32 @@
     },
     {
       "id": "chart-opening",
-      "mp3Sha256": "423c6bc93ecf004c64a9e855bebf92b12e1f77adbd0c1a5e0635af003cfc780e",
+      "mp3Sha256": "02f52f94cf59979e33382f3873682e02bf22581c4347cc466df0ccdd37215f11",
       "readingPlanSha256": "37779de53a0ad1b74fc19b185410b615ad8c50014cf480901e2657a81324710a",
-      "settingsSha256": "a471852b1b7e8b88fa21493378b46165c4c78483b7920ab0c710347d61eaf82d",
+      "settingsSha256": "da89445f2dd17548ca0160460bf860b0e2f3c27b9ce1d45840d3cb0354494cff",
       "referenceWords": 120,
-      "rawWordErrorRate": 0.0,
-      "normalizedWordErrorRate": 0.0,
+      "rawWordErrorRate": 0.0083,
+      "normalizedWordErrorRate": 0.0083,
       "acoustics": {
-        "durationSeconds": 71.375,
-        "truePeakDbTP": -4.22,
-        "rmsDb": -24.74,
+        "durationSeconds": 69.525,
+        "truePeakDbTP": -4.23,
+        "rmsDb": -24.75,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.22651,
+        "maxStep4x": 0.2159,
         "speechActiveRmsDb": [
-          -22.59,
+          -22.55,
           -22.66,
           -22.49,
-          -22.78,
+          -22.77,
           -22.86
         ],
         "spikeFlags": [],
         "clipped": false,
-        "passed": true
+        "passed": true,
+        "onsetHissMs": {
+          "source-807fe22b66c03a5a-s-3f481e915a1e": 0
+        }
       },
       "passed": true,
       "audit": "sentence-mp3-acoustic-and-asr-v1.2",
@@ -684,21 +686,21 @@
     },
     {
       "id": "chart-opening-slow",
-      "mp3Sha256": "88265a87e2046084133ebbba63e276fcfa5314a72648fea55e0a6a6e836845ce",
+      "mp3Sha256": "98d483c2a8be562ae4f60743786b4369c4c30e0ebd6b926153c5601df62bed12",
       "readingPlanSha256": "37779de53a0ad1b74fc19b185410b615ad8c50014cf480901e2657a81324710a",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "39a4474ce370339df8a8aebb31951211355e9805134bea41fe708dfbd977638d",
       "referenceWords": 120,
       "rawWordErrorRate": 0.0083,
       "normalizedWordErrorRate": 0.0083,
       "acoustics": {
-        "durationSeconds": 83.625,
+        "durationSeconds": 80.975,
         "truePeakDbTP": -3.71,
-        "rmsDb": -24.87,
+        "rmsDb": -24.88,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.24173,
+        "maxStep4x": 0.24364,
         "speechActiveRmsDb": [
-          -22.59,
+          -22.57,
           -22.8,
           -22.59,
           -22.68,
@@ -706,7 +708,10 @@
         ],
         "spikeFlags": [],
         "clipped": false,
-        "passed": true
+        "passed": true,
+        "onsetHissMs": {
+          "source-807fe22b66c03a5a-s-3f481e915a1e": 0
+        }
       },
       "passed": true,
       "audit": "sentence-mp3-acoustic-and-asr-v1.2",
@@ -714,21 +719,21 @@
     },
     {
       "id": "chart-opening-recite",
-      "mp3Sha256": "5c8bdca9e20c60e05a9cf9210a17e6ef99f2fd4503146d21ff4cbba02ab4c68c",
+      "mp3Sha256": "1be84c20d0dda2f00f000dc84f40088bbcf5e93d16f21313aaf63e41546319a0",
       "readingPlanSha256": "37779de53a0ad1b74fc19b185410b615ad8c50014cf480901e2657a81324710a",
-      "settingsSha256": "0c8b1fdececda20f6fa7454c496602d575ca1d6e88bde8a8e03b6a3bc5fdb7e1",
+      "settingsSha256": "546e7914179dbac5302500096a8bd23bcd850b92a3db142c8aa8649e733446c0",
       "referenceWords": 120,
-      "rawWordErrorRate": 0.025,
-      "normalizedWordErrorRate": 0.025,
+      "rawWordErrorRate": 0.0083,
+      "normalizedWordErrorRate": 0.0083,
       "acoustics": {
-        "durationSeconds": 129.2275,
-        "truePeakDbTP": -3.52,
-        "rmsDb": -27.07,
+        "durationSeconds": 126.2812,
+        "truePeakDbTP": -3.55,
+        "rmsDb": -27.11,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.24203,
+        "maxStep4x": 0.24931,
         "speechActiveRmsDb": [
-          -22.6,
+          -22.52,
           -23.19,
           -22.55,
           -22.69,
@@ -736,7 +741,10 @@
         ],
         "spikeFlags": [],
         "clipped": false,
-        "passed": true
+        "passed": true,
+        "onsetHissMs": {
+          "source-807fe22b66c03a5a-s-3f481e915a1e": 0
+        }
       },
       "passed": true,
       "audit": "sentence-mp3-acoustic-and-asr-v1.2",
@@ -744,25 +752,28 @@
     },
     {
       "id": "sentence-source-807fe22b66c03a5a-s-3f481e915a1e",
-      "mp3Sha256": "d17824b630a5fec97d2e3289678f9880a9ecc06d1d27c08b5aebb79c58c6ba07",
+      "mp3Sha256": "e5fd88355ddf59210751448312a8f0551f132784059d45cc9391cb91d3c57550",
       "readingPlanSha256": "196b5c24ae4c4e2eec6c558bffdb9f6153ab0c8385c2d98a3424133a47b30d91",
-      "settingsSha256": "a471852b1b7e8b88fa21493378b46165c4c78483b7920ab0c710347d61eaf82d",
+      "settingsSha256": "da89445f2dd17548ca0160460bf860b0e2f3c27b9ce1d45840d3cb0354494cff",
       "referenceWords": 27,
       "rawWordErrorRate": 0.0,
       "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 15.65,
-        "truePeakDbTP": -6.62,
-        "rmsDb": -24.78,
+        "durationSeconds": 13.8,
+        "truePeakDbTP": -7.16,
+        "rmsDb": -24.84,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.22651,
+        "maxStep4x": 0.2159,
         "speechActiveRmsDb": [
-          -22.59
+          -22.55
         ],
         "spikeFlags": [],
         "clipped": false,
-        "passed": true
+        "passed": true,
+        "onsetHissMs": {
+          "source-807fe22b66c03a5a-s-3f481e915a1e": 0
+        }
       },
       "passed": true,
       "audit": "sentence-mp3-acoustic-and-asr-v1.2",
@@ -770,25 +781,28 @@
     },
     {
       "id": "sentence-source-807fe22b66c03a5a-s-3f481e915a1e-slow",
-      "mp3Sha256": "cc2e7e414611a5cdd19f6cdc0aa90b47a73f9b8b2a5ff43fbdaf8ccb8aa979ce",
+      "mp3Sha256": "bd2c49319fb95b2eaffba8a5cbcad76a7da331432c8a9bf7d07aadc1d6b1c286",
       "readingPlanSha256": "196b5c24ae4c4e2eec6c558bffdb9f6153ab0c8385c2d98a3424133a47b30d91",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "39a4474ce370339df8a8aebb31951211355e9805134bea41fe708dfbd977638d",
       "referenceWords": 27,
-      "rawWordErrorRate": 0.037,
-      "normalizedWordErrorRate": 0.037,
+      "rawWordErrorRate": 0.0,
+      "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 18.125,
-        "truePeakDbTP": -6.56,
-        "rmsDb": -24.85,
+        "durationSeconds": 15.475,
+        "truePeakDbTP": -6.93,
+        "rmsDb": -24.94,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.21803,
+        "maxStep4x": 0.24364,
         "speechActiveRmsDb": [
-          -22.59
+          -22.57
         ],
         "spikeFlags": [],
         "clipped": false,
-        "passed": true
+        "passed": true,
+        "onsetHissMs": {
+          "source-807fe22b66c03a5a-s-3f481e915a1e": 0
+        }
       },
       "passed": true,
       "audit": "sentence-mp3-acoustic-and-asr-v1.2",
@@ -796,25 +810,28 @@
     },
     {
       "id": "sentence-source-807fe22b66c03a5a-s-3f481e915a1e-recite",
-      "mp3Sha256": "199917079aba49be94a2613b5ccd95506c61bdd7d9b0449225f74516d82adbe3",
+      "mp3Sha256": "9d4869cb5e1940aa3ead4d0164ebd37f4f0f52d5b5390eb25aa9271b7b75a6ee",
       "readingPlanSha256": "196b5c24ae4c4e2eec6c558bffdb9f6153ab0c8385c2d98a3424133a47b30d91",
-      "settingsSha256": "0c8b1fdececda20f6fa7454c496602d575ca1d6e88bde8a8e03b6a3bc5fdb7e1",
+      "settingsSha256": "546e7914179dbac5302500096a8bd23bcd850b92a3db142c8aa8649e733446c0",
       "referenceWords": 27,
-      "rawWordErrorRate": 0.037,
-      "normalizedWordErrorRate": 0.037,
+      "rawWordErrorRate": 0.0,
+      "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 27.875,
-        "truePeakDbTP": -6.43,
-        "rmsDb": -26.93,
+        "durationSeconds": 24.9288,
+        "truePeakDbTP": -7.33,
+        "rmsDb": -27.11,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.22494,
+        "maxStep4x": 0.24011,
         "speechActiveRmsDb": [
-          -22.6
+          -22.52
         ],
         "spikeFlags": [],
         "clipped": false,
-        "passed": true
+        "passed": true,
+        "onsetHissMs": {
+          "source-807fe22b66c03a5a-s-3f481e915a1e": 0
+        }
       },
       "passed": true,
       "audit": "sentence-mp3-acoustic-and-asr-v1.2",
@@ -1134,23 +1151,23 @@
     },
     {
       "id": "theme-trends",
-      "mp3Sha256": "977114abd0051480d11c80b71c66555c982e588d5ffc9d27f1cf83ec9864335e",
+      "mp3Sha256": "75940eb32fef97d9d1111dcdec138b9a156d5735279aef9c17114922c9ad8751",
       "readingPlanSha256": "683894f1b345763390d5247993f59b5c039c8736818fd3db9c89989f8fd57589",
-      "settingsSha256": "a471852b1b7e8b88fa21493378b46165c4c78483b7920ab0c710347d61eaf82d",
+      "settingsSha256": "028c370beccf83b5b92dccb84aa351e83cfbe3e5d6646aa27083e88a2a0f5a99",
       "referenceWords": 89,
       "rawWordErrorRate": 0.0,
       "normalizedWordErrorRate": 0.0112,
       "acoustics": {
-        "durationSeconds": 58.925,
-        "truePeakDbTP": -3.71,
-        "rmsDb": -25.14,
+        "durationSeconds": 57.2,
+        "truePeakDbTP": -3.49,
+        "rmsDb": -25.46,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.1692,
+        "maxStep4x": 0.17139,
         "speechActiveRmsDb": [
           -22.61,
           -22.83,
-          -22.83,
+          -24.04,
           -24.26,
           -22.65
         ],
@@ -1164,25 +1181,25 @@
     },
     {
       "id": "theme-trends-slow",
-      "mp3Sha256": "5576557248761028fa993c0583544fb1b360069e04a0daf251224021c67405bc",
+      "mp3Sha256": "1032f03abd1b52afe85f0eb47700b99b234aaee6458c93adb15ad1d83a2e3a58",
       "readingPlanSha256": "683894f1b345763390d5247993f59b5c039c8736818fd3db9c89989f8fd57589",
-      "settingsSha256": "b278582fe99c7f9c669bedb8296b8e46c9bd976a95eaa132511374a06c278bed",
+      "settingsSha256": "1f4220f27b5dc66ce89d225877592433100e28e8b937d212940be1644eed024e",
       "referenceWords": 89,
-      "rawWordErrorRate": 0.0562,
-      "normalizedWordErrorRate": 0.0674,
+      "rawWordErrorRate": 0.0,
+      "normalizedWordErrorRate": 0.0112,
       "acoustics": {
-        "durationSeconds": 67.75,
-        "truePeakDbTP": -3.95,
-        "rmsDb": -25.14,
+        "durationSeconds": 61.35,
+        "truePeakDbTP": -3.82,
+        "rmsDb": -25.22,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.16443,
+        "maxStep4x": 0.16853,
         "speechActiveRmsDb": [
-          -22.62,
-          -22.83,
-          -22.91,
+          -22.63,
+          -22.82,
+          -22.93,
           -22.94,
-          -22.73
+          -22.68
         ],
         "spikeFlags": [],
         "clipped": false,
@@ -1194,23 +1211,23 @@
     },
     {
       "id": "theme-trends-recite",
-      "mp3Sha256": "fd74808379c74854806deb6afaf9150dff88ad301588567d8448457a769f5122",
+      "mp3Sha256": "437e811fde789f025918373a954fa1e9399fe1351f3a545a283dba0d3c9eb5a7",
       "readingPlanSha256": "683894f1b345763390d5247993f59b5c039c8736818fd3db9c89989f8fd57589",
-      "settingsSha256": "0c8b1fdececda20f6fa7454c496602d575ca1d6e88bde8a8e03b6a3bc5fdb7e1",
+      "settingsSha256": "cceb62dc9580ce2b834306055b03409922b7fd3ac602904a104ba3d756253e0e",
       "referenceWords": 89,
-      "rawWordErrorRate": 0.0449,
-      "normalizedWordErrorRate": 0.0562,
+      "rawWordErrorRate": 0.0674,
+      "normalizedWordErrorRate": 0.0787,
       "acoustics": {
-        "durationSeconds": 109.0387,
-        "truePeakDbTP": -3.55,
-        "rmsDb": -27.37,
+        "durationSeconds": 104.018,
+        "truePeakDbTP": -3.54,
+        "rmsDb": -27.69,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.16557,
+        "maxStep4x": 0.17216,
         "speechActiveRmsDb": [
           -22.65,
-          -23.16,
-          -22.95,
+          -23.03,
+          -24.04,
           -22.74,
           -22.64
         ],
@@ -1249,28 +1266,29 @@
     },
     {
       "id": "sentence-source-8bb1fa8285570ad2-s-c708417cc9a9-slow",
-      "mp3Sha256": "2cda6f078acd03a092c6046504544ea660b08e5337e6ad98832e3aba9a47b593",
+      "mp3Sha256": "b4ce7a68354f861e110cc41fe2077b03967934bfdffad6e1441bc3b57af1dd9c",
       "readingPlanSha256": "933314c234d42b4afbe007fd1fd2ba2403b948400e00a2d767ddeb236696982e",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "c6059f39fc95492c037253adebae97e58b305203c578fc0e4c46b2b27fe8975f",
       "referenceWords": 13,
-      "rawWordErrorRate": 0.4615,
+      "rawWordErrorRate": 0.0,
       "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 11.625,
-        "truePeakDbTP": -6.58,
-        "rmsDb": -25.23,
+        "durationSeconds": 10.3,
+        "truePeakDbTP": -6.63,
+        "rmsDb": -25.34,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.1478,
+        "maxStep4x": 0.13047,
         "speechActiveRmsDb": [
-          -22.62
+          -22.63
         ],
         "spikeFlags": [],
         "clipped": false,
         "passed": true
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-8bb1fa8285570ad2-s-c708417cc9a9-recite",
@@ -1350,103 +1368,107 @@
     },
     {
       "id": "sentence-source-0830c8dc1c22d4d0-s-24433c531d00-recite",
-      "mp3Sha256": "82b02d8e0fc1f784f614b46fd4cc8215a6ddcc01674e7974285bcc123e5291d8",
+      "mp3Sha256": "d719ce469b54aa23bcc9e580637200e0fc11697ad5c3d2c2fb0285d16e0973e8",
       "readingPlanSha256": "8c4f002d9ad8588454e768807a659854339654b69dfc289dc0e123cfed703a68",
-      "settingsSha256": "0c8b1fdececda20f6fa7454c496602d575ca1d6e88bde8a8e03b6a3bc5fdb7e1",
+      "settingsSha256": "6c8e12c04c6922ee328bef660bd7b67e5aaafc2fc01c164c114a0e272d9c4fd1",
       "referenceWords": 17,
-      "rawWordErrorRate": 0.1176,
-      "normalizedWordErrorRate": 0.1176,
+      "rawWordErrorRate": 0.0588,
+      "normalizedWordErrorRate": 0.0588,
       "acoustics": {
-        "durationSeconds": 20.8125,
-        "truePeakDbTP": -3.58,
-        "rmsDb": -27.86,
+        "durationSeconds": 18.9625,
+        "truePeakDbTP": -4.38,
+        "rmsDb": -27.78,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.11481,
+        "maxStep4x": 0.11326,
         "speechActiveRmsDb": [
-          -23.16
+          -23.03
         ],
         "spikeFlags": [],
         "clipped": false,
         "passed": true
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-acfd65423ad828e1-s-da7e5e358ab0",
-      "mp3Sha256": "95c89a3b0eecb01ae4725aa4fcb5a973126f5dec6279a6cbbc6ce8a7c49d5891",
+      "mp3Sha256": "b197a6aa11a46a7d57169e419f80488de164cdf9484a7c8836551bf2c228fa59",
       "readingPlanSha256": "764476f9c474707ccb8a9d511b32726fa7fd9f00b6accbcc208e91867cfaf882",
-      "settingsSha256": "a471852b1b7e8b88fa21493378b46165c4c78483b7920ab0c710347d61eaf82d",
+      "settingsSha256": "028c370beccf83b5b92dccb84aa351e83cfbe3e5d6646aa27083e88a2a0f5a99",
       "referenceWords": 24,
       "rawWordErrorRate": 0.0,
       "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 16.375,
-        "truePeakDbTP": -5.0,
-        "rmsDb": -24.99,
+        "durationSeconds": 14.65,
+        "truePeakDbTP": -3.56,
+        "rmsDb": -26.34,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.13625,
+        "maxStep4x": 0.10429,
         "speechActiveRmsDb": [
-          -22.83
+          -24.04
         ],
         "spikeFlags": [],
         "clipped": false,
         "passed": true
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-acfd65423ad828e1-s-da7e5e358ab0-slow",
-      "mp3Sha256": "4172732d027a3148b8ad817d73e02de7295d88050cdc32a944b2e8fae45ae7af",
+      "mp3Sha256": "7c4713a8b5bed75882f1260172c8fe68f6b38698bcf476c4d26a3d43333829ec",
       "readingPlanSha256": "764476f9c474707ccb8a9d511b32726fa7fd9f00b6accbcc208e91867cfaf882",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "0f48f8b308de6749d0fcaec61ad3b3ee600d1d3afb14ccd60deeca194d5aabc8",
       "referenceWords": 24,
-      "rawWordErrorRate": 0.125,
-      "normalizedWordErrorRate": 0.125,
+      "rawWordErrorRate": 0.0,
+      "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 18.9,
-        "truePeakDbTP": -4.36,
-        "rmsDb": -25.11,
+        "durationSeconds": 15.8,
+        "truePeakDbTP": -4.41,
+        "rmsDb": -25.26,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.13544,
+        "maxStep4x": 0.13025,
         "speechActiveRmsDb": [
-          -22.91
+          -22.93
         ],
         "spikeFlags": [],
         "clipped": false,
         "passed": true
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-acfd65423ad828e1-s-da7e5e358ab0-recite",
-      "mp3Sha256": "322236038593896fefe81d4e8a7296046252ee29fa231e2753a9d342976db09c",
+      "mp3Sha256": "bbbf13ff9dbdd08c01322d217b1b6e0cda7474fe0cf1d18d1f5e1272243aeeb6",
       "readingPlanSha256": "764476f9c474707ccb8a9d511b32726fa7fd9f00b6accbcc208e91867cfaf882",
-      "settingsSha256": "0c8b1fdececda20f6fa7454c496602d575ca1d6e88bde8a8e03b6a3bc5fdb7e1",
+      "settingsSha256": "b1bf5d4ea75470137692c081bb2b9728940a9c05b8b8eed9dcb81e99a3e4f4b6",
       "referenceWords": 24,
-      "rawWordErrorRate": 0.0417,
-      "normalizedWordErrorRate": 0.0417,
+      "rawWordErrorRate": 0.0,
+      "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 28.425,
-        "truePeakDbTP": -4.06,
-        "rmsDb": -27.19,
+        "durationSeconds": 25.2525,
+        "truePeakDbTP": -3.56,
+        "rmsDb": -28.71,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.13635,
+        "maxStep4x": 0.10429,
         "speechActiveRmsDb": [
-          -22.95
+          -24.04
         ],
         "spikeFlags": [],
         "clipped": false,
         "passed": true
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-3d2be7fbe9811bd0-s-508fb5f7fc96",
@@ -1554,21 +1576,21 @@
     },
     {
       "id": "sentence-source-52b65c3aa95b9e9e-s-58c30827cfe7-slow",
-      "mp3Sha256": "2e072e0f84ed193758f113b4a93aa46774b2136616d6ce289ebc04c31d233c4a",
+      "mp3Sha256": "c13c403945360ba05bb30e246de5c529bc33f6ee3a7cb1b025d85e20261b0eee",
       "readingPlanSha256": "43e12fda694335fb78d9f40bac7552b1d3be4b175513c5473de9a1248b744155",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "40f564f018a53ddbe05bc47943793db4e1119e2d705465cd9db8bd6195c0cff5",
       "referenceWords": 22,
-      "rawWordErrorRate": 0.0455,
-      "normalizedWordErrorRate": 0.0455,
+      "rawWordErrorRate": 0.0909,
+      "normalizedWordErrorRate": 0.0909,
       "acoustics": {
-        "durationSeconds": 16.375,
-        "truePeakDbTP": -5.36,
-        "rmsDb": -24.94,
+        "durationSeconds": 14.4,
+        "truePeakDbTP": -5.95,
+        "rmsDb": -25.01,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.15946,
+        "maxStep4x": 0.16723,
         "speechActiveRmsDb": [
-          -22.72
+          -22.68
         ],
         "spikeFlags": [],
         "clipped": false,
@@ -1644,33 +1666,33 @@
     },
     {
       "id": "reasons-slow",
-      "mp3Sha256": "025b6c32433fa50d3d8c228c436fe0c612ebe06148b85e0e9f5f5ec19431107e",
+      "mp3Sha256": "db6544e5e70d4613bfd1b44fe382aa552288c5e4ca137c0d425369727540dd63",
       "readingPlanSha256": "57e91abd36319b2c3507a50731a9335826e2e2811a2b85ceda6ecb0427cbe194",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "9f05461e0bfc3c6c1d9276b67104616953ed72bc1d0c7fb182af08280de25f3e",
       "referenceWords": 227,
       "rawWordErrorRate": 0.0088,
       "normalizedWordErrorRate": 0.0088,
       "acoustics": {
-        "durationSeconds": 185.525,
-        "truePeakDbTP": -4.19,
-        "rmsDb": -25.02,
+        "durationSeconds": 176.1,
+        "truePeakDbTP": -3.14,
+        "rmsDb": -25.19,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.20293,
+        "maxStep4x": 0.19974,
         "speechActiveRmsDb": [
-          -22.68,
+          -23.97,
           -22.71,
           -22.59,
-          -22.75,
+          -22.59,
           -22.53,
-          -22.65,
+          -22.66,
           -22.59,
           -22.84,
-          -22.88,
+          -22.92,
           -22.85,
-          -22.87,
+          -22.99,
           -23.01,
-          -22.58
+          -22.54
         ],
         "spikeFlags": [],
         "clipped": false,
@@ -1682,16 +1704,16 @@
     },
     {
       "id": "reasons-recite",
-      "mp3Sha256": "f03f4bd155b17a48a663e534989a7b475696f47773e8a2b078bdc712aa388989",
+      "mp3Sha256": "71c6b4ae7241f018cc96e360c84287af73c1b2bfad477956ca1f2319deee3480",
       "readingPlanSha256": "57e91abd36319b2c3507a50731a9335826e2e2811a2b85ceda6ecb0427cbe194",
-      "settingsSha256": "0c8b1fdececda20f6fa7454c496602d575ca1d6e88bde8a8e03b6a3bc5fdb7e1",
+      "settingsSha256": "76b81a1bcd90d5755881f75bb5ea42db0a56ae2361dd0f5e6c89d6b4fe431898",
       "referenceWords": 227,
-      "rawWordErrorRate": 0.022,
-      "normalizedWordErrorRate": 0.022,
+      "rawWordErrorRate": 0.0088,
+      "normalizedWordErrorRate": 0.0088,
       "acoustics": {
-        "durationSeconds": 291.0475,
+        "durationSeconds": 288.8825,
         "truePeakDbTP": -3.51,
-        "rmsDb": -27.26,
+        "rmsDb": -27.27,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
         "maxStep4x": 0.20058,
@@ -1708,7 +1730,7 @@
           -22.85,
           -22.9,
           -23.14,
-          -22.63
+          -22.52
         ],
         "spikeFlags": [],
         "clipped": false,
@@ -1745,28 +1767,29 @@
     },
     {
       "id": "sentence-source-ddf227447b28dbdd-s-829cccddb6ec-slow",
-      "mp3Sha256": "bdd7d61b529d1aac5e181ed39b52f1ebccd161ba3a1121f149106eedbe35fd31",
+      "mp3Sha256": "ef90b2eb3c3691cfce7c7dfb4cdd363b8708078b2444081c21950104f63d00ff",
       "readingPlanSha256": "ffcf410fed5d4a8b2bba8e5a910441c524da5278bb103901bcd6efc7f4a2e46d",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "57452c483c5de2626fae65a230960906c1665c4083f9401817a4cc5475647bd3",
       "referenceWords": 24,
       "rawWordErrorRate": 0.0,
       "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 18.7,
-        "truePeakDbTP": -6.15,
-        "rmsDb": -24.8,
+        "durationSeconds": 16.5,
+        "truePeakDbTP": -3.14,
+        "rmsDb": -26.26,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.17151,
+        "maxStep4x": 0.13676,
         "speechActiveRmsDb": [
-          -22.68
+          -23.97
         ],
         "spikeFlags": [],
         "clipped": false,
         "passed": true
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-ddf227447b28dbdd-s-829cccddb6ec-recite",
@@ -1973,28 +1996,29 @@
     },
     {
       "id": "sentence-source-2b1811aba4f2613c-s-f7f25db08139-slow",
-      "mp3Sha256": "405fb75cd07d1cea687a62a3e351dccfa6b6871ce9eb618315de717beb0c6d4c",
+      "mp3Sha256": "6f179ffc101a1a015915d64090d15110ab291a1033051a430810ddfcfec89b74",
       "readingPlanSha256": "3948eee431a9329ddf531415e03a44b8134e9c361ea01a81b781d668dcfb39e9",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "4c7e95c06ce86a444782f81070b15bd68a888aa23719752932e3764347049366",
       "referenceWords": 7,
-      "rawWordErrorRate": 0.1429,
-      "normalizedWordErrorRate": 0.1429,
+      "rawWordErrorRate": 0.0,
+      "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 8.65,
-        "truePeakDbTP": -5.39,
-        "rmsDb": -26.03,
+        "durationSeconds": 7.6,
+        "truePeakDbTP": -6.9,
+        "rmsDb": -26.1,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.12988,
+        "maxStep4x": 0.12796,
         "speechActiveRmsDb": [
-          -22.75
+          -22.59
         ],
         "spikeFlags": [],
         "clipped": false,
         "passed": true
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-2b1811aba4f2613c-s-f7f25db08139-recite",
@@ -2351,28 +2375,29 @@
     },
     {
       "id": "sentence-source-f6eb8d8053cc9b62-s-2829449032ef-slow",
-      "mp3Sha256": "1c82eebbb617b4a94654eae612e6f60c88fde45745b0b27c24452bf47836e451",
+      "mp3Sha256": "1e67f72a201b0a644a15ba83d9897dc5c314dd16cb88bb672bb20c196e0ca9c6",
       "readingPlanSha256": "4fa94577e7ddbd629fcc1493cfb9f35c0e1207d140f35f11ea82980ab6b0295c",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "0ee36dc234c3241214014655fffc355690e3bcaed507306b61afad3ee1243760",
       "referenceWords": 16,
-      "rawWordErrorRate": 0.0625,
-      "normalizedWordErrorRate": 0.0625,
+      "rawWordErrorRate": 0.0,
+      "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 14.325,
-        "truePeakDbTP": -4.93,
-        "rmsDb": -25.3,
+        "durationSeconds": 12.75,
+        "truePeakDbTP": -4.48,
+        "rmsDb": -25.43,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.16642,
+        "maxStep4x": 0.16712,
         "speechActiveRmsDb": [
-          -22.88
+          -22.93
         ],
         "spikeFlags": [],
         "clipped": false,
         "passed": true
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-f6eb8d8053cc9b62-s-2829449032ef-recite",
@@ -2501,28 +2526,29 @@
     },
     {
       "id": "sentence-source-07e1e2208c8904c5-s-4c38008cc4b4-slow",
-      "mp3Sha256": "5c16beec2fb860a9e37a9c090b72e5f70b37249947132c943e3b95c366f8d538",
+      "mp3Sha256": "30a577678544e09114edd3e52890a56d419e1741db3628347ba248be6d0e79cd",
       "readingPlanSha256": "463155f680b809f23e4024ea08308e6c3c3d5b3153a53602c49b22aff9248008",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "e84fbf7b663058304f8d15b2b27dc99b0b74998b62464fc65ea0ce46275407a7",
       "referenceWords": 21,
       "rawWordErrorRate": 0.0,
       "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 19.65,
-        "truePeakDbTP": -4.62,
-        "rmsDb": -24.9,
+        "durationSeconds": 17.225,
+        "truePeakDbTP": -3.92,
+        "rmsDb": -25.13,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.16751,
+        "maxStep4x": 0.16959,
         "speechActiveRmsDb": [
-          -22.87
+          -22.99
         ],
         "spikeFlags": [],
         "clipped": false,
         "passed": true
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-07e1e2208c8904c5-s-4c38008cc4b4-recite",
@@ -2655,21 +2681,21 @@
     },
     {
       "id": "sentence-source-c3b1a4384706981d-s-e9ffd8870a25-slow",
-      "mp3Sha256": "bc1043ce15165dc35fae0eea34497f33a6d81183275996fd3ffa1f228aa0c674",
+      "mp3Sha256": "18866a4bd5eb6c1246d059d710bf47d6bad695d549c7f861a9634ce2bba28f29",
       "readingPlanSha256": "6992cda19c91f0785b33becfd0f49d315fdc0d515dd769496740dc132dcda252",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "38329c8ee04790becc9726c7db363171fbd0760bd21dc8d30b2fb3b3f8b53ae6",
       "referenceWords": 22,
-      "rawWordErrorRate": 0.1364,
-      "normalizedWordErrorRate": 0.1364,
+      "rawWordErrorRate": 0.0,
+      "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 17.525,
-        "truePeakDbTP": -6.69,
-        "rmsDb": -24.76,
+        "durationSeconds": 15.35,
+        "truePeakDbTP": -7.11,
+        "rmsDb": -24.79,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.17016,
+        "maxStep4x": 0.17518,
         "speechActiveRmsDb": [
-          -22.58
+          -22.54
         ],
         "spikeFlags": [],
         "clipped": false,
@@ -2681,21 +2707,21 @@
     },
     {
       "id": "sentence-source-c3b1a4384706981d-s-e9ffd8870a25-recite",
-      "mp3Sha256": "773bf0b7f0e4ccb9b92334977eb299cb1630a83e3236dba10e1eeaaaf089c8a4",
+      "mp3Sha256": "80c6c2f89f552d0a6d31081f2cd607aa1158ab56ea3a26af6522bb6e30209067",
       "readingPlanSha256": "6992cda19c91f0785b33becfd0f49d315fdc0d515dd769496740dc132dcda252",
-      "settingsSha256": "0c8b1fdececda20f6fa7454c496602d575ca1d6e88bde8a8e03b6a3bc5fdb7e1",
+      "settingsSha256": "76b81a1bcd90d5755881f75bb5ea42db0a56ae2361dd0f5e6c89d6b4fe431898",
       "referenceWords": 22,
-      "rawWordErrorRate": 0.1364,
-      "normalizedWordErrorRate": 0.1364,
+      "rawWordErrorRate": 0.0,
+      "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 27.325,
-        "truePeakDbTP": -6.32,
-        "rmsDb": -26.92,
+        "durationSeconds": 25.16,
+        "truePeakDbTP": -7.23,
+        "rmsDb": -27.0,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.18715,
+        "maxStep4x": 0.1837,
         "speechActiveRmsDb": [
-          -22.62
+          -22.52
         ],
         "spikeFlags": [],
         "clipped": false,
@@ -2707,19 +2733,19 @@
     },
     {
       "id": "connectors",
-      "mp3Sha256": "c03b02e40fe81e075b69f628615ce4312f2d6f04c9f837f12755157f3255eec2",
+      "mp3Sha256": "692384942952f00dc4f59199e4e1432f9478598062948c15c3e61eef609540a5",
       "readingPlanSha256": "4193deff5ee91770772bac1512b709becbd0c9e620c9f62c446eb259d4290459",
-      "settingsSha256": "81e8a1ad567ced56eb470a9322ae4c1401a39321c2538db48d1c2d6350d4278a",
+      "settingsSha256": "f1978364e9ed13ddb91644e2ee18b4457c01dc8caa8082864007db3b46eb03f7",
       "referenceWords": 57,
       "rawWordErrorRate": 0.0702,
-      "normalizedWordErrorRate": 0.0702,
+      "normalizedWordErrorRate": 0.0175,
       "acoustics": {
-        "durationSeconds": 107.8,
+        "durationSeconds": 106.875,
         "truePeakDbTP": -5.14,
-        "rmsDb": -28.77,
+        "rmsDb": -28.83,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.21987,
+        "maxStep4x": 0.26839,
         "speechActiveRmsDb": [
           -22.57,
           -22.44,
@@ -2738,46 +2764,51 @@
           -22.3,
           -22.43,
           -22.82,
-          -22.61,
+          -22.57,
           -22.27,
-          -22.27,
-          -22.17,
-          -22.29,
-          -22.74,
-          -22.36,
-          -22.52,
-          -22.31,
+          -22.28,
+          -22.16,
+          -22.28,
+          -22.73,
+          -22.37,
+          -22.53,
+          -22.32,
           -22.3,
           -22.5,
-          -22.48,
-          -22.29,
-          -22.6,
-          -22.5,
+          -22.47,
+          -22.3,
+          -22.38,
+          -22.47,
           -22.45,
           -22.21
         ],
         "spikeFlags": [],
         "clipped": false,
-        "passed": true
+        "passed": true,
+        "onsetHissMs": {
+          "source-1ac8c60f4db4d7c5-s-2b5d10b90326": 0,
+          "source-72878cb5b5ee5e93-s-3781906c1cf2": 0
+        }
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "connectors-slow",
-      "mp3Sha256": "01801cdf7f8c6485d180e1f825cdee3cf3702b6520ee2a5a9827ec942dfedb59",
+      "mp3Sha256": "e72fe870e51deaac6abe418da3c0496c979b6207bd875d279b81e314f38e93ae",
       "readingPlanSha256": "4193deff5ee91770772bac1512b709becbd0c9e620c9f62c446eb259d4290459",
-      "settingsSha256": "b5657d06f55fdc49a1d76ead71456767ede045e47d7a1488ded496d299d4e159",
+      "settingsSha256": "190e21d84e2a9f54b371d5c83e59d6acf3802f23f0a7d203b912ad9d2eee9aad",
       "referenceWords": 57,
-      "rawWordErrorRate": 0.0351,
-      "normalizedWordErrorRate": 0.0351,
+      "rawWordErrorRate": 0.0526,
+      "normalizedWordErrorRate": 0.0526,
       "acoustics": {
-        "durationSeconds": 127.625,
+        "durationSeconds": 126.0,
         "truePeakDbTP": -5.12,
-        "rmsDb": -29.39,
+        "rmsDb": -29.48,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.22822,
+        "maxStep4x": 0.22039,
         "speechActiveRmsDb": [
           -22.57,
           -22.44,
@@ -2796,46 +2827,51 @@
           -22.31,
           -22.43,
           -22.82,
-          -22.59,
+          -22.52,
           -22.27,
           -22.29,
           -22.17,
-          -22.28,
+          -22.29,
           -22.73,
-          -22.38,
+          -22.37,
           -22.53,
           -22.32,
-          -22.3,
+          -22.31,
           -22.5,
           -22.47,
           -22.3,
-          -22.4,
-          -22.49,
-          -22.45,
-          -22.22
+          -22.37,
+          -22.48,
+          -22.44,
+          -22.2
         ],
         "spikeFlags": [],
         "clipped": false,
-        "passed": true
+        "passed": true,
+        "onsetHissMs": {
+          "source-1ac8c60f4db4d7c5-s-2b5d10b90326": 0,
+          "source-72878cb5b5ee5e93-s-3781906c1cf2": 0
+        }
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "connectors-recite",
-      "mp3Sha256": "bf13e4e4b91dddd2da74b82a2bf17f1bd0a6620ff03e95d16c384ba2487ec9ba",
+      "mp3Sha256": "afe0bf239adce71be68d98eb75690733f08d03b3cd0293b55467e5f8a836fc51",
       "readingPlanSha256": "4193deff5ee91770772bac1512b709becbd0c9e620c9f62c446eb259d4290459",
-      "settingsSha256": "79d80f8a4b355f34e896bc4a0e9e4635953775f83126de82e5c26ea6c6c8bfb0",
+      "settingsSha256": "1af988cc24cd6c79f234288612f33d5740a485fdd3b561890547d2bebec4f3d3",
       "referenceWords": 57,
-      "rawWordErrorRate": 0.0702,
-      "normalizedWordErrorRate": 0.0702,
+      "rawWordErrorRate": 0.0526,
+      "normalizedWordErrorRate": 0.0526,
       "acoustics": {
-        "durationSeconds": 163.17,
+        "durationSeconds": 160.575,
         "truePeakDbTP": -5.13,
-        "rmsDb": -30.49,
+        "rmsDb": -30.57,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.22151,
+        "maxStep4x": 0.22907,
         "speechActiveRmsDb": [
           -22.57,
           -22.43,
@@ -2854,30 +2890,35 @@
           -22.3,
           -22.43,
           -22.82,
-          -22.52,
+          -22.58,
           -22.27,
-          -22.28,
-          -22.15,
-          -22.28,
-          -22.73,
-          -22.38,
-          -22.53,
-          -22.32,
-          -22.31,
-          -22.5,
-          -22.47,
+          -22.27,
+          -22.16,
           -22.3,
+          -22.74,
           -22.37,
-          -22.51,
-          -22.44,
-          -22.21
+          -22.52,
+          -22.33,
+          -22.3,
+          -22.5,
+          -22.46,
+          -22.3,
+          -22.38,
+          -22.52,
+          -22.43,
+          -22.22
         ],
         "spikeFlags": [],
         "clipped": false,
-        "passed": true
+        "passed": true,
+        "onsetHissMs": {
+          "source-1ac8c60f4db4d7c5-s-2b5d10b90326": 0,
+          "source-72878cb5b5ee5e93-s-3781906c1cf2": 0
+        }
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-223c1b1bf3355d73-s-84d083a49d9d",
@@ -4156,78 +4197,90 @@
     },
     {
       "id": "sentence-source-1ac8c60f4db4d7c5-s-2b5d10b90326",
-      "mp3Sha256": "b7146dc03fbe7d2634d069cd4e635a8ef493113f9a838eebe14e4334d6232d9c",
+      "mp3Sha256": "fb2113156da58ba05d47c38f2304a9ef2747f259b671f4ec2276ca958221b3df",
       "readingPlanSha256": "84042da0021dd2308a44ec8f8aa04917b640c1abbb26609bed1516706810e120",
-      "settingsSha256": "a471852b1b7e8b88fa21493378b46165c4c78483b7920ab0c710347d61eaf82d",
+      "settingsSha256": "cccf84721850d8573a3da920ed61bb86bea9a4ab4f780c8b4d7f059374a3aee8",
       "referenceWords": 6,
-      "rawWordErrorRate": 0.5,
+      "rawWordErrorRate": 0.0,
       "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 4.95,
-        "truePeakDbTP": -7.29,
-        "rmsDb": -26.84,
+        "durationSeconds": 4.5,
+        "truePeakDbTP": -7.57,
+        "rmsDb": -27.12,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.15871,
+        "maxStep4x": 0.20078,
         "speechActiveRmsDb": [
-          -22.61
+          -22.58
         ],
         "spikeFlags": [],
         "clipped": false,
-        "passed": true
+        "passed": true,
+        "onsetHissMs": {
+          "source-1ac8c60f4db4d7c5-s-2b5d10b90326": 0
+        }
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-1ac8c60f4db4d7c5-s-2b5d10b90326-slow",
-      "mp3Sha256": "09cd639a9b1543bddfd1fc225b648037e988739d9f4d28031776276d38faf38f",
+      "mp3Sha256": "b3089493b913791524583e57bc65cab32d55716b920e22ac2698a2d675ed3ffc",
       "readingPlanSha256": "84042da0021dd2308a44ec8f8aa04917b640c1abbb26609bed1516706810e120",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "0bae67aa16ca009d7e4c8192689ff4aa40e382eb23a656b2a1e88be35bb8f92a",
       "referenceWords": 6,
-      "rawWordErrorRate": 0.1667,
-      "normalizedWordErrorRate": 0.1667,
+      "rawWordErrorRate": 0.0,
+      "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 6.2,
-        "truePeakDbTP": -7.72,
-        "rmsDb": -26.86,
+        "durationSeconds": 5.15,
+        "truePeakDbTP": -7.81,
+        "rmsDb": -27.39,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.19618,
+        "maxStep4x": 0.17481,
         "speechActiveRmsDb": [
-          -22.59
+          -22.51
         ],
         "spikeFlags": [],
         "clipped": false,
-        "passed": true
+        "passed": true,
+        "onsetHissMs": {
+          "source-1ac8c60f4db4d7c5-s-2b5d10b90326": 0
+        }
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-1ac8c60f4db4d7c5-s-2b5d10b90326-recite",
-      "mp3Sha256": "cf95243c1c86128312cbcdb9e5cafb265196889499488708ee091e05064abb0f",
+      "mp3Sha256": "60eeb777a62b3d897b0462de5c6d6bcb3ced84790a8fb0ad42f6bffddbac7435",
       "readingPlanSha256": "84042da0021dd2308a44ec8f8aa04917b640c1abbb26609bed1516706810e120",
-      "settingsSha256": "0c8b1fdececda20f6fa7454c496602d575ca1d6e88bde8a8e03b6a3bc5fdb7e1",
+      "settingsSha256": "9be6f85015a2f85b7f68c4d7d26e055a4422c26d30dd6b68d766b977d8b6b0fb",
       "referenceWords": 6,
-      "rawWordErrorRate": 0.3333,
+      "rawWordErrorRate": 0.0,
       "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 8.2788,
-        "truePeakDbTP": -8.3,
-        "rmsDb": -28.32,
+        "durationSeconds": 6.475,
+        "truePeakDbTP": -7.57,
+        "rmsDb": -28.7,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.18517,
+        "maxStep4x": 0.20078,
         "speechActiveRmsDb": [
-          -22.52
+          -22.58
         ],
         "spikeFlags": [],
         "clipped": false,
-        "passed": true
+        "passed": true,
+        "onsetHissMs": {
+          "source-1ac8c60f4db4d7c5-s-2b5d10b90326": 0
+        }
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-547c63e577ac964c-s-22da70ec10d5",
@@ -5131,78 +5184,90 @@
     },
     {
       "id": "sentence-source-72878cb5b5ee5e93-s-3781906c1cf2",
-      "mp3Sha256": "8ac7b6deafa2284b3079e83bc82b7cc42edd87a49a117f06dc6687ff9c1e20d8",
+      "mp3Sha256": "feb43e2e26f64e9443877fd51105bb3672512fa24b69fa1dfd406288bb8c19b1",
       "readingPlanSha256": "d677dbcf0d87d9ac8e87a1a5b3dfc385685a260f6fc63c3fe53bdb61fb901962",
-      "settingsSha256": "a471852b1b7e8b88fa21493378b46165c4c78483b7920ab0c710347d61eaf82d",
-      "referenceWords": 4,
-      "rawWordErrorRate": 0.25,
-      "normalizedWordErrorRate": 0.0,
-      "acoustics": {
-        "durationSeconds": 4.025,
-        "truePeakDbTP": -5.83,
-        "rmsDb": -27.74,
-        "edgePeak": 0.0,
-        "joinPeak": 0.0,
-        "maxStep4x": 0.11117,
-        "speechActiveRmsDb": [
-          -22.59
-        ],
-        "spikeFlags": [],
-        "clipped": false,
-        "passed": true
-      },
-      "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
-    },
-    {
-      "id": "sentence-source-72878cb5b5ee5e93-s-3781906c1cf2-slow",
-      "mp3Sha256": "70b494bbcb2e2879c86376e1087e22c42fa66194655fd476358c92eed6d0bbb7",
-      "readingPlanSha256": "d677dbcf0d87d9ac8e87a1a5b3dfc385685a260f6fc63c3fe53bdb61fb901962",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "e49feef123c732e9b0e1a0bdd41f6dc83f6e1ff9ae917e772cba95eccfdc1e51",
       "referenceWords": 4,
       "rawWordErrorRate": 0.0,
       "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 4.9,
-        "truePeakDbTP": -7.01,
-        "rmsDb": -27.78,
+        "durationSeconds": 3.55,
+        "truePeakDbTP": -7.86,
+        "rmsDb": -28.25,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.12307,
+        "maxStep4x": 0.10047,
         "speechActiveRmsDb": [
           -22.39
         ],
         "spikeFlags": [],
         "clipped": false,
-        "passed": true
+        "passed": true,
+        "onsetHissMs": {
+          "source-72878cb5b5ee5e93-s-3781906c1cf2": 0
+        }
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
-      "id": "sentence-source-72878cb5b5ee5e93-s-3781906c1cf2-recite",
-      "mp3Sha256": "880a04ee8f6eef1c02a38bb0c89ceb8c67bafbc73c36f00fa2b6ca9b844238a9",
+      "id": "sentence-source-72878cb5b5ee5e93-s-3781906c1cf2-slow",
+      "mp3Sha256": "575b6f2767dfd9139b396c7d0fbaa997ac53e0725f877581db3f0d5aca73af24",
       "readingPlanSha256": "d677dbcf0d87d9ac8e87a1a5b3dfc385685a260f6fc63c3fe53bdb61fb901962",
-      "settingsSha256": "0c8b1fdececda20f6fa7454c496602d575ca1d6e88bde8a8e03b6a3bc5fdb7e1",
+      "settingsSha256": "cf33cf4cef9f74012ad272e0841df5acd09bdaf5963784c78a9918324507b1b0",
       "referenceWords": 4,
       "rawWordErrorRate": 0.0,
       "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 5.9662,
-        "truePeakDbTP": -7.8,
-        "rmsDb": -28.89,
+        "durationSeconds": 4.325,
+        "truePeakDbTP": -8.87,
+        "rmsDb": -28.25,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.09437,
+        "maxStep4x": 0.09869,
         "speechActiveRmsDb": [
-          -22.37
+          -22.36
         ],
         "spikeFlags": [],
         "clipped": false,
-        "passed": true
+        "passed": true,
+        "onsetHissMs": {
+          "source-72878cb5b5ee5e93-s-3781906c1cf2": 0
+        }
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
+    },
+    {
+      "id": "sentence-source-72878cb5b5ee5e93-s-3781906c1cf2-recite",
+      "mp3Sha256": "26a2fde64b789bb99cf6f1539cf8c31870986072d307c0dc4a5bf11240824099",
+      "readingPlanSha256": "d677dbcf0d87d9ac8e87a1a5b3dfc385685a260f6fc63c3fe53bdb61fb901962",
+      "settingsSha256": "fffa3c1f3db5a85d78179e174bbdbc6cbc68bfacab12fafccc28c02e6d11681c",
+      "referenceWords": 4,
+      "rawWordErrorRate": 0.0,
+      "normalizedWordErrorRate": 0.0,
+      "acoustics": {
+        "durationSeconds": 5.375,
+        "truePeakDbTP": -8.8,
+        "rmsDb": -29.31,
+        "edgePeak": 0.0,
+        "joinPeak": 0.0,
+        "maxStep4x": 0.08934,
+        "speechActiveRmsDb": [
+          -22.38
+        ],
+        "spikeFlags": [],
+        "clipped": false,
+        "passed": true,
+        "onsetHissMs": {
+          "source-72878cb5b5ee5e93-s-3781906c1cf2": 0
+        }
+      },
+      "passed": true,
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-7de601ca9a1f42dc-s-68e3dfa54150",
@@ -6011,23 +6076,23 @@
     },
     {
       "id": "letter-opening-slow",
-      "mp3Sha256": "5a7d17beabbe60a6aff422699c6b41de897deadaf77c65811fd5dd8918b12682",
+      "mp3Sha256": "cb286e81fd31028a1fdd792c3c26e8f4c7cd491163b588373d588905f9e92ded",
       "readingPlanSha256": "aa0c81ace870d617a171847c72d99f057b8b2fe29ea304301dad0ac1878eccc1",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "8673efed6feeaa2f7b091b804856aef0a6cb3d3755e58152bee3ab51441e9dc9",
       "referenceWords": 38,
       "rawWordErrorRate": 0.0,
       "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 32.475,
+        "durationSeconds": 28.1,
         "truePeakDbTP": -3.51,
-        "rmsDb": -25.96,
+        "rmsDb": -25.59,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.18826,
+        "maxStep4x": 0.1755,
         "speechActiveRmsDb": [
           -22.9,
-          -23.02,
-          -24.23
+          -22.61,
+          -22.95
         ],
         "spikeFlags": [],
         "clipped": false,
@@ -6039,23 +6104,23 @@
     },
     {
       "id": "letter-opening-recite",
-      "mp3Sha256": "0e734f8f0b8cc84d76dd7b0fae7fc81d708a5abf8e7605d380b09befa890496f",
+      "mp3Sha256": "623b602b8a01c3b2ebd18c25506b5fa206efccc6718ee1f29369be29f4724231",
       "readingPlanSha256": "aa0c81ace870d617a171847c72d99f057b8b2fe29ea304301dad0ac1878eccc1",
-      "settingsSha256": "0c8b1fdececda20f6fa7454c496602d575ca1d6e88bde8a8e03b6a3bc5fdb7e1",
+      "settingsSha256": "39da627947bcfadb432636e4af05a73d941d27494b65a52275706f2d7f3af970",
       "referenceWords": 38,
       "rawWordErrorRate": 0.0,
       "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 50.875,
+        "durationSeconds": 48.3775,
         "truePeakDbTP": -3.43,
-        "rmsDb": -27.99,
+        "rmsDb": -27.94,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
         "maxStep4x": 0.17276,
         "speechActiveRmsDb": [
           -22.87,
           -23.68,
-          -23.12
+          -22.92
         ],
         "spikeFlags": [],
         "clipped": false,
@@ -6169,21 +6234,21 @@
     },
     {
       "id": "sentence-source-4c436e34246f0c80-s-2849b4e61018-slow",
-      "mp3Sha256": "c192af36adbdcd846007f579cefc2b90825c0e9fa1e7f9617489a7eb70c2beb4",
+      "mp3Sha256": "fd5773c8353a776be1ad81ec82496d44e4c2f12ab502dd6e12eb5cfce8b2e000",
       "readingPlanSha256": "1e8930753f047609aa566e01da435f3c24f2124e695c089d5307279a2ffa669b",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "aeaf80cfc991a51a53be3624e0fb327eee76405ab2e4ad41d49d7fa36453b4d7",
       "referenceWords": 12,
       "rawWordErrorRate": 0.0,
       "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 10.775,
-        "truePeakDbTP": -3.71,
-        "rmsDb": -25.73,
+        "durationSeconds": 7.925,
+        "truePeakDbTP": -6.55,
+        "rmsDb": -25.74,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.19304,
+        "maxStep4x": 0.17261,
         "speechActiveRmsDb": [
-          -23.02
+          -22.62
         ],
         "spikeFlags": [],
         "clipped": false,
@@ -6247,21 +6312,21 @@
     },
     {
       "id": "sentence-source-888bab711a498d73-s-f0c2ff447806-slow",
-      "mp3Sha256": "1350049ef50146f286c2cb33714dfa37bb356a6e7df8245e599329c6bf5a7421",
+      "mp3Sha256": "61847d6935880702ffd1c1b563168768881c276efa6ab570d5a8c31783ae501f",
       "readingPlanSha256": "0feb096c203a31cff56e0698dc77db65991aeab785ba66e5729d2156d53ec7f6",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "1270523c2ead7a5f2f607f588f40ae4143209dcd3e1efd5cc5499478136a520a",
       "referenceWords": 11,
-      "rawWordErrorRate": 0.0909,
-      "normalizedWordErrorRate": 0.0909,
+      "rawWordErrorRate": 0.0,
+      "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 10.975,
-        "truePeakDbTP": -3.43,
-        "rmsDb": -26.95,
+        "durationSeconds": 9.45,
+        "truePeakDbTP": -4.49,
+        "rmsDb": -25.77,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.1086,
+        "maxStep4x": 0.1222,
         "speechActiveRmsDb": [
-          -24.23
+          -22.95
         ],
         "spikeFlags": [],
         "clipped": false,
@@ -6273,21 +6338,21 @@
     },
     {
       "id": "sentence-source-888bab711a498d73-s-f0c2ff447806-recite",
-      "mp3Sha256": "8b4e76bbe8ea9d7a1824fb1f540a49ac3fa7936fec24a4e02884fda9f3785a69",
+      "mp3Sha256": "d475a7d09b9ef92a3ff861d8c9e3e776b1c2ef3d1127d94202e6e6b9c2663b5f",
       "readingPlanSha256": "0feb096c203a31cff56e0698dc77db65991aeab785ba66e5729d2156d53ec7f6",
-      "settingsSha256": "0c8b1fdececda20f6fa7454c496602d575ca1d6e88bde8a8e03b6a3bc5fdb7e1",
+      "settingsSha256": "39da627947bcfadb432636e4af05a73d941d27494b65a52275706f2d7f3af970",
       "referenceWords": 11,
-      "rawWordErrorRate": 0.0909,
-      "normalizedWordErrorRate": 0.0909,
+      "rawWordErrorRate": 0.0,
+      "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 16.7425,
-        "truePeakDbTP": -3.7,
-        "rmsDb": -27.83,
+        "durationSeconds": 14.245,
+        "truePeakDbTP": -4.75,
+        "rmsDb": -27.65,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.13545,
+        "maxStep4x": 0.11987,
         "speechActiveRmsDb": [
-          -23.12
+          -22.92
         ],
         "spikeFlags": [],
         "clipped": false,
@@ -6299,19 +6364,19 @@
     },
     {
       "id": "letter-body",
-      "mp3Sha256": "8c9f541a54192f951aa934eafbfc6f920e89fecaedebb40cfe0ac61587349d45",
+      "mp3Sha256": "3d82ff40a41bcb0b4199ea7307c173ce1638bd3b22151e1f4f2cce92bd9c9d5c",
       "readingPlanSha256": "a750a56205f86a106d8f2a87443bb60612410993c0346358410e9ae11714997f",
-      "settingsSha256": "a471852b1b7e8b88fa21493378b46165c4c78483b7920ab0c710347d61eaf82d",
+      "settingsSha256": "6ee55d571ae070aad980143930db1255d65f7227b3bd1c0e9fd40bbdc6e428e7",
       "referenceWords": 418,
-      "rawWordErrorRate": 0.0096,
-      "normalizedWordErrorRate": 0.0167,
+      "rawWordErrorRate": 0.0072,
+      "normalizedWordErrorRate": 0.0144,
       "acoustics": {
-        "durationSeconds": 277.575,
-        "truePeakDbTP": -3.46,
-        "rmsDb": -25.09,
+        "durationSeconds": 276.575,
+        "truePeakDbTP": -3.54,
+        "rmsDb": -25.1,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.23822,
+        "maxStep4x": 0.23784,
         "speechActiveRmsDb": [
           -23.34,
           -22.81,
@@ -6322,7 +6387,7 @@
           -22.91,
           -24.65,
           -22.59,
-          -22.62,
+          -22.89,
           -22.78,
           -22.47,
           -22.66,
@@ -6343,7 +6408,10 @@
         ],
         "spikeFlags": [],
         "clipped": false,
-        "passed": true
+        "passed": true,
+        "onsetHissMs": {
+          "source-f684c08fd230bbef-s-64a27c2e7c66": 0
+        }
       },
       "passed": true,
       "audit": "sentence-mp3-acoustic-and-asr-v1.2",
@@ -6351,51 +6419,54 @@
     },
     {
       "id": "letter-body-slow",
-      "mp3Sha256": "76db16a3165b29ebedac97f36c0c3f60d0823f27b2b4b75adcc7751963ffd99f",
+      "mp3Sha256": "a6a4bdcf521da44aa1ff488303f3ae93920d7aad75d2c4be5d370bc2910719bc",
       "readingPlanSha256": "a750a56205f86a106d8f2a87443bb60612410993c0346358410e9ae11714997f",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "8795c04a244b21ca2bf670f89916a065460e94bdb07594ddf89bc5297ea33694",
       "referenceWords": 418,
-      "rawWordErrorRate": 0.0191,
-      "normalizedWordErrorRate": 0.0263,
+      "rawWordErrorRate": 0.0215,
+      "normalizedWordErrorRate": 0.0287,
       "acoustics": {
-        "durationSeconds": 327.275,
-        "truePeakDbTP": -3.36,
-        "rmsDb": -25.17,
+        "durationSeconds": 311.75,
+        "truePeakDbTP": -3.21,
+        "rmsDb": -25.25,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.24185,
+        "maxStep4x": 0.23301,
         "speechActiveRmsDb": [
-          -22.96,
-          -22.61,
+          -23.55,
+          -22.6,
           -22.64,
           -22.49,
-          -22.6,
+          -22.59,
           -22.53,
-          -22.73,
-          -24.37,
+          -22.94,
+          -24.38,
           -23.58,
-          -22.58,
-          -22.63,
+          -22.62,
+          -22.64,
           -22.59,
           -22.98,
-          -22.52,
-          -22.89,
+          -22.53,
+          -22.98,
           -22.85,
           -22.97,
           -22.81,
           -22.69,
-          -22.56,
-          -22.48,
+          -22.61,
+          -22.49,
           -22.59,
           -22.69,
-          -22.64,
-          -22.96,
-          -22.63,
-          -22.41
+          -22.67,
+          -23.0,
+          -22.75,
+          -22.4
         ],
         "spikeFlags": [],
         "clipped": false,
-        "passed": true
+        "passed": true,
+        "onsetHissMs": {
+          "source-f684c08fd230bbef-s-64a27c2e7c66": 0
+        }
       },
       "passed": true,
       "audit": "sentence-mp3-acoustic-and-asr-v1.2",
@@ -6403,19 +6474,19 @@
     },
     {
       "id": "letter-body-recite",
-      "mp3Sha256": "3c6d887cd7a6829296a089a062b6fbe93a250e46ee8984842594a7224d14ba1d",
+      "mp3Sha256": "08233aacbf662e25e72781d9cd41fac72287e87e17ed3a45adda1037ee71ca9d",
       "readingPlanSha256": "a750a56205f86a106d8f2a87443bb60612410993c0346358410e9ae11714997f",
-      "settingsSha256": "0c8b1fdececda20f6fa7454c496602d575ca1d6e88bde8a8e03b6a3bc5fdb7e1",
+      "settingsSha256": "9bc9de7fc26317c2d5ed97b3851636602d58eadc548c86b0cbff234d0cdf8246",
       "referenceWords": 418,
-      "rawWordErrorRate": 0.0167,
-      "normalizedWordErrorRate": 0.0239,
+      "rawWordErrorRate": 0.0072,
+      "normalizedWordErrorRate": 0.0144,
       "acoustics": {
-        "durationSeconds": 510.8012,
-        "truePeakDbTP": -3.48,
-        "rmsDb": -27.36,
+        "durationSeconds": 496.0013,
+        "truePeakDbTP": -3.53,
+        "rmsDb": -27.34,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.221,
+        "maxStep4x": 0.22821,
         "speechActiveRmsDb": [
           -24.31,
           -22.73,
@@ -6426,28 +6497,31 @@
           -22.78,
           -22.86,
           -22.73,
+          -22.81,
+          -22.59,
           -22.55,
-          -22.58,
-          -22.55,
-          -23.01,
+          -23.02,
           -22.74,
-          -22.87,
-          -22.8,
+          -22.83,
+          -22.79,
           -22.94,
           -22.87,
           -22.69,
-          -22.49,
           -22.5,
+          -22.51,
           -22.57,
           -22.77,
-          -22.66,
-          -23.73,
+          -22.65,
+          -23.0,
           -22.62,
           -22.43
         ],
         "spikeFlags": [],
         "clipped": false,
-        "passed": true
+        "passed": true,
+        "onsetHissMs": {
+          "source-f684c08fd230bbef-s-64a27c2e7c66": 0
+        }
       },
       "passed": true,
       "audit": "sentence-mp3-acoustic-and-asr-v1.2",
@@ -6481,21 +6555,21 @@
     },
     {
       "id": "sentence-source-60809de59fa325db-s-b1ba0235c9a0-slow",
-      "mp3Sha256": "f5a6d46fb728dddb29a99f8c3c07809220929f8cfcecdd07f4f84d399d251d3d",
+      "mp3Sha256": "9b429da9eeefc2a348898b502702b58e0ab9a5081888f13b97fb9c1355984c54",
       "readingPlanSha256": "5383b2b9fb58f79e3cebc16adc798c140d2ec3dcb651d16f59fca905aeb5d6c2",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "cbaa49911ea3d93656ee58ba40764d1839b1110c05a0895e5366534e2e3fb307",
       "referenceWords": 21,
-      "rawWordErrorRate": 0.0476,
-      "normalizedWordErrorRate": 0.0476,
+      "rawWordErrorRate": 0.0,
+      "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 14.65,
-        "truePeakDbTP": -3.61,
-        "rmsDb": -25.34,
+        "durationSeconds": 13.1,
+        "truePeakDbTP": -3.21,
+        "rmsDb": -26.02,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.21083,
+        "maxStep4x": 0.16921,
         "speechActiveRmsDb": [
-          -22.96
+          -23.55
         ],
         "spikeFlags": [],
         "clipped": false,
@@ -6936,28 +7010,29 @@
     },
     {
       "id": "sentence-source-5146cb26f9e66bb8-s-48d25ba79f18-slow",
-      "mp3Sha256": "12a064dae0cc329c1a47429ebcce3b12662439b43bf2635ff8413135706e2a66",
+      "mp3Sha256": "359cb8727afa6ea0bc114f37edbf1036a32fc1a4ca352b6c4d13ee3326d63bf6",
       "readingPlanSha256": "17f612c214785e85cecebd28b296bcb00dbb8ad35422a9cdf90c116e92c1da88",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "e224e64d2ad3014052fac19d5c2a5aba347a543e9500f6cee2fb288aaaa8397a",
       "referenceWords": 24,
-      "rawWordErrorRate": 0.0417,
-      "normalizedWordErrorRate": 0.0417,
+      "rawWordErrorRate": 0.0,
+      "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 20.325,
-        "truePeakDbTP": -4.91,
-        "rmsDb": -24.74,
+        "durationSeconds": 17.9,
+        "truePeakDbTP": -3.38,
+        "rmsDb": -25.0,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.17934,
+        "maxStep4x": 0.16933,
         "speechActiveRmsDb": [
-          -22.73
+          -22.94
         ],
         "spikeFlags": [],
         "clipped": false,
         "passed": true
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-5146cb26f9e66bb8-s-48d25ba79f18-recite",
@@ -7136,78 +7211,90 @@
     },
     {
       "id": "sentence-source-f684c08fd230bbef-s-64a27c2e7c66",
-      "mp3Sha256": "84aa87bae5f49c338781ba728aa1a6243f4af3f26d5373fb098fbad8e4a53cf8",
+      "mp3Sha256": "74999616b7d680fa5e33292c9f0dfb74c09bc5fbf488bf582dadc9c5e1da8072",
       "readingPlanSha256": "9cdebe6b17ca45c025e39a8b8c82f00d878ce93d95848580f0e36afff79492dc",
-      "settingsSha256": "a471852b1b7e8b88fa21493378b46165c4c78483b7920ab0c710347d61eaf82d",
+      "settingsSha256": "6ee55d571ae070aad980143930db1255d65f7227b3bd1c0e9fd40bbdc6e428e7",
       "referenceWords": 19,
       "rawWordErrorRate": 0.0,
       "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 9.575,
-        "truePeakDbTP": -6.77,
-        "rmsDb": -25.31,
+        "durationSeconds": 8.575,
+        "truePeakDbTP": -4.46,
+        "rmsDb": -25.77,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.19645,
+        "maxStep4x": 0.21746,
         "speechActiveRmsDb": [
-          -22.62
+          -22.89
         ],
         "spikeFlags": [],
         "clipped": false,
-        "passed": true
+        "passed": true,
+        "onsetHissMs": {
+          "source-f684c08fd230bbef-s-64a27c2e7c66": 0
+        }
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-f684c08fd230bbef-s-64a27c2e7c66-slow",
-      "mp3Sha256": "911540d9c778689b294402d59b1a5a5b15fcf151b0b96befcb3a7f13db34ec4d",
+      "mp3Sha256": "787a8a88571072a06ecce34e4cda9c87a1432851de4b82d4597e17aea451024f",
       "readingPlanSha256": "9cdebe6b17ca45c025e39a8b8c82f00d878ce93d95848580f0e36afff79492dc",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "5409115e00650aa97258b9b429c792f4dd313a8b7c21339e789923ff3e3e5bbe",
       "referenceWords": 19,
       "rawWordErrorRate": 0.0,
       "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 11.5,
-        "truePeakDbTP": -7.2,
-        "rmsDb": -25.33,
+        "durationSeconds": 9.875,
+        "truePeakDbTP": -6.68,
+        "rmsDb": -25.57,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.23808,
+        "maxStep4x": 0.22848,
         "speechActiveRmsDb": [
-          -22.58
+          -22.63
         ],
         "spikeFlags": [],
         "clipped": false,
-        "passed": true
+        "passed": true,
+        "onsetHissMs": {
+          "source-f684c08fd230bbef-s-64a27c2e7c66": 0
+        }
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-f684c08fd230bbef-s-64a27c2e7c66-recite",
-      "mp3Sha256": "96dc78e92e1118f6c0c92c13fd5ba886cfc1cabf97ca94f7df66f9d2f0df787b",
+      "mp3Sha256": "ea959d6e27ce1d9253d38b6fdcef2d5d05852b5397965847e8032e87bc47cd55",
       "readingPlanSha256": "9cdebe6b17ca45c025e39a8b8c82f00d878ce93d95848580f0e36afff79492dc",
-      "settingsSha256": "0c8b1fdececda20f6fa7454c496602d575ca1d6e88bde8a8e03b6a3bc5fdb7e1",
+      "settingsSha256": "3fd41728fef54a877a8f0e3b6b82ad4cedcd46e39613545059ba7b55b98fa3f5",
       "referenceWords": 19,
       "rawWordErrorRate": 0.0,
       "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 17.5287,
-        "truePeakDbTP": -7.25,
-        "rmsDb": -27.37,
+        "durationSeconds": 14.5225,
+        "truePeakDbTP": -5.29,
+        "rmsDb": -27.78,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.22498,
+        "maxStep4x": 0.2287,
         "speechActiveRmsDb": [
-          -22.55
+          -22.82
         ],
         "spikeFlags": [],
         "clipped": false,
-        "passed": true
+        "passed": true,
+        "onsetHissMs": {
+          "source-f684c08fd230bbef-s-64a27c2e7c66": 0
+        }
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-36a40f1f9b5c05da-s-afbdffe6a030",
@@ -7536,53 +7623,55 @@
     },
     {
       "id": "sentence-source-dabc0d7f1b0e73da-s-428dc10ed6cf-slow",
-      "mp3Sha256": "f7e58343648058c3d359a42d28d9fdaa6d2deafed194bd87171bba4a814b4c22",
+      "mp3Sha256": "e157e9cbee524e1059fee56a9a994e4f5a9132acfe3eb3751bca5394fb8e25bb",
       "readingPlanSha256": "5c629c7aabe90acaa0b012df44fee66b98786a2b0eed13bfa7ee65ace8810ab8",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "235e834d95547fd95df72e4c6375922a18184b8a55eb4896d90e8c802ae51d07",
       "referenceWords": 20,
-      "rawWordErrorRate": 0.05,
-      "normalizedWordErrorRate": 0.05,
+      "rawWordErrorRate": 0.0,
+      "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 12.05,
-        "truePeakDbTP": -5.18,
-        "rmsDb": -25.56,
+        "durationSeconds": 10.5,
+        "truePeakDbTP": -4.42,
+        "rmsDb": -25.79,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.16108,
+        "maxStep4x": 0.15948,
         "speechActiveRmsDb": [
-          -22.89
+          -22.99
         ],
         "spikeFlags": [],
         "clipped": false,
         "passed": true
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-dabc0d7f1b0e73da-s-428dc10ed6cf-recite",
-      "mp3Sha256": "daf1bda7af8357f1d0885422cd149e30b0622c6c3c74c46e56710ebf7812fe7d",
+      "mp3Sha256": "6b583b9add6327ff5b434c32c3570e33a584791eed973ba1cda107c392158e14",
       "readingPlanSha256": "5c629c7aabe90acaa0b012df44fee66b98786a2b0eed13bfa7ee65ace8810ab8",
-      "settingsSha256": "0c8b1fdececda20f6fa7454c496602d575ca1d6e88bde8a8e03b6a3bc5fdb7e1",
+      "settingsSha256": "780f646022d667d42bf91a6842f3fc142d7227c60988915d7782cb8f4e716511",
       "referenceWords": 20,
-      "rawWordErrorRate": 0.05,
-      "normalizedWordErrorRate": 0.05,
+      "rawWordErrorRate": 0.0,
+      "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 18.6388,
-        "truePeakDbTP": -5.16,
-        "rmsDb": -27.62,
+        "durationSeconds": 16.4187,
+        "truePeakDbTP": -5.48,
+        "rmsDb": -27.65,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.16736,
+        "maxStep4x": 0.17123,
         "speechActiveRmsDb": [
-          -22.87
+          -22.83
         ],
         "spikeFlags": [],
         "clipped": false,
         "passed": true
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-385cf53ce2141f30-s-965573e9c3bd",
@@ -7917,28 +8006,29 @@
     },
     {
       "id": "sentence-source-daf9e4e1d59663b8-s-2545832912b4-slow",
-      "mp3Sha256": "dfd1ebe291e48ab534fb7e75894fb41c47a7337ba17f857c9e10a96827b41ac7",
+      "mp3Sha256": "f193d34b5ae7a75f3acd3016251ff600bc28000c34117ee0e22eaa107697422f",
       "readingPlanSha256": "7957034dae6deec6a6393c24af429a4d5288a304a5f9728af2f52724de36ef51",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "55e4e0813c0bf9afc8a5663e034c0db2873044e8084e3a58b61312e98a20e0dc",
       "referenceWords": 11,
       "rawWordErrorRate": 0.0,
       "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 9.925,
-        "truePeakDbTP": -7.04,
-        "rmsDb": -25.36,
+        "durationSeconds": 8.8,
+        "truePeakDbTP": -6.61,
+        "rmsDb": -25.6,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.13548,
+        "maxStep4x": 0.13574,
         "speechActiveRmsDb": [
-          -22.55
+          -22.61
         ],
         "spikeFlags": [],
         "clipped": false,
         "passed": true
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-daf9e4e1d59663b8-s-2545832912b4-recite",
@@ -8221,21 +8311,21 @@
     },
     {
       "id": "sentence-source-bcb6083b563601ae-s-0a5279cd6005-slow",
-      "mp3Sha256": "9a5d77dfdad0b1e5a4e0c90e79045359d6bf306614367db4b94fec9fdbb8c252",
+      "mp3Sha256": "935a3e92c6e98434ea6254271824f70ff2985cc73d3f97f2b0d7fb6ac8b9b002",
       "readingPlanSha256": "ed0ee575bcf5cf4647e08e2ce55aaad9e08cdf31189fb5374678061ac5a9fe34",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "31169074e2817357fe265c9ade4923d40f7a095f4659c4d9062ac2d2cf9a93b6",
       "referenceWords": 16,
-      "rawWordErrorRate": 0.0625,
-      "normalizedWordErrorRate": 0.125,
+      "rawWordErrorRate": 0.0,
+      "normalizedWordErrorRate": 0.0625,
       "acoustics": {
-        "durationSeconds": 12.975,
-        "truePeakDbTP": -6.41,
-        "rmsDb": -25.07,
+        "durationSeconds": 10.925,
+        "truePeakDbTP": -6.36,
+        "rmsDb": -25.3,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.15998,
+        "maxStep4x": 0.14826,
         "speechActiveRmsDb": [
-          -22.64
+          -22.67
         ],
         "spikeFlags": [],
         "clipped": false,
@@ -8247,21 +8337,21 @@
     },
     {
       "id": "sentence-source-bcb6083b563601ae-s-0a5279cd6005-recite",
-      "mp3Sha256": "95bc017f37780db107f66bcc60002f6b7d99088c09d2c438915b0d7093722847",
+      "mp3Sha256": "2e55cc2f958006ce2c72c52489e8ec6ea0ae744bc6e4ebe0ef330c77849431e2",
       "readingPlanSha256": "ed0ee575bcf5cf4647e08e2ce55aaad9e08cdf31189fb5374678061ac5a9fe34",
-      "settingsSha256": "0c8b1fdececda20f6fa7454c496602d575ca1d6e88bde8a8e03b6a3bc5fdb7e1",
+      "settingsSha256": "71091b588c8b020e8adfa470a8fa87c8b7d714e8885352179e6fec99800131b7",
       "referenceWords": 16,
-      "rawWordErrorRate": 0.0625,
-      "normalizedWordErrorRate": 0.125,
+      "rawWordErrorRate": 0.0,
+      "normalizedWordErrorRate": 0.0625,
       "acoustics": {
-        "durationSeconds": 20.1187,
-        "truePeakDbTP": -6.44,
-        "rmsDb": -27.25,
+        "durationSeconds": 16.9737,
+        "truePeakDbTP": -6.48,
+        "rmsDb": -27.29,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.15463,
+        "maxStep4x": 0.16097,
         "speechActiveRmsDb": [
-          -22.66
+          -22.65
         ],
         "spikeFlags": [],
         "clipped": false,
@@ -8299,21 +8389,21 @@
     },
     {
       "id": "sentence-source-a9f795e784975e6a-s-d07c666df4fe-slow",
-      "mp3Sha256": "e9f19d9eb2974404bd4bb26404972649b65ee9760ced05d3301d1cbbbca86700",
+      "mp3Sha256": "ebebead855eadf651c248a400365c425e86bd49ab34f68c9b64c08e0520be483",
       "readingPlanSha256": "ec8bd8584bc1ef2af72aeb4b08c652de2c6541da323a12751ec5c213920e935b",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "9b5945f438da18dc1b1125d18e00ac07b2e2d48571755eb7d64a8eaa428e64c8",
       "referenceWords": 19,
-      "rawWordErrorRate": 0.1053,
-      "normalizedWordErrorRate": 0.1053,
+      "rawWordErrorRate": 0.0526,
+      "normalizedWordErrorRate": 0.0526,
       "acoustics": {
-        "durationSeconds": 15.225,
-        "truePeakDbTP": -3.76,
-        "rmsDb": -25.23,
+        "durationSeconds": 11.2,
+        "truePeakDbTP": -3.54,
+        "rmsDb": -25.56,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.12037,
+        "maxStep4x": 0.11571,
         "speechActiveRmsDb": [
-          -22.96
+          -23.0
         ],
         "spikeFlags": [],
         "clipped": false,
@@ -8325,21 +8415,21 @@
     },
     {
       "id": "sentence-source-a9f795e784975e6a-s-d07c666df4fe-recite",
-      "mp3Sha256": "c3b94bf11e15366fcf89a49db044fe5684ced3dc604731107c75c60cce866e52",
+      "mp3Sha256": "8044351b34e0cedd5cf5af892a423c7d43a0edfeadfd2b94ea6f6d0fc08fcfa0",
       "readingPlanSha256": "ec8bd8584bc1ef2af72aeb4b08c652de2c6541da323a12751ec5c213920e935b",
-      "settingsSha256": "0c8b1fdececda20f6fa7454c496602d575ca1d6e88bde8a8e03b6a3bc5fdb7e1",
+      "settingsSha256": "365d8b5bb88be0fa12db39e9c039a0dc44046f526e9302419f78d771455feafd",
       "referenceWords": 19,
-      "rawWordErrorRate": 0.1053,
-      "normalizedWordErrorRate": 0.1053,
+      "rawWordErrorRate": 0.0526,
+      "normalizedWordErrorRate": 0.0526,
       "acoustics": {
-        "durationSeconds": 24.3738,
-        "truePeakDbTP": -3.42,
-        "rmsDb": -28.24,
+        "durationSeconds": 17.945,
+        "truePeakDbTP": -3.54,
+        "rmsDb": -27.61,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.11402,
+        "maxStep4x": 0.11571,
         "speechActiveRmsDb": [
-          -23.73
+          -23.0
         ],
         "spikeFlags": [],
         "clipped": false,
@@ -8377,21 +8467,21 @@
     },
     {
       "id": "sentence-source-9f08fa705eb47e18-s-e341851ce6c9-slow",
-      "mp3Sha256": "3d1727c9f3e884f0e101a10d58709bebd1c21999f07c7ddcfc7c21c8b355527f",
+      "mp3Sha256": "fcdca70767ad982d604d3291b32dc881bbc67d9cf7569a47575290aa54ef8b1b",
       "readingPlanSha256": "8cb84027f125492582e06ef5137735ed9c3df2ec44acc38a66e30a5bc6185298",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "ae1f382e8bd5460822373588cf6cc3e916ab835ca24d4606aaacbfc471c5e20b",
       "referenceWords": 9,
-      "rawWordErrorRate": 0.1111,
-      "normalizedWordErrorRate": 0.1111,
+      "rawWordErrorRate": 0.0,
+      "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 9.55,
-        "truePeakDbTP": -7.06,
-        "rmsDb": -25.5,
+        "durationSeconds": 8.375,
+        "truePeakDbTP": -6.25,
+        "rmsDb": -25.81,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.11186,
+        "maxStep4x": 0.09889,
         "speechActiveRmsDb": [
-          -22.63
+          -22.75
         ],
         "spikeFlags": [],
         "clipped": false,
@@ -8538,25 +8628,25 @@
     },
     {
       "id": "letter-ending-slow",
-      "mp3Sha256": "d4274a75a7009e7438237942b1df9ba6e74b400ec1723814274b9c37b77f306d",
+      "mp3Sha256": "f9e2fac37338279221609a5cc6f6ae56e7630a9d3f8d3c5ae94cc196e7297258",
       "readingPlanSha256": "afcf70a8350fdc599da35e8771e8ff95d9d466eda958b0d8e321a2376b50bb0d",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "84db2eaf9f33f6a61b9c5b51295e98557684015a7dad8cc2756aa47843e672cb",
       "referenceWords": 81,
       "rawWordErrorRate": 0.0,
       "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 62.3,
+        "durationSeconds": 60.775,
         "truePeakDbTP": -3.19,
-        "rmsDb": -26.11,
+        "rmsDb": -26.19,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.23323,
+        "maxStep4x": 0.18434,
         "speechActiveRmsDb": [
           -23.57,
           -26.15,
           -22.72,
           -22.54,
-          -22.67,
+          -22.82,
           -22.95
         ],
         "spikeFlags": [],
@@ -8934,28 +9024,29 @@
     },
     {
       "id": "sentence-source-8515509bf5659fd1-s-4a79efd05ce6-slow",
-      "mp3Sha256": "177df11cb86de8f1582c440f3eebfb95116d1ce3f8f177f2f9fb51c9355cd9f8",
+      "mp3Sha256": "407d19f9a4ca4832f5c2d07e26c28c360a3116bdd545d6c43440b6796f3a4f2b",
       "readingPlanSha256": "23c80201d178ffc97f3da1fdf4e8cb5c6dc03fc3842bc9ef50dd384c257bb804",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "84db2eaf9f33f6a61b9c5b51295e98557684015a7dad8cc2756aa47843e672cb",
       "referenceWords": 13,
       "rawWordErrorRate": 0.0,
       "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 9.975,
-        "truePeakDbTP": -6.91,
-        "rmsDb": -25.59,
+        "durationSeconds": 8.45,
+        "truePeakDbTP": -6.38,
+        "rmsDb": -26.01,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.23614,
+        "maxStep4x": 0.18184,
         "speechActiveRmsDb": [
-          -22.67
+          -22.82
         ],
         "spikeFlags": [],
         "clipped": false,
         "passed": true
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-8515509bf5659fd1-s-4a79efd05ce6-recite",
@@ -9059,19 +9150,19 @@
     },
     {
       "id": "phrases",
-      "mp3Sha256": "c8e1df97fc814c90258d2739f7fcdfbb71b01e2e7b42264ac37b5a3a1a0ecea0",
+      "mp3Sha256": "574e23bbf5b3b822ff3dc638052dbec4d0aa786808a9c07b76285e39ceb00720",
       "readingPlanSha256": "36018d65f68a609d3f94b94ca4112284ca6e3d9cd878ec54684be98ff8ef3550",
-      "settingsSha256": "4eb0d4a5c3c51167ee5a3b798fad1404c180da4b946d75f3841ffdb7908e6b37",
+      "settingsSha256": "73cc875590400d5bc959f0029f3129ded987244ec799e607ffd1672d0a7a8a48",
       "referenceWords": 221,
-      "rawWordErrorRate": 0.0226,
-      "normalizedWordErrorRate": 0.0226,
+      "rawWordErrorRate": 0.0136,
+      "normalizedWordErrorRate": 0.0136,
       "acoustics": {
-        "durationSeconds": 235.875,
-        "truePeakDbTP": -3.75,
-        "rmsDb": -26.44,
+        "durationSeconds": 234.975,
+        "truePeakDbTP": -3.56,
+        "rmsDb": -26.45,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.25473,
+        "maxStep4x": 0.24979,
         "speechActiveRmsDb": [
           -22.53,
           -22.56,
@@ -9091,11 +9182,11 @@
           -22.69,
           -22.79,
           -22.71,
-          -22.74,
+          -22.78,
           -22.8,
-          -23.02,
-          -22.5,
-          -22.48,
+          -23.03,
+          -22.49,
+          -22.47,
           -22.55,
           -22.75,
           -22.72,
@@ -9103,24 +9194,24 @@
           -22.47,
           -22.71,
           -22.65,
-          -22.37,
-          -22.44,
-          -22.54,
-          -22.65,
+          -22.38,
+          -22.43,
+          -22.53,
+          -22.66,
           -22.47,
           -22.46,
           -22.45,
           -23.33,
           -23.04,
           -23.02,
-          -22.59,
+          -22.56,
           -22.85,
           -22.54,
-          -22.61,
+          -22.63,
           -22.78,
-          -22.8,
+          -22.81,
           -22.72,
-          -22.56,
+          -22.57,
           -22.82,
           -22.54
         ],
@@ -9134,70 +9225,70 @@
     },
     {
       "id": "phrases-slow",
-      "mp3Sha256": "139c1d75b897634ff6680335e3b2e8b47267ba8ac5d63a185436f08ba48a5053",
+      "mp3Sha256": "caa0cd5a40b230d523e009b6637c58db59ea2f9112c5349c9cadb311f12fa010",
       "readingPlanSha256": "36018d65f68a609d3f94b94ca4112284ca6e3d9cd878ec54684be98ff8ef3550",
-      "settingsSha256": "201771562ea82526762bdaada3659492aca43eb2c6fd7076fc0390b8a8b971cc",
+      "settingsSha256": "208e1f6b1cf602ce8a0603ee3ea182fc794e71c5fb7121a33afb5a0bdf281e8a",
       "referenceWords": 221,
       "rawWordErrorRate": 0.0588,
       "normalizedWordErrorRate": 0.0588,
       "acoustics": {
-        "durationSeconds": 280.15,
-        "truePeakDbTP": -3.41,
-        "rmsDb": -26.74,
+        "durationSeconds": 268.1,
+        "truePeakDbTP": -3.39,
+        "rmsDb": -26.89,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.24777,
+        "maxStep4x": 0.26608,
         "speechActiveRmsDb": [
           -22.6,
-          -22.56,
-          -22.61,
-          -22.67,
-          -22.64,
+          -22.57,
+          -22.69,
           -22.66,
+          -22.6,
+          -22.65,
           -22.49,
-          -22.42,
-          -22.25,
-          -22.25,
+          -22.44,
+          -22.26,
+          -22.26,
           -22.94,
           -22.43,
-          -22.69,
+          -22.68,
           -22.79,
           -22.62,
-          -22.58,
+          -22.82,
           -22.74,
-          -22.61,
-          -22.68,
           -22.74,
-          -22.88,
+          -22.79,
+          -22.74,
+          -23.0,
           -22.49,
           -22.47,
           -22.55,
-          -22.78,
           -22.71,
+          -22.72,
           -22.73,
-          -22.4,
-          -22.74,
+          -22.42,
+          -22.71,
           -22.65,
-          -22.37,
+          -22.38,
           -22.46,
-          -22.47,
+          -22.41,
           -22.81,
           -22.57,
-          -22.47,
+          -22.45,
           -22.44,
           -23.32,
           -23.05,
-          -22.9,
-          -22.57,
-          -22.84,
-          -22.55,
-          -22.63,
-          -22.79,
+          -22.88,
+          -22.53,
+          -22.83,
+          -22.54,
+          -22.6,
+          -22.78,
           -22.81,
           -22.56,
           -22.58,
-          -22.65,
-          -22.36
+          -22.86,
+          -22.53
         ],
         "spikeFlags": [],
         "clipped": false,
@@ -9209,39 +9300,39 @@
     },
     {
       "id": "phrases-recite",
-      "mp3Sha256": "87c950b61593c79ed66458c30e2951702a38f041258d724cb3ea8dee932fde8b",
+      "mp3Sha256": "05d05a0669f5af7470ee03d4dc28cc416e3508e2da73fa0ece04cadae384498d",
       "readingPlanSha256": "36018d65f68a609d3f94b94ca4112284ca6e3d9cd878ec54684be98ff8ef3550",
-      "settingsSha256": "eff21dfb2480042cbe210b9513c73655fbab678706a88bbc376570ef915a60b9",
+      "settingsSha256": "e88d95aad1214f3aab117510348e3523801e4820d0d0d025caaf83728b4bddb3",
       "referenceWords": 221,
-      "rawWordErrorRate": 0.0271,
-      "normalizedWordErrorRate": 0.0271,
+      "rawWordErrorRate": 0.009,
+      "normalizedWordErrorRate": 0.009,
       "acoustics": {
-        "durationSeconds": 384.5038,
-        "truePeakDbTP": -3.57,
-        "rmsDb": -28.28,
+        "durationSeconds": 376.4563,
+        "truePeakDbTP": -3.54,
+        "rmsDb": -28.3,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.24031,
+        "maxStep4x": 0.24444,
         "speechActiveRmsDb": [
-          -22.56,
-          -22.59,
+          -22.55,
+          -22.55,
           -22.48,
           -22.79,
-          -22.67,
-          -22.65,
-          -22.48,
+          -22.66,
+          -22.66,
+          -22.49,
+          -22.42,
+          -22.26,
+          -22.26,
+          -22.9,
           -22.44,
-          -22.24,
-          -22.25,
-          -22.89,
-          -22.43,
           -22.69,
           -22.81,
-          -22.63,
+          -22.62,
+          -22.67,
           -22.68,
-          -22.68,
-          -22.74,
-          -22.68,
+          -22.75,
+          -22.78,
           -22.72,
           -22.98,
           -22.49,
@@ -9251,27 +9342,27 @@
           -22.73,
           -22.87,
           -22.41,
-          -22.83,
+          -22.84,
           -22.66,
           -22.38,
           -22.5,
           -22.43,
-          -22.59,
+          -22.6,
           -22.52,
           -22.46,
           -22.44,
           -23.13,
-          -23.04,
-          -22.94,
-          -22.57,
+          -23.05,
+          -22.93,
+          -22.55,
           -22.73,
           -22.55,
-          -22.61,
+          -22.62,
           -22.78,
           -22.81,
           -22.61,
-          -22.57,
-          -22.88,
+          -22.58,
+          -22.78,
           -22.49
         ],
         "spikeFlags": [],
@@ -9309,19 +9400,19 @@
     },
     {
       "id": "sentence-source-314b88970023ea7c-s-be5005ded8f9-slow",
-      "mp3Sha256": "9048dcb96a733aef426b10f44eb18dac7c086d74483d38ef407b2006c0f447fe",
+      "mp3Sha256": "1166beb9f7da78ced2b44b1c595bb7400925c75142b17bb30dc782d5805e881f",
       "readingPlanSha256": "041b079579b5439f9370d6d59cbc35f27ebb7561d027005b006ce55720d88cf5",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "a9e9af7b03024bd3ff02384808e1350381891e67156c5af73d8e84e5572f4cf2",
       "referenceWords": 5,
-      "rawWordErrorRate": 0.2,
+      "rawWordErrorRate": 0.0,
       "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 6.25,
-        "truePeakDbTP": -7.19,
-        "rmsDb": -26.68,
+        "durationSeconds": 5.525,
+        "truePeakDbTP": -7.97,
+        "rmsDb": -26.96,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.23147,
+        "maxStep4x": 0.21718,
         "speechActiveRmsDb": [
           -22.6
         ],
@@ -9330,32 +9421,34 @@
         "passed": true
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-314b88970023ea7c-s-be5005ded8f9-recite",
-      "mp3Sha256": "046c6e8ced0e23bac5f3590fbebca2d6b9c92070b173d8ef1dde816044e4435c",
+      "mp3Sha256": "b4d253e63e2d5a1a7520bdd392e5f79bb8b2320240e36563d0b49c6cb8d44bff",
       "readingPlanSha256": "041b079579b5439f9370d6d59cbc35f27ebb7561d027005b006ce55720d88cf5",
-      "settingsSha256": "0c8b1fdececda20f6fa7454c496602d575ca1d6e88bde8a8e03b6a3bc5fdb7e1",
+      "settingsSha256": "27d346a37bb807379cb34eaf6f2590511452bb6533d74abbdee8f0e01a8521c6",
       "referenceWords": 5,
       "rawWordErrorRate": 0.0,
       "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 8.3712,
-        "truePeakDbTP": -7.62,
-        "rmsDb": -28.13,
+        "durationSeconds": 7.3075,
+        "truePeakDbTP": -8.13,
+        "rmsDb": -28.21,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.18719,
+        "maxStep4x": 0.15977,
         "speechActiveRmsDb": [
-          -22.56
+          -22.55
         ],
         "spikeFlags": [],
         "clipped": false,
         "passed": true
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-5141ab4f3bcf4c10-s-a469b837cab7",
@@ -9384,53 +9477,55 @@
     },
     {
       "id": "sentence-source-5141ab4f3bcf4c10-s-a469b837cab7-slow",
-      "mp3Sha256": "902a4753553ba783b9922b9b809e7c3039bb69daeeb7e8985fdd5c5a50027ae2",
+      "mp3Sha256": "992febe6fe4d8a75ace9661e4fd63cf495fb9472f8fea991bc119cc5643e09d0",
       "readingPlanSha256": "cb291d8c91c08ae1eec50ff03818c38f11b29d3506eb4e834bad839359e45db3",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
-      "referenceWords": 4,
-      "rawWordErrorRate": 0.25,
-      "normalizedWordErrorRate": 0.0,
-      "acoustics": {
-        "durationSeconds": 5.4,
-        "truePeakDbTP": -7.86,
-        "rmsDb": -27.15,
-        "edgePeak": 0.0,
-        "joinPeak": 0.0,
-        "maxStep4x": 0.20588,
-        "speechActiveRmsDb": [
-          -22.55
-        ],
-        "spikeFlags": [],
-        "clipped": false,
-        "passed": true
-      },
-      "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
-    },
-    {
-      "id": "sentence-source-5141ab4f3bcf4c10-s-a469b837cab7-recite",
-      "mp3Sha256": "3e6c65ac5ef748b2c917d17239620456b3b39bf7ae9843645bcab79ce6300c62",
-      "readingPlanSha256": "cb291d8c91c08ae1eec50ff03818c38f11b29d3506eb4e834bad839359e45db3",
-      "settingsSha256": "0c8b1fdececda20f6fa7454c496602d575ca1d6e88bde8a8e03b6a3bc5fdb7e1",
+      "settingsSha256": "0e8781b56ed7c5415813e988f3fa0272be542bff97639bad3ee11d341a9834de",
       "referenceWords": 4,
       "rawWordErrorRate": 0.0,
       "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 6.845,
-        "truePeakDbTP": -7.75,
-        "rmsDb": -28.53,
+        "durationSeconds": 5.0,
+        "truePeakDbTP": -7.26,
+        "rmsDb": -27.42,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.20122,
+        "maxStep4x": 0.18704,
         "speechActiveRmsDb": [
-          -22.58
+          -22.57
         ],
         "spikeFlags": [],
         "clipped": false,
         "passed": true
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
+    },
+    {
+      "id": "sentence-source-5141ab4f3bcf4c10-s-a469b837cab7-recite",
+      "mp3Sha256": "19f4e6b9bf3202bd58add3114c4cec52846c60dc74b59638da69712b4613de33",
+      "readingPlanSha256": "cb291d8c91c08ae1eec50ff03818c38f11b29d3506eb4e834bad839359e45db3",
+      "settingsSha256": "96874d13786c28841bb8310812ad72314da325dba14ef432ad70d87ef0654dfb",
+      "referenceWords": 4,
+      "rawWordErrorRate": 0.0,
+      "normalizedWordErrorRate": 0.0,
+      "acoustics": {
+        "durationSeconds": 6.105,
+        "truePeakDbTP": -7.41,
+        "rmsDb": -28.55,
+        "edgePeak": 0.0,
+        "joinPeak": 0.0,
+        "maxStep4x": 0.20775,
+        "speechActiveRmsDb": [
+          -22.54
+        ],
+        "spikeFlags": [],
+        "clipped": false,
+        "passed": true
+      },
+      "passed": true,
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-aac688a38e9875b9-s-b3aa9b37d308",
@@ -9459,28 +9554,29 @@
     },
     {
       "id": "sentence-source-aac688a38e9875b9-s-b3aa9b37d308-slow",
-      "mp3Sha256": "d2166331363e9209e80a8d31a0767f4954365f1e8021318c2b08e11ec79bce58",
+      "mp3Sha256": "70702e22de36bd33fd3529654328b127671da526e2e4782856f827fe3c7becd0",
       "readingPlanSha256": "d784f0e327e904d9c11af0e50a39f3eaf16867ef168b5eef69985373dd505176",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "ef91a154f7dc09a04b23741917e5c66a48e58e4042cb5a14303e96b4ed1de5cf",
       "referenceWords": 5,
       "rawWordErrorRate": 0.2,
       "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 6.0,
-        "truePeakDbTP": -7.01,
-        "rmsDb": -26.74,
+        "durationSeconds": 5.35,
+        "truePeakDbTP": -6.34,
+        "rmsDb": -27.19,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.17923,
+        "maxStep4x": 0.16783,
         "speechActiveRmsDb": [
-          -22.6
+          -22.69
         ],
         "spikeFlags": [],
         "clipped": false,
         "passed": true
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-aac688a38e9875b9-s-b3aa9b37d308-recite",
@@ -9609,28 +9705,29 @@
     },
     {
       "id": "sentence-source-98465588330f8d17-s-b901287274c3-slow",
-      "mp3Sha256": "0f95af8f143db226b9d1fb73461709cda2e6dc7007917fda63058e574b68f53a",
+      "mp3Sha256": "f8d858471dfbb7047145036db31667e0f75ac9ecfd3a9d0d39390493669abf70",
       "readingPlanSha256": "9c4ae0a9dfd2ac4bbbcf546111296568597411a02fa36ef2b195c77478aa8732",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "f716673fa72fea4953f34903bbfc1f3e3e63d1f162d1f8cafe3009e4f99a5b33",
       "referenceWords": 6,
-      "rawWordErrorRate": 0.1667,
-      "normalizedWordErrorRate": 0.1667,
+      "rawWordErrorRate": 0.0,
+      "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 6.225,
-        "truePeakDbTP": -7.3,
-        "rmsDb": -26.69,
+        "durationSeconds": 5.5,
+        "truePeakDbTP": -7.79,
+        "rmsDb": -26.94,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.15081,
+        "maxStep4x": 0.14699,
         "speechActiveRmsDb": [
-          -22.64
+          -22.61
         ],
         "spikeFlags": [],
         "clipped": false,
         "passed": true
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-98465588330f8d17-s-b901287274c3-recite",
@@ -10452,28 +10549,29 @@
     },
     {
       "id": "sentence-source-2349f33cbbf1b3af-s-2b93ad3cae84-slow",
-      "mp3Sha256": "3ce1ce8a025de0e3d503613ceda69846ff9339107456a39dbc725c19ecd7cebc",
+      "mp3Sha256": "0fbdbbce2594b962a6c111013cd94599caf4169faab5c880bbed520e7c76d876",
       "readingPlanSha256": "b27d2c49dc6ca03c9a42144c9691c82f4bd280f19b3b17e19d115ad795d78680",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "fc07caf5aefed0934abdb1a376c54198b6a525ea92626162a454e32afbfda8ef",
       "referenceWords": 5,
-      "rawWordErrorRate": 0.4,
+      "rawWordErrorRate": 0.0,
       "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 6.475,
-        "truePeakDbTP": -7.02,
-        "rmsDb": -26.19,
+        "durationSeconds": 5.825,
+        "truePeakDbTP": -5.53,
+        "rmsDb": -26.67,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.10683,
+        "maxStep4x": 0.10909,
         "speechActiveRmsDb": [
-          -22.59
+          -22.82
         ],
         "spikeFlags": [],
         "clipped": false,
         "passed": true
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-2349f33cbbf1b3af-s-2b93ad3cae84-recite",
@@ -10602,28 +10700,29 @@
     },
     {
       "id": "sentence-source-2492142cc3f57878-s-3f052bbef738-slow",
-      "mp3Sha256": "17d4d2ebfe48ec5e96bce92418b25939c6057b73c7d2c091ebe22013adce3a2c",
+      "mp3Sha256": "b0cffecce246761086a2eca7058ab91f3ba9f878504e21d411acd7365a514804",
       "readingPlanSha256": "84496da457592480fadddedc59aba6abf09d6545244f57fe8f74236e4983d492",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "b97c5abdbfba922a120d8efe68bf93e6e4388913d5492c45ef8e1ed4b1396d69",
       "referenceWords": 6,
-      "rawWordErrorRate": 0.1667,
-      "normalizedWordErrorRate": 0.1667,
+      "rawWordErrorRate": 0.0,
+      "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 7.15,
-        "truePeakDbTP": -7.87,
-        "rmsDb": -26.11,
+        "durationSeconds": 6.475,
+        "truePeakDbTP": -7.04,
+        "rmsDb": -26.47,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.14012,
+        "maxStep4x": 0.10723,
         "speechActiveRmsDb": [
-          -22.61
+          -22.74
         ],
         "spikeFlags": [],
         "clipped": false,
         "passed": true
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-2492142cc3f57878-s-3f052bbef738-recite",
@@ -10652,78 +10751,81 @@
     },
     {
       "id": "sentence-source-09a7b66c81b21112-s-8e12cad9fd6d",
-      "mp3Sha256": "28224376c8e5824142cedab547168524669e0750f4500203059f21c39aa49126",
+      "mp3Sha256": "a286880bebf4825a3afd24639e6b4522cf40b2ce34e068b02e5134a3114fccbd",
       "readingPlanSha256": "de74b5c8cd7d4f43ab9be0c365e5a4786c061ba67751f240c68638bea941836f",
-      "settingsSha256": "a471852b1b7e8b88fa21493378b46165c4c78483b7920ab0c710347d61eaf82d",
+      "settingsSha256": "de38083de6622666a9b3180278b2e1c24f5d5ac582750dcde3ac59a4f49dff67",
       "referenceWords": 5,
-      "rawWordErrorRate": 0.2,
+      "rawWordErrorRate": 0.0,
       "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 5.65,
-        "truePeakDbTP": -6.85,
-        "rmsDb": -26.17,
+        "durationSeconds": 5.175,
+        "truePeakDbTP": -6.16,
+        "rmsDb": -26.37,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.12708,
+        "maxStep4x": 0.12161,
         "speechActiveRmsDb": [
-          -22.73
+          -22.79
         ],
         "spikeFlags": [],
         "clipped": false,
         "passed": true
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-09a7b66c81b21112-s-8e12cad9fd6d-slow",
-      "mp3Sha256": "308c869f5c6363a55582d021303afe078abd1138990217d25feba7be3137b29b",
+      "mp3Sha256": "f50f040eed19fa9f39bd34529799890983de2aa56bbf68e93be589f29bd56118",
       "readingPlanSha256": "de74b5c8cd7d4f43ab9be0c365e5a4786c061ba67751f240c68638bea941836f",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "6cc4bc3e1ffe414e167415df9e4e68ac245c975c5365ff83c43498913f3b6ca8",
       "referenceWords": 5,
-      "rawWordErrorRate": 0.2,
+      "rawWordErrorRate": 0.0,
       "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 6.8,
-        "truePeakDbTP": -7.22,
-        "rmsDb": -26.23,
+        "durationSeconds": 5.675,
+        "truePeakDbTP": -6.16,
+        "rmsDb": -26.77,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.13047,
+        "maxStep4x": 0.12161,
         "speechActiveRmsDb": [
-          -22.68
+          -22.79
         ],
         "spikeFlags": [],
         "clipped": false,
         "passed": true
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-09a7b66c81b21112-s-8e12cad9fd6d-recite",
-      "mp3Sha256": "5b985f10ffa116fc9a1d96b2bbbe8fc57ea983743b7e78303c5cb437f03bf1d9",
+      "mp3Sha256": "734854d8cab3bdd0d76d5f215588b1d981740c00516b0f5c04cd1976f5be635a",
       "readingPlanSha256": "de74b5c8cd7d4f43ab9be0c365e5a4786c061ba67751f240c68638bea941836f",
-      "settingsSha256": "0c8b1fdececda20f6fa7454c496602d575ca1d6e88bde8a8e03b6a3bc5fdb7e1",
+      "settingsSha256": "8d0b4cd51df886c21421e1757ab6ce04e7ded8e3b5e7cef28e5584c298182ee4",
       "referenceWords": 5,
-      "rawWordErrorRate": 0.4,
+      "rawWordErrorRate": 0.0,
       "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 9.5738,
-        "truePeakDbTP": -7.32,
-        "rmsDb": -27.83,
+        "durationSeconds": 7.7237,
+        "truePeakDbTP": -6.16,
+        "rmsDb": -28.11,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.12833,
+        "maxStep4x": 0.12161,
         "speechActiveRmsDb": [
-          -22.68
+          -22.79
         ],
         "spikeFlags": [],
         "clipped": false,
         "passed": true
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-d9bbac2b32916ac9-s-7fac7472cb8c",
@@ -10827,28 +10929,29 @@
     },
     {
       "id": "sentence-source-f3ee84c550f70184-s-a94bd59a5823-slow",
-      "mp3Sha256": "f20e6b326ae3030e73c0b695dc4476a0c5e682fa30879466b36c699b84f00249",
+      "mp3Sha256": "8f862265e08a3dafa647f2e798d2f1c8799087c5dfe36e6cc8080bf3321f3cfe",
       "readingPlanSha256": "d4fad42aa3605a99aad90d04978fcd98302d77d8a68e103dbf12278a69903a86",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "61b06e0241b13f022678f519e7da454e11fb9d192c91fa9ec559dbe2e92dab87",
       "referenceWords": 7,
-      "rawWordErrorRate": 0.1429,
-      "normalizedWordErrorRate": 0.1429,
+      "rawWordErrorRate": 0.0,
+      "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 7.275,
-        "truePeakDbTP": -5.57,
-        "rmsDb": -26.38,
+        "durationSeconds": 6.575,
+        "truePeakDbTP": -5.08,
+        "rmsDb": -26.76,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.1498,
+        "maxStep4x": 0.13602,
         "speechActiveRmsDb": [
-          -22.87
+          -23.0
         ],
         "spikeFlags": [],
         "clipped": false,
         "passed": true
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-f3ee84c550f70184-s-a94bd59a5823-recite",
@@ -11127,28 +11230,29 @@
     },
     {
       "id": "sentence-source-00d2169fce4e76d5-s-163ffd7c144d-slow",
-      "mp3Sha256": "cc75c208d06410209862349a0380aa6ef5e9319921441a4b9c11da86525c7f86",
+      "mp3Sha256": "78b7919948204cd77340a579eb0389e19817a87d1ce33126fe69bf5f3289addc",
       "readingPlanSha256": "63c58cb0fb472f30e4a481a848b492d90b700268301b9988fda481d19cd7ca82",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "3220a4da8b502655586da5862491a515eb8e7c52d0ab1643bbd0111e025a993d",
       "referenceWords": 5,
       "rawWordErrorRate": 0.0,
       "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 6.05,
-        "truePeakDbTP": -5.86,
-        "rmsDb": -26.89,
+        "durationSeconds": 5.475,
+        "truePeakDbTP": -6.86,
+        "rmsDb": -27.11,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.13772,
+        "maxStep4x": 0.13369,
         "speechActiveRmsDb": [
-          -22.78
+          -22.72
         ],
         "spikeFlags": [],
         "clipped": false,
         "passed": true
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-00d2169fce4e76d5-s-163ffd7c144d-recite",
@@ -11352,28 +11456,29 @@
     },
     {
       "id": "sentence-source-e7b1bdbe0b97b567-s-0d3d5c1327ea-slow",
-      "mp3Sha256": "3c53859bdbc28195321729d67737e59164ff61ac5c15ed4d4985724e681187cc",
+      "mp3Sha256": "0bab899e6f2d0a7b1233c7dae121c59f6a9a87119f82d8830b0537a46561ada6",
       "readingPlanSha256": "1eb1030b3eca47991c2ac3ea4a97056e65a4813d9f5ed79ebeabeae74d6cbbb3",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "2300dc58100650bdeea33e589abfe504d92aa2fac09abe11441bd60d7412d2da",
       "referenceWords": 5,
-      "rawWordErrorRate": 0.2,
+      "rawWordErrorRate": 0.0,
       "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 6.35,
-        "truePeakDbTP": -8.02,
-        "rmsDb": -26.05,
+        "durationSeconds": 5.825,
+        "truePeakDbTP": -7.72,
+        "rmsDb": -26.29,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.14963,
+        "maxStep4x": 0.1372,
         "speechActiveRmsDb": [
-          -22.4
+          -22.41
         ],
         "spikeFlags": [],
         "clipped": false,
         "passed": true
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-e7b1bdbe0b97b567-s-0d3d5c1327ea-recite",
@@ -11427,28 +11532,29 @@
     },
     {
       "id": "sentence-source-1d952d59ce7e23ad-s-0ddf14f22323-slow",
-      "mp3Sha256": "8d8feadaeb61926c56cf0da48b57c9199b855abc360ab7c255be7e39d7927201",
+      "mp3Sha256": "2d1ce5918919e293aeb7a21d0b7391a37a892c9dad61b4edebcc40f1896b410e",
       "readingPlanSha256": "a96473bb55e9931c4ef949e00d52eeca8dd20701b9e7af55eff83d686b9aadcc",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "43225f3f04b8166dd4ad1df3c474971713c894969e4e19aa2d8cf8cafd29cff2",
       "referenceWords": 5,
       "rawWordErrorRate": 0.0,
       "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 5.85,
-        "truePeakDbTP": -5.68,
-        "rmsDb": -26.77,
+        "durationSeconds": 5.35,
+        "truePeakDbTP": -6.02,
+        "rmsDb": -27.0,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.14199,
+        "maxStep4x": 0.1578,
         "speechActiveRmsDb": [
-          -22.74
+          -22.7
         ],
         "spikeFlags": [],
         "clipped": false,
         "passed": true
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-1d952d59ce7e23ad-s-0ddf14f22323-recite",
@@ -11734,21 +11840,21 @@
     },
     {
       "id": "sentence-source-ab1853c0e4a791ec-s-b8c6321502d2-slow",
-      "mp3Sha256": "557fe5ceb687749d3ad054407058ef9e0b5518c7226b580450ccb3ce73b03a29",
+      "mp3Sha256": "841255b210588201cf816e9d83011eb18ea671a084c1ecfe1ef2cfa348b4a4d7",
       "readingPlanSha256": "6bf8865739ce1efc7f94585e872ec25d755814dce702ede3695352b000cb2907",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "5478de486f7d6eafad8b46be325310af06cd3d4a095e70d572781d388747a82e",
       "referenceWords": 4,
-      "rawWordErrorRate": 0.25,
+      "rawWordErrorRate": 0.0,
       "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 5.775,
-        "truePeakDbTP": -7.35,
-        "rmsDb": -26.61,
+        "durationSeconds": 5.125,
+        "truePeakDbTP": -8.36,
+        "rmsDb": -26.92,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.14323,
+        "maxStep4x": 0.12877,
         "speechActiveRmsDb": [
-          -22.47
+          -22.41
         ],
         "spikeFlags": [],
         "clipped": false,
@@ -12270,28 +12376,29 @@
     },
     {
       "id": "sentence-source-9843a763e6ce521f-s-89fee639a60f-slow",
-      "mp3Sha256": "b76342735594a22b01dd99293d7253b16601b04fb5c74677dbe0b2f18a66e1fc",
+      "mp3Sha256": "511387687a26262d413999634939065af5e23c18702269ec7e389f461a95d2f3",
       "readingPlanSha256": "c83200a888337f473cdf8339df49e9dd20f5ec8f858acbfc03e9ce4563cd0c58",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "d60630a27cfb2374d745805c6e5b4ba1dbdb319c4075ea0332de9b40ae0130ab",
       "referenceWords": 6,
-      "rawWordErrorRate": 0.1667,
-      "normalizedWordErrorRate": 0.1667,
+      "rawWordErrorRate": 0.0,
+      "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 6.225,
-        "truePeakDbTP": -5.31,
-        "rmsDb": -27.08,
+        "durationSeconds": 5.6,
+        "truePeakDbTP": -5.48,
+        "rmsDb": -27.3,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.19562,
+        "maxStep4x": 0.16072,
         "speechActiveRmsDb": [
-          -22.9
+          -22.87
         ],
         "spikeFlags": [],
         "clipped": false,
         "passed": true
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-9843a763e6ce521f-s-89fee639a60f-recite",
@@ -12320,78 +12427,81 @@
     },
     {
       "id": "sentence-source-7289e7c3a1a6fab4-s-4c6d9deb0e61",
-      "mp3Sha256": "14fb3db9361ef532b9b987f3faa63d3c49f027bd783fc35035f2ffda53b28a2d",
+      "mp3Sha256": "2c9272ce9aab364bf87a415c049517a92a3cd8fd36821bd273ef722ec42b152e",
       "readingPlanSha256": "3eec97cafbd991052c044a690c1e7689d651a04ebdc1b86c241ebdf37b9384aa",
-      "settingsSha256": "a471852b1b7e8b88fa21493378b46165c4c78483b7920ab0c710347d61eaf82d",
+      "settingsSha256": "d0825508a8c358fcde9a54f70f0e1fe2297d48fb5f1e281a7ac14c7dcd011c23",
       "referenceWords": 6,
-      "rawWordErrorRate": 0.1667,
-      "normalizedWordErrorRate": 0.1667,
-      "acoustics": {
-        "durationSeconds": 5.95,
-        "truePeakDbTP": -8.08,
-        "rmsDb": -25.98,
-        "edgePeak": 0.0,
-        "joinPeak": 0.0,
-        "maxStep4x": 0.10484,
-        "speechActiveRmsDb": [
-          -22.59
-        ],
-        "spikeFlags": [],
-        "clipped": false,
-        "passed": true
-      },
-      "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
-    },
-    {
-      "id": "sentence-source-7289e7c3a1a6fab4-s-4c6d9deb0e61-slow",
-      "mp3Sha256": "e1b35dfe7101f5cffad117ad87223708a03d5e87ddd2a89dc78ba2fcb1650e96",
-      "readingPlanSha256": "3eec97cafbd991052c044a690c1e7689d651a04ebdc1b86c241ebdf37b9384aa",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
-      "referenceWords": 6,
-      "rawWordErrorRate": 0.3333,
+      "rawWordErrorRate": 0.0,
       "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 7.275,
-        "truePeakDbTP": -7.89,
+        "durationSeconds": 5.525,
+        "truePeakDbTP": -7.83,
         "rmsDb": -26.09,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.10829,
+        "maxStep4x": 0.09421,
         "speechActiveRmsDb": [
-          -22.58
+          -22.56
         ],
         "spikeFlags": [],
         "clipped": false,
         "passed": true
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
+    },
+    {
+      "id": "sentence-source-7289e7c3a1a6fab4-s-4c6d9deb0e61-slow",
+      "mp3Sha256": "14708465088c14aa8a26618f6b8163877ffee897cc265af3584de351f1050a5b",
+      "readingPlanSha256": "3eec97cafbd991052c044a690c1e7689d651a04ebdc1b86c241ebdf37b9384aa",
+      "settingsSha256": "24e4ab8b7bfdcf995e0f09334811bc08ae825c326babd97bda6eecbabb10056c",
+      "referenceWords": 6,
+      "rawWordErrorRate": 0.0,
+      "normalizedWordErrorRate": 0.0,
+      "acoustics": {
+        "durationSeconds": 6.175,
+        "truePeakDbTP": -8.27,
+        "rmsDb": -26.4,
+        "edgePeak": 0.0,
+        "joinPeak": 0.0,
+        "maxStep4x": 0.09499,
+        "speechActiveRmsDb": [
+          -22.53
+        ],
+        "spikeFlags": [],
+        "clipped": false,
+        "passed": true
+      },
+      "passed": true,
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-7289e7c3a1a6fab4-s-4c6d9deb0e61-recite",
-      "mp3Sha256": "e057a16b640c79f4280bde077cd82b395980bcf49f9c8b0a923c84c2b524784c",
+      "mp3Sha256": "71fc0a4a55ae7dc8d3a7ab1b91933ac7b5644f55bb46f05766da4ea8be3ee195",
       "readingPlanSha256": "3eec97cafbd991052c044a690c1e7689d651a04ebdc1b86c241ebdf37b9384aa",
-      "settingsSha256": "0c8b1fdececda20f6fa7454c496602d575ca1d6e88bde8a8e03b6a3bc5fdb7e1",
+      "settingsSha256": "40a9bc13c02eaa78b6367bcd97d6e5e008d8aac817f642f7c183032f85ff67cd",
       "referenceWords": 6,
-      "rawWordErrorRate": 0.1667,
-      "normalizedWordErrorRate": 0.1667,
+      "rawWordErrorRate": 0.0,
+      "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 9.9437,
-        "truePeakDbTP": -7.67,
-        "rmsDb": -27.79,
+        "durationSeconds": 8.3712,
+        "truePeakDbTP": -7.83,
+        "rmsDb": -27.9,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.11224,
+        "maxStep4x": 0.09421,
         "speechActiveRmsDb": [
-          -22.57
+          -22.56
         ],
         "spikeFlags": [],
         "clipped": false,
         "passed": true
       },
       "passed": true,
-      "audit": "sentence-mp3-acoustic-and-asr-v1.2"
+      "audit": "sentence-mp3-acoustic-and-asr-v1.2",
+      "orthographicNormalizations": []
     },
     {
       "id": "sentence-source-e871d4d7387ae95d-s-e04fd0d460fb",
@@ -12964,21 +13074,21 @@
     },
     {
       "id": "sentence-source-56231ce3be2fb2a8-s-d9f0277df7a1-slow",
-      "mp3Sha256": "3c0679f678ed97d741689c7f7b1d0694def50155ea34678903ad71f92b29aecb",
+      "mp3Sha256": "348d9b1532a74f1bd2dcedc26e89384e0808e9177d52ddbb520e258a5f93addf",
       "readingPlanSha256": "87dfaa0e55ccb72f8e06a84b2dd9b575dce859b4545fef86090bae6e05d9558e",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "e20cc256ef5b976d064663092bb5fe14b8a8c55c440fe872ac612543f36dce42",
       "referenceWords": 14,
-      "rawWordErrorRate": 0.0714,
-      "normalizedWordErrorRate": 0.0714,
+      "rawWordErrorRate": 0.0,
+      "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 14.225,
-        "truePeakDbTP": -5.98,
-        "rmsDb": -25.03,
+        "durationSeconds": 12.626,
+        "truePeakDbTP": -4.44,
+        "rmsDb": -25.33,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.13424,
+        "maxStep4x": 0.13901,
         "speechActiveRmsDb": [
-          -22.65
+          -22.86
         ],
         "spikeFlags": [],
         "clipped": false,
@@ -12990,21 +13100,21 @@
     },
     {
       "id": "sentence-source-56231ce3be2fb2a8-s-d9f0277df7a1-recite",
-      "mp3Sha256": "a4255850418425bc2c52b2087fabbe5d4197a2ba5e8f7ad35ac30abd8d37df01",
+      "mp3Sha256": "cc7a484d3d4cb5fc5bc659c4fa79930c971914899ff69dff4dd95ba5f24a2de5",
       "readingPlanSha256": "87dfaa0e55ccb72f8e06a84b2dd9b575dce859b4545fef86090bae6e05d9558e",
-      "settingsSha256": "0c8b1fdececda20f6fa7454c496602d575ca1d6e88bde8a8e03b6a3bc5fdb7e1",
+      "settingsSha256": "a50d4f1ce5153109be317eaec07ddfb80f3893ee4732f8bcd268300f84e6dbb7",
       "referenceWords": 14,
-      "rawWordErrorRate": 0.0714,
-      "normalizedWordErrorRate": 0.0714,
+      "rawWordErrorRate": 0.0,
+      "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 22.385,
-        "truePeakDbTP": -4.27,
-        "rmsDb": -27.44,
+        "durationSeconds": 19.5637,
+        "truePeakDbTP": -5.15,
+        "rmsDb": -27.39,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.1281,
+        "maxStep4x": 0.12802,
         "speechActiveRmsDb": [
-          -22.89
+          -22.78
         ],
         "spikeFlags": [],
         "clipped": false,
@@ -13042,21 +13152,21 @@
     },
     {
       "id": "sentence-source-cac3311174acff0f-s-3f5c1eeac652-slow",
-      "mp3Sha256": "5fdb7aa69d91abf9680135ce92398ac1a6f5045acf6c862b265179d445886917",
+      "mp3Sha256": "d49b4ae064c3b409e03afbf3f581aadd43175718d976df2fa84e00b77934bd1a",
       "readingPlanSha256": "15f422ecd052668a295c76b93b3992c58f940ad6778592ebd4a9a90140cd2f6b",
-      "settingsSha256": "a641e951812acba1bed621f1b7e5ee04c67b3fc2d934c597a69143f8991f6255",
+      "settingsSha256": "da213a6088aea4385a3044c96022be132ea42dffdca9eb667d32dd089c1b6dfb",
       "referenceWords": 6,
-      "rawWordErrorRate": 0.1667,
-      "normalizedWordErrorRate": 0.1667,
+      "rawWordErrorRate": 0.0,
+      "normalizedWordErrorRate": 0.0,
       "acoustics": {
-        "durationSeconds": 5.825,
-        "truePeakDbTP": -8.5,
-        "rmsDb": -26.61,
+        "durationSeconds": 5.0,
+        "truePeakDbTP": -7.53,
+        "rmsDb": -27.06,
         "edgePeak": 0.0,
         "joinPeak": 0.0,
-        "maxStep4x": 0.13821,
+        "maxStep4x": 0.18734,
         "speechActiveRmsDb": [
-          -22.36
+          -22.52
         ],
         "spikeFlags": [],
         "clipped": false,
